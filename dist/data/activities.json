@@ -1,0 +1,38 @@
+[
+  {
+    "title": "فعالية أحِي قلبك",
+    "date": "مارس 2024",
+    "tag": "اجتماعي",
+    "emoji": "❤️",
+    "bg_gradient": "linear-gradient(135deg,#FEE2E2,#FECACA)",
+    "tag_class": "tag-red",
+    "description": "يوم روحي اجتماعي يهدف لتعزيز الترابط بين أفراد الاتحاد والتجديد الروحي."
+  },
+  {
+    "title": "ورشة الشبكات العملية",
+    "date": "فبراير 2024",
+    "tag": "تقني",
+    "emoji": "🛠️",
+    "bg_gradient": "linear-gradient(135deg,#DBEAFE,#BFDBFE)",
+    "tag_class": "tag-blue",
+    "description": "ورشة تطبيقية في مختبر الشبكات تغطي إعداد الراوترات والسويتشات."
+  },
+  {
+    "title": "يوم التوجيه للطلاب الجدد",
+    "date": "يناير 2024",
+    "tag": "أكاديمي",
+    "emoji": "🎓",
+    "bg_gradient": "linear-gradient(135deg,#D1FAE5,#A7F3D0)",
+    "tag_class": "tag-green",
+    "description": "استقبال الدفعات الجديدة وتعريفهم بالخدمات التي يقدمها الاتحاد."
+  },
+  {
+    "title": "محاضرة الريادة التقنية",
+    "date": "ديسمبر 2023",
+    "tag": "ريادة",
+    "emoji": "💡",
+    "bg_gradient": "linear-gradient(135deg,#FEF3C7,#FDE68A)",
+    "tag_class": "tag-yellow",
+    "description": "محاضرة بعنوان كيف تبدأ مسيرتك التقنية من الجامعة."
+  }
+]

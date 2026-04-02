@@ -1,0 +1,163 @@
+[
+  {
+    "major": "computer",
+    "year": 1,
+    "name": "مبادئ الحاسوب",
+    "link": "https://drive.google.com/drive/folders/YOUR_FOLDER_ID",
+    "type": "link"
+  },
+  {
+    "major": "computer",
+    "year": 1,
+    "name": "رياضيات هندسية ١",
+    "link": "https://drive.google.com/drive/folders/YOUR_FOLDER_ID",
+    "type": "link"
+  },
+  {
+    "major": "computer",
+    "year": 1,
+    "name": "مجتمع وتكنولوجيا",
+    "link": "https://drive.google.com/drive/folders/YOUR_FOLDER_ID",
+    "type": "link"
+  },
+  {
+    "major": "computer",
+    "year": 2,
+    "name": "بنية الحاسوب",
+    "link": "https://drive.google.com/drive/folders/YOUR_FOLDER_ID",
+    "type": "link"
+  },
+  {
+    "major": "computer",
+    "year": 2,
+    "name": "نظم التشغيل",
+    "link": "https://drive.google.com/drive/folders/YOUR_FOLDER_ID",
+    "type": "link"
+  },
+  {
+    "major": "computer",
+    "year": 2,
+    "name": "هياكل البيانات",
+    "link": "https://drive.google.com/drive/folders/YOUR_FOLDER_ID",
+    "type": "link"
+  },
+  {
+    "major": "computer",
+    "year": 3,
+    "name": "قواعد البيانات",
+    "link": "https://drive.google.com/drive/folders/YOUR_FOLDER_ID",
+    "type": "link"
+  },
+  {
+    "major": "computer",
+    "year": 3,
+    "name": "هندسة البرمجيات",
+    "link": "https://drive.google.com/drive/folders/YOUR_FOLDER_ID",
+    "type": "link"
+  },
+  {
+    "major": "computer",
+    "year": 3,
+    "name": "الشبكات ١",
+    "link": "https://drive.google.com/drive/folders/YOUR_FOLDER_ID",
+    "type": "link"
+  },
+  {
+    "major": "computer",
+    "year": 4,
+    "name": "مشروع التخرج",
+    "link": "https://drive.google.com/drive/folders/YOUR_FOLDER_ID",
+    "type": "link"
+  },
+  {
+    "major": "computer",
+    "year": 4,
+    "name": "الأمن السيبراني",
+    "link": "https://drive.google.com/drive/folders/YOUR_FOLDER_ID",
+    "type": "link"
+  },
+  {
+    "major": "network",
+    "year": 1,
+    "name": "أساسيات الشبكات",
+    "link": "https://drive.google.com/drive/folders/YOUR_FOLDER_ID",
+    "type": "link"
+  },
+  {
+    "major": "network",
+    "year": 1,
+    "name": "رياضيات ١",
+    "link": "https://drive.google.com/drive/folders/YOUR_FOLDER_ID",
+    "type": "link"
+  },
+  {
+    "major": "network",
+    "year": 2,
+    "name": "بروتوكولات الشبكة",
+    "link": "https://drive.google.com/drive/folders/YOUR_FOLDER_ID",
+    "type": "link"
+  },
+  {
+    "major": "network",
+    "year": 2,
+    "name": "إدارة الشبكات",
+    "link": "https://drive.google.com/drive/folders/YOUR_FOLDER_ID",
+    "type": "link"
+  },
+  {
+    "major": "network",
+    "year": 3,
+    "name": "الشبكات اللاسلكية",
+    "link": "https://drive.google.com/drive/folders/YOUR_FOLDER_ID",
+    "type": "link"
+  },
+  {
+    "major": "network",
+    "year": 3,
+    "name": "أمن الشبكات",
+    "link": "https://drive.google.com/drive/folders/YOUR_FOLDER_ID",
+    "type": "link"
+  },
+  {
+    "major": "network",
+    "year": 4,
+    "name": "الشبكات المتقدمة",
+    "link": "https://drive.google.com/drive/folders/YOUR_FOLDER_ID",
+    "type": "link"
+  },
+  {
+    "major": "network",
+    "year": 4,
+    "name": "مشروع التخرج",
+    "link": "https://drive.google.com/drive/folders/YOUR_FOLDER_ID",
+    "type": "link"
+  },
+  {
+    "major": "common",
+    "year": 1,
+    "name": "الفيزياء العامة",
+    "link": "https://drive.google.com/drive/folders/YOUR_FOLDER_ID",
+    "type": "link"
+  },
+  {
+    "major": "common",
+    "year": 1,
+    "name": "اللغة العربية",
+    "link": "https://drive.google.com/drive/folders/YOUR_FOLDER_ID",
+    "type": "link"
+  },
+  {
+    "major": "common",
+    "year": 1,
+    "name": "اللغة الإنجليزية",
+    "link": "https://drive.google.com/drive/folders/YOUR_FOLDER_ID",
+    "type": "link"
+  },
+  {
+    "major": "common",
+    "year": 2,
+    "name": "الإلكترونيات",
+    "link": "https://drive.google.com/drive/folders/YOUR_FOLDER_ID",
+    "type": "link"
+  }
+]
