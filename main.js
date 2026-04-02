@@ -315,7 +315,7 @@ function renderHome() {
           <h3 class="card-title">البوابة الجامعية</h3>
           <p class="card-desc">وصول مباشر للبوابة الطلابية والتعلم الإلكتروني.</p>
           <div style="display:flex;flex-direction:column;gap:8px;margin-top:1rem;">
-            <a href="https://portal.bau.edu.jo" target="_blank" class="card-link" style="font-size:.82rem">📎 البوابة الطلابية →</a>
+            <a href="http://appserver.fet.edu.jo:7778/reg_new/index.jsp" target="_blank" class="card-link" style="font-size:.82rem">📎 البوابة الطلابية →</a>
             <a href="https://elearning.bau.edu.jo" target="_blank" class="card-link" style="font-size:.82rem">🎓 التعلم الإلكتروني →</a>
           </div>
         </div>
@@ -420,7 +420,7 @@ function renderPlans() {
           <div class="plan-icon" style="background:rgba(53,116,200,.1)">💻</div>
           <h3 class="card-title" style="font-size:1.3rem;margin-bottom:.5rem">هندسة الحاسوب</h3>
           <p class="card-desc" style="margin-bottom:1.5rem">الخطة الدراسية الكاملة مع المتطلبات السابقة والمواد الاختيارية.</p>
-          <a href="#" class="btn btn-primary" style="width:100%;justify-content:center">
+          <a href="/computer-plan.jpg" target="_blank" download="Computer-Plan.jpg" class="btn btn-primary" style="width:100%;justify-content:center">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             تحميل الخطة
           </a>
@@ -429,7 +429,7 @@ function renderPlans() {
           <div class="plan-icon" style="background:rgba(76,175,80,.1)">🌐</div>
           <h3 class="card-title" style="font-size:1.3rem;margin-bottom:.5rem">هندسة الشبكات</h3>
           <p class="card-desc" style="margin-bottom:1.5rem">خطة تخصص الشبكات مع توضيح المسارات المتاحة والتخصصات الفرعية.</p>
-          <a href="#" class="btn" style="width:100%;justify-content:center;background:var(--green);color:white;box-shadow:0 8px 24px rgba(76,175,80,.25)">
+          <a href="/networking-plan.jpg" target="_blank" download="Networking-Plan.jpg" class="btn" style="width:100%;justify-content:center;background:var(--green);color:white;box-shadow:0 8px 24px rgba(76,175,80,.25)">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             تحميل الخطة
           </a>
@@ -555,10 +555,9 @@ function renderFooter() {
         <div>
           <div class="footer-col-title">تواصل معنا</div>
           <div class="footer-links">
-            <a href="#" target="_blank">Instagram</a>
-            <a href="#" target="_blank">Facebook</a>
-            <a href="#" target="_blank">WhatsApp</a>
-            <a href="https://portal.bau.edu.jo" target="_blank">البوابة الجامعية</a>
+            <a href="https://www.instagram.com/cne.fet/" target="_blank">Instagram</a>
+            <a href="https://www.facebook.com/share/g/1CqePaqznf/" target="_blank">Facebook</a>
+            <a href="http://appserver.fet.edu.jo:7778/reg_new/index.jsp" target="_blank">البوابة الجامعية</a>
           </div>
         </div>
       </div>
