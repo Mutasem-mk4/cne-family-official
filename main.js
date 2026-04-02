@@ -82,8 +82,13 @@ async function render(path) {
   void page.offsetWidth; // force reflow
   page.classList.add('page-enter');
   updateActiveLink(path);
-  initReveal();
-  initCounters();
+  
+  // Staggered Reveal Initializer
+  setTimeout(() => {
+    initReveal();
+    initCounters();
+    if (path === '/plans') initLightbox();
+  }, 100);
 }
 
 window.addEventListener('popstate', () => render(window.location.pathname));
@@ -133,16 +138,57 @@ function initCounters() {
       const target = parseInt(el.dataset.count);
       const suffix = el.dataset.suffix || '';
       let current = 0;
-      const step = Math.ceil(target / 40);
-      const timer = setInterval(() => {
-        current = Math.min(current + step, target);
+      const duration = 2000; // 2 seconds
+      const start = performance.now();
+
+      const animate = (time) => {
+        const progress = Math.min((time - start) / duration, 1);
+        const easeOutExpo = 1 - Math.pow(2, -10 * progress);
+        current = Math.floor(easeOutExpo * target);
         el.textContent = current + suffix;
-        if (current >= target) clearInterval(timer);
-      }, 30);
+        if (progress < 1) requestAnimationFrame(animate);
+      };
+      requestAnimationFrame(animate);
       observer.unobserve(el);
     });
   }, { threshold: 0.5 });
   counters.forEach(el => observer.observe(el));
+}
+
+// ── LIGHTBOX ─────────────────────────────────────────────────────
+function initLightbox() {
+  const links = document.querySelectorAll('.plan-card .btn');
+  links.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if (href.endsWith('.jpg') || href.endsWith('.png')) {
+        e.preventDefault();
+        showLightbox(href);
+      }
+    });
+  });
+}
+
+function showLightbox(src) {
+  const overlay = document.createElement('div');
+  overlay.style = `
+    position: fixed; inset: 0; background: rgba(0,0,0,0.9); 
+    display: flex; align-items: center; justify-content: center; 
+    z-index: 1000; backdrop-filter: blur(8px); cursor: zoom-out;
+    opacity: 0; transition: opacity 0.3s var(--ease);
+  `;
+  overlay.innerHTML = `
+    <div style="position:relative; max-width: 90%; max-height: 90%;">
+      <img src="${src}" style="max-width:100%; max-height:90vh; border-radius: 8px; box-shadow: 0 0 50px rgba(0,0,0,0.5);">
+      <button style="position:absolute; top:-40px; right:0; color:white; background:none; font-size:2rem;">&times;</button>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+  setTimeout(() => overlay.style.opacity = '1', 10);
+  overlay.onclick = () => {
+    overlay.style.opacity = '0';
+    setTimeout(() => overlay.remove(), 300);
+  };
 }
 
 // ── TAB SWITCHER ─────────────────────────────────────────────────
@@ -216,13 +262,26 @@ function renderHome() {
   return `
     <!-- HERO -->
     <section class="hero">
-      <div class="hero-badge">
+      <div class="hero-illustration">
+        <svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse">
+              <path d="M 100 0 L 0 0 0 100" fill="none" stroke="currentColor" stroke-width="0.5"/>
+            </pattern>
+          </defs>
+          <rect width="1000" height="1000" fill="url(#grid)" />
+          <circle cx="200" cy="200" r="150" fill="none" stroke="currentColor" stroke-width="1" opacity="0.5" />
+          <circle cx="800" cy="800" r="200" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3" />
+          <path d="M 0 500 Q 250 250 500 500 T 1000 500" fill="none" stroke="currentColor" stroke-width="1" opacity="0.2" />
+        </svg>
+      </div>
+      <div class="hero-badge reveal">
         <span></span>
         اتحاد هندسة الحاسوب والشبكات · جامعة البلقاء التطبيقية
       </div>
-      <h1>بيتك الأكاديمي في عالم <span class="highlight">الهندسة التقنية</span></h1>
-      <p>مجتمع طلابي يوفر الملخصات، المصادر الدراسية، ويُنظّم الفعاليات التي تبني مهاراتك وتصنع ذكرياتك.</p>
-      <div class="hero-actions">
+      <h1 class="reveal">بيتك الأكاديمي في عالم <span class="highlight">الهندسة التقنية</span></h1>
+      <p class="reveal">مجتمع طلابي يوفر الملخصات، المصادر الدراسية، ويُنظّم الفعاليات التي تبني مهاراتك وتصنع ذكرياتك.</p>
+      <div class="hero-actions reveal">
         <a href="/subjects" class="btn btn-primary" data-link>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
           استكشف المواد الدراسية
@@ -255,9 +314,9 @@ function renderHome() {
 
     <!-- BENTO GRID -->
     <section class="section">
-      <div class="section-label">ماذا نقدم</div>
-      <h2 class="section-title">كل ما تحتاجه في مكان واحد</h2>
-      <p class="section-subtitle">من الملخصات والنماذج إلى الفعاليات والخطط الدراسية — صممنا كل شيء ليخدمك.</p>
+      <div class="section-label reveal">ماذا نقدم</div>
+      <h2 class="section-title reveal">كل ما تحتاجه في مكان واحد</h2>
+      <p class="section-subtitle reveal">من الملخصات والنماذج إلى الفعاليات والخطط الدراسية — صممنا كل شيء ليخدمك.</p>
 
       <div class="bento-grid">
 
@@ -367,23 +426,23 @@ async function renderSubjects() {
 
   return `
     <div class="page-header">
-      <div class="breadcrumb">
+      <div class="breadcrumb reveal">
         <a href="/" data-link>الرئيسية</a>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
         المواد الدراسية
       </div>
-      <h1 class="section-title">المواد الدراسية</h1>
-      <p class="section-subtitle">اختر تخصصك للوصول إلى الملخصات والنماذج لكل مادة.</p>
+      <h1 class="section-title reveal">المواد الدراسية</h1>
+      <p class="section-subtitle reveal">اختر تخصصك للوصول إلى الملخصات والنماذج لكل مادة.</p>
 
       <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-top:1.5rem;">
-        <div class="tab-bar">
+        <div class="tab-bar reveal">
           <button class="tab-btn active" data-tab="computer">هندسة حاسوب</button>
           <button class="tab-btn" data-tab="network">هندسة شبكات</button>
           <button class="tab-btn" data-tab="common">مشترك</button>
         </div>
-        <div class="search-wrap">
+        <div class="search-wrap reveal">
           <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input type="text" id="subjectSearch" placeholder="ابحث عن مادة...">
+          <input type="text" id="subjectSearch" placeholder="ابحث عن مادة..." style="background:var(--glass-bg); backdrop-filter:blur(8px);">
         </div>
       </div>
     </div>
@@ -406,13 +465,13 @@ async function renderSubjects() {
 function renderPlans() {
   return `
     <div class="page-header">
-      <div class="breadcrumb">
+      <div class="breadcrumb reveal">
         <a href="/" data-link>الرئيسية</a>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
         الخطط الشجرية
       </div>
-      <h1 class="section-title">الخطط الشجرية</h1>
-      <p class="section-subtitle">دليلك لاجتياز المسار الدراسي بنجاح — وافهم المتطلبات قبل التسجيل.</p>
+      <h1 class="section-title reveal">الخطط الشجرية</h1>
+      <p class="section-subtitle reveal">دليلك لاجتياز المسار الدراسي بنجاح — وافهم المتطلبات قبل التسجيل.</p>
     </div>
     <div class="container" style="padding-bottom:4rem">
       <div class="plans-grid">
@@ -467,16 +526,18 @@ async function renderActivities() {
 
   return `
     <div class="page-header">
-      <div class="breadcrumb">
+      <div class="breadcrumb reveal">
         <a href="/" data-link>الرئيسية</a>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
         الأنشطة والفعاليات
       </div>
-      <h1 class="section-title">الأنشطة والفعاليات</h1>
-      <p class="section-subtitle">فعاليات تبني المهارات وتصنع الذكريات — نفخر بمجتمعنا النابض بالحياة.</p>
+      <h1 class="section-title reveal">الأنشطة والفعاليات</h1>
+      <p class="section-subtitle reveal">فعاليات تبني المهارات وتصنع الذكريات — نفخر بمجتمعنا النابض بالحياة.</p>
     </div>
     <div class="container" style="padding-bottom:4rem">
-      <div class="activity-grid">${activityCards}</div>
+      <div class="activity-grid">
+        ${activityCards}
+      </div>
     </div>
     ${renderFooter()}
   `;
@@ -486,11 +547,11 @@ function renderJoin() {
   window.handleJoinSubmit = handleJoinSubmit; // Expose to global scope for inline onsubmit
   return `
     <div class="join-section">
-      <div class="section-label">انضم إلينا</div>
-      <h1 class="section-title" style="font-size:2.2rem;margin-bottom:.75rem">كن جزءاً من العائلة</h1>
-      <p class="section-subtitle" style="margin:0 auto 2rem">نرحب بكل طالب يريد أن يُعطي ويستفيد.</p>
+      <div class="section-label reveal">انضم إلينا</div>
+      <h1 class="section-title reveal" style="font-size:2.2rem;margin-bottom:.75rem">كن جزءاً من العائلة</h1>
+      <p class="section-subtitle reveal" style="margin:0 auto 2rem">نرحب بكل طالب يريد أن يُعطي ويستفيد.</p>
 
-      <form id="joinForm" class="form-card" onsubmit="handleJoinSubmit(event)">
+      <form id="joinForm" class="form-card reveal" onsubmit="handleJoinSubmit(event)">
         <div class="form-group">
           <label>الاسم الكامل</label>
           <input class="form-input" name="name" type="text" placeholder="محمد أحمد..." required>

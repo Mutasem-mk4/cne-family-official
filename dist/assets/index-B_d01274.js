@@ -1,30 +1,53 @@
-(function(){const a=document.createElement("link").relList;if(a&&a.supports&&a.supports("modulepreload"))return;for(const s of document.querySelectorAll('link[rel="modulepreload"]'))i(s);new MutationObserver(s=>{for(const n of s)if(n.type==="childList")for(const r of n.addedNodes)r.tagName==="LINK"&&r.rel==="modulepreload"&&i(r)}).observe(document,{childList:!0,subtree:!0});function e(s){const n={};return s.integrity&&(n.integrity=s.integrity),s.referrerPolicy&&(n.referrerPolicy=s.referrerPolicy),s.crossOrigin==="use-credentials"?n.credentials="include":s.crossOrigin==="anonymous"?n.credentials="omit":n.credentials="same-origin",n}function i(s){if(s.ep)return;s.ep=!0;const n=e(s);fetch(s.href,n)}})();async function f(t){t.preventDefault();const a=t.target,e=a.querySelector("button"),i=e.innerHTML;e.disabled=!0,e.innerHTML='<span class="loader"></span> جاري الإرسال...';const s=new FormData(a);try{if((await fetch("https://formspree.io/f/xoqgkyyv",{method:"POST",body:s,headers:{Accept:"application/json"}})).ok)a.innerHTML=`
+(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const s of document.querySelectorAll('link[rel="modulepreload"]'))i(s);new MutationObserver(s=>{for(const n of s)if(n.type==="childList")for(const r of n.addedNodes)r.tagName==="LINK"&&r.rel==="modulepreload"&&i(r)}).observe(document,{childList:!0,subtree:!0});function a(s){const n={};return s.integrity&&(n.integrity=s.integrity),s.referrerPolicy&&(n.referrerPolicy=s.referrerPolicy),s.crossOrigin==="use-credentials"?n.credentials="include":s.crossOrigin==="anonymous"?n.credentials="omit":n.credentials="same-origin",n}function i(s){if(s.ep)return;s.ep=!0;const n=a(s);fetch(s.href,n)}})();async function k(e){e.preventDefault();const t=e.target,a=t.querySelector("button"),i=a.innerHTML;a.disabled=!0,a.innerHTML='<span class="loader"></span> جاري الإرسال...';const s=new FormData(t);try{if((await fetch("https://formspree.io/f/xoqgkyyv",{method:"POST",body:s,headers:{Accept:"application/json"}})).ok)t.innerHTML=`
         <div class="reveal visible" style="text-align:center; padding: 2rem 0;">
           <div style="font-size: 4rem; margin-bottom: 1rem;">✅</div>
           <h3 class="card-title">تم استلام طلبك بنجاح!</h3>
           <p class="card-desc">شكراً لاهتمامك بالانضمام لعائلة CNE. سنتواصل معك عبر البريد الإلكتروني أو رقم الهاتف قريباً.</p>
           <button class="btn btn-outline" style="margin-top:1.5rem" onclick="location.reload()">إرسال طلب آخر</button>
         </div>
-      `;else throw new Error("فشل الإرسال")}catch{alert("عذراً، حدث خطأ أثناء الإرسال. يرجى المحاولة لاحقاً."),e.disabled=!1,e.innerHTML=i}}const o={};async function p(t,a){if(o[t])return o[t];try{const e=await fetch(a);if(!e.ok)throw new Error;o[t]=await e.json()}catch{o[t]=[]}return o[t]}const m={"/":g,"/subjects":q,"/plans":L,"/activities":A,"/join":B};function y(t){window.history.pushState({},"",t),v(t)}async function v(t){const a=document.getElementById("page"),i=await(m[t]||g)();a.innerHTML=i,a.classList.remove("page-enter"),a.offsetWidth,a.classList.add("page-enter"),w(t),k(),x()}window.addEventListener("popstate",()=>v(window.location.pathname));document.addEventListener("click",t=>{const a=t.target.closest("[data-link]");a&&(t.preventDefault(),y(a.getAttribute("href")))});window.addEventListener("scroll",()=>{document.getElementById("navbar").classList.toggle("scrolled",window.scrollY>20)},{passive:!0});function w(t){document.querySelectorAll(".nav-link").forEach(a=>{a.classList.toggle("active",a.getAttribute("href")===t)})}function k(){const t=document.querySelectorAll(".reveal");if(!t.length)return;const a=new IntersectionObserver(e=>{e.forEach((i,s)=>{i.isIntersecting&&(setTimeout(()=>i.target.classList.add("visible"),s*80),a.unobserve(i.target))})},{threshold:.1});t.forEach(e=>a.observe(e))}function x(){const t=document.querySelectorAll("[data-count]");if(!t.length)return;const a=new IntersectionObserver(e=>{e.forEach(i=>{if(!i.isIntersecting)return;const s=i.target,n=parseInt(s.dataset.count),r=s.dataset.suffix||"";let c=0;const b=Math.ceil(n/40),h=setInterval(()=>{c=Math.min(c+b,n),s.textContent=c+r,c>=n&&clearInterval(h)},30);a.unobserve(s)})},{threshold:.5});t.forEach(e=>a.observe(e))}function j(){document.querySelectorAll(".tab-btn").forEach(t=>{t.addEventListener("click",()=>{t.closest(".tab-bar").querySelectorAll(".tab-btn").forEach(i=>i.classList.remove("active")),t.classList.add("active");const e=t.dataset.tab;document.querySelectorAll(".tab-content").forEach(i=>{i.style.display=i.dataset.content===e?"grid":"none"})})})}function C(t,a){const e=document.getElementById(t);e&&e.addEventListener("input",()=>{const i=e.value.trim().toLowerCase();document.querySelectorAll(a).forEach(s=>{const n=s.textContent.toLowerCase();s.style.display=n.includes(i)?"":"none"})})}const u={1:{bg:"rgba(53,116,200,.1)",color:"var(--blue)"},2:{bg:"rgba(76,175,80,.1)",color:"var(--green)"},3:{bg:"rgba(242,111,33,.1)",color:"var(--orange)"},4:{bg:"rgba(221,59,63,.1)",color:"var(--red)"}},E={أكاديمي:"tag-green",تقني:"tag-blue",اجتماعي:"tag-red",ريادة:"tag-yellow",ترفيهي:"tag-orange"};function d(t){return!t||t.length===0?'<div style="text-align:center;padding:3rem;color:var(--text-muted)">لا توجد مواد بعد — قم بإضافتها من لوحة التحكم</div>':t.map(a=>{const e=a.file&&a.file!==""?a.file:a.link||"#",i=parseInt(a.year)||1;return`
-    <a href="${e}" target="_blank" rel="noopener" class="subject-card">
+      `;else throw new Error("فشل الإرسال")}catch{alert("عذراً، حدث خطأ أثناء الإرسال. يرجى المحاولة لاحقاً."),a.disabled=!1,a.innerHTML=i}}const o={};async function h(e,t){if(o[e])return o[e];try{const a=await fetch(t);if(!a.ok)throw new Error;o[e]=await a.json()}catch{o[e]=[]}return o[e]}const x={"/":b,"/subjects":F,"/plans":T,"/activities":M,"/join":O};function j(e){window.history.pushState({},"",e),d(e)}async function d(e){const t=document.getElementById("page"),i=await(x[e]||b)();t.innerHTML=i,t.classList.remove("page-enter"),t.offsetWidth,t.classList.add("page-enter"),C(e),setTimeout(()=>{E(),q(),e==="/plans"&&L()},100)}window.addEventListener("popstate",()=>d(window.location.pathname));document.addEventListener("click",e=>{const t=e.target.closest("[data-link]");t&&(e.preventDefault(),j(t.getAttribute("href")))});window.addEventListener("scroll",()=>{document.getElementById("navbar").classList.toggle("scrolled",window.scrollY>20)},{passive:!0});function C(e){document.querySelectorAll(".nav-link").forEach(t=>{t.classList.toggle("active",t.getAttribute("href")===e)})}function E(){const e=document.querySelectorAll(".reveal");if(!e.length)return;const t=new IntersectionObserver(a=>{a.forEach((i,s)=>{i.isIntersecting&&(setTimeout(()=>i.target.classList.add("visible"),s*80),t.unobserve(i.target))})},{threshold:.1});e.forEach(a=>t.observe(a))}function q(){const e=document.querySelectorAll("[data-count]");if(!e.length)return;const t=new IntersectionObserver(a=>{a.forEach(i=>{if(!i.isIntersecting)return;const s=i.target,n=parseInt(s.dataset.count),r=s.dataset.suffix||"";let v=0;const f=2e3,m=performance.now(),p=y=>{const u=Math.min((y-m)/f,1),w=1-Math.pow(2,-10*u);v=Math.floor(w*n),s.textContent=v+r,u<1&&requestAnimationFrame(p)};requestAnimationFrame(p),t.unobserve(s)})},{threshold:.5});e.forEach(a=>t.observe(a))}function L(){document.querySelectorAll(".plan-card .btn").forEach(t=>{t.addEventListener("click",a=>{const i=t.getAttribute("href");(i.endsWith(".jpg")||i.endsWith(".png"))&&(a.preventDefault(),A(i))})})}function A(e){const t=document.createElement("div");t.style=`
+    position: fixed; inset: 0; background: rgba(0,0,0,0.9); 
+    display: flex; align-items: center; justify-content: center; 
+    z-index: 1000; backdrop-filter: blur(8px); cursor: zoom-out;
+    opacity: 0; transition: opacity 0.3s var(--ease);
+  `,t.innerHTML=`
+    <div style="position:relative; max-width: 90%; max-height: 90%;">
+      <img src="${e}" style="max-width:100%; max-height:90vh; border-radius: 8px; box-shadow: 0 0 50px rgba(0,0,0,0.5);">
+      <button style="position:absolute; top:-40px; right:0; color:white; background:none; font-size:2rem;">&times;</button>
+    </div>
+  `,document.body.appendChild(t),setTimeout(()=>t.style.opacity="1",10),t.onclick=()=>{t.style.opacity="0",setTimeout(()=>t.remove(),300)}}function S(){document.querySelectorAll(".tab-btn").forEach(e=>{e.addEventListener("click",()=>{e.closest(".tab-bar").querySelectorAll(".tab-btn").forEach(i=>i.classList.remove("active")),e.classList.add("active");const a=e.dataset.tab;document.querySelectorAll(".tab-content").forEach(i=>{i.style.display=i.dataset.content===a?"grid":"none"})})})}function B(e,t){const a=document.getElementById(e);a&&a.addEventListener("input",()=>{const i=a.value.trim().toLowerCase();document.querySelectorAll(t).forEach(s=>{const n=s.textContent.toLowerCase();s.style.display=n.includes(i)?"":"none"})})}const g={1:{bg:"rgba(53,116,200,.1)",color:"var(--blue)"},2:{bg:"rgba(76,175,80,.1)",color:"var(--green)"},3:{bg:"rgba(242,111,33,.1)",color:"var(--orange)"},4:{bg:"rgba(221,59,63,.1)",color:"var(--red)"}},$={أكاديمي:"tag-green",تقني:"tag-blue",اجتماعي:"tag-red",ريادة:"tag-yellow",ترفيهي:"tag-orange"};function c(e){return!e||e.length===0?'<div style="text-align:center;padding:3rem;color:var(--text-muted)">لا توجد مواد بعد — قم بإضافتها من لوحة التحكم</div>':e.map(t=>{const a=t.file&&t.file!==""?t.file:t.link||"#",i=parseInt(t.year)||1;return`
+    <a href="${a}" target="_blank" rel="noopener" class="subject-card">
       <div class="subject-card-left">
-        <div class="subject-year" style="background:${u[i].bg}; color:${u[i].color}">
+        <div class="subject-year" style="background:${g[i].bg}; color:${g[i].color}">
           ${i}
         </div>
-        <span class="subject-name">${a.name}</span>
+        <span class="subject-name">${t.name}</span>
       </div>
       <svg class="subject-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
     </a>
-  `}).join("")}function g(){return`
+  `}).join("")}function b(){return`
     <!-- HERO -->
     <section class="hero">
-      <div class="hero-badge">
+      <div class="hero-illustration">
+        <svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse">
+              <path d="M 100 0 L 0 0 0 100" fill="none" stroke="currentColor" stroke-width="0.5"/>
+            </pattern>
+          </defs>
+          <rect width="1000" height="1000" fill="url(#grid)" />
+          <circle cx="200" cy="200" r="150" fill="none" stroke="currentColor" stroke-width="1" opacity="0.5" />
+          <circle cx="800" cy="800" r="200" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3" />
+          <path d="M 0 500 Q 250 250 500 500 T 1000 500" fill="none" stroke="currentColor" stroke-width="1" opacity="0.2" />
+        </svg>
+      </div>
+      <div class="hero-badge reveal">
         <span></span>
         اتحاد هندسة الحاسوب والشبكات · جامعة البلقاء التطبيقية
       </div>
-      <h1>بيتك الأكاديمي في عالم <span class="highlight">الهندسة التقنية</span></h1>
-      <p>مجتمع طلابي يوفر الملخصات، المصادر الدراسية، ويُنظّم الفعاليات التي تبني مهاراتك وتصنع ذكرياتك.</p>
-      <div class="hero-actions">
+      <h1 class="reveal">بيتك الأكاديمي في عالم <span class="highlight">الهندسة التقنية</span></h1>
+      <p class="reveal">مجتمع طلابي يوفر الملخصات، المصادر الدراسية، ويُنظّم الفعاليات التي تبني مهاراتك وتصنع ذكرياتك.</p>
+      <div class="hero-actions reveal">
         <a href="/subjects" class="btn btn-primary" data-link>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
           استكشف المواد الدراسية
@@ -57,9 +80,9 @@
 
     <!-- BENTO GRID -->
     <section class="section">
-      <div class="section-label">ماذا نقدم</div>
-      <h2 class="section-title">كل ما تحتاجه في مكان واحد</h2>
-      <p class="section-subtitle">من الملخصات والنماذج إلى الفعاليات والخطط الدراسية — صممنا كل شيء ليخدمك.</p>
+      <div class="section-label reveal">ماذا نقدم</div>
+      <h2 class="section-title reveal">كل ما تحتاجه في مكان واحد</h2>
+      <p class="section-subtitle reveal">من الملخصات والنماذج إلى الفعاليات والخطط الدراسية — صممنا كل شيء ليخدمك.</p>
 
       <div class="bento-grid">
 
@@ -117,7 +140,7 @@
           <h3 class="card-title">البوابة الجامعية</h3>
           <p class="card-desc">وصول مباشر للبوابة الطلابية والتعلم الإلكتروني.</p>
           <div style="display:flex;flex-direction:column;gap:8px;margin-top:1rem;">
-            <a href="https://portal.bau.edu.jo" target="_blank" class="card-link" style="font-size:.82rem">📎 البوابة الطلابية →</a>
+            <a href="http://appserver.fet.edu.jo:7778/reg_new/index.jsp" target="_blank" class="card-link" style="font-size:.82rem">📎 البوابة الطلابية →</a>
             <a href="https://elearning.bau.edu.jo" target="_blank" class="card-link" style="font-size:.82rem">🎓 التعلم الإلكتروني →</a>
           </div>
         </div>
@@ -154,50 +177,50 @@
 
     <!-- FOOTER -->
     ${l()}
-  `}async function q(){const t=await p("subjects","/data/subjects.json"),a=t.filter(s=>s.major==="computer"),e=t.filter(s=>s.major==="network"),i=t.filter(s=>s.major==="common");return setTimeout(j,0),setTimeout(()=>C("subjectSearch",".subject-card"),0),`
+  `}async function F(){const e=await h("subjects","/data/subjects.json"),t=e.filter(s=>s.major==="computer"),a=e.filter(s=>s.major==="network"),i=e.filter(s=>s.major==="common");return setTimeout(S,0),setTimeout(()=>B("subjectSearch",".subject-card"),0),`
     <div class="page-header">
-      <div class="breadcrumb">
+      <div class="breadcrumb reveal">
         <a href="/" data-link>الرئيسية</a>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
         المواد الدراسية
       </div>
-      <h1 class="section-title">المواد الدراسية</h1>
-      <p class="section-subtitle">اختر تخصصك للوصول إلى الملخصات والنماذج لكل مادة.</p>
+      <h1 class="section-title reveal">المواد الدراسية</h1>
+      <p class="section-subtitle reveal">اختر تخصصك للوصول إلى الملخصات والنماذج لكل مادة.</p>
 
       <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-top:1.5rem;">
-        <div class="tab-bar">
+        <div class="tab-bar reveal">
           <button class="tab-btn active" data-tab="computer">هندسة حاسوب</button>
           <button class="tab-btn" data-tab="network">هندسة شبكات</button>
           <button class="tab-btn" data-tab="common">مشترك</button>
         </div>
-        <div class="search-wrap">
+        <div class="search-wrap reveal">
           <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input type="text" id="subjectSearch" placeholder="ابحث عن مادة...">
+          <input type="text" id="subjectSearch" placeholder="ابحث عن مادة..." style="background:var(--glass-bg); backdrop-filter:blur(8px);">
         </div>
       </div>
     </div>
 
     <div class="container" style="padding-bottom:4rem">
       <div class="subject-grid tab-content" data-content="computer">
-        ${d(a)}
+        ${c(t)}
       </div>
       <div class="subject-grid tab-content" data-content="network" style="display:none">
-        ${d(e)}
+        ${c(a)}
       </div>
       <div class="subject-grid tab-content" data-content="common" style="display:none">
-        ${d(i)}
+        ${c(i)}
       </div>
     </div>
     ${l()}
-  `}function L(){return`
+  `}function T(){return`
     <div class="page-header">
-      <div class="breadcrumb">
+      <div class="breadcrumb reveal">
         <a href="/" data-link>الرئيسية</a>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
         الخطط الشجرية
       </div>
-      <h1 class="section-title">الخطط الشجرية</h1>
-      <p class="section-subtitle">دليلك لاجتياز المسار الدراسي بنجاح — وافهم المتطلبات قبل التسجيل.</p>
+      <h1 class="section-title reveal">الخطط الشجرية</h1>
+      <p class="section-subtitle reveal">دليلك لاجتياز المسار الدراسي بنجاح — وافهم المتطلبات قبل التسجيل.</p>
     </div>
     <div class="container" style="padding-bottom:4rem">
       <div class="plans-grid">
@@ -205,7 +228,7 @@
           <div class="plan-icon" style="background:rgba(53,116,200,.1)">💻</div>
           <h3 class="card-title" style="font-size:1.3rem;margin-bottom:.5rem">هندسة الحاسوب</h3>
           <p class="card-desc" style="margin-bottom:1.5rem">الخطة الدراسية الكاملة مع المتطلبات السابقة والمواد الاختيارية.</p>
-          <a href="#" class="btn btn-primary" style="width:100%;justify-content:center">
+          <a href="/computer-plan.jpg" target="_blank" download="Computer-Plan.jpg" class="btn btn-primary" style="width:100%;justify-content:center">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             تحميل الخطة
           </a>
@@ -214,7 +237,7 @@
           <div class="plan-icon" style="background:rgba(76,175,80,.1)">🌐</div>
           <h3 class="card-title" style="font-size:1.3rem;margin-bottom:.5rem">هندسة الشبكات</h3>
           <p class="card-desc" style="margin-bottom:1.5rem">خطة تخصص الشبكات مع توضيح المسارات المتاحة والتخصصات الفرعية.</p>
-          <a href="#" class="btn" style="width:100%;justify-content:center;background:var(--green);color:white;box-shadow:0 8px 24px rgba(76,175,80,.25)">
+          <a href="/networking-plan.jpg" target="_blank" download="Networking-Plan.jpg" class="btn" style="width:100%;justify-content:center;background:var(--green);color:white;box-shadow:0 8px 24px rgba(76,175,80,.25)">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             تحميل الخطة
           </a>
@@ -222,39 +245,41 @@
       </div>
     </div>
     ${l()}
-  `}async function A(){const t=await p("activities","/data/activities.json");return`
+  `}async function M(){const e=await h("activities","/data/activities.json");return`
     <div class="page-header">
-      <div class="breadcrumb">
+      <div class="breadcrumb reveal">
         <a href="/" data-link>الرئيسية</a>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
         الأنشطة والفعاليات
       </div>
-      <h1 class="section-title">الأنشطة والفعاليات</h1>
-      <p class="section-subtitle">فعاليات تبني المهارات وتصنع الذكريات — نفخر بمجتمعنا النابض بالحياة.</p>
+      <h1 class="section-title reveal">الأنشطة والفعاليات</h1>
+      <p class="section-subtitle reveal">فعاليات تبني المهارات وتصنع الذكريات — نفخر بمجتمعنا النابض بالحياة.</p>
     </div>
     <div class="container" style="padding-bottom:4rem">
-      <div class="activity-grid">${t.length===0?'<div style="text-align:center;padding:4rem;color:var(--text-muted)">لا توجد أنشطة بعد — قم بإضافتها من لوحة التحكم</div>':t.map(e=>{const i=E[e.tag]||"tag-blue",s=e.image?`<img src="${e.image}" alt="${e.title}" style="width:100%;height:100%;object-fit:cover;">`:`<span style="font-size:3rem">${e.emoji||"🚀"}</span>`;return`
+      <div class="activity-grid">
+        ${e.length===0?'<div style="text-align:center;padding:4rem;color:var(--text-muted)">لا توجد أنشطة بعد — قم بإضافتها من لوحة التحكم</div>':e.map(a=>{const i=$[a.tag]||"tag-blue",s=a.image?`<img src="${a.image}" alt="${a.title}" style="width:100%;height:100%;object-fit:cover;">`:`<span style="font-size:3rem">${a.emoji||"🚀"}</span>`;return`
           <div class="activity-card reveal">
-            <div class="activity-img" style="background:${e.bg_gradient||e.bg||"linear-gradient(135deg,#DBEAFE,#BFDBFE)"}">${s}</div>
+            <div class="activity-img" style="background:${a.bg_gradient||a.bg||"linear-gradient(135deg,#DBEAFE,#BFDBFE)"}">${s}</div>
             <div class="activity-body">
               <div class="activity-meta">
-                <span class="card-tag ${i}" style="margin:0">${e.tag}</span>
-                <span class="activity-date">${e.date}</span>
+                <span class="card-tag ${i}" style="margin:0">${a.tag}</span>
+                <span class="activity-date">${a.date}</span>
               </div>
-              <h3 class="activity-title">${e.title}</h3>
-              <p class="activity-desc">${e.description||e.desc||""}</p>
+              <h3 class="activity-title">${a.title}</h3>
+              <p class="activity-desc">${a.description||a.desc||""}</p>
             </div>
           </div>
-        `}).join("")}</div>
+        `}).join("")}
+      </div>
     </div>
     ${l()}
-  `}function B(){return window.handleJoinSubmit=f,`
+  `}function O(){return window.handleJoinSubmit=k,`
     <div class="join-section">
-      <div class="section-label">انضم إلينا</div>
-      <h1 class="section-title" style="font-size:2.2rem;margin-bottom:.75rem">كن جزءاً من العائلة</h1>
-      <p class="section-subtitle" style="margin:0 auto 2rem">نرحب بكل طالب يريد أن يُعطي ويستفيد.</p>
+      <div class="section-label reveal">انضم إلينا</div>
+      <h1 class="section-title reveal" style="font-size:2.2rem;margin-bottom:.75rem">كن جزءاً من العائلة</h1>
+      <p class="section-subtitle reveal" style="margin:0 auto 2rem">نرحب بكل طالب يريد أن يُعطي ويستفيد.</p>
 
-      <form id="joinForm" class="form-card" onsubmit="handleJoinSubmit(event)">
+      <form id="joinForm" class="form-card reveal" onsubmit="handleJoinSubmit(event)">
         <div class="form-group">
           <label>الاسم الكامل</label>
           <input class="form-input" name="name" type="text" placeholder="محمد أحمد..." required>
@@ -315,10 +340,9 @@
         <div>
           <div class="footer-col-title">تواصل معنا</div>
           <div class="footer-links">
-            <a href="#" target="_blank">Instagram</a>
-            <a href="#" target="_blank">Facebook</a>
-            <a href="#" target="_blank">WhatsApp</a>
-            <a href="https://portal.bau.edu.jo" target="_blank">البوابة الجامعية</a>
+            <a href="https://www.instagram.com/cne.fet/" target="_blank">Instagram</a>
+            <a href="https://www.facebook.com/share/g/1CqePaqznf/" target="_blank">Facebook</a>
+            <a href="http://appserver.fet.edu.jo:7778/reg_new/index.jsp" target="_blank">البوابة الجامعية</a>
           </div>
         </div>
       </div>
@@ -327,4 +351,4 @@
         <span>جميع الحقوق محفوظة</span>
       </div>
     </footer>
-  `}v(window.location.pathname);
+  `}d(window.location.pathname);
