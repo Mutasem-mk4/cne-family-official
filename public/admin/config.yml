@@ -27,7 +27,9 @@ collections:
             widget: "list"
             summary: "{{name}} (السنة {{year}})"
             fields:
-              - { label: "اسم المادة", name: "name", widget: "string" }
+              - label: "اسم المادة"
+                name: "name"
+                widget: "string"
               - label: "التخصص"
                 name: "major"
                 widget: "select"
@@ -44,8 +46,15 @@ collections:
                   - { label: "السنة الثالثة", value: 3 }
                   - { label: "السنة الرابعة", value: 4 }
                   - { label: "السنة الخامسة", value: 5 }
-              - { label: "رابط Drive", name: "link", widget: "string", required: false }
-              - { label: "أو ارفع ملف PDF", name: "file", widget: "file", required: false }
+              - label: "رابط Drive"
+                name: "link"
+                widget: "string"
+                required: false
+              - label: "الأيقونة"
+                name: "emoji"
+                widget: "string"
+                default: "📚"
+                required: false
 
       - name: activities
         label: "الأنشطة والفعاليات"
@@ -57,14 +66,24 @@ collections:
             widget: "list"
             summary: "{{title}} ({{date}})"
             fields:
-              - { label: "عنوان الفعالية", name: "title", widget: "string" }
-              - { label: "التاريخ", name: "date", widget: "string" }
+              - label: "عنوان الفعالية"
+                name: "title"
+                widget: "string"
+              - label: "التاريخ"
+                name: "date"
+                widget: "string"
               - label: "التصنيف"
                 name: "tag"
                 widget: "select"
                 options: ["أكاديمي", "تقني", "اجتماعي", "ريادة", "ترفيهي"]
-              - { label: "رمز (Emoji)", name: "emoji", widget: "string" }
-              - { label: "صورة", name: "image", widget: "image", required: false }
+              - label: "رمز (Emoji)"
+                name: "emoji"
+                widget: "string"
+                default: "🚀"
+              - label: "صورة"
+                name: "image"
+                widget: "image"
+                required: false
               - label: "لون الخلفية"
                 name: "bg_gradient"
                 widget: "select"
@@ -73,4 +92,6 @@ collections:
                   - { label: "أحمر", value: "linear-gradient(135deg,#FEE2E2,#FECACA)" }
                   - { label: "أخضر", value: "linear-gradient(135deg,#D1FAE5,#A7F3D0)" }
                   - { label: "أصفر", value: "linear-gradient(135deg,#FEF3C7,#FDE68A)" }
-              - { label: "وصف الفعالية", name: "description", widget: "text" }
+              - label: "وصف الفعالية"
+                name: "description"
+                widget: "text"
