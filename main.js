@@ -423,6 +423,7 @@ async function renderSubjects() {
   const year2 = allSubjects.filter(s => s.year === 2);
   const year3 = allSubjects.filter(s => s.year === 3);
   const year4 = allSubjects.filter(s => s.year === 4);
+  const year5 = allSubjects.filter(s => s.year === 5);
 
   setTimeout(initTabs, 0);
   setTimeout(() => initSearch('subjectSearch', '.subject-card'), 0);
@@ -458,6 +459,7 @@ async function renderSubjects() {
           <button class="tab-btn" data-tab="y2">السنة الثانية <span style="opacity:.55;font-size:.8em">${year2.length}</span></button>
           <button class="tab-btn" data-tab="y3">السنة الثالثة <span style="opacity:.55;font-size:.8em">${year3.length}</span></button>
           <button class="tab-btn" data-tab="y4">السنة الرابعة <span style="opacity:.55;font-size:.8em">${year4.length}</span></button>
+          <button class="tab-btn" data-tab="y5">السنة الخامسة <span style="opacity:.55;font-size:.8em">${year5.length}</span></button>
         </div>
         <div class="search-wrap reveal">
           <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -471,6 +473,7 @@ async function renderSubjects() {
       <div class="subject-grid tab-content" data-content="y2" style="display:none">${renderByYear(year2)}</div>
       <div class="subject-grid tab-content" data-content="y3" style="display:none">${renderByYear(year3)}</div>
       <div class="subject-grid tab-content" data-content="y4" style="display:none">${renderByYear(year4)}</div>
+      <div class="subject-grid tab-content" data-content="y5" style="display:none">${renderByYear(year5)}</div>
     </div>
     ${renderFooter()}
   `;

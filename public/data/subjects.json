@@ -31,7 +31,7 @@
   { "name": "اتصالات وتراسل بيانات", "major": "common", "year": 2, "link": "https://drive.google.com/drive/folders/1BYspFDBVtW_icsSiQtR5VcIwIxuLheU3" },
   { "name": "ثقافة إسلامية", "major": "common", "year": 2, "link": "https://drive.google.com/drive/folders/11eprWVRylctP7pHxgBh_qJMHdbt9NCSb" },
 
-  { "name": "معمارية الحاسوب", "major": "common", "year": 3, "link": "https://drive.google.com/drive/folders/1vE78m9EqL9m_b-DMljWuZijWA5ZJ-oMh?usp=sharing" },
+  { "name": "معمارية الحاسوب", "major": "common", "year": 3, "link": "https://drive.google.com/drive/folders/1vE78m9EqL9m_b-DMljWuZijWA5ZJ-oMh" },
   { "name": "مختبر المعمارية", "major": "common", "year": 3, "link": "https://drive.google.com/drive/folders/1-jf8z7Pp3v6mnt4nyWstVtbvUIPWgvca" },
   { "name": "انظمة المعالجات الدقيقة", "major": "common", "year": 3, "link": "https://drive.google.com/drive/folders/1q1LlTUrje6o29qhGKaIWFTPFf1r8kgtJ" },
   { "name": "مختبر انظمة المعالجات الدقيقة", "major": "common", "year": 3, "link": "https://drive.google.com/drive/folders/1MLbZVs1TOlt4s7WsOrmSOGobgWOXLLjA" },
@@ -67,5 +67,9 @@
   { "name": "مختبر تحقيقات", "major": "network", "year": 4, "link": "https://drive.google.com/drive/folders/1h9U8HrFeUNWlhxjRRdNFBww-D18sY0bo" },
   { "name": "نمذجة ومحاكاة", "major": "network", "year": 4, "link": "https://drive.google.com/drive/folders/1VbApmxnKsASDyEyIAYjx16LeyhvwkGgv" },
   { "name": "موضوعات خاصة في هندسة الشبكات", "major": "network", "year": 4, "link": "https://drive.google.com/drive/folders/1cf5nTGeoQ7tUSUo4RMAdRvteRIhVd78J" },
-  { "name": "شبكات لاسلكية", "major": "network", "year": 4, "link": "https://drive.google.com/drive/folders/1eL8IWTuHwl4lzN4HJxtduQByCfRr4jqH" }
+  { "name": "شبكات لاسلكية", "major": "network", "year": 4, "link": "https://drive.google.com/drive/folders/1eL8IWTuHwl4lzN4HJxtduQByCfRr4jqH" },
+
+  { "name": "مشروع تخرج 1", "major": "common", "year": 5, "link": "#" },
+  { "name": "مشروع تخرج 2", "major": "common", "year": 5, "link": "#" },
+  { "name": "تدريب ميداني", "major": "common", "year": 5, "link": "#" }
 ]
