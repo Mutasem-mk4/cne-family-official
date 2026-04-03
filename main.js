@@ -8,7 +8,14 @@ const DRIVE_LINKS = {
   common:  'https://drive.google.com/drive/folders/YOUR_COMMON_FOLDER_ID',
 };
 
-// ── FORM HANDLER (Formspree) ───────────────────────────────────
+const tagClasses = {
+  'ورشة': 'tag-blue',
+  'محاضرة': 'tag-green',
+  'رحلة': 'tag-orange',
+  'أخرى': 'tag-yellow'
+};
+
+// ── FORM HANDLER ───────────────────────────────────────────────
 async function handleJoinSubmit(e) {
   e.preventDefault();
   const form = e.target;
@@ -21,7 +28,7 @@ async function handleJoinSubmit(e) {
   const formData = new FormData(form);
   
   try {
-    const response = await fetch('https://formspree.io/f/xoqgkyyv', { // Replace with YOUR ID
+    const response = await fetch('https://formspree.io/f/xoqgkyyv', {
       method: 'POST',
       body: formData,
       headers: { 'Accept': 'application/json' }
@@ -51,24 +58,38 @@ const dataCache = {};
 
 async function fetchData(key, path) {
   if (dataCache[key]) return dataCache[key];
+  
+  const stored = localStorage.getItem(`cache_${key}`);
+  if (stored) {
+    dataCache[key] = JSON.parse(stored);
+    fetch(path).then(res => res.json()).then(newData => {
+      const actualData = newData[key] || newData;
+      localStorage.setItem(`cache_${key}`, JSON.stringify(actualData));
+    }).catch(() => {});
+    return dataCache[key];
+  }
+
   try {
     const res = await fetch(path);
     if (!res.ok) throw new Error();
     const json = await res.json();
-    // Handle Decap CMS wrapper object or raw array
     dataCache[key] = json[key] || json;
+    localStorage.setItem(`cache_${key}`, JSON.stringify(dataCache[key]));
   } catch {
     dataCache[key] = [];
   }
   return dataCache[key];
 }
 
-// ── ROUTER ────────────────────────────────────────────────────────
 const routes = {
   '/':           renderHome,
   '/subjects':   renderSubjects,
   '/plans':      renderPlans,
   '/activities': renderActivities,
+  '/calculator': renderCalculator,
+  '/tracker':    renderTracker,
+  '/links':      renderLinks,
+  '/join':       renderJoin
 };
 
 function navigate(path) {
@@ -81,18 +102,28 @@ async function render(path) {
   const fn = routes[path] || renderHome;
   const html = await fn();
   page.innerHTML = html;
-  page.classList.remove('page-enter');
-  void page.offsetWidth; // force reflow
-  page.classList.add('page-enter');
-  updateActiveLink(path);
   
-  // Staggered Reveal Initializer
+  // Page Transition Effect
+  page.classList.remove('page-enter');
+  void page.offsetWidth;
+  page.classList.add('page-enter');
+  
+  updateActiveLink(path);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
   setTimeout(() => {
     initReveal();
     initCounters();
+    if (path === '/') initBentoSpotlight();
     if (path === '/plans') initLightbox();
     initWowEffects();
   }, 100);
+}
+
+function updateActiveLink(path) {
+  document.querySelectorAll('[data-link]').forEach(link => {
+    link.classList.toggle('active', link.getAttribute('href') === path);
+  });
 }
 
 window.addEventListener('popstate', () => render(window.location.pathname));
@@ -104,87 +135,46 @@ document.addEventListener('click', e => {
   navigate(link.getAttribute('href'));
 });
 
-// ── NAVBAR SCROLL ────────────────────────────────────────────────
+// ── THEME & NAV ──────────────────────────────────────────────────
+function initTheme() {
+  const toggle = document.getElementById('theme-toggle');
+  const getPreferredTheme = () => {
+    const saved = localStorage.getItem('theme');
+    if (saved) return saved;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  };
+  
+  const currentTheme = getPreferredTheme();
+  document.documentElement.setAttribute('data-theme', currentTheme);
+  
+  if (toggle) {
+    toggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+  }
+}
+
 window.addEventListener('scroll', () => {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
 }, { passive: true });
 
-// ── ACTIVE LINK ──────────────────────────────────────────────────
-function updateActiveLink(path) {
-  document.querySelectorAll('.nav-link').forEach(a => {
-    a.classList.toggle('active', a.getAttribute('href') === path);
-  });
-}
-
-// ── INTERSECTION OBSERVER (Reveal Animations) ────────────────────
-function initReveal() {
-  const els = document.querySelectorAll('.reveal');
-  if (!els.length) return;
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 80);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  els.forEach(el => observer.observe(el));
-}
-
-// ── COUNTER ANIMATION ────────────────────────────────────────────
-function initCounters() {
-  const counters = document.querySelectorAll('[data-count]');
-  if (!counters.length) return;
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const el = entry.target;
-      const target = parseInt(el.dataset.count);
-      const suffix = el.dataset.suffix || '';
-      let current = 0;
-      const duration = 2000; // 2 seconds
-      const start = performance.now();
-
-      const animate = (time) => {
-        const progress = Math.min((time - start) / duration, 1);
-        const easeOutExpo = 1 - Math.pow(2, -10 * progress);
-        current = Math.floor(easeOutExpo * target);
-        el.textContent = current + suffix;
-        if (progress < 1) requestAnimationFrame(animate);
-      };
-      requestAnimationFrame(animate);
-      observer.unobserve(el);
-    });
-  }, { threshold: 0.5 });
-  counters.forEach(el => observer.observe(el));
-}
-
 // ── LIGHTBOX ─────────────────────────────────────────────────────
 function initLightbox() {
-  const links = document.querySelectorAll('.plan-card .btn');
-  links.forEach(link => {
-    link.addEventListener('click', (e) => {
-      const href = link.getAttribute('href');
-      if (href.endsWith('.jpg') || href.endsWith('.png')) {
-        e.preventDefault();
-        showLightbox(href);
-      }
-    });
+  document.querySelectorAll('.plan-card img').forEach(img => {
+    img.addEventListener('click', () => showLightbox(img.src));
   });
 }
 
 function showLightbox(src) {
   const overlay = document.createElement('div');
-  overlay.style = `
-    position: fixed; inset: 0; background: rgba(0,0,0,0.9); 
-    display: flex; align-items: center; justify-content: center; 
-    z-index: 1000; backdrop-filter: blur(8px); cursor: zoom-out;
-    opacity: 0; transition: opacity 0.3s var(--ease);
-  `;
+  overlay.className = 'lightbox-overlay';
   overlay.innerHTML = `
-    <div style="position:relative; max-width: 90%; max-height: 90%;">
-      <img src="${src}" style="max-width:100%; max-height:90vh; border-radius: 8px; box-shadow: 0 0 50px rgba(0,0,0,0.5);">
-      <button style="position:absolute; top:-40px; right:0; color:white; background:none; font-size:2rem;">&times;</button>
+    <div class="lightbox-content">
+      <img src="${src}" loading="lazy" class="lightbox-img">
+      <button class="lightbox-close">&times;</button>
     </div>
   `;
   document.body.appendChild(overlay);
@@ -195,246 +185,197 @@ function showLightbox(src) {
   };
 }
 
-// ── TAB SWITCHER ─────────────────────────────────────────────────
-function initTabs() {
-  document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const bar = btn.closest('.tab-bar');
-      bar.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const target = btn.dataset.tab;
-      document.querySelectorAll('.tab-content').forEach(c => {
-        c.style.display = c.dataset.content === target ? 'grid' : 'none';
-      });
-    });
-  });
-}
+// ── RENDER HOME ──────────────────────────────────────────────────
+async function renderHome() {
+  const subjects = await fetchData('subjects', '/data/subjects.json');
+  const curriculum = await fetchData('curriculum', '/data/curriculum.json');
+  const activities = await fetchData('activities', '/data/activities.json');
+  const studentMajor = localStorage.getItem('study_major');
+  const progress = JSON.parse(localStorage.getItem('study_progress') || '[]');
 
-// ── SEARCH ───────────────────────────────────────────────────────
-function initSearch(inputId, cards) {
-  const input = document.getElementById(inputId);
-  if (!input) return;
-  input.addEventListener('input', () => {
-    const q = input.value.trim().toLowerCase();
-    document.querySelectorAll(cards).forEach(card => {
-      const text = card.textContent.toLowerCase();
-      card.style.display = text.includes(q) ? '' : 'none';
-    });
-  });
-}
+  const totalSubjects = curriculum.length;
+  const recentActivities = activities.slice(0, 3);
 
-// ── YEAR COLORS ───────────────────────────────────────────────────
-const yearColors = {
-  1: { bg: 'rgba(53,116,200,.1)', color: 'var(--blue)' },
-  2: { bg: 'rgba(76,175,80,.1)',  color: 'var(--green)' },
-  3: { bg: 'rgba(242,111,33,.1)', color: 'var(--orange)' },
-  4: { bg: 'rgba(221,59,63,.1)',  color: 'var(--red)' },
-};
+  let dashboardHtml = '';
+  if (studentMajor && studentMajor !== 'all') {
+    const majorSubjects = curriculum.filter(s => s.major === 'common' || s.major === studentMajor);
+    const totalCredits = 162;
+    const completedCredits = majorSubjects.filter(s => progress.includes(s.id)).reduce((acc, s) => acc + s.credits, 0);
+    const percent = Math.min(Math.round((completedCredits / totalCredits) * 100), 100);
 
-const tagClasses = {
-  'أكاديمي': 'tag-green',
-  'تقني':    'tag-blue',
-  'اجتماعي': 'tag-red',
-  'ريادة':   'tag-yellow',
-  'ترفيهي':  'tag-orange',
-};
-
-function renderSubjectList(list) {
-  if (!list || list.length === 0) {
-    return `<div style="text-align:center;padding:3rem;color:var(--text-muted)">لا توجد مواد بعد — قم بإضافتها من لوحة التحكم</div>`;
-  }
-  return list.map(s => {
-    const dest = (s.file && s.file !== '') ? s.file : (s.link || '#');
-    const yr = parseInt(s.year) || 1;
-    return `
-    <a href="${dest}" target="_blank" rel="noopener" class="subject-card">
-      <div class="subject-card-left">
-        <div class="subject-year" style="background:${yearColors[yr].bg}; color:${yearColors[yr].color}">
-          ${yr}
+    dashboardHtml = `
+      <div class="container reveal">
+        <div class="home-dashboard">
+          <div class="dashboard-info">
+            <span class="dashboard-label">أهلاً بك مجدداً • تخصصك: ${studentMajor === 'computer' ? 'هندسة حاسوب' : 'هندسة شبكات'}</span>
+            <h2 class="dashboard-title">أنت أنجزت ${percent}% من رحلتك الأكاديمية</h2>
+          </div>
+          <div class="dashboard-progress">
+             <div class="progress-ring">
+               <svg viewBox="0 0 36 36" class="circular-chart">
+                 <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                 <path class="circle" stroke-dasharray="${percent}, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+               </svg>
+               <div class="percentage">${percent}%</div>
+             </div>
+             <a href="/tracker" class="btn btn-primary" data-link>المتتبع الكامل ←</a>
+          </div>
         </div>
-        <span class="subject-name">${s.name}</span>
       </div>
-      <svg class="subject-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
-    </a>
-  `;
-  }).join('');
-}
+    `;
+  }
 
-// ── PAGE RENDERS ─────────────────────────────────────────────────
+  setTimeout(() => initGlobalSearch(subjects, activities), 0);
 
-function renderHome() {
   return `
-    <!-- HERO -->
-    <section class="hero">
+    <section class="hero main-hero">
       <div class="hero-illustration">
         <svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse">
-              <path d="M 100 0 L 0 0 0 100" fill="none" stroke="currentColor" stroke-width="0.5"/>
-            </pattern>
-          </defs>
-          <rect width="1000" height="1000" fill="url(#grid)" />
-          <circle cx="200" cy="200" r="150" fill="none" stroke="currentColor" stroke-width="1" opacity="0.5" />
-          <circle cx="800" cy="800" r="200" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3" />
-          <path d="M 0 500 Q 250 250 500 500 T 1000 500" fill="none" stroke="currentColor" stroke-width="1" opacity="0.2" />
+          <circle cx="200" cy="200" r="150" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3" />
+          <path d="M 0 500 Q 250 250 500 500 T 1000 500" fill="none" stroke="currentColor" stroke-width="1" opacity="0.1" />
         </svg>
       </div>
       <div class="hero-badge reveal">
-        <span></span>
-        اتحاد هندسة الحاسوب والشبكات · جامعة البلقاء التطبيقية
+        <span></span> هندسة الحاسوب والشبكات · جامعة البلقاء التطبيقية
       </div>
       <h1 class="reveal">بيتك الأكاديمي في عالم <span class="highlight">الهندسة التقنية</span></h1>
-      <p class="reveal">مجتمع طلابي يوفر الملخصات، المصادر الدراسية، ويُنظّم الفعاليات التي تبني مهاراتك وتصنع ذكرياتك.</p>
+      <p class="reveal">المصدر الأول والأذكى لكل ما يحتاجه طالب الـ CNE في مسيرته الجامعية.</p>
+      <div class="home-search-container reveal">
+        <div class="search-box">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="global-search" placeholder="ابحث عن مادة، فعالية، أو مصدر تعليمي..." autocomplete="off">
+          <div id="search-results" class="search-results-dropdown" style="display:none"></div>
+        </div>
+      </div>
       <div class="hero-actions reveal">
-        <a href="/subjects" class="btn btn-primary" data-link>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-          استكشف المواد الدراسية
-        </a>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdD38YSdj9_m5Kiqc8h2oU6i1c22yeUtL2tqgSo-9Xagxrd0A/viewform?usp=header" target="_blank" rel="noopener" class="btn btn-outline">
-          انضم للعائلة
-        </a>
+        <a href="/subjects" class="btn btn-primary" data-link>استكشف المواد</a>
+        <a href="/tracker" class="btn btn-outline" data-link>متتبع الخطة</a>
       </div>
     </section>
 
-    <!-- STATS BAR -->
-    <div class="stats-bar reveal">
-      <div class="stat-item">
-        <span class="stat-number" data-count="80" data-suffix="+">0+</span>
-        <span class="stat-label">مادة دراسية</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number" data-count="15" data-suffix="+">0+</span>
-        <span class="stat-label">فعالية سنوياً</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number" data-count="500" data-suffix="+">0+</span>
-        <span class="stat-label">طالب مستفيد</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number" data-count="15" data-suffix="+">0+</span>
-        <span class="stat-label">عاما في خدمة الطلبة</span>
+    <div class="container" style="margin-top:-2rem;position:relative;z-index:2; margin-bottom: 3rem">
+      <div class="stats-bar reveal">
+        <div class="stat-item">
+          <span class="stat-number" data-count="999" data-suffix="+">0+</span>
+          <span class="stat-label">طالب مستفيد</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" data-count="13" data-suffix="+">0+</span>
+          <span class="stat-label">فعالية منظمة سنويا</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" data-count="15" data-suffix="+">0+</span>
+          <span class="stat-label">سنة من الخبرة</span>
+        </div>
       </div>
     </div>
 
-    <!-- BENTO GRID -->
+    ${dashboardHtml}
+
     <section class="section">
-      <div class="section-label reveal">ماذا نقدم</div>
-      <h2 class="section-title reveal">كل ما تحتاجه في مكان واحد</h2>
-      <p class="section-subtitle reveal">من الملخصات والنماذج إلى الفعاليات والخطط الدراسية — صممنا كل شيء ليخدمك.</p>
-
+      <div class="section-label reveal">الأدوات الأكاديمية</div>
+      <h2 class="section-title reveal">أدوات ذكية لطلاب أذكياء</h2>
       <div class="bento-grid">
-
-        <!-- Card 1: Academic — Big -->
-        <div class="bento-card col-4 accent-blue reveal">
-          <div class="card-icon icon-blue">📚</div>
-          <div class="card-tag tag-blue">أكاديميا</div>
-          <h3 class="card-title">ملخصات ونماذج لكل المواد</h3>
-          <p class="card-desc">مجلدات منظمة على Google Drive لكل المواد في هندسة الحاسوب والشبكات. محدّثة باستمرار من طلاب متميزين.</p>
-          <a href="/subjects" class="card-link" data-link>
-            تصفح المواد
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
-          </a>
-        </div>
-
-        <!-- Card 2: Join — Tall -->
-        <div class="bento-card col-2 row-2 accent-orange reveal">
-          <div class="card-icon icon-orange">🤝</div>
-          <div class="card-tag tag-orange">انضم</div>
-          <h3 class="card-title">كن جزءاً من العائلة</h3>
-          <p class="card-desc">نرحب بكل طالب يريد أن يُعطي ويستفيد. اختبار القبول مفتوح طوال العام.</p>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdD38YSdj9_m5Kiqc8h2oU6i1c22yeUtL2tqgSo-9Xagxrd0A/viewform?usp=header" target="_blank" rel="noopener" class="card-link" style="margin-top: auto;">
-            تقدّم الآن
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
-          </a>
-        </div>
-
-        <!-- Card 3: Plans -->
-        <div class="bento-card col-2 accent-red reveal">
-          <div class="card-icon icon-red">🗺️</div>
-          <div class="card-tag tag-red">تخطيط</div>
-          <h3 class="card-title">الخطط الشجرية</h3>
-          <p class="card-desc">تتبّع مسارك الدراسي وافهم المتطلبات السابقة لكل مادة.</p>
-          <a href="/plans" class="card-link" data-link>
-            اعرض الخطة
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
-          </a>
-        </div>
-
-        <!-- Card 4: Activities -->
-        <div class="bento-card col-2 accent-green reveal">
-          <div class="card-icon icon-green">🚀</div>
-          <div class="card-tag tag-green">فعاليات</div>
-          <h3 class="card-title">أنشطة تصنع الفارق</h3>
-          <p class="card-desc">ورش تقنية، رحلات، محاضرات — تجارب تبني شخصيتك المهنية.</p>
-          <a href="/activities" class="card-link" data-link>
-            تصفح الأنشطة
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
-          </a>
-        </div>
-
-        <!-- Card 5: University Links -->
-        <div class="bento-card col-2 accent-yellow reveal" style="background:linear-gradient(135deg,#FFFBEB,#FEF3C7)">
-          <div class="card-tag tag-yellow">روابط سريعة</div>
-          <h3 class="card-title">البوابة الجامعية</h3>
-          <p class="card-desc">وصول مباشر للبوابة الطلابية والتعلم الإلكتروني.</p>
-          <div style="display:flex;flex-direction:column;gap:8px;margin-top:1rem;">
-            <a href="http://appserver.fet.edu.jo:7778/reg_new/index.jsp" target="_blank" class="card-link" style="font-size:.82rem">📎 البوابة الطلابية →</a>
-            <a href="https://s3.ebalqa.courses/fet/login/index.php" target="_blank" class="card-link" style="font-size:.82rem">🎓 التعلم الإلكتروني →</a>
+        <a href="/subjects" class="bento-card col-4 accent-blue reveal" data-link>
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
           </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- QUICK ACCESS -->
-    <section class="section" style="padding-top:0">
-      <div class="quick-access reveal">
-        <a href="/subjects" class="qa-item" data-link>
-          <div class="qa-icon" style="background:rgba(53,116,200,.1)">📚</div>
-          <div>
-            <div class="qa-text-label">الوصول السريع</div>
-            <div class="qa-text-title">المواد الدراسية</div>
+          <div class="card-content">
+            <h3>المواد الدراسية</h3>
+            <p>أكبر مكتبة منظمة من الملخصات، أسئلة السنوات، والمصادر لجميع المواد الدراسية.</p>
+            <div class="card-footer-link">تصفح المصادر ←</div>
           </div>
         </a>
-        <a href="/plans" class="qa-item" data-link>
-          <div class="qa-icon" style="background:rgba(221,59,63,.1)">🗺️</div>
-          <div>
-            <div class="qa-text-label">الوصول السريع</div>
-            <div class="qa-text-title">الخطط الشجرية</div>
+        <a href="/tracker" class="bento-card col-2 accent-red reveal" data-link>
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
+          </div>
+          <div class="card-content">
+            <h3>متتبع الساعات</h3>
+            <p>نظام ذكي لمتابعة تخرجك وفلترة المواد.</p>
+            <div class="card-footer-link">ابدأ التتبع ←</div>
           </div>
         </a>
-        <a href="/activities" class="qa-item" data-link>
-          <div class="qa-icon" style="background:rgba(76,175,80,.1)">🚀</div>
-          <div>
-            <div class="qa-text-label">الوصول السريع</div>
-            <div class="qa-text-title">الأنشطة والفعاليات</div>
+        <a href="/calculator" class="bento-card col-2 accent-green reveal" data-link>
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line><line x1="16" y1="14" x2="16" y2="18"></line><line x1="8" y1="10" x2="8" y2="10"></line><line x1="12" y1="10" x2="12" y2="10"></line><line x1="16" y1="10" x2="16" y2="10"></line><line x1="8" y1="14" x2="8" y2="14"></line><line x1="12" y1="14" x2="12" y2="14"></line><line x1="8" y1="18" x2="8" y2="18"></line><line x1="12" y1="18" x2="12" y2="18"></line></svg>
+          </div>
+          <div class="card-content">
+            <h3>حاسبة المعدل</h3>
+            <p>حساب دقيق لمعدلك التراكمي والفصلي.</p>
+            <div class="card-footer-link">احسب الآن ←</div>
+          </div>
+        </a>
+        <a href="/activities" class="bento-card col-4 accent-orange reveal" data-link>
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path><path d="M9 12H4s.55-3.03 2-5c1.62-2.2 5-3 5-3"></path><path d="M12 15v5s3.03-.55 5-2c2.2-1.62 3-5 3-3"></path></svg>
+          </div>
+          <div class="card-content">
+            <h3>الأنشطة والفعاليات</h3>
+            <p>ورش تقنية، رحلات، ومحاضرات تبني شخصيتك المهنية.</p>
+            <div class="card-footer-link">تصفح الأنشطة ←</div>
+          </div>
+        </a>
+        <a href="/links" class="bento-card col-2 reveal" data-link style="background:rgba(247,201,72,0.05);border-color:rgba(247,201,72,0.2)">
+          <div class="card-icon" style="color:var(--yellow);border-color:rgba(247,201,72,0.3)">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+          </div>
+          <div class="card-content">
+            <h3>الروابط الهامة</h3>
+            <p>وصول سريع لمنصات الجامعة وجريدة المواد.</p>
+            <div class="card-footer-link" style="color:var(--yellow)">كل الروابط ←</div>
           </div>
         </a>
       </div>
     </section>
 
-    <!-- FOOTER -->
+    <section class="section">
+      <div class="section-label reveal">آخر الأحدث</div>
+      <h2 class="section-title reveal">ماذا حدث مؤخراً في عائلتنا؟</h2>
+      <div class="activity-row reveal">
+        ${recentActivities.map(a => `
+          <div class="activity-mini-card">
+             <div class="mini-icon" style="background:${a.bg_gradient || 'var(--blue-gradient)'}">${a.emoji || '🚀'}</div>
+             <div class="mini-body">
+               <h4>${a.title}</h4>
+               <span>${a.date}</span>
+             </div>
+          </div>
+        `).join('')}
+      </div>
+      <div style="text-align:center;margin-top:2rem">
+        <a href="/activities" class="btn btn-outline btn-sm" data-link>مشاهدة كل الفعاليات</a>
+      </div>
+    </section>
     ${renderFooter()}
   `;
 }
 
+// ── RENDER SUBJECTS ──────────────────────────────────────────────
 async function renderSubjects() {
   const allSubjects = await fetchData('subjects', '/data/subjects.json');
 
-  const year1 = allSubjects.filter(s => s.year === 1);
-  const year2 = allSubjects.filter(s => s.year === 2);
-  const year3 = allSubjects.filter(s => s.year === 3);
-  const year4 = allSubjects.filter(s => s.year === 4);
-  const year5 = allSubjects.filter(s => s.year === 5);
-
-  setTimeout(initTabs, 0);
-  setTimeout(() => initSearch('subjectSearch', '.subject-card'), 0);
+  setTimeout(() => {
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const bar = btn.closest('.tab-bar');
+        bar.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const target = btn.dataset.tab;
+        document.querySelectorAll('.tab-content').forEach(c => {
+          c.style.display = c.dataset.content === target ? 'grid' : 'none';
+        });
+      });
+    });
+    initSearch('subjectSearch', '.subject-card');
+  }, 0);
 
   const majorLabel = { computer: 'حاسوب', network: 'شبكات', common: 'مشترك' };
   const majorClass  = { computer: 'tag-blue', network: 'tag-green', common: 'tag-yellow' };
 
-  function renderByYear(list) {
-    if (!list || list.length === 0) return `<div style="text-align:center;padding:3rem;color:var(--text-muted)">لا توجد مواد بعد</div>`;
+  function renderByYear(y) {
+    const list = allSubjects.filter(s => s.year === y);
+    if (!list.length) return `<div style="text-align:center;padding:3rem;color:var(--text-muted)">لا توجد مواد بعد</div>`;
     return list.map(s => `
       <a href="${s.link || '#'}" target="_blank" rel="noopener" class="subject-card">
         <div class="subject-card-left">
@@ -445,6 +386,8 @@ async function renderSubjects() {
       </a>`).join('');
   }
 
+  const years = [1, 2, 3, 4, 5];
+
   return `
     <div class="page-header">
       <div class="breadcrumb reveal">
@@ -454,33 +397,31 @@ async function renderSubjects() {
       </div>
       <h1 class="section-title reveal">المواد الدراسية</h1>
       <p class="section-subtitle reveal">اختر سنتك الدراسية للوصول إلى الملخصات والنماذج.</p>
-
-      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-top:1.5rem;">
-        <div class="tab-bar reveal">
-          <button class="tab-btn active" data-tab="y1">السنة الأولى <span style="opacity:.55;font-size:.8em">${year1.length}</span></button>
-          <button class="tab-btn" data-tab="y2">السنة الثانية <span style="opacity:.55;font-size:.8em">${year2.length}</span></button>
-          <button class="tab-btn" data-tab="y3">السنة الثالثة <span style="opacity:.55;font-size:.8em">${year3.length}</span></button>
-          <button class="tab-btn" data-tab="y4">السنة الرابعة <span style="opacity:.55;font-size:.8em">${year4.length}</span></button>
-          <button class="tab-btn" data-tab="y5">السنة الخامسة <span style="opacity:.55;font-size:.8em">${year5.length}</span></button>
-        </div>
-        <div class="search-wrap reveal">
-          <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input type="text" id="subjectSearch" placeholder="ابحث عن مادة..." style="background:var(--glass-bg); backdrop-filter:blur(8px);">
-        </div>
-      </div>
     </div>
 
-    <div class="container" style="padding-bottom:4rem">
-      <div class="subject-grid tab-content" data-content="y1">${renderByYear(year1)}</div>
-      <div class="subject-grid tab-content" data-content="y2" style="display:none">${renderByYear(year2)}</div>
-      <div class="subject-grid tab-content" data-content="y3" style="display:none">${renderByYear(year3)}</div>
-      <div class="subject-grid tab-content" data-content="y4" style="display:none">${renderByYear(year4)}</div>
-      <div class="subject-grid tab-content" data-content="y5" style="display:none">${renderByYear(year5)}</div>
+    <div class="container reveal">
+      <div class="tab-bar reveal" style="margin-bottom:2rem; justify-content:center">
+        ${years.map(y => `<button class="tab-btn ${y === 1 ? 'active' : ''}" data-tab="${y}">السنة ${y}</button>`).join('')}
+      </div>
+      
+      <div class="search-filter-row reveal" style="margin-bottom:2rem">
+        <div class="search-box">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="subjectSearch" placeholder="ابحث عن مادة...">
+        </div>
+      </div>
+
+      ${years.map(y => `
+        <div class="subject-grid tab-content" data-content="${y}" style="display:${y === 1 ? 'grid' : 'none'}">
+          ${renderByYear(y)}
+        </div>
+      `).join('')}
     </div>
     ${renderFooter()}
   `;
 }
 
+// ── RENDER PLANS ─────────────────────────────────────────────────
 function renderPlans() {
   return `
     <div class="page-header">
@@ -490,27 +431,22 @@ function renderPlans() {
         الخطط الشجرية
       </div>
       <h1 class="section-title reveal">الخطط الشجرية</h1>
-      <p class="section-subtitle reveal">دليلك لاجتياز المسار الدراسي بنجاح — وافهم المتطلبات قبل التسجيل.</p>
+      <p class="section-subtitle reveal">دليل المسار الدراسي والتبعية للمواد.</p>
     </div>
+
     <div class="container" style="padding-bottom:4rem">
       <div class="plans-grid">
         <div class="plan-card reveal">
           <div class="plan-icon" style="background:rgba(53,116,200,.1)">💻</div>
-          <h3 class="card-title" style="font-size:1.3rem;margin-bottom:.5rem">هندسة الحاسوب</h3>
-          <p class="card-desc" style="margin-bottom:1.5rem">الخطة الدراسية الكاملة مع المتطلبات السابقة والمواد الاختيارية.</p>
-          <a href="/computer-plan.jpg" target="_blank" download="Computer-Plan.jpg" class="btn btn-primary" style="width:100%;justify-content:center">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            تحميل الخطة
-          </a>
+          <h3>هندسة الحاسوب</h3>
+          <p>الخطة الدراسية الكاملة مع المتطلبات السابقة.</p>
+          <a href="/computer-plan.jpg" target="_blank" class="btn btn-primary" style="width:100%; justify-content:center">عرض الخطة</a>
         </div>
         <div class="plan-card reveal">
           <div class="plan-icon" style="background:rgba(76,175,80,.1)">🌐</div>
-          <h3 class="card-title" style="font-size:1.3rem;margin-bottom:.5rem">هندسة الشبكات</h3>
-          <p class="card-desc" style="margin-bottom:1.5rem">خطة تخصص الشبكات مع توضيح المسارات المتاحة والتخصصات الفرعية.</p>
-          <a href="/networking-plan.jpg" target="_blank" download="Networking-Plan.jpg" class="btn" style="width:100%;justify-content:center;background:var(--green);color:white;box-shadow:0 8px 24px rgba(76,175,80,.25)">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            تحميل الخطة
-          </a>
+          <h3>هندسة الشبكات</h3>
+          <p>خطة تخصص الشبكات والمسار الأكاديمي.</p>
+          <a href="/networking-plan.jpg" target="_blank" class="btn btn-outline" style="width:100%; justify-content:center; border-color:var(--green); color:var(--green); --btn-bg-hover:rgba(76,175,80,0.1)">عرض الخطة</a>
         </div>
       </div>
     </div>
@@ -518,31 +454,9 @@ function renderPlans() {
   `;
 }
 
+// ── RENDER ACTIVITIES ────────────────────────────────────────────
 async function renderActivities() {
   const activities = await fetchData('activities', '/data/activities.json');
-
-  const activityCards = activities.length === 0
-    ? `<div style="text-align:center;padding:4rem;color:var(--text-muted)">لا توجد أنشطة بعد — قم بإضافتها من لوحة التحكم</div>`
-    : activities.map(a => {
-        const tagClass = tagClasses[a.tag] || 'tag-blue';
-        const imgContent = a.image
-          ? `<img src="${a.image}" alt="${a.title}" style="width:100%;height:100%;object-fit:cover;">`
-          : `<span style="font-size:3rem">${a.emoji || '🚀'}</span>`;
-        return `
-          <div class="activity-card reveal">
-            <div class="activity-img" style="background:${a.bg_gradient || a.bg || 'linear-gradient(135deg,#DBEAFE,#BFDBFE)'}">${imgContent}</div>
-            <div class="activity-body">
-              <div class="activity-meta">
-                <span class="card-tag ${tagClass}" style="margin:0">${a.tag}</span>
-                <span class="activity-date">${a.date}</span>
-              </div>
-              <h3 class="activity-title">${a.title}</h3>
-              <p class="activity-desc">${a.description || a.desc || ''}</p>
-            </div>
-          </div>
-        `;
-      }).join('');
-
   return `
     <div class="page-header">
       <div class="breadcrumb reveal">
@@ -551,58 +465,239 @@ async function renderActivities() {
         الأنشطة والفعاليات
       </div>
       <h1 class="section-title reveal">الأنشطة والفعاليات</h1>
-      <p class="section-subtitle reveal">فعاليات تبني المهارات وتصنع الذكريات — نفخر بمجتمعنا النابض بالحياة.</p>
+      <p class="section-subtitle reveal">مجتمع CNE النابض بالحياة.</p>
     </div>
+
     <div class="container" style="padding-bottom:4rem">
       <div class="activity-grid">
-        ${activityCards}
+        ${activities.map(a => `
+          <div class="activity-card reveal">
+            <div class="activity-img" style="background:${a.bg_gradient || 'linear-gradient(135deg,#f3f4f6,#e5e7eb)'}">
+              ${a.image ? `<img src="${a.image}" alt="${a.title}">` : `<span>${a.emoji || '🚀'}</span>`}
+            </div>
+            <div class="activity-body">
+              <div class="activity-meta">
+                <span class="card-tag ${tagClasses[a.tag] || 'tag-blue'}">${a.tag}</span>
+                <span class="activity-date">${a.date}</span>
+              </div>
+              <h3 class="activity-title">${a.title}</h3>
+              <p class="activity-desc">${a.description}</p>
+            </div>
+          </div>
+        `).join('')}
       </div>
     </div>
     ${renderFooter()}
   `;
 }
 
-function renderJoin() {
-  window.handleJoinSubmit = handleJoinSubmit; // Expose to global scope for inline onsubmit
-  return `
-    <div class="join-section">
-      <div class="section-label reveal">انضم إلينا</div>
-      <h1 class="section-title reveal" style="font-size:2.2rem;margin-bottom:.75rem">كن جزءاً من العائلة</h1>
-      <p class="section-subtitle reveal" style="margin:0 auto 2rem">نرحب بكل طالب يريد أن يُعطي ويستفيد.</p>
+// ── RENDER GPA CALCULATOR ────────────────────────────────────────
+function renderCalculator() {
+  window.addSubjectRow = () => {
+    const container = document.getElementById('subjects-container');
+    const row = document.createElement('div');
+    row.className = 'calc-row';
+    row.innerHTML = `
+      <input type="text" class="form-input" placeholder="اسم المادة">
+      <input type="number" class="form-input credit-hours" value="3" min="1" max="6">
+      <select class="form-input grade-select">
+        <option value="4.0">A (4.0)</option>
+        <option value="3.75">A- (3.75)</option>
+        <option value="3.5">B+ (3.50)</option>
+        <option value="3.0">B (3.00)</option>
+        <option value="2.5">C+ (2.50)</option>
+        <option value="2.0">C (2.00)</option>
+        <option value="1.0">D (1.00)</option>
+        <option value="0.0">F (0.00)</option>
+      </select>
+      <button onclick="this.parentElement.remove(); window.calculateGPA();" style="background:none; border:none; color:var(--red); cursor:pointer; padding:5px; font-size:1.5rem">&times;</button>
+    `;
+    container.appendChild(row);
+    window.calculateGPA();
+  };
 
-      <form id="joinForm" class="form-card reveal" onsubmit="handleJoinSubmit(event)">
-        <div class="form-group">
-          <label>الاسم الكامل</label>
-          <input class="form-input" name="name" type="text" placeholder="محمد أحمد..." required>
+  window.calculateGPA = () => {
+    const hours = document.querySelectorAll('.credit-hours');
+    const grades = document.querySelectorAll('.grade-select');
+    let totalPoints = 0, totalHours = 0;
+    hours.forEach((h, i) => {
+      const hr = parseFloat(h.value) || 0;
+      const gr = parseFloat(grades[i].value) || 0;
+      totalPoints += hr * gr;
+      totalHours += hr;
+    });
+    const result = totalHours > 0 ? (totalPoints / totalHours).toFixed(2) : '0.00';
+    document.getElementById('gpa-result').textContent = result;
+  };
+
+  setTimeout(() => { for(let i=0;i<4;i++) window.addSubjectRow(); }, 0);
+
+  return `
+    <div class="page-header">
+      <h1 class="section-title reveal">حاسبة المعدل</h1>
+      <p class="section-subtitle reveal">احسب معدلك الفصلي بنظام الـ 4.0.</p>
+    </div>
+    <div class="container" style="padding-bottom:5rem">
+      <div class="reveal">
+        <div class="gpa-display">
+          <div style="font-size:3.5rem; font-weight:800; color:var(--blue)" id="gpa-result">0.00</div>
+          <div style="color:var(--text-secondary); font-weight:600">المعدل الفصلي الحالي</div>
         </div>
-        <div class="form-group">
-          <label>الرقم الجامعي</label>
-          <input class="form-input" name="student_id" type="text" placeholder="220XXXXX" required>
+        <div id="subjects-container" style="display:flex; flex-direction:column; gap:10px"></div>
+        <div style="margin-top:2rem; display:flex; gap:10px">
+          <button class="btn btn-outline" onclick="window.addSubjectRow()">إضافة مادة</button>
+          <button class="btn btn-primary" onclick="window.calculateGPA()">تحديث</button>
         </div>
-        <div class="form-group">
-          <label>التخصص</label>
-          <select class="form-input" name="major" required>
-            <option>هندسة حاسوب</option>
-            <option>هندسة شبكات</option>
-          </select>
+      </div>
+    </div>
+    ${renderFooter()}
+  `;
+}
+
+// ── RENDER TRACKER ──────────────────────────────────────────────
+async function renderTracker() {
+  const subjects = await fetchData('curriculum', '/data/curriculum.json');
+  const progress = JSON.parse(localStorage.getItem('study_progress') || '[]');
+  const major = localStorage.getItem('study_major');
+
+  if (!major) return renderMajorSelection();
+
+  window.toggleSubject = (id) => {
+    const idx = progress.indexOf(id);
+    if (idx > -1) progress.splice(idx, 1); else progress.push(id);
+    localStorage.setItem('study_progress', JSON.stringify(progress));
+    navigate('/tracker');
+  };
+
+  window.resetMajor = () => {
+    localStorage.removeItem('study_major');
+    navigate('/tracker');
+  };
+
+  const filtered = subjects.filter(s => s.major === 'common' || s.major === major);
+  const totalCredits = 162;
+  const completedCredits = filtered.filter(s => progress.includes(s.id)).reduce((a, b) => a + b.credits, 0);
+  const percent = Math.min(Math.round((completedCredits / totalCredits) * 100), 100);
+
+  return `
+    <div class="page-header">
+      <h1 class="section-title reveal">متتبع الـ 162 ساعة</h1>
+      <p class="section-subtitle reveal">تتبع تقدمك في خطة ${major === 'computer' ? 'هندسة الحاسوب' : 'هندسة الشبكات'}.</p>
+      <div style="margin-top:1.5rem; max-width: 600px; margin-left: auto; margin-right: auto">
+        <div style="background:var(--surface-2); height:12px; border-radius:6px; overflow:hidden; border:1px solid var(--border)">
+          <div style="width:${percent}%; height:100%; background:var(--blue-gradient); transition:width 0.5s var(--ease-spring)"></div>
         </div>
-        <div class="form-group">
-          <label>السنة الدراسية</label>
-          <select class="form-input" name="year" required>
-            <option>الأولى</option>
-            <option>الثانية</option>
-            <option>الثالثة</option>
-            <option>الرابعة</option>
-          </select>
+        <div style="margin-top:10px; text-align:center; font-weight:700; color:var(--text-primary)">🚀 إنجازك: ${percent}% (${completedCredits}/162 ساعة)</div>
+      </div>
+      <a href="javascript:void(0)" onclick="resetMajor()" style="display:block; margin-top:1rem; font-size:0.8rem; color:var(--text-muted)">← تغيير التخصص</a>
+    </div>
+
+    <div class="container" style="padding-bottom:5rem">
+      <div class="tracker-years">
+        ${[1,2,3,4,5].map(y => {
+          const yearSubs = filtered.filter(s => s.year === y);
+          if (!yearSubs.length) return '';
+          return `
+            <div class="tracker-year reveal">
+              <h3 style="margin-bottom:1rem; border-bottom:1px solid var(--border-color); padding-bottom:5px">السنة ${y}</h3>
+              <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:15px">
+                ${yearSubs.map(s => `
+                  <div class="tracker-item ${progress.includes(s.id) ? 'completed' : ''}">
+                    <input type="checkbox" ${progress.includes(s.id) ? 'checked' : ''} onchange="toggleSubject('${s.id}')" style="width:20px; height:20px; accent-color:var(--blue)">
+                    <span style="flex:1">${s.name}</span>
+                    <span style="font-size:0.85rem; font-weight:600; opacity:0.8">${s.credits} س</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    </div>
+    ${renderFooter()}
+  `;
+}
+
+function renderMajorSelection() {
+  window.setMajor = (m) => { localStorage.setItem('study_major', m); navigate('/tracker'); };
+  return `
+    <div class="page-header" style="text-align:center">
+      <h1 class="section-title reveal">اختر تخصصك</h1>
+    </div>
+    <div class="container" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:2rem; padding-bottom:10rem">
+      <div class="selection-card reveal" onclick="setMajor('computer')">
+        <div style="font-size:3.5rem; margin-bottom:1.5rem">💻</div>
+        <h3 style="font-size:1.5rem">هندسة الحاسوب</h3>
+        <p style="color:var(--text-secondary); margin-top:0.5rem">Computer Engineering</p>
+      </div>
+      <div class="selection-card reveal" onclick="setMajor('network')">
+        <div style="font-size:3.5rem; margin-bottom:1.5rem">🌐</div>
+        <h3 style="font-size:1.5rem">هندسة الشبكات</h3>
+        <p style="color:var(--text-secondary); margin-top:0.5rem">Network Engineering</p>
+      </div>
+    </div>
+    ${renderFooter()}
+  `;
+}
+
+// ── MISC RENDERS ────────────────────────────────────────────────
+function renderJoin() {
+  return `
+    <div class="page-header">
+      <h1 class="section-title reveal">انضم إلينا</h1>
+      <p class="section-subtitle reveal">كن جزءاً من عائلة CNE Family.</p>
+    </div>
+    <div class="container" style="padding-bottom:5rem">
+      <form class="form-card reveal" onsubmit="handleJoinSubmit(event)">
+        <div class="form-group" style="margin-bottom:1.5rem">
+          <label style="display:block; margin-bottom:0.5rem; font-weight:600">الاسم الكامل</label>
+          <input class="form-input" name="name" placeholder="أدخل اسمك الثلاثي" required style="width:100%">
         </div>
-        <div class="form-group">
-          <label>لماذا تريد الانضمام؟</label>
-          <textarea class="form-input" name="reason" rows="3" placeholder="أخبرنا عن نفسك..." style="resize:vertical" required></textarea>
+        <div class="form-group" style="margin-bottom:2rem">
+          <label style="display:block; margin-bottom:0.5rem; font-weight:600">الرقم الجامعي</label>
+          <input class="form-input" name="id" placeholder="مثال: 32019..." required style="width:100%">
         </div>
-        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:.5rem">
-          إرسال الطلب
-        </button>
+        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center">إرسال الطلب للانضمام</button>
       </form>
+    </div>
+    ${renderFooter()}
+  `;
+}
+
+// ── RENDER LINKS ────────────────────────────────────────────────
+function renderLinks() {
+  return `
+    <div class="page-header">
+      <div class="breadcrumb reveal">
+        <a href="/" data-link>الرئيسية</a>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        الروابط الهامة
+      </div>
+      <h1 class="section-title reveal">الروابط الهامة</h1>
+      <p class="section-subtitle reveal">أهم الروابط لمنصات الجامعة لمساعدتك في مسيرتك الأكاديمية.</p>
+    </div>
+
+    <div class="container" style="padding-bottom:10rem">
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:2rem; margin-top:2rem;">
+        <a href="http://appserver.fet.edu.jo:7778/reg_new/index.jsp" target="_blank" class="plan-card reveal" style="text-decoration:none">
+          <div class="plan-icon" style="background:rgba(53,116,200,.1); border:1px solid rgba(53,116,200,.3)">🎓</div>
+          <h3>البوابة الطلابية</h3>
+          <p style="color:var(--text-secondary); margin-bottom:1rem;">تسجيل المواد، علاماتك، والجدول الدراسي.</p>
+          <div class="btn btn-primary" style="width:100%; justify-content:center;">انتقال للبوابة</div>
+        </a>
+        <a href="https://s3.ebalqa.courses/fet/login/index.php" target="_blank" class="plan-card reveal" style="text-decoration:none">
+          <div class="plan-icon" style="background:rgba(76,175,80,.1); border:1px solid rgba(76,175,80,.3)">🖥️</div>
+          <h3>التعلم الإلكتروني</h3>
+          <p style="color:var(--text-secondary); margin-bottom:1rem;">منصة Moodle للواجبات والامتحانات.</p>
+          <div class="btn btn-outline" style="width:100%; justify-content:center; border-color:var(--green); color:var(--green);">انتقال للمنصة</div>
+        </a>
+        <a href="http://appserver.fet.edu.jo:7778/courses/index.jsp" target="_blank" class="plan-card reveal" style="text-decoration:none">
+          <div class="plan-icon" style="background:rgba(242,111,33,.1); border:1px solid rgba(242,111,33,.3)">📄</div>
+          <h3>جريدة المواد</h3>
+          <p style="color:var(--text-secondary); margin-bottom:1rem;">البحث عن الشعب المطروحة وأوقات المحاضرات.</p>
+          <div class="btn btn-outline" style="width:100%; justify-content:center; border-color:var(--orange); color:var(--orange);">انتقال للجريدة</div>
+        </a>
+      </div>
     </div>
     ${renderFooter()}
   `;
@@ -613,41 +708,106 @@ function renderFooter() {
     <footer>
       <div class="footer-inner">
         <div>
-          <div class="footer-logo-squares">
-            <span style="background:#3574C8"></span>
-            <span style="background:#DD3B3F"></span>
-            <span style="background:#4CAF50"></span>
-            <span style="background:#F7C948"></span>
-          </div>
           <div class="footer-brand-name">CNE Family</div>
-          <p class="footer-tagline">اتحاد هندسة الحاسوب والشبكات في جامعة البلقاء التطبيقية — بيتك الأكاديمي منذ 2011.</p>
+          <p class="footer-tagline">بيتك الأكاديمي منذ 2011.</p>
         </div>
         <div>
-          <div class="footer-col-title">روابط سريعة</div>
+          <div class="footer-col-title">روابط</div>
           <div class="footer-links">
             <a href="/" data-link>الرئيسية</a>
-            <a href="/subjects" data-link>المواد الدراسية</a>
-            <a href="/plans" data-link>الخطط الشجرية</a>
+            <a href="/subjects" data-link>المواد</a>
             <a href="/activities" data-link>الأنشطة</a>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdD38YSdj9_m5Kiqc8h2oU6i1c22yeUtL2tqgSo-9Xagxrd0A/viewform?usp=header" target="_blank" rel="noopener">انضم إلينا</a>
-          </div>
-        </div>
-        <div>
-          <div class="footer-col-title">تواصل معنا</div>
-          <div class="footer-links">
-            <a href="https://www.instagram.com/cne.fet/" target="_blank">Instagram</a>
-            <a href="https://www.facebook.com/share/g/1CqePaqznf/" target="_blank">Facebook</a>
-            <a href="http://appserver.fet.edu.jo:7778/reg_new/index.jsp" target="_blank">البوابة الجامعية</a>
           </div>
         </div>
       </div>
-      <div class="footer-bottom">
-        <span>© 2026 CNE Family — جامعة البلقاء التطبيقية</span>
-        <span>جميع الحقوق محفوظة</span>
-      </div>
+      <div class="footer-bottom">© 2026 CNE Family — جامعة البلقاء التطبيقية</div>
     </footer>
   `;
 }
 
-// ── INIT ─────────────────────────────────────────────────────────
+// ── UTILITIES & INIT ─────────────────────────────────────────────
+function initSearch(inputId, cardsSelector) {
+  const input = document.getElementById(inputId);
+  if (!input) return;
+  input.addEventListener('input', () => {
+    const q = input.value.trim().toLowerCase();
+    document.querySelectorAll(cardsSelector).forEach(card => {
+      const text = card.textContent.toLowerCase();
+      card.style.display = text.includes(q) ? '' : 'none';
+    });
+  });
+}
+
+function initGlobalSearch(subjects, activities) {
+  const input = document.getElementById('global-search');
+  const results = document.getElementById('search-results');
+  if (!input || !results) return;
+  input.addEventListener('input', () => {
+    const q = input.value.trim().toLowerCase();
+    if (!q) { results.style.display = 'none'; return; }
+    const subMatches = subjects.filter(s => s.name.toLowerCase().includes(q)).slice(0, 5);
+    const actMatches = activities.filter(a => a.title.toLowerCase().includes(q)).slice(0, 3);
+    if (!subMatches.length && !actMatches.length) {
+      results.innerHTML = '<div style="padding:1rem;color:var(--text-muted)">لا توجد نتائج...</div>';
+    } else {
+      results.innerHTML = subMatches.map(s => `<a href="/subjects" data-link class="search-result-item">📚 ${s.name}</a>`).join('') +
+                          actMatches.map(a => `<a href="/activities" data-link class="search-result-item">🚀 ${a.title}</a>`).join('');
+    }
+    results.style.display = 'block';
+  });
+  document.addEventListener('click', e => { if(!input.contains(e.target)) results.style.display = 'none'; });
+}
+
+function initBentoSpotlight() {
+  document.querySelectorAll('.bento-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+      card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+    });
+  });
+}
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => { 
+    if (entry.isIntersecting) { 
+      entry.target.classList.add('visible'); 
+      observer.unobserve(entry.target); 
+    } 
+  });
+}, { threshold: 0.05 }); // Lower threshold for more reliable trigger
+
+function initReveal() { 
+  document.querySelectorAll('.reveal').forEach(el => {
+    observer.observe(el);
+    // Safety fallback: if it's still hidden after 2 seconds, show it
+    setTimeout(() => el.classList.add('visible'), 2000);
+  }); 
+}
+
+function initCounters() {
+  document.querySelectorAll('.stat-number').forEach(el => {
+    const target = parseInt(el.dataset.count);
+    let count = 0;
+    const timer = setInterval(() => {
+      count += Math.ceil(target / 20);
+      if (count >= target) { el.textContent = target + (el.dataset.suffix || ''); clearInterval(timer); }
+      else el.textContent = count + (el.dataset.suffix || '');
+    }, 50);
+  });
+}
+
+// ── BOOTSTRAP ────────────────────────────────────────────────────
+initTheme();
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js').catch(() => {}));
+}
 render(window.location.pathname);
+
+if ('requestIdleCallback' in window) {
+  requestIdleCallback(() => {
+    fetchData('subjects', '/data/subjects.json');
+    fetchData('curriculum', '/data/curriculum.json');
+    fetchData('activities', '/data/activities.json');
+  }, { timeout: 3000 });
+}

@@ -7,9 +7,12 @@
     <title>CNE Family | اتحاد هندسة الحاسوب والشبكات</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css?v=3.1" />
-    <link rel="stylesheet" href="/wow-styles.css" />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css?v=4.1" />
+    <link rel="stylesheet" href="/wow-styles.css?v=4.0" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#3574C8" />
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
@@ -36,13 +39,23 @@
           <a href="/" data-link class="nav-link" id="nl-home">الرئيسية</a>
           <a href="/subjects" data-link class="nav-link" id="nl-subjects">المواد الدراسية</a>
           <a href="/plans" data-link class="nav-link" id="nl-plans">الخطة الشجرية</a>
+          <a href="/tracker" data-link class="nav-link" id="nl-tracker">متتبع الخطة</a>
+          <a href="/links" data-link class="nav-link" id="nl-links">الروابط الهامة</a>
           <a href="/activities" data-link class="nav-link" id="nl-activities">الأنشطة</a>
+          <a href="/calculator" data-link class="nav-link" id="nl-calculator">حاسبة المعدل</a>
         </nav>
 
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdD38YSdj9_m5Kiqc8h2oU6i1c22yeUtL2tqgSo-9Xagxrd0A/viewform?usp=header" target="_blank" rel="noopener" class="btn-join">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
-          انضم إلينا
-        </a>
+        <div class="nav-actions">
+          <button id="theme-toggle" class="btn-icon" aria-label="Toggle Theme">
+            <svg class="sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            <svg class="moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdD38YSdj9_m5Kiqc8h2oU6i1c22yeUtL2tqgSo-9Xagxrd0A/viewform?usp=header" target="_blank" rel="noopener" class="btn-join">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+            انضم إلينا
+          </a>
+        </div>
       </div>
     </header>
 
@@ -50,5 +63,6 @@
     <main id="page"></main>
 
     <script type="module" src="/main.js"></script>
+    <script src="/ai-assistant.js"></script>
   </body>
 </html>
