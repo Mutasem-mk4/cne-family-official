@@ -1,24 +1,14 @@
-(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const s of document.querySelectorAll('link[rel="modulepreload"]'))i(s);new MutationObserver(s=>{for(const n of s)if(n.type==="childList")for(const r of n.addedNodes)r.tagName==="LINK"&&r.rel==="modulepreload"&&i(r)}).observe(document,{childList:!0,subtree:!0});function e(s){const n={};return s.integrity&&(n.integrity=s.integrity),s.referrerPolicy&&(n.referrerPolicy=s.referrerPolicy),s.crossOrigin==="use-credentials"?n.credentials="include":s.crossOrigin==="anonymous"?n.credentials="omit":n.credentials="same-origin",n}function i(s){if(s.ep)return;s.ep=!0;const n=e(s);fetch(s.href,n)}})();function k(){if(!document.querySelector(".noise-overlay")){const e=document.createElement("div");e.className="noise-overlay",e.style.transform="translate3d(0,0,0)",document.body.appendChild(e)}document.querySelectorAll(".btn").forEach(e=>{e.classList.add("magnetic");let i=!1;e.addEventListener("mousemove",s=>{i||(requestAnimationFrame(()=>{const n=e.getBoundingClientRect(),r=s.clientX-n.left-n.width/2,o=s.clientY-n.top-n.height/2;e.style.transform=`translate3d(${r*.2}px, ${o*.2}px, 0)`,i=!1}),i=!0)},{passive:!0}),e.addEventListener("mouseleave",()=>{e.style.transform="translate3d(0px, 0px, 0)"})}),document.querySelectorAll(".bento-card").forEach(e=>{if(!e.querySelector(".bento-glow")){const s=document.createElement("div");s.className="bento-glow",e.insertBefore(s,e.firstChild)}let i=!1;e.addEventListener("mousemove",s=>{i||(requestAnimationFrame(()=>{const n=e.getBoundingClientRect(),r=s.clientX-n.left,o=s.clientY-n.top;e.style.setProperty("--mouse-x",`${r}px`),e.style.setProperty("--mouse-y",`${o}px`),i=!1}),i=!0)},{passive:!0})})}const c={};async function h(a,t){if(c[a])return c[a];try{const e=await fetch(t);if(!e.ok)throw new Error;c[a]=await e.json()}catch{c[a]=[]}return c[a]}const x={"/":f,"/subjects":F,"/plans":_,"/activities":I};function C(a){window.history.pushState({},"",a),v(a)}async function v(a){const t=document.getElementById("page"),i=await(x[a]||f)();t.innerHTML=i,t.classList.remove("page-enter"),t.offsetWidth,t.classList.add("page-enter"),j(a),setTimeout(()=>{E(),q(),a==="/plans"&&L(),k()},100)}window.addEventListener("popstate",()=>v(window.location.pathname));document.addEventListener("click",a=>{const t=a.target.closest("[data-link]");t&&(a.preventDefault(),C(t.getAttribute("href")))});window.addEventListener("scroll",()=>{document.getElementById("navbar").classList.toggle("scrolled",window.scrollY>20)},{passive:!0});function j(a){document.querySelectorAll(".nav-link").forEach(t=>{t.classList.toggle("active",t.getAttribute("href")===a)})}function E(){const a=document.querySelectorAll(".reveal");if(!a.length)return;const t=new IntersectionObserver(e=>{e.forEach((i,s)=>{i.isIntersecting&&(setTimeout(()=>i.target.classList.add("visible"),s*80),t.unobserve(i.target))})},{threshold:.1});a.forEach(e=>t.observe(e))}function q(){const a=document.querySelectorAll("[data-count]");if(!a.length)return;const t=new IntersectionObserver(e=>{e.forEach(i=>{if(!i.isIntersecting)return;const s=i.target,n=parseInt(s.dataset.count),r=s.dataset.suffix||"";let o=0;const m=2e3,b=performance.now(),u=y=>{const p=Math.min((y-b)/m,1),w=1-Math.pow(2,-10*p);o=Math.floor(w*n),s.textContent=o+r,p<1&&requestAnimationFrame(u)};requestAnimationFrame(u),t.unobserve(s)})},{threshold:.5});a.forEach(e=>t.observe(e))}function L(){document.querySelectorAll(".plan-card .btn").forEach(t=>{t.addEventListener("click",e=>{const i=t.getAttribute("href");(i.endsWith(".jpg")||i.endsWith(".png"))&&(e.preventDefault(),A(i))})})}function A(a){const t=document.createElement("div");t.style=`
+(function(){const a=document.createElement("link").relList;if(a&&a.supports&&a.supports("modulepreload"))return;for(const s of document.querySelectorAll('link[rel="modulepreload"]'))i(s);new MutationObserver(s=>{for(const n of s)if(n.type==="childList")for(const o of n.addedNodes)o.tagName==="LINK"&&o.rel==="modulepreload"&&i(o)}).observe(document,{childList:!0,subtree:!0});function t(s){const n={};return s.integrity&&(n.integrity=s.integrity),s.referrerPolicy&&(n.referrerPolicy=s.referrerPolicy),s.crossOrigin==="use-credentials"?n.credentials="include":s.crossOrigin==="anonymous"?n.credentials="omit":n.credentials="same-origin",n}function i(s){if(s.ep)return;s.ep=!0;const n=t(s);fetch(s.href,n)}})();function y(){if(!document.querySelector(".noise-overlay")){const t=document.createElement("div");t.className="noise-overlay",t.style.transform="translate3d(0,0,0)",document.body.appendChild(t)}document.querySelectorAll(".btn").forEach(t=>{t.classList.add("magnetic");let i=!1;t.addEventListener("mousemove",s=>{i||(requestAnimationFrame(()=>{const n=t.getBoundingClientRect(),o=s.clientX-n.left-n.width/2,l=s.clientY-n.top-n.height/2;t.style.transform=`translate3d(${o*.2}px, ${l*.2}px, 0)`,i=!1}),i=!0)},{passive:!0}),t.addEventListener("mouseleave",()=>{t.style.transform="translate3d(0px, 0px, 0)"})}),document.querySelectorAll(".bento-card").forEach(t=>{if(!t.querySelector(".bento-glow")){const s=document.createElement("div");s.className="bento-glow",t.insertBefore(s,t.firstChild)}let i=!1;t.addEventListener("mousemove",s=>{i||(requestAnimationFrame(()=>{const n=t.getBoundingClientRect(),o=s.clientX-n.left,l=s.clientY-n.top;t.style.setProperty("--mouse-x",`${o}px`),t.style.setProperty("--mouse-y",`${l}px`),i=!1}),i=!0)},{passive:!0})})}const d={};async function h(e,a){if(d[e])return d[e];try{const t=await fetch(a);if(!t.ok)throw new Error;d[e]=await t.json()}catch{d[e]=[]}return d[e]}const w={"/":f,"/subjects":$,"/plans":B,"/activities":F};function k(e){window.history.pushState({},"",e),p(e)}async function p(e){const a=document.getElementById("page"),i=await(w[e]||f)();a.innerHTML=i,a.classList.remove("page-enter"),a.offsetWidth,a.classList.add("page-enter"),x(e),setTimeout(()=>{C(),j(),e==="/plans"&&E(),y()},100)}window.addEventListener("popstate",()=>p(window.location.pathname));document.addEventListener("click",e=>{const a=e.target.closest("[data-link]");a&&(e.preventDefault(),k(a.getAttribute("href")))});window.addEventListener("scroll",()=>{document.getElementById("navbar").classList.toggle("scrolled",window.scrollY>20)},{passive:!0});function x(e){document.querySelectorAll(".nav-link").forEach(a=>{a.classList.toggle("active",a.getAttribute("href")===e)})}function C(){const e=document.querySelectorAll(".reveal");if(!e.length)return;const a=new IntersectionObserver(t=>{t.forEach((i,s)=>{i.isIntersecting&&(setTimeout(()=>i.target.classList.add("visible"),s*80),a.unobserve(i.target))})},{threshold:.1});e.forEach(t=>a.observe(t))}function j(){const e=document.querySelectorAll("[data-count]");if(!e.length)return;const a=new IntersectionObserver(t=>{t.forEach(i=>{if(!i.isIntersecting)return;const s=i.target,n=parseInt(s.dataset.count),o=s.dataset.suffix||"";let l=0;const r=2e3,c=performance.now(),u=m=>{const g=Math.min((m-c)/r,1),b=1-Math.pow(2,-10*g);l=Math.floor(b*n),s.textContent=l+o,g<1&&requestAnimationFrame(u)};requestAnimationFrame(u),a.unobserve(s)})},{threshold:.5});e.forEach(t=>a.observe(t))}function E(){document.querySelectorAll(".plan-card .btn").forEach(a=>{a.addEventListener("click",t=>{const i=a.getAttribute("href");(i.endsWith(".jpg")||i.endsWith(".png"))&&(t.preventDefault(),q(i))})})}function q(e){const a=document.createElement("div");a.style=`
     position: fixed; inset: 0; background: rgba(0,0,0,0.9); 
     display: flex; align-items: center; justify-content: center; 
     z-index: 1000; backdrop-filter: blur(8px); cursor: zoom-out;
     opacity: 0; transition: opacity 0.3s var(--ease);
-  `,t.innerHTML=`
+  `,a.innerHTML=`
     <div style="position:relative; max-width: 90%; max-height: 90%;">
-      <img src="${a}" style="max-width:100%; max-height:90vh; border-radius: 8px; box-shadow: 0 0 50px rgba(0,0,0,0.5);">
+      <img src="${e}" style="max-width:100%; max-height:90vh; border-radius: 8px; box-shadow: 0 0 50px rgba(0,0,0,0.5);">
       <button style="position:absolute; top:-40px; right:0; color:white; background:none; font-size:2rem;">&times;</button>
     </div>
-  `,document.body.appendChild(t),setTimeout(()=>t.style.opacity="1",10),t.onclick=()=>{t.style.opacity="0",setTimeout(()=>t.remove(),300)}}function S(){document.querySelectorAll(".tab-btn").forEach(a=>{a.addEventListener("click",()=>{a.closest(".tab-bar").querySelectorAll(".tab-btn").forEach(i=>i.classList.remove("active")),a.classList.add("active");const e=a.dataset.tab;document.querySelectorAll(".tab-content").forEach(i=>{i.style.display=i.dataset.content===e?"grid":"none"})})})}function B(a,t){const e=document.getElementById(a);e&&e.addEventListener("input",()=>{const i=e.value.trim().toLowerCase();document.querySelectorAll(t).forEach(s=>{const n=s.textContent.toLowerCase();s.style.display=n.includes(i)?"":"none"})})}const g={1:{bg:"rgba(53,116,200,.1)",color:"var(--blue)"},2:{bg:"rgba(76,175,80,.1)",color:"var(--green)"},3:{bg:"rgba(242,111,33,.1)",color:"var(--orange)"},4:{bg:"rgba(221,59,63,.1)",color:"var(--red)"}},$={أكاديمي:"tag-green",تقني:"tag-blue",اجتماعي:"tag-red",ريادة:"tag-yellow",ترفيهي:"tag-orange"};function d(a){return!a||a.length===0?'<div style="text-align:center;padding:3rem;color:var(--text-muted)">لا توجد مواد بعد — قم بإضافتها من لوحة التحكم</div>':a.map(t=>{const e=t.file&&t.file!==""?t.file:t.link||"#",i=parseInt(t.year)||1;return`
-    <a href="${e}" target="_blank" rel="noopener" class="subject-card">
-      <div class="subject-card-left">
-        <div class="subject-year" style="background:${g[i].bg}; color:${g[i].color}">
-          ${i}
-        </div>
-        <span class="subject-name">${t.name}</span>
-      </div>
-      <svg class="subject-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
-    </a>
-  `}).join("")}function f(){return`
+  `,document.body.appendChild(a),setTimeout(()=>a.style.opacity="1",10),a.onclick=()=>{a.style.opacity="0",setTimeout(()=>a.remove(),300)}}function L(){document.querySelectorAll(".tab-btn").forEach(e=>{e.addEventListener("click",()=>{e.closest(".tab-bar").querySelectorAll(".tab-btn").forEach(i=>i.classList.remove("active")),e.classList.add("active");const t=e.dataset.tab;document.querySelectorAll(".tab-content").forEach(i=>{i.style.display=i.dataset.content===t?"grid":"none"})})})}function A(e,a){const t=document.getElementById(e);t&&t.addEventListener("input",()=>{const i=t.value.trim().toLowerCase();document.querySelectorAll(a).forEach(s=>{const n=s.textContent.toLowerCase();s.style.display=n.includes(i)?"":"none"})})}const S={أكاديمي:"tag-green",تقني:"tag-blue",اجتماعي:"tag-red",ريادة:"tag-yellow",ترفيهي:"tag-orange"};function f(){return`
     <!-- HERO -->
     <section class="hero">
       <div class="hero-illustration">
@@ -169,8 +159,15 @@
     </section>
 
     <!-- FOOTER -->
-    ${l()}
-  `}async function F(){const a=await h("subjects","/data/subjects.json"),t=a.filter(s=>s.major==="computer"),e=a.filter(s=>s.major==="network"),i=a.filter(s=>s.major==="common");return setTimeout(S,0),setTimeout(()=>B("subjectSearch",".subject-card"),0),`
+    ${v()}
+  `}async function $(){const e=await h("subjects","/data/subjects.json"),a=e.filter(r=>r.year===1),t=e.filter(r=>r.year===2),i=e.filter(r=>r.year===3),s=e.filter(r=>r.year===4);setTimeout(L,0),setTimeout(()=>A("subjectSearch",".subject-card"),0);const n={computer:"حاسوب",network:"شبكات",common:"مشترك"},o={computer:"tag-blue",network:"tag-green",common:"tag-yellow"};function l(r){return!r||r.length===0?'<div style="text-align:center;padding:3rem;color:var(--text-muted)">لا توجد مواد بعد</div>':r.map(c=>`
+      <a href="${c.link||"#"}" target="_blank" rel="noopener" class="subject-card">
+        <div class="subject-card-left">
+          <span class="card-tag ${o[c.major]||"tag-blue"}" style="margin:0;flex-shrink:0">${n[c.major]||c.major}</span>
+          <span class="subject-name">${c.name}</span>
+        </div>
+        <svg class="subject-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      </a>`).join("")}return`
     <div class="page-header">
       <div class="breadcrumb reveal">
         <a href="/" data-link>الرئيسية</a>
@@ -178,13 +175,14 @@
         المواد الدراسية
       </div>
       <h1 class="section-title reveal">المواد الدراسية</h1>
-      <p class="section-subtitle reveal">اختر تخصصك للوصول إلى الملخصات والنماذج لكل مادة.</p>
+      <p class="section-subtitle reveal">اختر سنتك الدراسية للوصول إلى الملخصات والنماذج.</p>
 
       <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-top:1.5rem;">
         <div class="tab-bar reveal">
-          <button class="tab-btn active" data-tab="computer">هندسة حاسوب</button>
-          <button class="tab-btn" data-tab="network">هندسة شبكات</button>
-          <button class="tab-btn" data-tab="common">مشترك</button>
+          <button class="tab-btn active" data-tab="y1">السنة الأولى <span style="opacity:.55;font-size:.8em">${a.length}</span></button>
+          <button class="tab-btn" data-tab="y2">السنة الثانية <span style="opacity:.55;font-size:.8em">${t.length}</span></button>
+          <button class="tab-btn" data-tab="y3">السنة الثالثة <span style="opacity:.55;font-size:.8em">${i.length}</span></button>
+          <button class="tab-btn" data-tab="y4">السنة الرابعة <span style="opacity:.55;font-size:.8em">${s.length}</span></button>
         </div>
         <div class="search-wrap reveal">
           <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -194,18 +192,13 @@
     </div>
 
     <div class="container" style="padding-bottom:4rem">
-      <div class="subject-grid tab-content" data-content="computer">
-        ${d(t)}
-      </div>
-      <div class="subject-grid tab-content" data-content="network" style="display:none">
-        ${d(e)}
-      </div>
-      <div class="subject-grid tab-content" data-content="common" style="display:none">
-        ${d(i)}
-      </div>
+      <div class="subject-grid tab-content" data-content="y1">${l(a)}</div>
+      <div class="subject-grid tab-content" data-content="y2" style="display:none">${l(t)}</div>
+      <div class="subject-grid tab-content" data-content="y3" style="display:none">${l(i)}</div>
+      <div class="subject-grid tab-content" data-content="y4" style="display:none">${l(s)}</div>
     </div>
-    ${l()}
-  `}function _(){return`
+    ${v()}
+  `}function B(){return`
     <div class="page-header">
       <div class="breadcrumb reveal">
         <a href="/" data-link>الرئيسية</a>
@@ -237,8 +230,8 @@
         </div>
       </div>
     </div>
-    ${l()}
-  `}async function I(){const a=await h("activities","/data/activities.json");return`
+    ${v()}
+  `}async function F(){const e=await h("activities","/data/activities.json");return`
     <div class="page-header">
       <div class="breadcrumb reveal">
         <a href="/" data-link>الرئيسية</a>
@@ -250,23 +243,23 @@
     </div>
     <div class="container" style="padding-bottom:4rem">
       <div class="activity-grid">
-        ${a.length===0?'<div style="text-align:center;padding:4rem;color:var(--text-muted)">لا توجد أنشطة بعد — قم بإضافتها من لوحة التحكم</div>':a.map(e=>{const i=$[e.tag]||"tag-blue",s=e.image?`<img src="${e.image}" alt="${e.title}" style="width:100%;height:100%;object-fit:cover;">`:`<span style="font-size:3rem">${e.emoji||"🚀"}</span>`;return`
+        ${e.length===0?'<div style="text-align:center;padding:4rem;color:var(--text-muted)">لا توجد أنشطة بعد — قم بإضافتها من لوحة التحكم</div>':e.map(t=>{const i=S[t.tag]||"tag-blue",s=t.image?`<img src="${t.image}" alt="${t.title}" style="width:100%;height:100%;object-fit:cover;">`:`<span style="font-size:3rem">${t.emoji||"🚀"}</span>`;return`
           <div class="activity-card reveal">
-            <div class="activity-img" style="background:${e.bg_gradient||e.bg||"linear-gradient(135deg,#DBEAFE,#BFDBFE)"}">${s}</div>
+            <div class="activity-img" style="background:${t.bg_gradient||t.bg||"linear-gradient(135deg,#DBEAFE,#BFDBFE)"}">${s}</div>
             <div class="activity-body">
               <div class="activity-meta">
-                <span class="card-tag ${i}" style="margin:0">${e.tag}</span>
-                <span class="activity-date">${e.date}</span>
+                <span class="card-tag ${i}" style="margin:0">${t.tag}</span>
+                <span class="activity-date">${t.date}</span>
               </div>
-              <h3 class="activity-title">${e.title}</h3>
-              <p class="activity-desc">${e.description||e.desc||""}</p>
+              <h3 class="activity-title">${t.title}</h3>
+              <p class="activity-desc">${t.description||t.desc||""}</p>
             </div>
           </div>
         `}).join("")}
       </div>
     </div>
-    ${l()}
-  `}function l(){return`
+    ${v()}
+  `}function v(){return`
     <footer>
       <div class="footer-inner">
         <div>
@@ -303,4 +296,4 @@
         <span>جميع الحقوق محفوظة</span>
       </div>
     </footer>
-  `}v(window.location.pathname);
+  `}p(window.location.pathname);

@@ -419,12 +419,28 @@ function renderHome() {
 async function renderSubjects() {
   const allSubjects = await fetchData('subjects', '/data/subjects.json');
 
-  const computer = allSubjects.filter(s => s.major === 'computer');
-  const network  = allSubjects.filter(s => s.major === 'network');
-  const common   = allSubjects.filter(s => s.major === 'common');
+  const year1 = allSubjects.filter(s => s.year === 1);
+  const year2 = allSubjects.filter(s => s.year === 2);
+  const year3 = allSubjects.filter(s => s.year === 3);
+  const year4 = allSubjects.filter(s => s.year === 4);
 
   setTimeout(initTabs, 0);
   setTimeout(() => initSearch('subjectSearch', '.subject-card'), 0);
+
+  const majorLabel = { computer: 'حاسوب', network: 'شبكات', common: 'مشترك' };
+  const majorClass  = { computer: 'tag-blue', network: 'tag-green', common: 'tag-yellow' };
+
+  function renderByYear(list) {
+    if (!list || list.length === 0) return `<div style="text-align:center;padding:3rem;color:var(--text-muted)">لا توجد مواد بعد</div>`;
+    return list.map(s => `
+      <a href="${s.link || '#'}" target="_blank" rel="noopener" class="subject-card">
+        <div class="subject-card-left">
+          <span class="card-tag ${majorClass[s.major] || 'tag-blue'}" style="margin:0;flex-shrink:0">${majorLabel[s.major] || s.major}</span>
+          <span class="subject-name">${s.name}</span>
+        </div>
+        <svg class="subject-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      </a>`).join('');
+  }
 
   return `
     <div class="page-header">
@@ -434,13 +450,14 @@ async function renderSubjects() {
         المواد الدراسية
       </div>
       <h1 class="section-title reveal">المواد الدراسية</h1>
-      <p class="section-subtitle reveal">اختر تخصصك للوصول إلى الملخصات والنماذج لكل مادة.</p>
+      <p class="section-subtitle reveal">اختر سنتك الدراسية للوصول إلى الملخصات والنماذج.</p>
 
       <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-top:1.5rem;">
         <div class="tab-bar reveal">
-          <button class="tab-btn active" data-tab="computer">هندسة حاسوب</button>
-          <button class="tab-btn" data-tab="network">هندسة شبكات</button>
-          <button class="tab-btn" data-tab="common">مشترك</button>
+          <button class="tab-btn active" data-tab="y1">السنة الأولى <span style="opacity:.55;font-size:.8em">${year1.length}</span></button>
+          <button class="tab-btn" data-tab="y2">السنة الثانية <span style="opacity:.55;font-size:.8em">${year2.length}</span></button>
+          <button class="tab-btn" data-tab="y3">السنة الثالثة <span style="opacity:.55;font-size:.8em">${year3.length}</span></button>
+          <button class="tab-btn" data-tab="y4">السنة الرابعة <span style="opacity:.55;font-size:.8em">${year4.length}</span></button>
         </div>
         <div class="search-wrap reveal">
           <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -450,15 +467,10 @@ async function renderSubjects() {
     </div>
 
     <div class="container" style="padding-bottom:4rem">
-      <div class="subject-grid tab-content" data-content="computer">
-        ${renderSubjectList(computer)}
-      </div>
-      <div class="subject-grid tab-content" data-content="network" style="display:none">
-        ${renderSubjectList(network)}
-      </div>
-      <div class="subject-grid tab-content" data-content="common" style="display:none">
-        ${renderSubjectList(common)}
-      </div>
+      <div class="subject-grid tab-content" data-content="y1">${renderByYear(year1)}</div>
+      <div class="subject-grid tab-content" data-content="y2" style="display:none">${renderByYear(year2)}</div>
+      <div class="subject-grid tab-content" data-content="y3" style="display:none">${renderByYear(year3)}</div>
+      <div class="subject-grid tab-content" data-content="y4" style="display:none">${renderByYear(year4)}</div>
     </div>
     ${renderFooter()}
   `;
