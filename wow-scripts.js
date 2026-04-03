@@ -3,6 +3,8 @@ export function initWowEffects() {
   if (!document.querySelector('.noise-overlay')) {
     const noise = document.createElement('div');
     noise.className = 'noise-overlay';
+    // Force GPU acceleration on noise layer to preserve scrolling FPS
+    noise.style.transform = 'translate3d(0,0,0)';
     document.body.appendChild(noise);
   }
 
@@ -27,27 +29,48 @@ export function initWowEffects() {
     let mouseY = window.innerHeight / 2;
     let ringX = mouseX;
     let ringY = mouseY;
+    let isMoving = false;
 
     window.addEventListener('mousemove', (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
-      cursorDot.style.transform = `translate(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%))`;
-    });
+      // GPU Accelerated
+      cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+      if (!isMoving) {
+        isMoving = true;
+        requestAnimationFrame(animateCursor);
+      }
+    }, { passive: true });
 
     const animateCursor = () => {
-      ringX += (mouseX - ringX) * 0.15; // smooth trailing
-      ringY += (mouseY - ringY) * 0.15;
-      cursorRing.style.transform = `translate(calc(${ringX}px - 50%), calc(${ringY}px - 50%))`;
+      const dx = mouseX - ringX;
+      const dy = mouseY - ringY;
+      
+      // Stop animating if distance is too small (saves CPU/Battery)
+      if (Math.abs(dx) < 0.1 && Math.abs(dy) < 0.1) {
+        isMoving = false;
+        return;
+      }
+
+      ringX += dx * 0.2; // smooth trailing
+      ringY += dy * 0.2;
+      
+      cursorRing.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%)`;
       requestAnimationFrame(animateCursor);
     };
-    requestAnimationFrame(animateCursor);
 
-    // Add hover states to interactable elements
-    const hoverElements = document.querySelectorAll('a, button, .btn, .bento-card, .subject-card, .qa-item');
-    hoverElements.forEach(el => {
-      el.addEventListener('mouseenter', () => cursorRing.classList.add('hovered'));
-      el.addEventListener('mouseleave', () => cursorRing.classList.remove('hovered'));
-    });
+    // Use event delegation for hover states to improve performance
+    document.body.addEventListener('mouseover', (e) => {
+      if (e.target.closest('a, button, .btn, .bento-card, .subject-card, .qa-item')) {
+        cursorRing.classList.add('hovered');
+      }
+    }, { passive: true });
+
+    document.body.addEventListener('mouseout', (e) => {
+      if (e.target.closest('a, button, .btn, .bento-card, .subject-card, .qa-item')) {
+        cursorRing.classList.remove('hovered');
+      }
+    }, { passive: true });
   }
 
   // 2. Magnetic Buttons logic
@@ -55,18 +78,23 @@ export function initWowEffects() {
   buttons.forEach(btn => {
     btn.classList.add('magnetic');
     
+    let ticking = false;
     btn.addEventListener('mousemove', (e) => {
-      const rect = btn.getBoundingClientRect();
-      const h = rect.width / 2;
-      const x = e.clientX - rect.left - h;
-      const y = e.clientY - rect.top - rect.height / 2;
-      
-      // Calculate pull strength
-      btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
-    });
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const rect = btn.getBoundingClientRect();
+          const mx = e.clientX - rect.left - (rect.width / 2);
+          const my = e.clientY - rect.top - (rect.height / 2);
+          // GPU Accelerated
+          btn.style.transform = `translate3d(${mx * 0.2}px, ${my * 0.2}px, 0)`;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
     
     btn.addEventListener('mouseleave', () => {
-      btn.style.transform = 'translate(0px, 0px)';
+      btn.style.transform = 'translate3d(0px, 0px, 0)';
     });
   });
 
@@ -80,12 +108,19 @@ export function initWowEffects() {
       card.insertBefore(glow, card.firstChild);
     }
     
+    let ticking = false;
     card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      card.style.setProperty('--mouse-x', `${x}px`);
-      card.style.setProperty('--mouse-y', `${y}px`);
-    });
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          card.style.setProperty('--mouse-x', `${x}px`);
+          card.style.setProperty('--mouse-y', `${y}px`);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
   });
 }
