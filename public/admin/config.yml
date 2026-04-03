@@ -13,7 +13,7 @@ public_folder: /uploads
 collections:
   - name: data
     label: "إدارة البيانات"
-    delete: false # Prevent deleting the whole file
+    delete: false
     editor:
       preview: false
     files:
@@ -58,14 +58,19 @@ collections:
             summary: "{{title}} ({{date}})"
             fields:
               - { label: "عنوان الفعالية", name: "title", widget: "string" }
-              - { label: "التاريخ", name: "date", widget: "string", hint: "مثال: مارس 2024" }
-              - label: "التصنيف", name: "tag", widget: "select", options: ["أكاديمي", "تقني", "اجتماعي", "ريادة", "ترفيهي"] }
-              - { label: "رمز (Emoji)", name: "emoji", widget: "string", default: "🚀" }
+              - { label: "التاريخ", name: "date", widget: "string" }
+              - label: "التصنيف"
+                name: "tag"
+                widget: "select"
+                options: ["أكاديمي", "تقني", "اجتماعي", "ريادة", "ترفيهي"]
+              - { label: "رمز (Emoji)", name: "emoji", widget: "string" }
               - { label: "صورة", name: "image", widget: "image", required: false }
-              - label: "لون الخلفية", name: "bg_gradient", widget: "select", options: [
-                  { label: "أزرق", value: "linear-gradient(135deg,#DBEAFE,#BFDBFE)" },
-                  { label: "أحمر", value: "linear-gradient(135deg,#FEE2E2,#FECACA)" },
-                  { label: "أخضر", value: "linear-gradient(135deg,#D1FAE5,#A7F3D0)" },
-                  { label: "أصفر", value: "linear-gradient(135deg,#FEF3C7,#FDE68A)" }
-                ]}
+              - label: "لون الخلفية"
+                name: "bg_gradient"
+                widget: "select"
+                options:
+                  - { label: "أزرق", value: "linear-gradient(135deg,#DBEAFE,#BFDBFE)" }
+                  - { label: "أحمر", value: "linear-gradient(135deg,#FEE2E2,#FECACA)" }
+                  - { label: "أخضر", value: "linear-gradient(135deg,#D1FAE5,#A7F3D0)" }
+                  - { label: "أصفر", value: "linear-gradient(135deg,#FEF3C7,#FDE68A)" }
               - { label: "وصف الفعالية", name: "description", widget: "text" }
