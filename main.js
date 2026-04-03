@@ -1,3 +1,5 @@
+import { initWowEffects } from './wow-scripts.js';
+
 // ── CONFIGURATION & LINKS ─────────────────────────────────────────
 const DRIVE_LINKS = {
   main:    'https://drive.google.com/drive/folders/YOUR_MAIN_FOLDER_ID',
@@ -88,6 +90,7 @@ async function render(path) {
     initReveal();
     initCounters();
     if (path === '/plans') initLightbox();
+    initWowEffects();
   }, 100);
 }
 
