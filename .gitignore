@@ -1,2 +1,11 @@
-# Local Netlify folder
+node_modules
+dist
 .netlify
+.DS_Store
+*.local
+.env
+.idea
+.vscode
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
