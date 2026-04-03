@@ -1,4 +1,4 @@
-[
+{"subjects":[
   { "name": "كالكولاس 1", "major": "common", "year": 1, "link": "https://drive.google.com/drive/folders/1hq2Kg4IojUVFL7TrZqxjD4ggomuJXFHy" },
   { "name": "كالكولاس 2", "major": "common", "year": 1, "link": "https://drive.google.com/drive/folders/1MlvXLmf3Q2X7JKUgvOrFgLNnyKzEHfqa" },
   { "name": "فيزياء 1", "major": "common", "year": 1, "link": "https://drive.google.com/drive/folders/1x78scbdKPb2sS6NHg_atrFPtf93uEwEC" },
@@ -73,3 +73,4 @@
   { "name": "مشروع تخرج 2", "major": "common", "year": 5, "link": "#" },
   { "name": "تدريب ميداني", "major": "common", "year": 5, "link": "#" }
 ]
+}

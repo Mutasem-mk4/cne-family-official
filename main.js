@@ -54,7 +54,9 @@ async function fetchData(key, path) {
   try {
     const res = await fetch(path);
     if (!res.ok) throw new Error();
-    dataCache[key] = await res.json();
+    const json = await res.json();
+    // Handle Decap CMS wrapper object or raw array
+    dataCache[key] = json[key] || json;
   } catch {
     dataCache[key] = [];
   }

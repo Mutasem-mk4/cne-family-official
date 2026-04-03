@@ -11,113 +11,61 @@ media_folder: public/uploads
 public_folder: /uploads
 
 collections:
-  - name: subjects
-    label: "المواد الدراسية"
-    label_singular: "مادة دراسية"
-    description: "أضف وعدّل المواد الدراسية — سيتم تحديث الموقع تلقائياً"
-    folder: public/data/subjects-entries
-    create: true
-    slug: "{{year}}-{{major}}-{{slug}}"
-    summary: "[{{fields.major_label}}] {{fields.name}} — السنة {{fields.year}}"
-    fields:
-      - label: "اسم المادة"
-        name: name
-        widget: string
-        hint: "مثال: هياكل البيانات"
+  - name: data
+    label: "إدارة البيانات"
+    delete: false # Prevent deleting the whole file
+    editor:
+      preview: false
+    files:
+      - name: subjects
+        label: "المواد الدراسية"
+        file: "public/data/subjects.json"
+        description: "قائمة كامل المواد لكافة السنوات"
+        fields:
+          - label: "قائمة المواد"
+            name: "subjects"
+            widget: "list"
+            summary: "{{name}} (السنة {{year}})"
+            fields:
+              - { label: "اسم المادة", name: "name", widget: "string" }
+              - label: "التخصص"
+                name: "major"
+                widget: "select"
+                options:
+                  - { label: "هندسة حاسوب", value: "computer" }
+                  - { label: "هندسة شبكات", value: "network" }
+                  - { label: "مشترك", value: "common" }
+              - label: "السنة الدراسية"
+                name: "year"
+                widget: "select"
+                options:
+                  - { label: "السنة الأولى", value: 1 }
+                  - { label: "السنة الثانية", value: 2 }
+                  - { label: "السنة الثالثة", value: 3 }
+                  - { label: "السنة الرابعة", value: 4 }
+                  - { label: "السنة الخامسة", value: 5 }
+              - { label: "رابط Drive", name: "link", widget: "string", required: false }
+              - { label: "أو ارفع ملف PDF", name: "file", widget: "file", required: false }
 
-      - label: "التخصص"
-        name: major
-        widget: select
-        options:
-          - { label: "هندسة حاسوب", value: computer }
-          - { label: "هندسة شبكات", value: network }
-          - { label: "مشترك (كلية الهندسة)", value: common }
-
-      - label: "اسم التخصص (للعرض)"
-        name: major_label
-        widget: hidden
-        default: ""
-
-      - label: "السنة الدراسية"
-        name: year
-        widget: select
-        options:
-          - { label: "السنة الأولى", value: 1 }
-          - { label: "السنة الثانية", value: 2 }
-          - { label: "السنة الثالثة", value: 3 }
-          - { label: "السنة الرابعة", value: 4 }
-
-      - label: "رابط المجلد (Drive Link)"
-        name: link
-        widget: string
-        hint: "الصق رابط Google Drive هنا"
-        required: false
-        default: ""
-
-      - label: "أو ارفع الملف مباشرة (PDF)"
-        name: file
-        widget: file
-        media_library:
-          config:
-            multiple: false
-        required: false
-        hint: "ارفع ملف PDF إذا لم يكن لديك رابط Drive"
-        default: ""
-
-  - name: activities
-    label: "الأنشطة والفعاليات"
-    label_singular: "نشاط / فعالية"
-    description: "أضف أنشطة جديدة أو عدّل القائمة الحالية"
-    folder: public/data/activities-entries
-    create: true
-    slug: "{{year}}-{{month}}-{{slug}}"
-    summary: "{{fields.title}} — {{fields.date}}"
-    fields:
-      - label: "عنوان الفعالية"
-        name: title
-        widget: string
-        hint: "مثال: ورشة أمن الشبكات"
-
-      - label: "التاريخ"
-        name: date
-        widget: string
-        hint: "مثال: مارس 2024"
-
-      - label: "التصنيف"
-        name: tag
-        widget: select
-        options:
-          - { label: "أكاديمي", value: أكاديمي }
-          - { label: "تقني", value: تقني }
-          - { label: "اجتماعي", value: اجتماعي }
-          - { label: "ريادة", value: ريادة }
-          - { label: "ترفيهي", value: ترفيهي }
-
-      - label: "رمز الفعالية (Emoji)"
-        name: emoji
-        widget: string
-        default: "🚀"
-        hint: "مثال: 🎓 أو 💻 أو ❤️"
-
-      - label: "صورة الفعالية"
-        name: image
-        widget: image
-        required: false
-        hint: "ارفع صورة للفعالية (اختياري)"
-        default: ""
-
-      - label: "لون خلفية البطاقة"
-        name: bg_gradient
-        widget: select
-        options:
-          - { label: "أزرق فاتح", value: "linear-gradient(135deg,#DBEAFE,#BFDBFE)" }
-          - { label: "أحمر فاتح", value: "linear-gradient(135deg,#FEE2E2,#FECACA)" }
-          - { label: "أخضر فاتح", value: "linear-gradient(135deg,#D1FAE5,#A7F3D0)" }
-          - { label: "أصفر فاتح", value: "linear-gradient(135deg,#FEF3C7,#FDE68A)" }
-          - { label: "بنفسجي فاتح", value: "linear-gradient(135deg,#EDE9FE,#DDD6FE)" }
-        default: "linear-gradient(135deg,#DBEAFE,#BFDBFE)"
-
-      - label: "وصف الفعالية"
-        name: description
-        widget: text
-        hint: "وصف مختصر لما دار في الفعالية"
+      - name: activities
+        label: "الأنشطة والفعاليات"
+        file: "public/data/activities.json"
+        description: "الأنشطة التي تظهر في الصفحة الرئيسية وصفحة الأنشطة"
+        fields:
+          - label: "قائمة الأنشطة"
+            name: "activities"
+            widget: "list"
+            summary: "{{title}} ({{date}})"
+            fields:
+              - { label: "عنوان الفعالية", name: "title", widget: "string" }
+              - { label: "التاريخ", name: "date", widget: "string", hint: "مثال: مارس 2024" }
+              - label: "التصنيف", name: "tag", widget: "select", options: ["أكاديمي", "تقني", "اجتماعي", "ريادة", "ترفيهي"] }
+              - { label: "رمز (Emoji)", name: "emoji", widget: "string", default: "🚀" }
+              - { label: "صورة", name: "image", widget: "image", required: false }
+              - label: "لون الخلفية", name: "bg_gradient", widget: "select", options: [
+                  { label: "أزرق", value: "linear-gradient(135deg,#DBEAFE,#BFDBFE)" },
+                  { label: "أحمر", value: "linear-gradient(135deg,#FEE2E2,#FECACA)" },
+                  { label: "أخضر", value: "linear-gradient(135deg,#D1FAE5,#A7F3D0)" },
+                  { label: "أصفر", value: "linear-gradient(135deg,#FEF3C7,#FDE68A)" }
+                ]}
+              - { label: "وصف الفعالية", name: "description", widget: "text" }
