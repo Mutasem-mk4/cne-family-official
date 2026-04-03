@@ -309,8 +309,8 @@ function renderHome() {
         <span class="stat-label">طالب مستفيد</span>
       </div>
       <div class="stat-item">
-        <span class="stat-number" data-count="4" data-suffix="">0</span>
-        <span class="stat-label">سنوات خبرة</span>
+        <span class="stat-number" data-count="15" data-suffix="+">0+</span>
+        <span class="stat-label">عاما في خدمة الطلبة</span>
       </div>
     </div>
 
@@ -618,7 +618,7 @@ function renderFooter() {
             <span style="background:#F7C948"></span>
           </div>
           <div class="footer-brand-name">CNE Family</div>
-          <p class="footer-tagline">اتحاد هندسة الحاسوب والشبكات في جامعة البلقاء التطبيقية — بيتك الأكاديمي منذ 2021.</p>
+          <p class="footer-tagline">اتحاد هندسة الحاسوب والشبكات في جامعة البلقاء التطبيقية — بيتك الأكاديمي منذ 2011.</p>
         </div>
         <div>
           <div class="footer-col-title">روابط سريعة</div>
