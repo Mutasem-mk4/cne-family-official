@@ -134,7 +134,7 @@
           <p class="card-desc">وصول مباشر للبوابة الطلابية والتعلم الإلكتروني.</p>
           <div style="display:flex;flex-direction:column;gap:8px;margin-top:1rem;">
             <a href="http://appserver.fet.edu.jo:7778/reg_new/index.jsp" target="_blank" class="card-link" style="font-size:.82rem">📎 البوابة الطلابية →</a>
-            <a href="https://elearning.bau.edu.jo" target="_blank" class="card-link" style="font-size:.82rem">🎓 التعلم الإلكتروني →</a>
+            <a href="https://s3.ebalqa.courses/fet/login/index.php" target="_blank" class="card-link" style="font-size:.82rem">🎓 التعلم الإلكتروني →</a>
           </div>
         </div>
 
