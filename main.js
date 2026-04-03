@@ -67,7 +67,6 @@ const routes = {
   '/subjects':   renderSubjects,
   '/plans':      renderPlans,
   '/activities': renderActivities,
-  '/join':       renderJoin,
 };
 
 function navigate(path) {
@@ -289,7 +288,7 @@ function renderHome() {
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
           استكشف المواد الدراسية
         </a>
-        <a href="/join" class="btn btn-outline" data-link>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdD38YSdj9_m5Kiqc8h2oU6i1c22yeUtL2tqgSo-9Xagxrd0A/viewform?usp=header" target="_blank" rel="noopener" class="btn btn-outline">
           انضم للعائلة
         </a>
       </div>
@@ -341,7 +340,7 @@ function renderHome() {
           <div class="card-tag tag-orange">انضم</div>
           <h3 class="card-title">كن جزءاً من العائلة</h3>
           <p class="card-desc">نرحب بكل طالب يريد أن يُعطي ويستفيد. اختبار القبول مفتوح طوال العام.</p>
-          <a href="/join" class="card-link" data-link style="margin-top: auto;">
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdD38YSdj9_m5Kiqc8h2oU6i1c22yeUtL2tqgSo-9Xagxrd0A/viewform?usp=header" target="_blank" rel="noopener" class="card-link" style="margin-top: auto;">
             تقدّم الآن
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
           </a>
@@ -613,7 +612,7 @@ function renderFooter() {
             <a href="/subjects" data-link>المواد الدراسية</a>
             <a href="/plans" data-link>الخطط الشجرية</a>
             <a href="/activities" data-link>الأنشطة</a>
-            <a href="/join" data-link>انضم إلينا</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdD38YSdj9_m5Kiqc8h2oU6i1c22yeUtL2tqgSo-9Xagxrd0A/viewform?usp=header" target="_blank" rel="noopener">انضم إلينا</a>
           </div>
         </div>
         <div>
