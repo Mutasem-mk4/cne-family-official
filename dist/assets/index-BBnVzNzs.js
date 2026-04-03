@@ -1,31 +1,31 @@
-(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))i(t);new MutationObserver(t=>{for(const n of t)if(n.type==="childList")for(const r of n.addedNodes)r.tagName==="LINK"&&r.rel==="modulepreload"&&i(r)}).observe(document,{childList:!0,subtree:!0});function s(t){const n={};return t.integrity&&(n.integrity=t.integrity),t.referrerPolicy&&(n.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?n.credentials="include":t.crossOrigin==="anonymous"?n.credentials="omit":n.credentials="same-origin",n}function i(t){if(t.ep)return;t.ep=!0;const n=s(t);fetch(t.href,n)}})();function k(){if(!document.querySelector(".noise-overlay")){const t=document.createElement("div");t.className="noise-overlay",document.body.appendChild(t)}let a=document.querySelector(".custom-cursor-dot"),e=document.querySelector(".custom-cursor-ring");if(window.matchMedia("(pointer: fine)").matches){a||(a=document.createElement("div"),a.className="custom-cursor-dot",document.body.appendChild(a)),e||(e=document.createElement("div"),e.className="custom-cursor-ring",document.body.appendChild(e));let t=window.innerWidth/2,n=window.innerHeight/2,r=t,o=n;window.addEventListener("mousemove",c=>{t=c.clientX,n=c.clientY,a.style.transform=`translate(calc(${t}px - 50%), calc(${n}px - 50%))`});const l=()=>{r+=(t-r)*.15,o+=(n-o)*.15,e.style.transform=`translate(calc(${r}px - 50%), calc(${o}px - 50%))`,requestAnimationFrame(l)};requestAnimationFrame(l),document.querySelectorAll("a, button, .btn, .bento-card, .subject-card, .qa-item").forEach(c=>{c.addEventListener("mouseenter",()=>e.classList.add("hovered")),c.addEventListener("mouseleave",()=>e.classList.remove("hovered"))})}document.querySelectorAll(".btn").forEach(t=>{t.classList.add("magnetic"),t.addEventListener("mousemove",n=>{const r=t.getBoundingClientRect(),o=r.width/2,l=n.clientX-r.left-o,u=n.clientY-r.top-r.height/2;t.style.transform=`translate(${l*.2}px, ${u*.2}px)`}),t.addEventListener("mouseleave",()=>{t.style.transform="translate(0px, 0px)"})}),document.querySelectorAll(".bento-card").forEach(t=>{if(!t.querySelector(".bento-glow")){const n=document.createElement("div");n.className="bento-glow",t.insertBefore(n,t.firstChild)}t.addEventListener("mousemove",n=>{const r=t.getBoundingClientRect(),o=n.clientX-r.left,l=n.clientY-r.top;t.style.setProperty("--mouse-x",`${o}px`),t.style.setProperty("--mouse-y",`${l}px`)})})}async function x(a){a.preventDefault();const e=a.target,s=e.querySelector("button"),i=s.innerHTML;s.disabled=!0,s.innerHTML='<span class="loader"></span> جاري الإرسال...';const t=new FormData(e);try{if((await fetch("https://formspree.io/f/xoqgkyyv",{method:"POST",body:t,headers:{Accept:"application/json"}})).ok)e.innerHTML=`
+(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const s of document.querySelectorAll('link[rel="modulepreload"]'))i(s);new MutationObserver(s=>{for(const n of s)if(n.type==="childList")for(const r of n.addedNodes)r.tagName==="LINK"&&r.rel==="modulepreload"&&i(r)}).observe(document,{childList:!0,subtree:!0});function e(s){const n={};return s.integrity&&(n.integrity=s.integrity),s.referrerPolicy&&(n.referrerPolicy=s.referrerPolicy),s.crossOrigin==="use-credentials"?n.credentials="include":s.crossOrigin==="anonymous"?n.credentials="omit":n.credentials="same-origin",n}function i(s){if(s.ep)return;s.ep=!0;const n=e(s);fetch(s.href,n)}})();function k(){if(!document.querySelector(".noise-overlay")){const e=document.createElement("div");e.className="noise-overlay",e.style.transform="translate3d(0,0,0)",document.body.appendChild(e)}document.querySelectorAll(".btn").forEach(e=>{e.classList.add("magnetic");let i=!1;e.addEventListener("mousemove",s=>{i||(requestAnimationFrame(()=>{const n=e.getBoundingClientRect(),r=s.clientX-n.left-n.width/2,o=s.clientY-n.top-n.height/2;e.style.transform=`translate3d(${r*.2}px, ${o*.2}px, 0)`,i=!1}),i=!0)},{passive:!0}),e.addEventListener("mouseleave",()=>{e.style.transform="translate3d(0px, 0px, 0)"})}),document.querySelectorAll(".bento-card").forEach(e=>{if(!e.querySelector(".bento-glow")){const s=document.createElement("div");s.className="bento-glow",e.insertBefore(s,e.firstChild)}let i=!1;e.addEventListener("mousemove",s=>{i||(requestAnimationFrame(()=>{const n=e.getBoundingClientRect(),r=s.clientX-n.left,o=s.clientY-n.top;e.style.setProperty("--mouse-x",`${r}px`),e.style.setProperty("--mouse-y",`${o}px`),i=!1}),i=!0)},{passive:!0})})}async function x(a){a.preventDefault();const t=a.target,e=t.querySelector("button"),i=e.innerHTML;e.disabled=!0,e.innerHTML='<span class="loader"></span> جاري الإرسال...';const s=new FormData(t);try{if((await fetch("https://formspree.io/f/xoqgkyyv",{method:"POST",body:s,headers:{Accept:"application/json"}})).ok)t.innerHTML=`
         <div class="reveal visible" style="text-align:center; padding: 2rem 0;">
           <div style="font-size: 4rem; margin-bottom: 1rem;">✅</div>
           <h3 class="card-title">تم استلام طلبك بنجاح!</h3>
           <p class="card-desc">شكراً لاهتمامك بالانضمام لعائلة CNE. سنتواصل معك عبر البريد الإلكتروني أو رقم الهاتف قريباً.</p>
           <button class="btn btn-outline" style="margin-top:1.5rem" onclick="location.reload()">إرسال طلب آخر</button>
         </div>
-      `;else throw new Error("فشل الإرسال")}catch{alert("عذراً، حدث خطأ أثناء الإرسال. يرجى المحاولة لاحقاً."),s.disabled=!1,s.innerHTML=i}}const d={};async function b(a,e){if(d[a])return d[a];try{const s=await fetch(e);if(!s.ok)throw new Error;d[a]=await s.json()}catch{d[a]=[]}return d[a]}const j={"/":f,"/subjects":T,"/plans":M,"/activities":O,"/join":H};function C(a){window.history.pushState({},"",a),g(a)}async function g(a){const e=document.getElementById("page"),i=await(j[a]||f)();e.innerHTML=i,e.classList.remove("page-enter"),e.offsetWidth,e.classList.add("page-enter"),E(a),setTimeout(()=>{q(),L(),a==="/plans"&&S(),k()},100)}window.addEventListener("popstate",()=>g(window.location.pathname));document.addEventListener("click",a=>{const e=a.target.closest("[data-link]");e&&(a.preventDefault(),C(e.getAttribute("href")))});window.addEventListener("scroll",()=>{document.getElementById("navbar").classList.toggle("scrolled",window.scrollY>20)},{passive:!0});function E(a){document.querySelectorAll(".nav-link").forEach(e=>{e.classList.toggle("active",e.getAttribute("href")===a)})}function q(){const a=document.querySelectorAll(".reveal");if(!a.length)return;const e=new IntersectionObserver(s=>{s.forEach((i,t)=>{i.isIntersecting&&(setTimeout(()=>i.target.classList.add("visible"),t*80),e.unobserve(i.target))})},{threshold:.1});a.forEach(s=>e.observe(s))}function L(){const a=document.querySelectorAll("[data-count]");if(!a.length)return;const e=new IntersectionObserver(s=>{s.forEach(i=>{if(!i.isIntersecting)return;const t=i.target,n=parseInt(t.dataset.count),r=t.dataset.suffix||"";let o=0;const l=2e3,u=performance.now(),c=y=>{const m=Math.min((y-u)/l,1),w=1-Math.pow(2,-10*m);o=Math.floor(w*n),t.textContent=o+r,m<1&&requestAnimationFrame(c)};requestAnimationFrame(c),e.unobserve(t)})},{threshold:.5});a.forEach(s=>e.observe(s))}function S(){document.querySelectorAll(".plan-card .btn").forEach(e=>{e.addEventListener("click",s=>{const i=e.getAttribute("href");(i.endsWith(".jpg")||i.endsWith(".png"))&&(s.preventDefault(),$(i))})})}function $(a){const e=document.createElement("div");e.style=`
+      `;else throw new Error("فشل الإرسال")}catch{alert("عذراً، حدث خطأ أثناء الإرسال. يرجى المحاولة لاحقاً."),e.disabled=!1,e.innerHTML=i}}const l={};async function h(a,t){if(l[a])return l[a];try{const e=await fetch(t);if(!e.ok)throw new Error;l[a]=await e.json()}catch{l[a]=[]}return l[a]}const j={"/":m,"/subjects":T,"/plans":M,"/activities":O,"/join":z};function C(a){window.history.pushState({},"",a),v(a)}async function v(a){const t=document.getElementById("page"),i=await(j[a]||m)();t.innerHTML=i,t.classList.remove("page-enter"),t.offsetWidth,t.classList.add("page-enter"),E(a),setTimeout(()=>{q(),L(),a==="/plans"&&A(),k()},100)}window.addEventListener("popstate",()=>v(window.location.pathname));document.addEventListener("click",a=>{const t=a.target.closest("[data-link]");t&&(a.preventDefault(),C(t.getAttribute("href")))});window.addEventListener("scroll",()=>{document.getElementById("navbar").classList.toggle("scrolled",window.scrollY>20)},{passive:!0});function E(a){document.querySelectorAll(".nav-link").forEach(t=>{t.classList.toggle("active",t.getAttribute("href")===a)})}function q(){const a=document.querySelectorAll(".reveal");if(!a.length)return;const t=new IntersectionObserver(e=>{e.forEach((i,s)=>{i.isIntersecting&&(setTimeout(()=>i.target.classList.add("visible"),s*80),t.unobserve(i.target))})},{threshold:.1});a.forEach(e=>t.observe(e))}function L(){const a=document.querySelectorAll("[data-count]");if(!a.length)return;const t=new IntersectionObserver(e=>{e.forEach(i=>{if(!i.isIntersecting)return;const s=i.target,n=parseInt(s.dataset.count),r=s.dataset.suffix||"";let o=0;const f=2e3,b=performance.now(),u=y=>{const p=Math.min((y-b)/f,1),w=1-Math.pow(2,-10*p);o=Math.floor(w*n),s.textContent=o+r,p<1&&requestAnimationFrame(u)};requestAnimationFrame(u),t.unobserve(s)})},{threshold:.5});a.forEach(e=>t.observe(e))}function A(){document.querySelectorAll(".plan-card .btn").forEach(t=>{t.addEventListener("click",e=>{const i=t.getAttribute("href");(i.endsWith(".jpg")||i.endsWith(".png"))&&(e.preventDefault(),S(i))})})}function S(a){const t=document.createElement("div");t.style=`
     position: fixed; inset: 0; background: rgba(0,0,0,0.9); 
     display: flex; align-items: center; justify-content: center; 
     z-index: 1000; backdrop-filter: blur(8px); cursor: zoom-out;
     opacity: 0; transition: opacity 0.3s var(--ease);
-  `,e.innerHTML=`
+  `,t.innerHTML=`
     <div style="position:relative; max-width: 90%; max-height: 90%;">
       <img src="${a}" style="max-width:100%; max-height:90vh; border-radius: 8px; box-shadow: 0 0 50px rgba(0,0,0,0.5);">
       <button style="position:absolute; top:-40px; right:0; color:white; background:none; font-size:2rem;">&times;</button>
     </div>
-  `,document.body.appendChild(e),setTimeout(()=>e.style.opacity="1",10),e.onclick=()=>{e.style.opacity="0",setTimeout(()=>e.remove(),300)}}function A(){document.querySelectorAll(".tab-btn").forEach(a=>{a.addEventListener("click",()=>{a.closest(".tab-bar").querySelectorAll(".tab-btn").forEach(i=>i.classList.remove("active")),a.classList.add("active");const s=a.dataset.tab;document.querySelectorAll(".tab-content").forEach(i=>{i.style.display=i.dataset.content===s?"grid":"none"})})})}function B(a,e){const s=document.getElementById(a);s&&s.addEventListener("input",()=>{const i=s.value.trim().toLowerCase();document.querySelectorAll(e).forEach(t=>{const n=t.textContent.toLowerCase();t.style.display=n.includes(i)?"":"none"})})}const h={1:{bg:"rgba(53,116,200,.1)",color:"var(--blue)"},2:{bg:"rgba(76,175,80,.1)",color:"var(--green)"},3:{bg:"rgba(242,111,33,.1)",color:"var(--orange)"},4:{bg:"rgba(221,59,63,.1)",color:"var(--red)"}},F={أكاديمي:"tag-green",تقني:"tag-blue",اجتماعي:"tag-red",ريادة:"tag-yellow",ترفيهي:"tag-orange"};function p(a){return!a||a.length===0?'<div style="text-align:center;padding:3rem;color:var(--text-muted)">لا توجد مواد بعد — قم بإضافتها من لوحة التحكم</div>':a.map(e=>{const s=e.file&&e.file!==""?e.file:e.link||"#",i=parseInt(e.year)||1;return`
-    <a href="${s}" target="_blank" rel="noopener" class="subject-card">
+  `,document.body.appendChild(t),setTimeout(()=>t.style.opacity="1",10),t.onclick=()=>{t.style.opacity="0",setTimeout(()=>t.remove(),300)}}function $(){document.querySelectorAll(".tab-btn").forEach(a=>{a.addEventListener("click",()=>{a.closest(".tab-bar").querySelectorAll(".tab-btn").forEach(i=>i.classList.remove("active")),a.classList.add("active");const e=a.dataset.tab;document.querySelectorAll(".tab-content").forEach(i=>{i.style.display=i.dataset.content===e?"grid":"none"})})})}function B(a,t){const e=document.getElementById(a);e&&e.addEventListener("input",()=>{const i=e.value.trim().toLowerCase();document.querySelectorAll(t).forEach(s=>{const n=s.textContent.toLowerCase();s.style.display=n.includes(i)?"":"none"})})}const g={1:{bg:"rgba(53,116,200,.1)",color:"var(--blue)"},2:{bg:"rgba(76,175,80,.1)",color:"var(--green)"},3:{bg:"rgba(242,111,33,.1)",color:"var(--orange)"},4:{bg:"rgba(221,59,63,.1)",color:"var(--red)"}},F={أكاديمي:"tag-green",تقني:"tag-blue",اجتماعي:"tag-red",ريادة:"tag-yellow",ترفيهي:"tag-orange"};function d(a){return!a||a.length===0?'<div style="text-align:center;padding:3rem;color:var(--text-muted)">لا توجد مواد بعد — قم بإضافتها من لوحة التحكم</div>':a.map(t=>{const e=t.file&&t.file!==""?t.file:t.link||"#",i=parseInt(t.year)||1;return`
+    <a href="${e}" target="_blank" rel="noopener" class="subject-card">
       <div class="subject-card-left">
-        <div class="subject-year" style="background:${h[i].bg}; color:${h[i].color}">
+        <div class="subject-year" style="background:${g[i].bg}; color:${g[i].color}">
           ${i}
         </div>
-        <span class="subject-name">${e.name}</span>
+        <span class="subject-name">${t.name}</span>
       </div>
       <svg class="subject-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
     </a>
-  `}).join("")}function f(){return`
+  `}).join("")}function m(){return`
     <!-- HERO -->
     <section class="hero">
       <div class="hero-illustration">
@@ -176,8 +176,8 @@
     </section>
 
     <!-- FOOTER -->
-    ${v()}
-  `}async function T(){const a=await b("subjects","/data/subjects.json"),e=a.filter(t=>t.major==="computer"),s=a.filter(t=>t.major==="network"),i=a.filter(t=>t.major==="common");return setTimeout(A,0),setTimeout(()=>B("subjectSearch",".subject-card"),0),`
+    ${c()}
+  `}async function T(){const a=await h("subjects","/data/subjects.json"),t=a.filter(s=>s.major==="computer"),e=a.filter(s=>s.major==="network"),i=a.filter(s=>s.major==="common");return setTimeout($,0),setTimeout(()=>B("subjectSearch",".subject-card"),0),`
     <div class="page-header">
       <div class="breadcrumb reveal">
         <a href="/" data-link>الرئيسية</a>
@@ -202,16 +202,16 @@
 
     <div class="container" style="padding-bottom:4rem">
       <div class="subject-grid tab-content" data-content="computer">
-        ${p(e)}
+        ${d(t)}
       </div>
       <div class="subject-grid tab-content" data-content="network" style="display:none">
-        ${p(s)}
+        ${d(e)}
       </div>
       <div class="subject-grid tab-content" data-content="common" style="display:none">
-        ${p(i)}
+        ${d(i)}
       </div>
     </div>
-    ${v()}
+    ${c()}
   `}function M(){return`
     <div class="page-header">
       <div class="breadcrumb reveal">
@@ -244,8 +244,8 @@
         </div>
       </div>
     </div>
-    ${v()}
-  `}async function O(){const a=await b("activities","/data/activities.json");return`
+    ${c()}
+  `}async function O(){const a=await h("activities","/data/activities.json");return`
     <div class="page-header">
       <div class="breadcrumb reveal">
         <a href="/" data-link>الرئيسية</a>
@@ -257,23 +257,23 @@
     </div>
     <div class="container" style="padding-bottom:4rem">
       <div class="activity-grid">
-        ${a.length===0?'<div style="text-align:center;padding:4rem;color:var(--text-muted)">لا توجد أنشطة بعد — قم بإضافتها من لوحة التحكم</div>':a.map(s=>{const i=F[s.tag]||"tag-blue",t=s.image?`<img src="${s.image}" alt="${s.title}" style="width:100%;height:100%;object-fit:cover;">`:`<span style="font-size:3rem">${s.emoji||"🚀"}</span>`;return`
+        ${a.length===0?'<div style="text-align:center;padding:4rem;color:var(--text-muted)">لا توجد أنشطة بعد — قم بإضافتها من لوحة التحكم</div>':a.map(e=>{const i=F[e.tag]||"tag-blue",s=e.image?`<img src="${e.image}" alt="${e.title}" style="width:100%;height:100%;object-fit:cover;">`:`<span style="font-size:3rem">${e.emoji||"🚀"}</span>`;return`
           <div class="activity-card reveal">
-            <div class="activity-img" style="background:${s.bg_gradient||s.bg||"linear-gradient(135deg,#DBEAFE,#BFDBFE)"}">${t}</div>
+            <div class="activity-img" style="background:${e.bg_gradient||e.bg||"linear-gradient(135deg,#DBEAFE,#BFDBFE)"}">${s}</div>
             <div class="activity-body">
               <div class="activity-meta">
-                <span class="card-tag ${i}" style="margin:0">${s.tag}</span>
-                <span class="activity-date">${s.date}</span>
+                <span class="card-tag ${i}" style="margin:0">${e.tag}</span>
+                <span class="activity-date">${e.date}</span>
               </div>
-              <h3 class="activity-title">${s.title}</h3>
-              <p class="activity-desc">${s.description||s.desc||""}</p>
+              <h3 class="activity-title">${e.title}</h3>
+              <p class="activity-desc">${e.description||e.desc||""}</p>
             </div>
           </div>
         `}).join("")}
       </div>
     </div>
-    ${v()}
-  `}function H(){return window.handleJoinSubmit=x,`
+    ${c()}
+  `}function z(){return window.handleJoinSubmit=x,`
     <div class="join-section">
       <div class="section-label reveal">انضم إلينا</div>
       <h1 class="section-title reveal" style="font-size:2.2rem;margin-bottom:.75rem">كن جزءاً من العائلة</h1>
@@ -313,8 +313,8 @@
         </button>
       </form>
     </div>
-    ${v()}
-  `}function v(){return`
+    ${c()}
+  `}function c(){return`
     <footer>
       <div class="footer-inner">
         <div>
@@ -351,4 +351,4 @@
         <span>جميع الحقوق محفوظة</span>
       </div>
     </footer>
-  `}g(window.location.pathname);
+  `}v(window.location.pathname);
