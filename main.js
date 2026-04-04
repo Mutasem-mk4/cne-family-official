@@ -735,7 +735,7 @@ function renderFooter() {
           <div class="footer-links">
             <a href="https://www.instagram.com/cne.fet" target="_blank">انستجرام</a>
             <a href="https://www.facebook.com/cne.fet" target="_blank">فيسبوك</a>
-            <a href="https://www.youtube.com/" target="_blank">يوتيوب</a>
+            <a href="https://www.youtube.com/@CNEteamCNE_FAMILY" target="_blank">يوتيوب</a>
           </div>
         </div>
       </div>

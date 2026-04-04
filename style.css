@@ -1950,20 +1950,97 @@ footer {
 }
 
 @media (max-width: 768px) {
+  /* Navigation */
+  .nav-inner {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* Hero */
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Stats Bar */
+  .stats-bar {
+    grid-template-columns: 1fr;
+    margin: 0 var(--space-md) var(--space-lg);
+  }
+
+  /* Bento Grid */
+  .bento-grid {
+    grid-template-columns: 1fr;
+  }
+  .bento-card.col-4,
+  .bento-card.col-2 {
+    grid-column: span 1;
+  }
+
+  /* Dashboard */
   .home-dashboard {
     flex-direction: column;
     text-align: center;
   }
-
   .home-dashboard::before {
     width: 100%;
     height: 6px;
     top: 0;
     left: 0;
   }
-
   .dashboard-progress {
     flex-direction: column;
+    gap: 1rem;
+  }
+
+  /* Grids */
+  .activity-grid,
+  .plans-grid,
+  .subject-grid,
+  .selection-grid,
+  .quick-access {
+    grid-template-columns: 1fr;
+  }
+
+  .quick-access {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .qa-item {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Footer */
+  .footer-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 2.5rem;
+  }
+  .footer-brand-name {
+    justify-content: center;
+  }
+  .footer-tagline {
+    margin: 0 auto;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
     gap: 1rem;
   }
 }
