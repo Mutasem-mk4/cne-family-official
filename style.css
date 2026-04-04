@@ -116,12 +116,7 @@
   --footer-bg: #000000;
 }
 
-[data-theme="dark"] body::before {
-  display: none !important;
-}
-[data-theme="dark"] body::after {
-  display: none !important;
-}
+/* Reset & Base Styling */
 
 /* ── RESET & BASE ───────────────────────────────────────────────── */
 *,
