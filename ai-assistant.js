@@ -26,7 +26,7 @@ class AIChatAssistant {
     
     // 3. Initial greeting after a small delay
     setTimeout(() => {
-      this.addMessage('bot', 'أهلاً بك! أنا مساعد CNE الذكي 🤖. بقدر أساعدك تلاقي روابط المواد، الخطط الدراسية، أو تفاصيل عن أي مادة بدك اياها. كيف بقدر أخدمك اليوم؟');
+      this.addMessage('bot', 'أهلاً بك! أنا مساعد CNE الذكي 🤖. يمكنني مساعدتك في الوصول إلى روابط المواد، الخطط الدراسية، أو تزويدك بتفاصيل عن تخصصك. كيف يمكنني خدمتك اليوم؟');
     }, 2000);
   }
 
@@ -58,7 +58,7 @@ class AIChatAssistant {
             <button class="ai-suggestion-btn">حاسبة المعدل</button>
           </div>
           <div class="ai-chat-input-wrapper">
-            <input type="text" id="ai-input" placeholder="اسألني أي شيء..." autocomplete="off">
+            <input type="text" id="ai-input" placeholder="اسألني عن مادة أو رابط ما..." autocomplete="off">
             <button id="ai-send" class="ai-send">
               <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
             </button>
@@ -341,15 +341,15 @@ class AIChatAssistant {
 
     // Custom Triggers
     if (q.includes('أهلا') || q.includes('مرحبا') || q.includes('سلام')) {
-      return 'أهلاً بك يا بطل! كيف بقدر أساعدك اليوم في رحلتك الدراسية؟';
+      return 'أهلاً بك يا زميلي! كيف يمكنني مساعدتك اليوم في رحلتك الدراسية؟';
     }
     
     if (q.includes('خطة') || q.includes('شجرية')) {
-      return 'أبشر! الخطط الشجرية (Computer & Networking) موجودة في صفحة "الخطة الشجرية" بالنافبار فوق، أو بتقدر تضغط على لوحة الخطط في الصفحة الرئيسية.';
+      return 'بالتأكيد! الخطط الشجرية (Computer & Networking) موجودة في قسم "الخطط الشجرية" في القائمة العلوية، أو يمكنك الوصول إليها عبر واجهة "الأدوات الذكية" في الصفحة الرئيسية.';
     }
 
     if (q.includes('معدل') || q.includes('حاسبة')) {
-      return 'تقدر تحسب معدلك بسهولة من خلال "حاسبة المعدل" الموجودة في القائمة العلوية. بالتوفيق في دراستك!';
+      return 'يمكنك حساب معدلك الفصلي والتراكمي بسهولة عبر "حاسبة المعدل" المتوفرة في القائمة العلوية. بالتوفيق في دراستك!';
     }
 
     // Knowledge Base Search (Subject-based)
@@ -360,7 +360,7 @@ class AIChatAssistant {
     }
 
     // Fallback
-    return 'والله يا صاحبي هالمعلومة مش عندي حالياً، بس بتقدر تتواصل مع فريق CNE الأكاديمي أو تبحث في قسم "المواد الدراسية". بدك أساعدك بشي ثاني؟';
+    return 'عذراً، هذه المعلومة غير متوفرة لدي حالياً، ولكن يمكنك التواصل مع فريق CNE الأكاديمي أو البحث في قسم "المواد الدراسية". هل هناك شيء آخر يمكنني مساعدتك به؟';
   }
 }
 
