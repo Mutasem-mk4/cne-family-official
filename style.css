@@ -130,27 +130,26 @@ body::after {
   content: '';
   position: fixed;
   border-radius: 50%;
-  filter: blur(80px);
   z-index: -1;
   pointer-events: none;
 }
 
 body::before {
-  top: -10%;
-  left: -5%;
-  width: 50vw;
-  height: 50vw;
-  background: radial-gradient(circle, rgba(53, 116, 200, 0.4) 0%, transparent 70%);
+  top: -20%;
+  left: -10%;
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle, rgba(53, 116, 200, 0.15) 0%, rgba(53, 116, 200, 0.05) 40%, transparent 70%);
   animation: floatOrb 15s infinite ease-in-out alternate;
   will-change: transform;
 }
 
 body::after {
-  bottom: -10%;
-  right: -5%;
-  width: 60vw;
-  height: 60vw;
-  background: radial-gradient(circle, rgba(221, 59, 63, 0.25) 0%, transparent 70%);
+  bottom: -20%;
+  right: -10%;
+  width: 70vw;
+  height: 70vw;
+  background: radial-gradient(circle, rgba(221, 59, 63, 0.12) 0%, rgba(221, 59, 63, 0.04) 40%, transparent 70%);
   animation: floatOrb 18s infinite ease-in-out alternate-reverse;
   will-change: transform;
 }
