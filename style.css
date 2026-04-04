@@ -94,10 +94,10 @@
 }
 
 [data-theme="dark"] body::before {
-  opacity: 0.6;
+  display: none !important;
 }
 [data-theme="dark"] body::after {
-  opacity: 0.5;
+  display: none !important;
 }
 
 /* ── RESET & BASE ───────────────────────────────────────────────── */
