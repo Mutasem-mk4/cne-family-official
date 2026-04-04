@@ -294,9 +294,9 @@ async function renderHome() {
           <div class="new-hero-overlay"></div>
         </div>
         <div class="new-hero-content">
-          <span class="new-hero-eyebrow">المستقبل يبدأ هنا</span>
-          <h1>منصة <span class="text-blue">CNE Family</span> المتكاملة لطلاب الهندسة</h1>
-          <p>اكتشف الأدوات التعليمية، خطط الدراسة، والمجتمع الهندسي في مكان واحد.</p>
+          <span class="new-hero-eyebrow">مستقبلك يبدأ من هنا</span>
+          <h1>CNE Family: المنصة المتكاملة لطلبة هندسة الحاسوب والشبكات</h1>
+          <p>اكتشف المصادر التعليمية، الخطط الدراسية، والمجتمع الهندسي الأكبر في مكان واحد.</p>
           <div class="new-hero-search">
             <div class="new-search-inner">
               <div class="new-search-icon-btn">
@@ -309,7 +309,7 @@ async function renderHome() {
           <div class="new-hero-chips">
             <a href="/calculator" class="hero-chip" data-link>
               <span class="material-symbols-outlined">calculate</span>
-              احسب المعدل GPA
+              حاسبة المعدل (GPA)
             </a>
             <a href="/tracker" class="hero-chip hero-chip-red" data-link>
               <span class="material-symbols-outlined">timer</span>
@@ -317,7 +317,7 @@ async function renderHome() {
             </a>
             <a href="/plans" class="hero-chip hero-chip-green" data-link>
               <span class="material-symbols-outlined">download</span>
-              خطة الدراسة
+              الخطط الشجرية
             </a>
           </div>
         </div>
@@ -328,8 +328,8 @@ async function renderHome() {
     <section class="new-section">
       <div class="new-section-header reveal">
         <div>
-          <h2>أدواتنا الذكية</h2>
-          <p>كل ما تحتاجه لتسهيل حياتك الجامعية في متناول يدك</p>
+          <h2>الأدوات الطلابية الذكية</h2>
+          <p>كل ما يلزمك لتسهيل مسيرتك الجامعية في متناول يدك</p>
         </div>
         <div class="color-dots">
           <span style="background:var(--blue)"></span>
@@ -358,8 +358,8 @@ async function renderHome() {
             <div class="nb-arrow"><span class="material-symbols-outlined">north_east</span></div>
           </div>
           <div class="nb-bottom">
-            <h3>الخطة الدراسية</h3>
-            <p>نظم مسارك الأكاديمي مع خططنا الدراسية المحدثة</p>
+            <h3>الخطط الشجرية</h3>
+            <p>نظم مسيرتك الدراسية مع الخطط الأكاديمية المحدثة</p>
           </div>
         </a>
 
@@ -410,8 +410,8 @@ async function renderHome() {
       <div class="new-events-inner">
         <div class="new-events-header">
           <div>
-            <h2>آخر الفعاليات واللقاءات</h2>
-            <p>لا تفوت فرصة التعلم والتواصل مع زملائك في القسم</p>
+            <h2>أحدث الفعاليات واللقاءات</h2>
+            <p>كن جزءاً من أنشطتنا وتفاعل مع زملائك في القسم</p>
           </div>
           <a href="/activities" class="btn-see-all" data-link>شاهد الكل</a>
         </div>
@@ -428,7 +428,7 @@ async function renderHome() {
         <div class="new-join-glow new-join-glow-2"></div>
         <div class="new-join-content">
           <h2>انضم إلى عائلة CNE</h2>
-          <p>احصل على آخر التحديثات، المذكرات، والفعاليات مباشرة على تليغرام.</p>
+          <p>احصل على أحدث التحديثات، الملخصات، والفعاليات مباشرة عبر تليجرام.</p>
           <a href="https://docs.google.com/forms/d/e/1FAIpQLSdD38YSdj9_m5Kiqc8h2oU6i1c22yeUtL2tqgSo-9Xagxrd0A/viewform?usp=header" target="_blank" class="new-join-btn">
             اشترك الآن
           </a>
@@ -805,7 +805,7 @@ function renderFooter() {
           <div class="footer-brand-name" style="display:flex; align-items:center; gap:12px; margin-bottom:1rem">
             <img src="/assets/logos/cne-icon.png" alt="CNE Logo" style="height:84px; border-radius:8px;">
           </div>
-          <p class="footer-tagline">بيتك الأكاديمي منذ 2011.</p>
+          <p class="footer-tagline">بيتكم الأكاديمي والاجتماعي منذ عام 2011.</p>
         </div>
         <div class="col-12 col-md-6 col-lg-3">
           <div class="footer-col-title">روابط أساسية</div>
@@ -818,7 +818,7 @@ function renderFooter() {
         <div class="col-12 col-md-6 col-lg-4">
           <div class="footer-col-title">تواصل معنا</div>
           <div class="footer-links">
-            <a href="https://www.instagram.com/cne.fet" target="_blank">انستجرام</a>
+            <a href="https://www.instagram.com/cne.fet" target="_blank">إنستغرام</a>
             <a href="https://www.facebook.com/cne.fet" target="_blank">فيسبوك</a>
             <a href="https://www.youtube.com/@CNEteamCNE_FAMILY" target="_blank">يوتيوب</a>
           </div>
