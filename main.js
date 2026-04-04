@@ -731,11 +731,11 @@ function renderFooter() {
           </div>
         </div>
         <div>
-          <div class="footer-col-title">أدوات هامة</div>
+          <div class="footer-col-title">تواصل معنا</div>
           <div class="footer-links">
-            <a href="/tracker" data-link>متتبع الخطة</a>
-            <a href="/plans" data-link>الخطة الشجرية</a>
-            <a href="/calculator" data-link>حاسبة المعدل</a>
+            <a href="https://www.instagram.com/cne.fet" target="_blank">انستجرام</a>
+            <a href="https://www.facebook.com/cne.fet" target="_blank">فيسبوك</a>
+            <a href="https://www.youtube.com/" target="_blank">يوتيوب</a>
           </div>
         </div>
       </div>
