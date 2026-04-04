@@ -263,16 +263,16 @@ async function renderHome() {
     </section>
 
     <div class="container" style="margin-top:-2rem;position:relative;z-index:2; margin-bottom: 3rem">
-      <div class="stats-bar reveal">
-        <div class="stat-item">
+      <div class="stats-bar reveal row g-0">
+        <div class="stat-item col-12 col-md-4">
           <span class="stat-number" data-count="999" data-suffix="+">0+</span>
           <span class="stat-label">طالب مستفيد</span>
         </div>
-        <div class="stat-item">
+        <div class="stat-item col-12 col-md-4">
           <span class="stat-number" data-count="13" data-suffix="+">0+</span>
           <span class="stat-label">فعالية منظمة سنويا</span>
         </div>
-        <div class="stat-item">
+        <div class="stat-item col-12 col-md-4">
           <span class="stat-number" data-count="15" data-suffix="+">0+</span>
           <span class="stat-label">سنة من الخبرة</span>
         </div>
@@ -284,8 +284,8 @@ async function renderHome() {
     <section class="section">
       <div class="section-label reveal">الأدوات الأكاديمية</div>
       <h2 class="section-title reveal">أدوات ذكية لطلاب أذكياء</h2>
-      <div class="bento-grid">
-        <a href="/subjects" class="bento-card col-4 accent-blue reveal" data-link>
+      <div class="bento-grid row g-3 g-md-4">
+        <a href="/subjects" class="bento-card col-12 col-md-8 accent-blue reveal" data-link>
           <div class="card-icon">
             <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
           </div>
@@ -295,7 +295,7 @@ async function renderHome() {
             <div class="card-footer-link">تصفح المصادر ←</div>
           </div>
         </a>
-        <a href="/tracker" class="bento-card col-2 accent-red reveal" data-link>
+        <a href="/tracker" class="bento-card col-12 col-md-4 accent-red reveal" data-link>
           <div class="card-icon">
             <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
           </div>
@@ -305,7 +305,7 @@ async function renderHome() {
             <div class="card-footer-link">ابدأ التتبع ←</div>
           </div>
         </a>
-        <a href="/calculator" class="bento-card col-2 accent-green reveal" data-link>
+        <a href="/calculator" class="bento-card col-12 col-md-4 accent-green reveal" data-link>
           <div class="card-icon">
             <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line><line x1="16" y1="14" x2="16" y2="18"></line><line x1="8" y1="10" x2="8" y2="10"></line><line x1="12" y1="10" x2="12" y2="10"></line><line x1="16" y1="10" x2="16" y2="10"></line><line x1="8" y1="14" x2="8" y2="14"></line><line x1="12" y1="14" x2="12" y2="14"></line><line x1="8" y1="18" x2="8" y2="18"></line><line x1="12" y1="18" x2="12" y2="18"></line></svg>
           </div>
@@ -315,7 +315,7 @@ async function renderHome() {
             <div class="card-footer-link">احسب الآن ←</div>
           </div>
         </a>
-        <a href="/activities" class="bento-card col-4 accent-orange reveal" data-link>
+        <a href="/activities" class="bento-card col-12 col-md-8 accent-orange reveal" data-link>
           <div class="card-icon">
             <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path><path d="M9 12H4s.55-3.03 2-5c1.62-2.2 5-3 5-3"></path><path d="M12 15v5s3.03-.55 5-2c2.2-1.62 3-5 3-3"></path></svg>
           </div>
@@ -325,7 +325,7 @@ async function renderHome() {
             <div class="card-footer-link">تصفح الأنشطة ←</div>
           </div>
         </a>
-        <a href="/links" class="bento-card col-2 reveal" data-link style="background:rgba(247,201,72,0.05);border-color:rgba(247,201,72,0.2)">
+        <a href="/links" class="bento-card col-12 col-md-4 reveal" data-link style="background:rgba(247,201,72,0.05);border-color:rgba(247,201,72,0.2)">
           <div class="card-icon" style="color:var(--yellow);border-color:rgba(247,201,72,0.3)">
             <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
           </div>
@@ -444,14 +444,14 @@ function renderPlans() {
     </div>
 
     <div class="container" style="padding-bottom:4rem">
-      <div class="plans-grid">
-        <div class="plan-card reveal">
+      <div class="plans-grid row g-4">
+        <div class="plan-card reveal col-12 col-md-6">
           <div class="plan-icon" style="background:rgba(53,116,200,.1)">💻</div>
           <h3>هندسة الحاسوب</h3>
           <p>الخطة الدراسية الكاملة مع المتطلبات السابقة.</p>
           <a href="/computer-plan.jpg" target="_blank" class="btn btn-primary" style="width:100%; justify-content:center">عرض الخطة</a>
         </div>
-        <div class="plan-card reveal">
+        <div class="plan-card reveal col-12 col-md-6">
           <div class="plan-icon" style="background:rgba(76,175,80,.1)">🌐</div>
           <h3>هندسة الشبكات</h3>
           <p>خطة تخصص الشبكات والمسار الأكاديمي.</p>
@@ -478,9 +478,9 @@ async function renderActivities() {
     </div>
 
     <div class="container" style="padding-bottom:4rem">
-      <div class="activity-grid">
+      <div class="activity-grid row g-4">
         ${activities.map(a => `
-          <div class="activity-card reveal">
+          <div class="activity-card reveal col-12 col-md-6 col-lg-4">
             <div class="activity-img" style="background:${a.bg_gradient || 'linear-gradient(135deg,#f3f4f6,#e5e7eb)'}">
               ${a.image ? `<img src="${a.image}" alt="${a.title}">` : `<span>${a.emoji || '🚀'}</span>`}
             </div>
@@ -609,9 +609,9 @@ async function renderTracker() {
           return `
             <div class="tracker-year reveal">
               <h3 style="margin-bottom:1rem; border-bottom:1px solid var(--border-color); padding-bottom:5px">السنة ${y}</h3>
-              <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:15px">
+              <div class="row g-3">
                 ${yearSubs.map(s => `
-                  <div class="tracker-item ${progress.includes(s.id) ? 'completed' : ''}">
+                  <div class="tracker-item col-12 col-md-6 col-lg-4 ${progress.includes(s.id) ? 'completed' : ''}">
                     <input type="checkbox" ${progress.includes(s.id) ? 'checked' : ''} onchange="toggleSubject('${s.id}')" style="width:20px; height:20px; accent-color:var(--blue)">
                     <span style="flex:1">${s.name}</span>
                     <span style="font-size:0.85rem; font-weight:600; opacity:0.8">${s.credits} س</span>
@@ -633,13 +633,13 @@ function renderMajorSelection() {
     <div class="page-header" style="text-align:center">
       <h1 class="section-title reveal">اختر تخصصك</h1>
     </div>
-    <div class="container" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:2rem; padding-bottom:10rem">
-      <div class="selection-card reveal" onclick="setMajor('computer')">
+    <div class="container row g-4 justify-content-center" style="margin:0 auto; padding-bottom:10rem">
+      <div class="selection-card reveal col-12 col-md-5" onclick="setMajor('computer')">
         <div style="font-size:3.5rem; margin-bottom:1.5rem">💻</div>
         <h3 style="font-size:1.5rem">هندسة الحاسوب</h3>
         <p style="color:var(--text-secondary); margin-top:0.5rem">Computer Engineering</p>
       </div>
-      <div class="selection-card reveal" onclick="setMajor('network')">
+      <div class="selection-card reveal col-12 col-md-5" onclick="setMajor('network')">
         <div style="font-size:3.5rem; margin-bottom:1.5rem">🌐</div>
         <h3 style="font-size:1.5rem">هندسة الشبكات</h3>
         <p style="color:var(--text-secondary); margin-top:0.5rem">Network Engineering</p>
@@ -687,20 +687,20 @@ function renderLinks() {
     </div>
 
     <div class="container" style="padding-bottom:10rem">
-      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:2rem; margin-top:2rem;">
-        <a href="http://appserver.fet.edu.jo:7778/reg_new/index.jsp" target="_blank" class="plan-card reveal" style="text-decoration:none">
+      <div class="row g-4 justify-content-center" style="margin-top:2rem;">
+        <a href="http://appserver.fet.edu.jo:7778/reg_new/index.jsp" target="_blank" class="plan-card reveal col-12 col-md-4" style="text-decoration:none">
           <div class="plan-icon" style="background:rgba(53,116,200,.1); border:1px solid rgba(53,116,200,.3)">🎓</div>
           <h3>البوابة الطلابية</h3>
           <p style="color:var(--text-secondary); margin-bottom:1rem;">تسجيل المواد، علاماتك، والجدول الدراسي.</p>
           <div class="btn btn-primary" style="width:100%; justify-content:center;">انتقال للبوابة</div>
         </a>
-        <a href="https://s3.ebalqa.courses/fet/login/index.php" target="_blank" class="plan-card reveal" style="text-decoration:none">
+        <a href="https://s3.ebalqa.courses/fet/login/index.php" target="_blank" class="plan-card reveal col-12 col-md-4" style="text-decoration:none">
           <div class="plan-icon" style="background:rgba(76,175,80,.1); border:1px solid rgba(76,175,80,.3)">🖥️</div>
           <h3>التعلم الإلكتروني</h3>
           <p style="color:var(--text-secondary); margin-bottom:1rem;">منصة Moodle للواجبات والامتحانات.</p>
           <div class="btn btn-outline" style="width:100%; justify-content:center; border-color:var(--green); color:var(--green);">انتقال للمنصة</div>
         </a>
-        <a href="http://appserver.fet.edu.jo:7778/courses/index.jsp" target="_blank" class="plan-card reveal" style="text-decoration:none">
+        <a href="http://appserver.fet.edu.jo:7778/courses/index.jsp" target="_blank" class="plan-card reveal col-12 col-md-4" style="text-decoration:none">
           <div class="plan-icon" style="background:rgba(242,111,33,.1); border:1px solid rgba(242,111,33,.3)">📄</div>
           <h3>جريدة المواد</h3>
           <p style="color:var(--text-secondary); margin-bottom:1rem;">البحث عن الشعب المطروحة وأوقات المحاضرات.</p>
@@ -715,14 +715,14 @@ function renderLinks() {
 function renderFooter() {
   return `
     <footer>
-      <div class="footer-inner">
-        <div>
+      <div class="footer-inner row g-4">
+        <div class="col-12 col-lg-5">
           <div class="footer-brand-name" style="display:flex; align-items:center; gap:12px; margin-bottom:1rem">
             <img src="/assets/logos/cne-icon.png" alt="CNE Logo" style="height:84px; border-radius:8px;">
           </div>
           <p class="footer-tagline">بيتك الأكاديمي منذ 2011.</p>
         </div>
-        <div>
+        <div class="col-12 col-md-6 col-lg-3">
           <div class="footer-col-title">روابط أساسية</div>
           <div class="footer-links">
             <a href="/" data-link>الرئيسية</a>
@@ -730,7 +730,7 @@ function renderFooter() {
             <a href="/activities" data-link>الأنشطة</a>
           </div>
         </div>
-        <div>
+        <div class="col-12 col-md-6 col-lg-4">
           <div class="footer-col-title">تواصل معنا</div>
           <div class="footer-links">
             <a href="https://www.instagram.com/cne.fet" target="_blank">انستجرام</a>

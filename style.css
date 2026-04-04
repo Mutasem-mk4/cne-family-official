@@ -631,9 +631,6 @@ ul {
 
 /* ── STATS BAR ──────────────────────────────────────────────────── */
 .stats-bar {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
   background: var(--border);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
@@ -701,10 +698,6 @@ ul {
 
 /* ── BENTO GRID ─────────────────────────────────────────────────── */
 .bento-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: auto;
-  gap: var(--space-sm);
   margin-top: var(--space-lg);
 }
 
@@ -769,8 +762,7 @@ ul {
   border-color: var(--blue);
 }
 
-.bento-card.col-4 { grid-column: span 4; }
-.bento-card.col-2 { grid-column: span 2; }
+
 
 .bento-card h3 {
   font-size: 1.15rem;
@@ -1298,9 +1290,7 @@ ul {
 
 /* ── SUBJECT GRID ───────────────────────────────────────────────── */
 .subject-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: var(--space-sm);
+  background: transparent;
 }
 
 .subject-card {
@@ -1405,9 +1395,7 @@ ul {
 
 /* ── ACTIVITY CARDS ─────────────────────────────────────────────── */
 .activity-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: var(--space-md);
+  background: transparent;
 }
 
 .activity-card {
@@ -1538,9 +1526,6 @@ footer {
 .footer-inner {
   max-width: 1200px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr;
-  gap: var(--space-xl);
   padding-bottom: var(--space-xl);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -1608,9 +1593,6 @@ footer {
 
 /* ── PLANS PAGE ─────────────────────────────────────────────────── */
 .plans-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-md);
   margin-top: var(--space-lg);
 }
 
@@ -1978,17 +1960,7 @@ footer {
 
   /* Stats Bar */
   .stats-bar {
-    grid-template-columns: 1fr;
     margin: 0 var(--space-md) var(--space-lg);
-  }
-
-  /* Bento Grid */
-  .bento-grid {
-    grid-template-columns: 1fr;
-  }
-  .bento-card.col-4,
-  .bento-card.col-2 {
-    grid-column: span 1;
   }
 
   /* Dashboard */
@@ -2008,9 +1980,6 @@ footer {
   }
 
   /* Grids */
-  .activity-grid,
-  .plans-grid,
-  .subject-grid,
   .selection-grid,
   .quick-access {
     grid-template-columns: 1fr;
@@ -2028,9 +1997,7 @@ footer {
 
   /* Footer */
   .footer-inner {
-    grid-template-columns: 1fr;
     text-align: center;
-    gap: 2.5rem;
   }
   .footer-brand-name {
     justify-content: center;
