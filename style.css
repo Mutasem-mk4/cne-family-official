@@ -306,11 +306,21 @@ ul {
   align-items: center;
   gap: var(--space-sm);
   flex-shrink: 0;
+  transition: transform 0.3s var(--ease-spring);
+}
+
+.nav-logo:hover {
+  transform: scale(1.03);
 }
 
 .logo-img {
   height: 38px;
   width: auto;
+  transition: filter 0.3s var(--ease-spring);
+}
+
+.nav-logo:hover .logo-img {
+  filter: drop-shadow(0 4px 12px rgba(53, 116, 200, 0.25));
 }
 
 .logo-fallback {

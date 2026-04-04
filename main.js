@@ -147,12 +147,21 @@ function initTheme() {
   const currentTheme = getPreferredTheme();
   document.documentElement.setAttribute('data-theme', currentTheme);
   
+  const updateLogo = (theme) => {
+    const logo = document.getElementById('logo-img');
+    if (logo) {
+      logo.src = theme === 'dark' ? '/assets/logos/cne-logo-dark.png' : '/assets/logos/cne-logo.png';
+    }
+  };
+  updateLogo(currentTheme);
+  
   if (toggle) {
     toggle.addEventListener('click', () => {
       const current = document.documentElement.getAttribute('data-theme');
       const next = current === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
+      updateLogo(next);
     });
   }
 }
@@ -708,7 +717,10 @@ function renderFooter() {
     <footer>
       <div class="footer-inner">
         <div>
-          <div class="footer-brand-name">CNE Family</div>
+          <div class="footer-brand-name">
+            <img src="/assets/logos/cne-social.png" alt="CNE Social" style="height:36px; margin-bottom:15px; border-radius: 8px; display:block;">
+            CNE Family
+          </div>
           <p class="footer-tagline">بيتك الأكاديمي منذ 2011.</p>
         </div>
         <div>
