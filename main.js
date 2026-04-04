@@ -723,11 +723,19 @@ function renderFooter() {
           <p class="footer-tagline">بيتك الأكاديمي منذ 2011.</p>
         </div>
         <div>
-          <div class="footer-col-title">روابط</div>
+          <div class="footer-col-title">روابط أساسية</div>
           <div class="footer-links">
             <a href="/" data-link>الرئيسية</a>
             <a href="/subjects" data-link>المواد</a>
             <a href="/activities" data-link>الأنشطة</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">أدوات هامة</div>
+          <div class="footer-links">
+            <a href="/tracker" data-link>متتبع الخطة</a>
+            <a href="/plans" data-link>الخطة الشجرية</a>
+            <a href="/calculator" data-link>حاسبة المعدل</a>
           </div>
         </div>
       </div>
