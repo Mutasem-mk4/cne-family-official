@@ -83,6 +83,7 @@ async function fetchData(key, path) {
 
 const routes = {
   '/':           renderHome,
+  '/about':      renderAbout,
   '/subjects':   renderSubjects,
   '/plans':      renderPlans,
   '/activities': renderActivities,
@@ -445,103 +446,226 @@ async function renderHome() {
     ${renderFooter()}
   `;
 }
-// ── RENDER SUBJECTS ──────────────────────────────────────────────
+// ── RENDER SUBJECTS (DIGITAL ACADEMY) ───────────────────────────
 async function renderSubjects() {
   const allSubjects = await fetchData('subjects', '/data/subjects.json');
-
+  
   setTimeout(() => {
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const bar = btn.closest('.tab-bar');
-        bar.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const target = btn.dataset.tab;
-        document.querySelectorAll('.tab-content').forEach(c => {
-          c.style.display = c.dataset.content === target ? 'grid' : 'none';
+    // Search logic for Academy
+    const input = document.getElementById('academySearch');
+    if (input) {
+      input.addEventListener('input', () => {
+        const q = input.value.trim().toLowerCase();
+        document.querySelectorAll('.academy-card').forEach(card => {
+          const text = card.textContent.toLowerCase();
+          card.style.display = text.includes(q) ? '' : 'none';
+        });
+      });
+    }
+
+    // Filter Chips logic
+    document.querySelectorAll('.filter-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        const major = chip.dataset.major;
+        document.querySelectorAll('.academy-card').forEach(card => {
+          if (major === 'all' || card.dataset.major === major) card.style.display = '';
+          else card.style.display = 'none';
         });
       });
     });
-    initSearch('subjectSearch', '.subject-card');
   }, 0);
 
-  const majorLabel = { computer: 'حاسوب', network: 'شبكات', common: 'مشترك' };
-  const majorClass  = { computer: 'tag-blue', network: 'tag-green', common: 'tag-yellow' };
+  const majorLabel = { computer: 'هندسة الحاسبات', network: 'هندسة الشبكات', medical: 'الهندسة الطبية', common: 'مواد مشتركة' };
+  const majorIcons = { computer: 'computer', network: 'router', medical: 'medical_services', common: 'box' };
 
-  function renderByYear(y) {
-    const list = allSubjects.filter(s => s.year === y);
-    if (!list.length) return `<div style="text-align:center;padding:3rem;color:var(--text-muted)">لا توجد مواد بعد</div>`;
-    return list.map(s => `
-      <a href="${s.link || '#'}" target="_blank" rel="noopener" class="subject-card">
-        <div class="subject-card-left">
-          <span class="card-tag ${majorClass[s.major] || 'tag-blue'}" style="margin:0;flex-shrink:0">${majorLabel[s.major] || s.major}</span>
-          <span class="subject-name">${s.name}</span>
+  const cards = allSubjects.map(s => `
+    <div class="academy-card reveal" data-major="${s.major}">
+      <div class="academy-card-img">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80" alt="${s.name}" loading="lazy">
+        <div class="academy-card-badge">سنة ${s.year}</div>
+      </div>
+      <div class="academy-card-body">
+        <span class="academy-card-major">
+          <span class="material-symbols-outlined" style="font-size:12px;vertical-align:middle">${majorIcons[s.major] || 'school'}</span>
+          ${majorLabel[s.major] || s.major}
+        </span>
+        <h3>${s.name}</h3>
+        <div class="academy-card-meta">
+          <span><span class="material-symbols-outlined" style="font-size:14px">play_circle</span> 12 درساً</span>
+          <span><span class="material-symbols-outlined" style="font-size:14px">schedule</span> 6 ساعات</span>
         </div>
-        <svg class="subject-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
-      </a>`).join('');
-  }
-
-  const years = [1, 2, 3, 4, 5];
+        <a href="${s.link || '#'}" target="_blank" class="academy-btn">ابدأ الدراسة الآن</a>
+      </div>
+    </div>
+  `).join('');
 
   return `
-    <div class="page-header">
-      <div class="breadcrumb reveal">
-        <a href="/" data-link>الرئيسية</a>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-        المواد الدراسية
+    <section class="academy-hero reveal">
+      <span class="new-hero-eyebrow">أكاديمية المهندسين الرقمية</span>
+      <h1 class="section-title">استكشف مصادر الهندسة الحديثة</h1>
+      <p class="section-subtitle" style="margin: 0 auto">مكتبة شاملة من الملخصات والملفات الأكاديمية لكل تخصصات القسم.</p>
+    </section>
+
+    <div class="academy-search-wrap reveal">
+      <div class="academy-search-inner">
+        <span class="material-symbols-outlined" style="color:var(--blue)">search</span>
+        <input type="text" id="academySearch" placeholder="ما الذي ترغب في دراسته اليوم؟">
       </div>
-      <h1 class="section-title reveal">المواد الدراسية</h1>
-      <p class="section-subtitle reveal">اختر سنتك الدراسية للوصول إلى الملخصات والنماذج.</p>
+      <button class="btn btn-primary" style="padding: 1rem 2rem; border-radius: var(--radius-lg)">بحث</button>
     </div>
 
-    <div class="container reveal">
-      <div class="tab-bar reveal" style="margin-bottom:2rem; justify-content:center">
-        ${years.map(y => `<button class="tab-btn ${y === 1 ? 'active' : ''}" data-tab="${y}">السنة ${y}</button>`).join('')}
-      </div>
-      
-      <div class="search-filter-row reveal" style="margin-bottom:2rem">
-        <div class="search-box">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input type="text" id="subjectSearch" placeholder="ابحث عن مادة...">
-        </div>
-      </div>
-
-      ${years.map(y => `
-        <div class="subject-grid tab-content" data-content="${y}" style="display:${y === 1 ? 'grid' : 'none'}">
-          ${renderByYear(y)}
-        </div>
-      `).join('')}
+    <div class="filter-chips reveal">
+      <button class="filter-chip active" data-major="all">الكل</button>
+      <button class="filter-chip" data-major="computer">هندسة الحاسبات</button>
+      <button class="filter-chip" data-major="network">هندسة الشبكات</button>
+      <button class="filter-chip" data-major="medical">الهندسة الطبية</button>
+      <button class="filter-chip" data-major="common">مشترك</button>
     </div>
+
+    <div class="academy-grid">
+      ${cards}
+    </div>
+
     ${renderFooter()}
   `;
 }
 
-// ── RENDER PLANS ─────────────────────────────────────────────────
-function renderPlans() {
+// ── RENDER ABOUT US (EDITORIAL STORY) ───────────────────────────
+async function renderAbout() {
   return `
-    <div class="page-header">
-      <div class="breadcrumb reveal">
-        <a href="/" data-link>الرئيسية</a>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-        الخطط الشجرية
-      </div>
-      <h1 class="section-title reveal">الخطط الشجرية</h1>
-      <p class="section-subtitle reveal">دليل المسار الدراسي والتبعية للمواد.</p>
+    <div class="page-header reveal">
+      <span class="new-hero-eyebrow">قصتنا تبدأ هنا</span>
+      <h1 class="section-title">هندسة المستقبل بروح <span style="color:var(--blue)">العائلة الواحدة</span></h1>
+      <p class="section-subtitle" style="margin:0 auto">بدأنا كمبادرة طلابية بسيطة وتحولنا إلى أكبر تجمع تعليمي لدعم مهندسي الحاسبات والنظم.</p>
     </div>
 
-    <div class="container" style="padding-bottom:4rem">
-      <div class="plans-grid row g-4">
-        <div class="plan-card reveal col-12 col-md-6">
-          <div class="plan-icon" style="background:rgba(53,116,200,.1)">💻</div>
-          <h3>هندسة الحاسوب</h3>
-          <p>الخطة الدراسية الكاملة مع المتطلبات السابقة.</p>
-          <a href="/computer-plan.jpg" target="_blank" class="btn btn-primary" style="width:100%; justify-content:center">عرض الخطة</a>
+    <section class="new-section container reveal">
+      <div class="row g-5 align-items-center">
+        <div class="col-12 col-md-6">
+          <div class="mosaic-img" style="aspect-ratio:1; border-radius:var(--radius-xl); box-shadow:var(--shadow-lg)">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80" alt="Team Collaboration">
+          </div>
         </div>
-        <div class="plan-card reveal col-12 col-md-6">
-          <div class="plan-icon" style="background:rgba(76,175,80,.1)">🌐</div>
-          <h3>هندسة الشبكات</h3>
-          <p>خطة تخصص الشبكات والمسار الأكاديمي.</p>
-          <a href="/networking-plan.jpg" target="_blank" class="btn btn-outline" style="width:100%; justify-content:center; border-color:var(--green); color:var(--green); --btn-bg-hover:rgba(76,175,80,0.1)">عرض الخطة</a>
+        <div class="col-12 col-md-6">
+          <h2 style="font-weight:900; font-size:2.5rem; margin-bottom:1.5rem">كيف بدأت CNE Family؟</h2>
+          <p style="font-size:1.1rem; line-height:1.8; color:var(--text-secondary)">
+            ولدت فكرة CNE Family من قلب التحديات التي يواجهها طلاب هندسة الحاسبات. كنا نرى الفجوة بين المناهج الأكاديمية وسوق العمل، وقررنا أن نكون الجسر الذي يربط بينهما.
+          </p>
+          <div style="display:flex; gap:1.5rem; margin-top:2rem">
+            <div style="display:flex; align-items:center; gap:10px">
+              <span class="material-symbols-outlined" style="color:var(--blue)">verified</span>
+              <span style="font-weight:700">محتوى معتمد</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:10px">
+              <span class="material-symbols-outlined" style="color:var(--blue)">groups</span>
+              <span style="font-weight:700">مجتمع تفاعلي</span>
+            </div>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <section class="about-stats container reveal">
+      <div class="about-grid-stats">
+        <div>
+          <span class="about-stat-num" data-count="15000" data-suffix="+">0</span>
+          <span style="opacity:0.8; font-weight:700">طالب مستفيد</span>
+        </div>
+        <div>
+          <span class="about-stat-num" data-count="200" data-suffix="+">0</span>
+          <span style="opacity:0.8; font-weight:700">كورس وملخص</span>
+        </div>
+        <div>
+          <span class="about-stat-num" data-count="50" data-suffix="+">0</span>
+          <span style="opacity:0.8; font-weight:700">عضو نشط</span>
+        </div>
+        <div>
+          <span class="about-stat-num" data-count="24" data-suffix="/7">0</span>
+          <span style="opacity:0.8; font-weight:700">دعم مستمر</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="container reveal" style="padding-bottom:10rem">
+      <div style="display:flex; justify-content:space-between; align-items:end; margin-bottom:3rem">
+        <div>
+          <h2 style="font-weight:900; font-size:2.5rem">فريق العمل</h2>
+          <p style="color:var(--text-secondary)">العقول التي تقف خلف نجاح CNE Family</p>
+        </div>
+      </div>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-img"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" alt="Ahmed"></div>
+          <h4>أحمد محمد</h4>
+          <p>مؤسس ومدير تنفيذي</p>
+        </div>
+        <div class="team-card">
+          <div class="team-img"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80" alt="Sara"></div>
+          <h4>سارة علي</h4>
+          <p>مسؤولة المحتوى الدراسي</p>
+        </div>
+        <div class="team-card">
+          <div class="team-img"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80" alt="Yassin"></div>
+          <h4>ياسين إبراهيم</h4>
+          <p>المشرف التقني</p>
+        </div>
+        <div class="team-card">
+          <div class="team-img"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80" alt="Laila"></div>
+          <h4>ليلى حسن</h4>
+          <p>مديرة المجتمع والفعاليات</p>
+        </div>
+      </div>
+    </section>
+
+    ${renderFooter()}
+  `;
+}
+
+// ── RENDER PLANS (STUDY TRACKS) ──────────────────────────────────
+function renderPlans() {
+  return `
+    <div class="page-header reveal">
+      <span class="new-hero-eyebrow">المسار الأكاديمي</span>
+      <h1 class="section-title">الخطط الشجرية</h1>
+      <p class="section-subtitle" style="margin:0 auto">دليل المسار الدراسي والتبعية للمواد لكل تخصص.</p>
+    </div>
+
+    <div class="container reveal" style="padding-bottom:10rem; margin-top:4rem">
+      <div class="row g-4 justify-content-center">
+        <div class="col-12 col-md-6">
+          <div class="nb-card nb-blue" style="height:100%; padding:3rem">
+            <div class="nb-top">
+              <span class="material-symbols-outlined nb-icon" style="font-variation-settings:'FILL' 1">terminal</span>
+              <div class="nb-arrow"><span class="material-symbols-outlined">north_east</span></div>
+            </div>
+            <div class="nb-bottom">
+              <h3 style="font-size:2rem">هندسة الحاسوب</h3>
+              <p style="margin-bottom:2rem">الخطة الدراسية الكاملة مع توضيح المتطلبات السابقة لكل مادة.</p>
+              <a href="/computer-plan.jpg" target="_blank" class="btn btn-primary" style="width:100%; justify-content:center">عرض الخطة الشجرية</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="nb-card nb-green" style="height:100%; padding:3rem">
+            <div class="nb-top">
+              <span class="material-symbols-outlined nb-icon" style="font-variation-settings:'FILL' 1">router</span>
+              <div class="nb-arrow"><span class="material-symbols-outlined">north_east</span></div>
+            </div>
+            <div class="nb-bottom">
+              <h3 style="font-size:2rem">هندسة الشبكات</h3>
+              <p style="margin-bottom:2rem">خطة تخصص الشبكات والأمن السيبراني والمسار الأكاديمي المعتمد.</p>
+              <a href="/networking-plan.jpg" target="_blank" class="btn btn-outline" style="width:100%; justify-content:center; border-color:var(--green); color:var(--green)">عرض الخطة الشجرية</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal" style="margin-top:6rem; text-align:center; background:var(--surface); padding:4rem; border-radius:var(--radius-xl); border:1px solid var(--border)">
+         <h2 style="font-weight:900; margin-bottom:1rem">هل تواجه مشكلة في فهم الخطة؟</h2>
+         <p style="color:var(--text-secondary); max-width:600px; margin:0 auto 2rem">فريقنا الأكاديمي جاهز لمساعدتك في فهم المتطلبات واختيار المواد الأنسب لكل فصل.</p>
+         <a href="/join" data-link class="btn btn-primary">تواصل مع مرشد أكاديمي</a>
       </div>
     </div>
     ${renderFooter()}
@@ -648,9 +772,9 @@ function renderCalculator() {
   `;
 }
 
-// ── RENDER TRACKER ──────────────────────────────────────────────
+// ── RENDER TRACKER (STUDY TIMELINE) ─────────────────────────────
 async function renderTracker() {
-  const subjects = await fetchData('curriculum', '/data/curriculum.json');
+  const curriculum = await fetchData('curriculum', '/data/curriculum.json');
   const progress = JSON.parse(localStorage.getItem('study_progress') || '[]');
   const major = localStorage.getItem('study_major');
 
@@ -660,74 +784,116 @@ async function renderTracker() {
     const idx = progress.indexOf(id);
     if (idx > -1) progress.splice(idx, 1); else progress.push(id);
     localStorage.setItem('study_progress', JSON.stringify(progress));
-    navigate('/tracker');
+    render('/tracker');
   };
 
   window.resetMajor = () => {
     localStorage.removeItem('study_major');
-    navigate('/tracker');
+    render('/tracker');
   };
 
-  const filtered = subjects.filter(s => s.major === 'common' || s.major === major);
+  const filtered = curriculum.filter(s => s.major === 'common' || s.major === major);
   const totalCredits = 162;
-  const completedCredits = filtered.filter(s => progress.includes(s.id)).reduce((a, b) => a + b.credits, 0);
+  const completedCredits = filtered.filter(s => progress.includes(s.id)).reduce((a, b) => a + (b.credits || 0), 0);
   const percent = Math.min(Math.round((completedCredits / totalCredits) * 100), 100);
 
-  return `
-    <div class="page-header">
-      <h1 class="section-title reveal">متتبع الـ 162 ساعة</h1>
-      <p class="section-subtitle reveal">تتبع تقدمك في خطة ${major === 'computer' ? 'هندسة الحاسوب' : 'هندسة الشبكات'}.</p>
-      <div style="margin-top:1.5rem; max-width: 600px; margin-left: auto; margin-right: auto">
-        <div style="background:var(--surface-2); height:12px; border-radius:6px; overflow:hidden; border:1px solid var(--border)">
-          <div style="width:${percent}%; height:100%; background:var(--blue-gradient); transition:width 0.5s var(--ease-spring)"></div>
+  const timelineItems = [1, 2, 3, 4, 5].map(y => {
+    const yearSubs = filtered.filter(s => s.year === y);
+    if (!yearSubs.length) return '';
+    
+    const items = yearSubs.map(s => `
+      <div class="subject-mini-item">
+        <div style="display:flex; align-items:center; gap:10px">
+          <input type="checkbox" ${progress.includes(s.id) ? 'checked' : ''} onchange="toggleSubject('${s.id}')" style="accent-color:var(--blue)">
+          <span style="${progress.includes(s.id) ? 'text-decoration:line-through;opacity:0.5' : ''}">${s.name}</span>
         </div>
-        <div style="margin-top:10px; text-align:center; font-weight:700; color:var(--text-primary)">🚀 إنجازك: ${percent}% (${completedCredits}/162 ساعة)</div>
+        <span style="font-weight:800; font-size:0.75rem">${s.credits} س</span>
       </div>
-      <a href="javascript:void(0)" onclick="resetMajor()" style="display:block; margin-top:1rem; font-size:0.8rem; color:var(--text-muted)">← تغيير التخصص</a>
+    `).join('');
+
+    const yearLabel = {1:'التأسيس', 2:'التعمق', 3:'التخصص', 4:'الاحتراف', 5:'التخرج'};
+
+    return `
+      <div class="timeline-item reveal">
+        <div class="timeline-card">
+          <span style="font-size:0.7rem; font-weight:800; color:var(--blue); text-transform:uppercase">المستوى ${y}: ${yearLabel[y]}</span>
+          <h3>مواد السنة ${y}</h3>
+          <div class="subject-mini-list">
+            ${items}
+          </div>
+        </div>
+        <div class="timeline-node">${y}</div>
+      </div>
+    `;
+  }).join('');
+
+  return `
+    <div class="page-header reveal">
+      <span class="new-hero-eyebrow">مسارك التعليمي</span>
+      <h1 class="section-title">خطتك الدراسية المثالية</h1>
+      <p class="section-subtitle" style="margin:0 auto">تتبع تقدمك في خطة ${major === 'computer' ? 'هندسة الحاسوب' : 'هندسة الشبكات'} (162 ساعة).</p>
+      
+      <div class="container" style="margin-top:4rem; max-width:800px">
+        <div style="background:var(--surface); padding:2.5rem; border-radius:var(--radius-xl); box-shadow:var(--shadow-lg); border:1px solid var(--border)">
+          <div style="display:flex; justify-content:space-between; align-items:end; margin-bottom:1rem">
+            <div>
+              <span style="font-weight:800; color:var(--text-secondary)">معدل الإنجاز الكلي</span>
+              <div style="font-size:3rem; font-weight:900; color:var(--blue)">${percent}%</div>
+            </div>
+            <span style="font-size:0.9rem; color:var(--text-muted)">تم إكمال ${completedCredits} من أصل 162 ساعة</span>
+          </div>
+          <div style="height:12px; background:var(--bg); border-radius:6px; overflow:hidden">
+            <div style="width:${percent}%; height:100%; background:var(--blue-gradient); transition:width 1s var(--ease-spring)"></div>
+          </div>
+          <div style="margin-top:1.5rem; display:flex; justify-content:space-between; align-items:center">
+             <a href="javascript:void(0)" onclick="resetMajor()" style="font-size:0.8rem; font-weight:700; color:var(--text-muted)">← تغيير التخصص</a>
+             <div class="new-tracker-mosaic" style="margin:0; gap:10px">
+                <div class="mosaic-box" style="width:30px;height:30px;background:var(--blue);border-radius:6px"></div>
+                <div class="mosaic-box" style="width:30px;height:30px;background:var(--green);border-radius:6px"></div>
+                <div class="mosaic-box" style="width:30px;height:30px;background:var(--red);border-radius:6px"></div>
+             </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="container" style="padding-bottom:5rem">
-      <div class="tracker-years">
-        ${[1,2,3,4,5].map(y => {
-          const yearSubs = filtered.filter(s => s.year === y);
-          if (!yearSubs.length) return '';
-          return `
-            <div class="tracker-year reveal">
-              <h3 style="margin-bottom:1rem; border-bottom:1px solid var(--border-color); padding-bottom:5px">السنة ${y}</h3>
-              <div class="row g-3">
-                ${yearSubs.map(s => `
-                  <div class="tracker-item col-12 col-md-6 col-lg-4 ${progress.includes(s.id) ? 'completed' : ''}">
-                    <input type="checkbox" ${progress.includes(s.id) ? 'checked' : ''} onchange="toggleSubject('${s.id}')" style="width:20px; height:20px; accent-color:var(--blue)">
-                    <span style="flex:1">${s.name}</span>
-                    <span style="font-size:0.85rem; font-weight:600; opacity:0.8">${s.credits} س</span>
-                  </div>
-                `).join('')}
-              </div>
-            </div>
-          `;
-        }).join('')}
-      </div>
+    <div class="timeline-container">
+      <div class="timeline-line"></div>
+      ${timelineItems}
     </div>
+
+    <section class="container reveal" style="padding-bottom:10rem">
+       <div style="background:var(--surface-low); padding:4rem; border-radius:3rem; display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap">
+          <div style="max-width:500px">
+             <h2 style="font-weight:900; font-size:2.5rem">نصيحة ذكية لجدولك</h2>
+             <p style="color:var(--text-secondary); margin-top:1rem">بناءً على تقدمك الحالي، ننصحك بالتركيز على المواد العلمية المشتركة في هذه المرحلة لفتح متطلبات التخصص القادمة.</p>
+          </div>
+          <a href="/links" data-link class="btn btn-primary" style="padding:1.25rem 2.5rem">الذهاب لجريدة المواد</a>
+       </div>
+    </section>
+
     ${renderFooter()}
   `;
 }
 
 function renderMajorSelection() {
-  window.setMajor = (m) => { localStorage.setItem('study_major', m); navigate('/tracker'); };
+  window.setMajor = (m) => { localStorage.setItem('study_major', m); render('/tracker'); };
   return `
-    <div class="page-header" style="text-align:center">
-      <h1 class="section-title reveal">اختر تخصصك</h1>
+    <div class="page-header reveal" style="text-align:center">
+      <span class="new-hero-eyebrow">خطوة اختيار المسار</span>
+      <h1 class="section-title">اختر تخصصك الأكاديمي</h1>
+      <p class="section-subtitle" style="margin:0 auto">سنقوم بتخصيص متتبع الـ 162 ساعة بناءً على خطتك الدراسية.</p>
     </div>
-    <div class="container row g-4 justify-content-center" style="margin:0 auto; padding-bottom:10rem">
-      <div class="selection-card reveal col-12 col-md-5" onclick="setMajor('computer')">
-        <div style="font-size:3.5rem; margin-bottom:1.5rem">💻</div>
-        <h3 style="font-size:1.5rem">هندسة الحاسوب</h3>
-        <p style="color:var(--text-secondary); margin-top:0.5rem">Computer Engineering</p>
+    <div class="container" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:2rem; padding-bottom:10rem; margin-top:4rem">
+      <div class="nb-card nb-blue reveal" onclick="setMajor('computer')" style="cursor:pointer; padding:3rem">
+        <div style="font-size:4rem; margin-bottom:1.5rem">💻</div>
+        <h3 style="font-size:2rem">هندسة الحاسوب</h3>
+        <p>تتبع مواد البرمجيات، الهاردوير، والأنظمة المضمنة.</p>
       </div>
-      <div class="selection-card reveal col-12 col-md-5" onclick="setMajor('network')">
-        <div style="font-size:3.5rem; margin-bottom:1.5rem">🌐</div>
-        <h3 style="font-size:1.5rem">هندسة الشبكات</h3>
-        <p style="color:var(--text-secondary); margin-top:0.5rem">Network Engineering</p>
+      <div class="nb-card nb-green reveal" onclick="setMajor('network')" style="cursor:pointer; padding:3rem">
+        <div style="font-size:4rem; margin-bottom:1.5rem">🌐</div>
+        <h3 style="font-size:2rem">هندسة الشبكات</h3>
+        <p>تتبع مواد الاتصالات، أمن الشبكات، والأنظمة السحابية.</p>
       </div>
     </div>
     ${renderFooter()}
