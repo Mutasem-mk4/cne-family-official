@@ -162,7 +162,7 @@ function initTheme() {
   const updateLogo = (theme) => {
     const logo = document.getElementById('logo-img');
     if (logo) {
-      logo.src = '/assets/logos/cne-logo.png';
+      logo.src = '/assets/logos/cne-icon.png';
     }
   };
   updateLogo(currentTheme);
