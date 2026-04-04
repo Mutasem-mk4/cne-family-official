@@ -245,169 +245,206 @@ function showLightbox(src) {
 // ── RENDER HOME ──────────────────────────────────────────────────
 async function renderHome() {
   const subjects = await fetchData('subjects', '/data/subjects.json');
-  const curriculum = await fetchData('curriculum', '/data/curriculum.json');
   const activities = await fetchData('activities', '/data/activities.json');
-  const studentMajor = localStorage.getItem('study_major');
-  const progress = JSON.parse(localStorage.getItem('study_progress') || '[]');
-
-  const totalSubjects = curriculum.length;
   const recentActivities = activities.slice(0, 3);
 
-  let dashboardHtml = '';
-  if (studentMajor && studentMajor !== 'all') {
-    const majorSubjects = curriculum.filter(s => s.major === 'common' || s.major === studentMajor);
-    const totalCredits = 162;
-    const completedCredits = majorSubjects.filter(s => progress.includes(s.id)).reduce((acc, s) => acc + s.credits, 0);
-    const percent = Math.min(Math.round((completedCredits / totalCredits) * 100), 100);
+  setTimeout(() => initGlobalSearch(subjects, activities), 0);
 
-    dashboardHtml = `
-      <div class="container reveal">
-        <div class="home-dashboard">
-          <div class="dashboard-info">
-            <span class="dashboard-label">أهلاً بك مجدداً • تخصصك: ${studentMajor === 'computer' ? 'هندسة حاسوب' : 'هندسة شبكات'}</span>
-            <h2 class="dashboard-title">أنت أنجزت ${percent}% من رحلتك الأكاديمية</h2>
+  const tagColorMap = {
+    'ورشة': { bg: 'var(--blue)', txt: 'white' },
+    'محاضرة': { bg: '#006b1b', txt: '#d1ffc8' },
+    'رحلة': { bg: 'var(--orange)', txt: 'white' },
+    'مسابقة': { bg: '#8b5cf6', txt: 'white' },
+    'أخرى': { bg: 'var(--grey)', txt: 'white' }
+  };
+
+  const activityCards = recentActivities.map(a => {
+    const tag = tagColorMap[a.type] || tagColorMap['أخرى'];
+    return `
+      <div class="new-event-card">
+        <div class="new-event-img" style="background: ${a.bg_gradient || 'linear-gradient(135deg,#3574C8,#1E40AF)'}">
+          <span style="font-size:3rem">${a.emoji || '🚀'}</span>
+          <div class="new-event-tag" style="background:${tag.bg};color:${tag.txt}">${a.type || 'فعالية'}</div>
+        </div>
+        <div class="new-event-body">
+          <div class="new-event-date">
+            <span class="material-symbols-outlined" style="font-size:1rem">calendar_today</span>
+            ${a.date || ''}
           </div>
-          <div class="dashboard-progress">
-             <div class="progress-ring">
-               <svg viewBox="0 0 36 36" class="circular-chart">
-                 <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                 <path class="circle" stroke-dasharray="${percent}, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-               </svg>
-               <div class="percentage">${percent}%</div>
-             </div>
-             <a href="/tracker" class="btn btn-primary" data-link>المتتبع الكامل ←</a>
+          <h3>${a.title}</h3>
+          <p>${a.desc || a.description || ''}</p>
+          <div class="new-event-footer">
+            <a href="/activities" class="new-event-link" data-link>
+              اعرف أكثر
+              <span class="material-symbols-outlined" style="font-size:1rem">arrow_back</span>
+            </a>
+            <span class="new-event-location">${a.location || ''}</span>
           </div>
         </div>
       </div>
     `;
-  }
-
-  setTimeout(() => initGlobalSearch(subjects, activities), 0);
+  }).join('');
 
   return `
-    <section class="hero main-hero">
-      <div class="hero-illustration">
-        <svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="200" cy="200" r="150" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3" />
-          <path d="M 0 500 Q 250 250 500 500 T 1000 500" fill="none" stroke="currentColor" stroke-width="1" opacity="0.1" />
-        </svg>
-      </div>
-      <div class="hero-badge reveal">
-        <span></span> هندسة الحاسوب والشبكات · جامعة البلقاء التطبيقية
-      </div>
-      <h1 class="reveal">بيتك الأكاديمي في عالم <span class="highlight">الهندسة التقنية</span></h1>
-      <p class="reveal">المصدر الأول والأذكى لكل ما يحتاجه طالب الـ CNE في مسيرته الجامعية.</p>
-      <div class="home-search-container reveal">
-        <div class="search-box">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input type="text" id="global-search" placeholder="ابحث عن مادة، فعالية، أو مصدر تعليمي..." autocomplete="off">
-          <div id="search-results" class="search-results-dropdown" style="display:none"></div>
+    <!-- NEW HERO -->
+    <section class="new-hero reveal">
+      <div class="new-hero-inner">
+        <div class="new-hero-bg">
+          <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1400&q=80" alt="University" loading="lazy">
+          <div class="new-hero-overlay"></div>
         </div>
-      </div>
-      <div class="hero-actions reveal">
-        <a href="/subjects" class="btn btn-primary" data-link>استكشف المواد</a>
-        <a href="/tracker" class="btn btn-outline" data-link>متتبع الخطة</a>
+        <div class="new-hero-content">
+          <span class="new-hero-eyebrow">المستقبل يبدأ هنا</span>
+          <h1>منصة <span class="text-blue">CNE Family</span> المتكاملة لطلاب الهندسة</h1>
+          <p>اكتشف الأدوات التعليمية، خطط الدراسة، والمجتمع الهندسي في مكان واحد.</p>
+          <div class="new-hero-search">
+            <div class="new-search-inner">
+              <div class="new-search-icon-btn">
+                <span class="material-symbols-outlined">search</span>
+              </div>
+              <input type="text" id="global-search" placeholder="ابحث عن الكورسات، الأدوات، أو الفعاليات..." autocomplete="off">
+              <div id="search-results" class="search-results-dropdown" style="display:none"></div>
+            </div>
+          </div>
+          <div class="new-hero-chips">
+            <a href="/calculator" class="hero-chip" data-link>
+              <span class="material-symbols-outlined">calculate</span>
+              احسب المعدل GPA
+            </a>
+            <a href="/tracker" class="hero-chip hero-chip-red" data-link>
+              <span class="material-symbols-outlined">timer</span>
+              تتبع الساعات
+            </a>
+            <a href="/plans" class="hero-chip hero-chip-green" data-link>
+              <span class="material-symbols-outlined">download</span>
+              خطة الدراسة
+            </a>
+          </div>
+        </div>
       </div>
     </section>
 
-    <div class="container" style="margin-top:-2rem;position:relative;z-index:2; margin-bottom: 3rem">
-      <div class="stats-bar reveal row g-0">
-        <div class="stat-item col-12 col-md-4">
-          <span class="stat-number" data-count="999" data-suffix="+">0+</span>
-          <span class="stat-label">طالب مستفيد</span>
+    <!-- SMART TOOLS -->
+    <section class="new-section">
+      <div class="new-section-header reveal">
+        <div>
+          <h2>أدواتنا الذكية</h2>
+          <p>كل ما تحتاجه لتسهيل حياتك الجامعية في متناول يدك</p>
         </div>
-        <div class="stat-item col-12 col-md-4">
-          <span class="stat-number" data-count="13" data-suffix="+">0+</span>
-          <span class="stat-label">فعالية منظمة سنويا</span>
-        </div>
-        <div class="stat-item col-12 col-md-4">
-          <span class="stat-number" data-count="15" data-suffix="+">0+</span>
-          <span class="stat-label">سنة من الخبرة</span>
+        <div class="color-dots">
+          <span style="background:var(--blue)"></span>
+          <span style="background:var(--red)"></span>
+          <span style="background:#006b1b"></span>
         </div>
       </div>
-    </div>
 
-    ${dashboardHtml}
-
-    <section class="section">
-      <div class="section-label reveal">الأدوات الأكاديمية</div>
-      <h2 class="section-title reveal">أدوات ذكية لطلاب أذكياء</h2>
-      <div class="bento-grid row g-3 g-md-4">
-        <a href="/subjects" class="bento-card col-12 col-md-8 accent-blue reveal" data-link>
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+      <div class="new-bento reveal">
+        <a href="/calculator" class="nb-card nb-blue nb-tall" data-link>
+          <div class="nb-bg-icon"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">calculate</span></div>
+          <div class="nb-top">
+            <span class="material-symbols-outlined nb-icon" style="font-variation-settings:'FILL' 1">calculate</span>
+            <div class="nb-arrow"><span class="material-symbols-outlined">north_east</span></div>
           </div>
-          <div class="card-content">
-            <h3>المواد الدراسية</h3>
-            <p>أكبر مكتبة منظمة من الملخصات، أسئلة السنوات، والمصادر لجميع المواد الدراسية.</p>
-            <div class="card-footer-link">تصفح المصادر ←</div>
-          </div>
-        </a>
-        <a href="/tracker" class="bento-card col-12 col-md-4 accent-red reveal" data-link>
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
-          </div>
-          <div class="card-content">
-            <h3>متتبع الساعات</h3>
-            <p>نظام ذكي لمتابعة تخرجك وفلترة المواد.</p>
-            <div class="card-footer-link">ابدأ التتبع ←</div>
-          </div>
-        </a>
-        <a href="/calculator" class="bento-card col-12 col-md-4 accent-green reveal" data-link>
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line><line x1="16" y1="14" x2="16" y2="18"></line><line x1="8" y1="10" x2="8" y2="10"></line><line x1="12" y1="10" x2="12" y2="10"></line><line x1="16" y1="10" x2="16" y2="10"></line><line x1="8" y1="14" x2="8" y2="14"></line><line x1="12" y1="14" x2="12" y2="14"></line><line x1="8" y1="18" x2="8" y2="18"></line><line x1="12" y1="18" x2="12" y2="18"></line></svg>
-          </div>
-          <div class="card-content">
+          <div class="nb-bottom">
             <h3>حاسبة المعدل</h3>
-            <p>حساب دقيق لمعدلك التراكمي والفصلي.</p>
-            <div class="card-footer-link">احسب الآن ←</div>
+            <p>احسب معدلك الفصلي والتراكمي بدقة وسهولة</p>
           </div>
         </a>
-        <a href="/activities" class="bento-card col-12 col-md-8 accent-orange reveal" data-link>
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path><path d="M9 12H4s.55-3.03 2-5c1.62-2.2 5-3 5-3"></path><path d="M12 15v5s3.03-.55 5-2c2.2-1.62 3-5 3-3"></path></svg>
+
+        <a href="/plans" class="nb-card nb-green" data-link>
+          <div class="nb-bg-icon"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">menu_book</span></div>
+          <div class="nb-top">
+            <span class="material-symbols-outlined nb-icon" style="font-variation-settings:'FILL' 1">menu_book</span>
+            <div class="nb-arrow"><span class="material-symbols-outlined">north_east</span></div>
           </div>
-          <div class="card-content">
-            <h3>الأنشطة والفعاليات</h3>
-            <p>ورش تقنية، رحلات، ومحاضرات تبني شخصيتك المهنية.</p>
-            <div class="card-footer-link">تصفح الأنشطة ←</div>
+          <div class="nb-bottom">
+            <h3>الخطة الدراسية</h3>
+            <p>نظم مسارك الأكاديمي مع خططنا الدراسية المحدثة</p>
           </div>
         </a>
-        <a href="/links" class="bento-card col-12 col-md-4 reveal" data-link style="background:rgba(247,201,72,0.05);border-color:rgba(247,201,72,0.2)">
-          <div class="card-icon" style="color:var(--yellow);border-color:rgba(247,201,72,0.3)">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+
+        <a href="/activities" class="nb-card nb-red nb-span-rows" data-link>
+          <div class="nb-event-img">
+            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=70" alt="Events" loading="lazy">
+            <div class="nb-event-gradient"></div>
           </div>
-          <div class="card-content">
-            <h3>الروابط الهامة</h3>
-            <p>وصول سريع لمنصات الجامعة وجريدة المواد.</p>
-            <div class="card-footer-link" style="color:var(--yellow)">كل الروابط ←</div>
+          <div class="nb-top">
+            <span class="material-symbols-outlined nb-icon" style="font-variation-settings:'FILL' 1">event</span>
+            <div class="nb-arrow"><span class="material-symbols-outlined">north_east</span></div>
+          </div>
+          <div class="nb-bottom">
+            <div class="nb-live-badge">مباشر الآن</div>
+            <h3>الفعاليات والمؤتمرات</h3>
+            <p>شارك في ورش العمل واللقاءات الطلابية الأسبوعية</p>
+          </div>
+        </a>
+
+        <a href="/tracker" class="nb-card nb-yellow" data-link>
+          <div class="nb-bg-icon"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">timer</span></div>
+          <div class="nb-top">
+            <span class="material-symbols-outlined nb-icon" style="font-variation-settings:'FILL' 1">timer</span>
+            <div class="nb-arrow nb-arrow-dark"><span class="material-symbols-outlined">north_east</span></div>
+          </div>
+          <div class="nb-bottom nb-bottom-dark">
+            <h3>تتبع الساعات</h3>
+            <p>راقب عدد الساعات المنجزة والمتبقية في تخصصك</p>
+          </div>
+        </a>
+
+        <a href="/subjects" class="nb-card nb-neutral" data-link>
+          <div class="nb-bg-icon"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">folder_open</span></div>
+          <div class="nb-top">
+            <span class="material-symbols-outlined nb-icon" style="font-variation-settings:'FILL' 1;color:var(--blue)">folder_open</span>
+            <div class="nb-arrow nb-arrow-neutral"><span class="material-symbols-outlined">north_east</span></div>
+          </div>
+          <div class="nb-bottom nb-bottom-dark">
+            <h3>المصادر التعليمية</h3>
+            <p>مكتبة شاملة من الملخصات والامتحانات السابقة</p>
           </div>
         </a>
       </div>
     </section>
 
-    <section class="section">
-      <div class="section-label reveal">آخر الأحدث</div>
-      <h2 class="section-title reveal">ماذا حدث مؤخراً في عائلتنا؟</h2>
-      <div class="activity-row reveal">
-        ${recentActivities.map(a => `
-          <div class="activity-mini-card">
-             <div class="mini-icon" style="background:${a.bg_gradient || 'var(--blue-gradient)'}">${a.emoji || '🚀'}</div>
-             <div class="mini-body">
-               <h4>${a.title}</h4>
-               <span>${a.date}</span>
-             </div>
+    <!-- EVENTS SECTION -->
+    <section class="new-events-section reveal">
+      <div class="new-events-inner">
+        <div class="new-events-header">
+          <div>
+            <h2>آخر الفعاليات واللقاءات</h2>
+            <p>لا تفوت فرصة التعلم والتواصل مع زملائك في القسم</p>
           </div>
-        `).join('')}
-      </div>
-      <div style="text-align:center;margin-top:2rem">
-        <a href="/activities" class="btn btn-outline btn-sm" data-link>مشاهدة كل الفعاليات</a>
+          <a href="/activities" class="btn-see-all" data-link>شاهد الكل</a>
+        </div>
+        <div class="new-events-grid">
+          ${activityCards}
+        </div>
       </div>
     </section>
+
+    <!-- JOIN SECTION -->
+    <section class="new-join-section reveal">
+      <div class="new-join-inner">
+        <div class="new-join-glow new-join-glow-1"></div>
+        <div class="new-join-glow new-join-glow-2"></div>
+        <div class="new-join-content">
+          <h2>انضم إلى عائلة CNE</h2>
+          <p>احصل على آخر التحديثات، المذكرات، والفعاليات مباشرة على تليغرام.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdD38YSdj9_m5Kiqc8h2oU6i1c22yeUtL2tqgSo-9Xagxrd0A/viewform?usp=header" target="_blank" class="new-join-btn">
+            اشترك الآن
+          </a>
+        </div>
+        <div class="new-join-icons">
+          <div class="ji-box ji-blue"><span class="material-symbols-outlined">group</span></div>
+          <div class="ji-box ji-red"><span class="material-symbols-outlined">favorite</span></div>
+          <div class="ji-box ji-green"><span class="material-symbols-outlined">school</span></div>
+          <div class="ji-box ji-yellow"><span class="material-symbols-outlined">lightbulb</span></div>
+        </div>
+      </div>
+    </section>
+
     ${renderFooter()}
   `;
 }
-
 // ── RENDER SUBJECTS ──────────────────────────────────────────────
 async function renderSubjects() {
   const allSubjects = await fetchData('subjects', '/data/subjects.json');
