@@ -717,8 +717,9 @@ function renderFooter() {
     <footer>
       <div class="footer-inner">
         <div>
-          <div class="footer-brand-name" style="margin-bottom:1rem">
-            <img src="/assets/logos/cne-logo.png" alt="CNE Family" style="height:80px; display:block;">
+          <div class="footer-brand-name" style="display:flex; align-items:center; gap:12px; margin-bottom:1rem">
+            <img src="/assets/logos/cne-icon.png" alt="CNE Logo" style="height:48px; border-radius:8px;">
+            <span style="font-family:var(--font-en); font-size:1.6rem; font-weight:800; letter-spacing:-0.03em;">CNE Family</span>
           </div>
           <p class="footer-tagline">بيتك الأكاديمي منذ 2011.</p>
         </div>
