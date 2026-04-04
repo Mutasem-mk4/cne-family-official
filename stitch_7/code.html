@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Tajawal:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-dim": "#5bf083",
+                    "surface-bright": "#1f2b49",
+                    "on-primary-fixed-variant": "#002a62",
+                    "secondary": "#6bff8f",
+                    "on-primary": "#002c66",
+                    "background": "#060e20",
+                    "surface-dim": "#060e20",
+                    "surface-variant": "#192540",
+                    "outline-variant": "#40485d",
+                    "surface": "#060e20",
+                    "on-tertiary-fixed": "#3f2e00",
+                    "tertiary-container": "#fdc425",
+                    "secondary-fixed-dim": "#5bf083",
+                    "secondary-container": "#006e2f",
+                    "on-primary-container": "#002150",
+                    "error-dim": "#d7383b",
+                    "on-tertiary": "#624900",
+                    "inverse-primary": "#005bc4",
+                    "tertiary-fixed-dim": "#edb60f",
+                    "error": "#ff716c",
+                    "primary-dim": "#699cff",
+                    "surface-tint": "#85adff",
+                    "on-secondary-fixed": "#004a1d",
+                    "surface-container-low": "#091328",
+                    "on-surface": "#dee5ff",
+                    "tertiary": "#ffd574",
+                    "on-primary-fixed": "#000000",
+                    "secondary-fixed": "#6bff8f",
+                    "on-tertiary-container": "#574000",
+                    "primary": "#85adff",
+                    "surface-container": "#0f1930",
+                    "on-secondary-fixed-variant": "#006a2d",
+                    "outline": "#6d758c",
+                    "on-error": "#490006",
+                    "on-secondary-container": "#e4ffe2",
+                    "on-surface-variant": "#a3aac4",
+                    "inverse-surface": "#faf8ff",
+                    "primary-fixed": "#6e9fff",
+                    "tertiary-dim": "#edb60f",
+                    "error-container": "#9f0519",
+                    "on-error-container": "#ffa8a3",
+                    "surface-container-high": "#141f38",
+                    "primary-fixed-dim": "#5391ff",
+                    "surface-container-highest": "#192540",
+                    "on-secondary": "#005f28",
+                    "tertiary-fixed": "#fdc425",
+                    "on-tertiary-fixed-variant": "#624900",
+                    "inverse-on-surface": "#4d556b",
+                    "primary-container": "#6e9fff",
+                    "surface-container-lowest": "#000000",
+                    "on-background": "#dee5ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Tajawal", "Plus Jakarta Sans"],
+                    "body": ["Tajawal", "Plus Jakarta Sans"],
+                    "label": ["Tajawal", "Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Tajawal', sans-serif; background-color: #060e20; color: #dee5ff; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-nav { backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background text-on-surface selection:bg-primary selection:text-on-primary">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-[#141f38]/70 backdrop-blur-xl shadow-[0_40px_40px_rgba(222,229,255,0.06)]">
+<div class="flex justify-between items-center px-8 py-4 max-w-screen-2xl mx-auto">
+<div class="text-xl font-bold tracking-tighter text-blue-400 font-headline">CNE Family</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-['Plus_Jakarta_Sans'] text-sm font-medium tracking-tight text-slate-400 hover:text-blue-300 transition-colors duration-200" href="#">Home</a>
+<a class="font-['Plus_Jakarta_Sans'] text-sm font-medium tracking-tight text-slate-400 hover:text-blue-300 transition-colors duration-200" href="#">Courses</a>
+<a class="font-['Plus_Jakarta_Sans'] text-sm font-medium tracking-tight text-blue-400 border-b-2 border-blue-400 pb-1 hover:text-blue-300 transition-colors duration-200" href="#">Study Plan</a>
+<a class="font-['Plus_Jakarta_Sans'] text-sm font-medium tracking-tight text-slate-400 hover:text-blue-300 transition-colors duration-200" href="#">Tools</a>
+<a class="font-['Plus_Jakarta_Sans'] text-sm font-medium tracking-tight text-slate-400 hover:text-blue-300 transition-colors duration-200" href="#">Events</a>
+<a class="font-['Plus_Jakarta_Sans'] text-sm font-medium tracking-tight text-slate-400 hover:text-blue-300 transition-colors duration-200" href="#">About Us</a>
+</div>
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary px-6 py-2 rounded-md font-bold text-sm active:scale-95 duration-150">Join Us</button>
+</div>
+</nav>
+<main class="pt-28 pb-20 px-6 max-w-7xl mx-auto">
+<!-- Hero Editorial Header -->
+<header class="mb-16">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<span class="font-label text-xs uppercase tracking-widest font-bold text-primary mb-3 block">الخطة الدراسية الهندسية</span>
+<h1 class="text-4xl md:text-5xl font-extrabold font-headline leading-tight tracking-tight text-on-background">مسار الهندسة المعمارية <br/> <span class="text-primary-dim">دفعة ٢٠٢٤</span></h1>
+</div>
+<div class="flex items-center gap-4 bg-surface-container-high p-4 rounded-xl shadow-lg border border-outline-variant/10">
+<div class="text-right">
+<p class="text-[0.6875rem] font-bold uppercase tracking-wider text-on-surface-variant">التقدم الإجمالي</p>
+<p class="text-2xl font-bold text-secondary">٦٨٪</p>
+</div>
+<div class="w-16 h-16 rounded-full border-4 border-surface-variant relative flex items-center justify-center">
+<svg class="absolute inset-0 w-full h-full -rotate-90">
+<circle class="text-secondary" cx="32" cy="32" fill="transparent" r="28" stroke="currentColor" stroke-dasharray="175" stroke-dashoffset="56" stroke-width="4"></circle>
+</svg>
+<span class="material-symbols-outlined text-secondary" data-icon="auto_awesome">auto_awesome</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Academic Timeline -->
+<div class="relative">
+<!-- Timeline Vertical Line -->
+<div class="absolute right-6 top-0 bottom-0 w-px bg-gradient-to-b from-primary/50 via-outline-variant/20 to-transparent hidden lg:block"></div>
+<!-- Level 1: Foundation -->
+<section class="mb-20 relative">
+<div class="flex flex-col lg:flex-row-reverse gap-12">
+<!-- Date/Label Pillar -->
+<div class="lg:w-32 flex flex-row lg:flex-col items-center lg:items-start gap-4">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center shadow-[0_0_20px_rgba(107,255,143,0.2)] z-10">
+<span class="material-symbols-outlined text-secondary" data-icon="check_circle" data-weight="fill">check_circle</span>
+</div>
+<div class="flex flex-col">
+<span class="font-bold text-lg text-on-background">المستوى ١</span>
+<span class="text-xs text-on-surface-variant uppercase tracking-tighter">التأسيس</span>
+</div>
+</div>
+<!-- Content Canvas -->
+<div class="flex-1">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Subject Card 1 -->
+<div class="bg-surface-container-high p-6 rounded-xl border border-outline-variant/5 hover:bg-surface-container-highest transition-all duration-300 group">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-surface-variant px-3 py-1 rounded-full flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="text-[10px] font-bold text-on-surface uppercase tracking-widest">مكتمل</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors" data-icon="architecture">architecture</span>
+</div>
+<h3 class="text-lg font-bold mb-2">مبادئ التصميم المعماري</h3>
+<p class="text-sm text-on-surface-variant mb-6 leading-relaxed">دراسة أساسيات الكتل والفراغ والعلاقات الوظيفية في المباني.</p>
+<div class="w-full bg-surface-container-lowest h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary w-full h-full"></div>
+</div>
+</div>
+<!-- Subject Card 2 -->
+<div class="bg-surface-container-high p-6 rounded-xl border border-outline-variant/5 hover:bg-surface-container-highest transition-all duration-300 group">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-surface-variant px-3 py-1 rounded-full flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="text-[10px] font-bold text-on-surface uppercase tracking-widest">مكتمل</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors" data-icon="functions">functions</span>
+</div>
+<h3 class="text-lg font-bold mb-2">رياضيات هندسية (١)</h3>
+<p class="text-sm text-on-surface-variant mb-6 leading-relaxed">تطبيقات التفاضل والتكامل في الحسابات الإنشائية والمعمارية.</p>
+<div class="w-full bg-surface-container-lowest h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary w-full h-full"></div>
+</div>
+</div>
+<!-- Subject Card 3 -->
+<div class="bg-surface-container-high p-6 rounded-xl border border-outline-variant/5 hover:bg-surface-container-highest transition-all duration-300 group">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-surface-variant px-3 py-1 rounded-full flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="text-[10px] font-bold text-on-surface uppercase tracking-widest">مكتمل</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors" data-icon="history_edu">history_edu</span>
+</div>
+<h3 class="text-lg font-bold mb-2">تاريخ العمارة</h3>
+<p class="text-sm text-on-surface-variant mb-6 leading-relaxed">رحلة عبر العصور لاستكشاف تطور الطرز المعمارية العالمية.</p>
+<div class="w-full bg-surface-container-lowest h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary w-full h-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Level 2: Core Engineering -->
+<section class="mb-20 relative">
+<div class="flex flex-col lg:flex-row-reverse gap-12">
+<div class="lg:w-32 flex flex-row lg:flex-col items-center lg:items-start gap-4">
+<div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center shadow-[0_0_20px_rgba(133,173,255,0.2)] z-10">
+<span class="material-symbols-outlined text-on-primary-container" data-icon="pending" data-weight="fill">pending</span>
+</div>
+<div class="flex flex-col">
+<span class="font-bold text-lg text-on-background">المستوى ٢</span>
+<span class="text-xs text-on-surface-variant uppercase tracking-tighter">التخصص</span>
+</div>
+</div>
+<div class="flex-1">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Active Card -->
+<div class="bg-surface-container-high p-6 rounded-xl border-t-2 border-primary shadow-xl ring-1 ring-primary/10 group">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-primary/20 px-3 py-1 rounded-full flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="text-[10px] font-bold text-primary uppercase tracking-widest">جارٍ الدراسة</span>
+</div>
+<span class="material-symbols-outlined text-primary" data-icon="foundation">foundation</span>
+</div>
+<h3 class="text-lg font-bold mb-2">الإنشاءات المعمارية</h3>
+<p class="text-sm text-on-surface-variant mb-6 leading-relaxed">تحليل النظم الإنشائية وطرق التنفيذ في المواقع الهندسية.</p>
+<div class="w-full bg-surface-container-lowest h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary w-3/4 h-full"></div>
+</div>
+<div class="mt-4 flex justify-between items-center">
+<span class="text-[10px] font-bold text-on-surface-variant">٧٥٪ اكتمل</span>
+<button class="text-primary text-xs font-bold flex items-center gap-1 hover:underline">متابعة الدرس <span class="material-symbols-outlined text-xs" data-icon="arrow_back">arrow_back</span></button>
+</div>
+</div>
+<!-- Future Card -->
+<div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant/10 opacity-80 hover:opacity-100 transition-opacity">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-surface-variant px-3 py-1 rounded-full flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-outline"></div>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">قيد الانتظار</span>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="wb_sunny">wb_sunny</span>
+</div>
+<h3 class="text-lg font-bold mb-2 text-on-surface-variant">فيزياء المباني</h3>
+<p class="text-sm text-on-surface-variant/60 mb-6 leading-relaxed">دراسة الإضاءة، التهوية، والصوتيات في البيئة الداخلية.</p>
+<div class="w-full bg-surface-container-lowest h-1.5 rounded-full overflow-hidden">
+<div class="bg-outline-variant w-0 h-full"></div>
+</div>
+</div>
+<!-- Bento Featured Section -->
+<div class="md:col-span-2 lg:col-span-1 bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/20 flex flex-col justify-between relative overflow-hidden group">
+<div class="relative z-10">
+<h3 class="text-xl font-bold mb-4 text-tertiary">مشروع منتصف الفصل</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-6">تصميم مجمع سكني مستدام باستخدام تقنيات BIM الحديثة.</p>
+<div class="flex -space-x-2 space-x-reverse mb-6">
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-surface-variant flex items-center justify-center text-[10px] font-bold">AZ</div>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-primary-container flex items-center justify-center text-[10px] font-bold text-on-primary-container">MK</div>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-secondary-container flex items-center justify-center text-[10px] font-bold text-on-secondary-container">+٤</div>
+</div>
+</div>
+<img class="absolute inset-0 w-full h-full object-cover opacity-10 group-hover:opacity-20 transition-opacity" data-alt="architectural blueprint overlay on a modern skyscraper facade at night with blue lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0-RyyKZdfoVUO0T6ZOC3ElC9yHU5aWhCxX8oHayfVqI1QD77YFB-S7enqCPMSzkbHrYr_qX1YY2zktNyg3TcPFOIkSCBVo4rXwbkA2NA5fbBG_rxvp_Q-ySG5rQfr0u8ui_oGc-F1HL5kszM-_KWikQ_ztZV2Fh-vXHYseSjUrMKhAgJrgQLUnVryGEuHEnw3XZ5c4eS3q4rV2LdeNqz5X7GXSKSqcOe-XtB8JAzECgSj_VbKlc8s67YI1DwM6buOIbUl2Z2DPLXN"/>
+<button class="w-full py-3 rounded-md bg-surface-variant text-on-surface text-xs font-bold border border-outline-variant/30 hover:bg-surface-bright transition-colors relative z-10">استعراض تفاصيل المشروع</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Level 3: Advanced Applications -->
+<section class="mb-20 relative">
+<div class="flex flex-col lg:flex-row-reverse gap-12">
+<div class="lg:w-32 flex flex-row lg:flex-col items-center lg:items-start gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center border border-outline-variant/50 z-10">
+<span class="material-symbols-outlined text-outline" data-icon="lock" data-weight="fill">lock</span>
+</div>
+<div class="flex flex-col">
+<span class="font-bold text-lg text-on-surface/40">المستوى ٣</span>
+<span class="text-xs text-on-surface-variant/40 uppercase tracking-tighter">الاحتراف</span>
+</div>
+</div>
+<div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="bg-surface-container-low/50 p-8 rounded-2xl border border-dashed border-outline-variant/30 flex items-center justify-center text-center">
+<div>
+<span class="material-symbols-outlined text-4xl text-outline-variant mb-4" data-icon="lock_open">lock_open</span>
+<p class="text-on-surface-variant font-medium">سيتم فتح هذا المستوى عند إتمام ٨٠٪ من المستوى الحالي</p>
+</div>
+</div>
+<div class="bg-surface-container-low/30 p-8 rounded-2xl border border-dashed border-outline-variant/20 flex flex-col gap-4">
+<div class="h-4 w-3/4 bg-surface-variant rounded animate-pulse"></div>
+<div class="h-3 w-1/2 bg-surface-variant/50 rounded animate-pulse"></div>
+<div class="h-3 w-2/3 bg-surface-variant/50 rounded animate-pulse"></div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-[#000000] w-full border-t border-[#40485d]/20">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-16 w-full max-w-screen-2xl mx-auto">
+<div class="mb-8 md:mb-0">
+<div class="text-lg font-black text-blue-400 mb-2">CNE Family</div>
+<p class="font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-widest font-bold text-slate-500">© 2024 CNE Family Engineering Editorial. All rights reserved.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+<a class="font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-widest font-bold text-slate-500 hover:text-blue-200 transition-all hover:translate-x-1 duration-300" href="#">Privacy Policy</a>
+<a class="font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-widest font-bold text-slate-500 hover:text-blue-200 transition-all hover:translate-x-1 duration-300" href="#">Terms of Service</a>
+<a class="font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-widest font-bold text-slate-500 hover:text-blue-200 transition-all hover:translate-x-1 duration-300" href="#">Curriculum</a>
+<a class="font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-widest font-bold text-slate-500 hover:text-blue-200 transition-all hover:translate-x-1 duration-300" href="#">Faculty</a>
+<a class="font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-widest font-bold text-slate-500 hover:text-blue-200 transition-all hover:translate-x-1 duration-300" href="#">Research</a>
+<a class="font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-widest font-bold text-slate-500 hover:text-blue-200 transition-all hover:translate-x-1 duration-300" href="#">Contact</a>
+</div>
+</div>
+</footer>
+</body></html>

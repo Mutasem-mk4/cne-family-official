@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Tajawal:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-dim": "#5bf083",
+                    "surface-bright": "#1f2b49",
+                    "on-primary-fixed-variant": "#002a62",
+                    "secondary": "#6bff8f",
+                    "on-primary": "#002c66",
+                    "background": "#060e20",
+                    "surface-dim": "#060e20",
+                    "surface-variant": "#192540",
+                    "outline-variant": "#40485d",
+                    "surface": "#060e20",
+                    "on-tertiary-fixed": "#3f2e00",
+                    "tertiary-container": "#fdc425",
+                    "secondary-fixed-dim": "#5bf083",
+                    "secondary-container": "#006e2f",
+                    "on-primary-container": "#002150",
+                    "error-dim": "#d7383b",
+                    "on-tertiary": "#624900",
+                    "inverse-primary": "#005bc4",
+                    "tertiary-fixed-dim": "#edb60f",
+                    "error": "#ff716c",
+                    "primary-dim": "#699cff",
+                    "surface-tint": "#85adff",
+                    "on-secondary-fixed": "#004a1d",
+                    "surface-container-low": "#091328",
+                    "on-surface": "#dee5ff",
+                    "tertiary": "#ffd574",
+                    "on-primary-fixed": "#000000",
+                    "secondary-fixed": "#6bff8f",
+                    "on-tertiary-container": "#574000",
+                    "primary": "#85adff",
+                    "surface-container": "#0f1930",
+                    "on-secondary-fixed-variant": "#006a2d",
+                    "outline": "#6d758c",
+                    "on-error": "#490006",
+                    "on-secondary-container": "#e4ffe2",
+                    "on-surface-variant": "#a3aac4",
+                    "inverse-surface": "#faf8ff",
+                    "primary-fixed": "#6e9fff",
+                    "tertiary-dim": "#edb60f",
+                    "error-container": "#9f0519",
+                    "on-error-container": "#ffa8a3",
+                    "surface-container-high": "#141f38",
+                    "primary-fixed-dim": "#5391ff",
+                    "surface-container-highest": "#192540",
+                    "on-secondary": "#005f28",
+                    "tertiary-fixed": "#fdc425",
+                    "on-tertiary-fixed-variant": "#624900",
+                    "inverse-on-surface": "#4d556b",
+                    "primary-container": "#6e9fff",
+                    "surface-container-lowest": "#000000",
+                    "on-background": "#dee5ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans", "Tajawal"],
+                    "body": ["Plus Jakarta Sans", "Tajawal"],
+                    "label": ["Plus Jakarta Sans", "Tajawal"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Tajawal', 'Plus Jakarta Sans', sans-serif; background-color: #060e20; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-nav { background: rgba(20, 31, 56, 0.7); backdrop-filter: blur(24px); }
+    </style>
+</head>
+<body class="text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-[#141f38]/70 backdrop-blur-xl shadow-[0_40px_40px_rgba(222,229,255,0.06)]">
+<div class="flex justify-between items-center px-8 py-4 max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold tracking-tighter text-blue-400 font-['Plus_Jakarta_Sans']">CNE Family</span>
+<div class="hidden md:flex items-center gap-6">
+<a class="text-blue-400 border-b-2 border-blue-400 pb-1 font-['Plus_Jakarta_Sans'] text-sm font-medium tracking-tight" href="#">Home</a>
+<a class="text-slate-400 hover:text-blue-300 transition-colors duration-200 font-['Plus_Jakarta_Sans'] text-sm font-medium tracking-tight" href="#">Courses</a>
+<a class="text-slate-400 hover:text-blue-300 transition-colors duration-200 font-['Plus_Jakarta_Sans'] text-sm font-medium tracking-tight" href="#">Study Plan</a>
+<a class="text-slate-400 hover:text-blue-300 transition-colors duration-200 font-['Plus_Jakarta_Sans'] text-sm font-medium tracking-tight" href="#">Tools</a>
+<a class="text-slate-400 hover:text-blue-300 transition-colors duration-200 font-['Plus_Jakarta_Sans'] text-sm font-medium tracking-tight" href="#">Events</a>
+<a class="text-slate-400 hover:text-blue-300 transition-colors duration-200 font-['Plus_Jakarta_Sans'] text-sm font-medium tracking-tight" href="#">About Us</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-primary hover:bg-primary-fixed-dim text-on-primary-container px-6 py-2 rounded-md font-bold text-sm transition-all active:scale-95 duration-150">Join Us</button>
+</div>
+</div>
+</nav>
+<main class="pt-24">
+<!-- Hero Section -->
+<section class="relative min-h-[819px] flex items-center px-8 overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-gradient-to-l from-background via-background/80 to-transparent"></div>
+<img class="w-full h-full object-cover opacity-30" data-alt="Technical blueprint background with glowing architectural lines and engineering digital HUD overlays in deep blue shades" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClPdMy-thIExCFTfJgHTvs1tCZjNR9eI1bpf-bk8R6koxVS41I65u2Kq1mHpBIdFzckSKo9igCDSarVT_Iwy0RZLZenIM2_aOtVEUCw_4DS9d_4jBzenQaBiR6iXiUGIRbioj3PjqWg7JQ7o5yftEO2ABewSWw2uk-VKVuTWIBLaxOVE6ss5gwrF_gHORo6gTVo8KPfDoY8dJMrg7Lihl2tHcCNYN3f_YWLCxQH9QA0uq1ZSYd_7fxo2tp9dqPR78CTrTXS0AkHo-q"/>
+</div>
+<div class="relative z-10 max-w-4xl w-full">
+<div class="space-y-6">
+<span class="inline-block px-4 py-1 rounded-full bg-surface-container-high text-primary-dim text-xs font-bold tracking-widest uppercase border border-outline-variant/20">
+                        The Precise Architect
+                    </span>
+<h1 class="text-5xl md:text-7xl font-extrabold tracking-tight text-on-surface leading-tight">
+                        مستقبل الهندسة <br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-container">يبدأ هنا.</span>
+</h1>
+<p class="text-on-surface-variant text-xl max-w-2xl leading-relaxed">
+                        منصة تعليمية متكاملة لطلاب كلية الهندسة. نوفر لك الأدوات، المخططات، والخبرات لتصميم مسارك الأكاديمي بدقة متناهية.
+                    </p>
+<div class="flex flex-col md:flex-row gap-4 max-w-2xl mt-12">
+<div class="flex-grow relative">
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-md py-4 pr-12 pl-4 focus:ring-2 focus:ring-primary text-on-surface placeholder:text-outline transition-all" placeholder="ابحث عن الكورسات، الأدوات، أو المخططات الدراسية..." type="text"/>
+</div>
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold px-8 py-4 rounded-md shadow-lg shadow-primary/20">
+                            ابدأ الآن
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Smart Tools Section -->
+<section class="py-24 px-8 max-w-screen-2xl mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
+<div class="space-y-2">
+<span class="text-primary font-bold text-xs tracking-widest uppercase">Precision Instruments</span>
+<h2 class="text-3xl font-bold">الأدوات الذكية</h2>
+</div>
+<p class="text-on-surface-variant max-w-sm text-sm">
+                    مجموعة من الأدوات المطورة هندسياً لمساعدتك في تنظيم دراستك وحساب أدائك الأكاديمي بدقة.
+                </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- GPA Calculator Card -->
+<div class="group bg-surface-container-high rounded-xl p-8 hover:translate-y-[-8px] transition-all duration-300 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-blue-400"></div>
+<div class="mb-6 flex justify-between items-start">
+<div class="p-3 bg-blue-400/10 rounded-lg">
+<span class="material-symbols-outlined text-blue-400 text-3xl">calculate</span>
+</div>
+<span class="text-blue-400/20 font-black text-6xl select-none group-hover:text-blue-400/40 transition-colors">01</span>
+</div>
+<h3 class="text-xl font-bold mb-3">حاسبة المعدل (GPA)</h3>
+<p class="text-on-surface-variant text-sm mb-6 leading-relaxed">
+                        احسب معدلك التراكمي والفصلي بدقة متناهية مع دعم لأنظمة الساعات المعتمدة المختلفة.
+                    </p>
+<a class="flex items-center gap-2 text-blue-400 font-bold text-sm group-hover:gap-4 transition-all" href="#">
+                        استخدم الأداة
+                        <span class="material-symbols-outlined text-sm">arrow_back</span>
+</a>
+</div>
+<!-- Study Plan Card -->
+<div class="group bg-surface-container-high rounded-xl p-8 hover:translate-y-[-8px] transition-all duration-300 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-error-dim"></div>
+<div class="mb-6 flex justify-between items-start">
+<div class="p-3 bg-error-dim/10 rounded-lg">
+<span class="material-symbols-outlined text-error-dim text-3xl">map</span>
+</div>
+<span class="text-error-dim/20 font-black text-6xl select-none group-hover:text-error-dim/40 transition-colors">02</span>
+</div>
+<h3 class="text-xl font-bold mb-3">المخطط الدراسي</h3>
+<p class="text-on-surface-variant text-sm mb-6 leading-relaxed">
+                        صمم جدولك الدراسي وتابع تقدمك في المواد الأكاديمية مع اقتراحات ذكية لتوزيع العبء الدراسي.
+                    </p>
+<a class="flex items-center gap-2 text-error-dim font-bold text-sm group-hover:gap-4 transition-all" href="#">
+                        ابدأ التخطيط
+                        <span class="material-symbols-outlined text-sm">arrow_back</span>
+</a>
+</div>
+<!-- Hours Tracker Card -->
+<div class="group bg-surface-container-high rounded-xl p-8 hover:translate-y-[-8px] transition-all duration-300 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-secondary-dim"></div>
+<div class="mb-6 flex justify-between items-start">
+<div class="p-3 bg-secondary-dim/10 rounded-lg">
+<span class="material-symbols-outlined text-secondary-dim text-3xl">timer</span>
+</div>
+<span class="text-secondary-dim/20 font-black text-6xl select-none group-hover:text-secondary-dim/40 transition-colors">03</span>
+</div>
+<h3 class="text-xl font-bold mb-3">متتبع الساعات</h3>
+<p class="text-on-surface-variant text-sm mb-6 leading-relaxed">
+                        سجل ساعات المذاكرة لكل مادة وراقب معدلات إنتاجيتك من خلال رسوم بيانية تفصيلية.
+                    </p>
+<a class="flex items-center gap-2 text-secondary-dim font-bold text-sm group-hover:gap-4 transition-all" href="#">
+                        تتبع الآن
+                        <span class="material-symbols-outlined text-sm">arrow_back</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Stats Section (Bento Inspired) -->
+<section class="py-24 px-8 bg-surface-container-low">
+<div class="max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="md:col-span-2 bg-surface p-12 rounded-xl flex flex-col justify-center">
+<h3 class="text-4xl font-extrabold text-primary mb-2 font-['Plus_Jakarta_Sans']">15k+</h3>
+<p class="text-on-surface-variant text-lg">مهندس ومهندسة في عائلتنا</p>
+<div class="mt-8 flex -space-x-4 space-x-reverse">
+<img class="w-10 h-10 rounded-full border-2 border-surface" data-alt="Portrait of a smiling engineering student" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaFmwCgKJy8-I05DCYhwOBO8GGK7HOlyYTT333X4wPX0La8p3lYoQ5UYgIj9tuIgq4aDGT4SzgwDTwV__ZMCgnqwQCNx262DqX0_wG8rFVPif4XNhNH0S0OdK8l0lmodSYtHiL1CrKOiJs-mhxSUXGHjuEpBy9jSyQrliipF7KTMTMYrkLr68sA5m8zst_1eOi-WdfSj47afy1CZN5cFCkJBIBNQ99OCKYx31_bPOKFagxLowDyPD4gTS4PvMlXPEBIL--uMOSoW5N"/>
+<img class="w-10 h-10 rounded-full border-2 border-surface" data-alt="Female architecture student in laboratory" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDM2VwRGEGSnPTVTRn0jS-QE-p_rTmcXCnR-w6XDbtDSKGM8yf-Yfn8Fx8a0YLMo_GxMXQcUinj7Si1oY7VCg_MV-x5e9MLt4Enwtc3uYrblUFHZPJwq6YUEnxp2AnGfOApPRXh_AIChi0nfqTVhvqbe6fSJR1MMs9CVOzzra8wRBVlTncs48y234BJl-29bprsQg8rbbN1_L1TIA_9hDwef5Sovox_1YA-XsLfYLMwrkBf49DaunIEI4eG6D8nhh_vVeAJrLo7U070"/>
+<img class="w-10 h-10 rounded-full border-2 border-surface" data-alt="Male structural engineering student" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFK-Ps8qypnshh5UUfZFQR5aDaUOJhYLonUv_C8R5VqUyZZ39eqvDz413RTSeqG2N8sKOdBUc1u-46EqPSG677THWR_-f1vHPQKjPQi2ywClMWt1sVdYPhODRQqqbu37420lhmq5GURnJvO6rp234FJRsKSseKFopd47gbVQ5gL5WyzGb7S5cDqrDaPEsVYGYHk4hFvrCZawPV_Quo2aCs6EGHwd4RdNp8SQxb6H3L4baHTztzEJZ_XqKkslcqIpscPo-nAVCrbOVe"/>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest border-2 border-surface flex items-center justify-center text-xs font-bold">+2k</div>
+</div>
+</div>
+<div class="bg-primary-container/20 p-8 rounded-xl border border-primary/10">
+<span class="material-symbols-outlined text-primary text-4xl mb-4">school</span>
+<h4 class="text-xl font-bold mb-2">500+</h4>
+<p class="text-on-surface-variant text-sm">كورس تخصصي معتمد</p>
+</div>
+<div class="bg-surface-container-high p-8 rounded-xl">
+<span class="material-symbols-outlined text-tertiary text-4xl mb-4">verified</span>
+<h4 class="text-xl font-bold mb-2">120+</h4>
+<p class="text-on-surface-variant text-sm">مشروع تخرج متميز</p>
+</div>
+</div>
+</section>
+<!-- Featured Courses Section -->
+<section class="py-24 px-8 max-w-screen-2xl mx-auto">
+<div class="flex justify-between items-center mb-12">
+<h2 class="text-3xl font-bold">كورسات مختارة</h2>
+<button class="text-primary-dim font-bold flex items-center gap-2 hover:translate-x-[-4px] transition-transform">
+                    عرض الكل
+                    <span class="material-symbols-outlined">arrow_back</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant/10">
+<div class="aspect-video relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Digital circuitry and microprocessors on a blue illuminated motherboard representing high-tech engineering" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2_tAh0hnnfkCD3dZaSvEyvXsnwD82c94pJk3XbBZVCZXV-1fzuLe-Nzbf-24CStm7ODSMo7iA9FtoiVL1d6fycSQ6Qi-hrz6uxq6-zv1X5M3sps5XIjODw8OolhO0W4MQ1KRYGGa5R67yFzczELYklpghjcCXXP4aVH2cPzvOGjnr9zOa-_he-_4JzGUd2bn25hjLKIAkcjxgJt0sLIm_9L57gCAKsAFs-lqeYCdi5C4rius1wR28a8CN_m4lQ8k2efNY71uBwLFL"/>
+<div class="absolute top-4 right-4 bg-surface/80 backdrop-blur px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-primary">Electronics</div>
+</div>
+<div class="p-6">
+<h4 class="font-bold mb-2 group-hover:text-primary transition-colors">مقدمة في هندسة الميكاترونيكس</h4>
+<div class="flex items-center gap-4 text-xs text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> 24 ساعة</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">visibility</span> 1.2k</span>
+</div>
+</div>
+</div>
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant/10">
+<div class="aspect-video relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Modern geometric concrete structure architectural design with sharp shadows and highlights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFCrf2BeigAulIqqWwnMgPLmjHg5KsgaOMzMdLvJktwxQEiRMs9QRm5gX7rJw5z32TGDLJ6BDXu8G-8fAfI7Cib02eOMPT2OpUzvsqzoi--NpoADymOERMf-EhQN2toXAtKLs_TGdV2jDtF5V2ZTrVkpbp6fNmhvsl0EZXgJfbe1JrwdjH5ZZrU-DajrDWXF8BFE5g9OBEnhYjHvC0jW7JN1znLhakon0JjdPz7BwucVB1dD_1oHSQY5_HSHy1MropyscuDVlakMIv"/>
+<div class="absolute top-4 right-4 bg-surface/80 backdrop-blur px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-primary">Civil</div>
+</div>
+<div class="p-6">
+<h4 class="font-bold mb-2 group-hover:text-primary transition-colors">تحليل المنشآت الخرسانية</h4>
+<div class="flex items-center gap-4 text-xs text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> 18 ساعة</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">visibility</span> 900</span>
+</div>
+</div>
+</div>
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant/10">
+<div class="aspect-video relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Macro photo of glowing semiconductors and processor pins with golden electric light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxsr-ZMJvOjAmvrhZjc20dvy3FhCO9-sBrMMf4jfsqGeBdlwsGXUNbv0I37_8J38atyc0swGR8UrrDaF-s5DcznqyyBSXhFegWtoBtB1JzYEeY5-62EaY_ndZ_KlADeYVo5_U9s4jsUfzBTzdxP-_eQSd_BM8daNl6KOnzoVG1yOH-FjVAGUgRDkmNe_Pax50sNIDq_h9dzUbx-sPSie5zkmA56GdZweXou7MqZ4F8MjdoNpHUUDlYLXaBDTB2QFZJl48u7C1wlpIY"/>
+<div class="absolute top-4 right-4 bg-surface/80 backdrop-blur px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-primary">Computers</div>
+</div>
+<div class="p-6">
+<h4 class="font-bold mb-2 group-hover:text-primary transition-colors">هياكل البيانات والخوارزميات</h4>
+<div class="flex items-center gap-4 text-xs text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> 32 ساعة</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">visibility</span> 2.5k</span>
+</div>
+</div>
+</div>
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant/10">
+<div class="aspect-video relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Professional engineer hands working on complex mathematical calculations with scientific calculator and pen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsCHMq_84Cempt_B301WtnKtxczwqlzAvtaW8zRr-EVdiwWD1sco_xNYnXRpKtLJ3HP-bDbhmig5I8C-sn13VtEUMxNt2bVhGKFm1XiBWjkoktW7DL1efr_juagpK4gbf3t6bc_nXW2JoHCvbeCTZVo-_-hY5zLJYSnH5sa9SPJSS-_O_6bOYhpxuyBxIkIgaVG-ghQG2tP1WCwO-6LekEdcdZtlpq3UrKOnjsbOY9YArnIR-1YHTme3ueT_OuzwQ_GWh0tgKEVqfz"/>
+<div class="absolute top-4 right-4 bg-surface/80 backdrop-blur px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-primary">Math</div>
+</div>
+<div class="p-6">
+<h4 class="font-bold mb-2 group-hover:text-primary transition-colors">الرياضيات الهندسية المتقدمة</h4>
+<div class="flex items-center gap-4 text-xs text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> 40 ساعة</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">visibility</span> 3.1k</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter / Join Section -->
+<section class="py-24 px-8">
+<div class="max-w-5xl mx-auto bg-gradient-to-br from-surface-container-high to-surface-container rounded-3xl p-12 relative overflow-hidden text-center">
+<div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+<div class="absolute -bottom-24 -left-24 w-64 h-64 bg-secondary/5 rounded-full blur-3xl"></div>
+<h2 class="text-3xl md:text-5xl font-extrabold mb-6">انضم إلى مجتمع النخبة</h2>
+<p class="text-on-surface-variant max-w-2xl mx-auto mb-10 text-lg">احصل على تحديثات الكورسات الجديدة، الأدوات الهندسية، وآخر أخبار الكلية مباشرة في بريدك.</p>
+<div class="flex flex-col md:flex-row gap-4 max-w-lg mx-auto">
+<input class="flex-grow bg-surface-container-lowest border border-outline-variant/30 rounded-md px-6 py-4 focus:ring-2 focus:ring-primary outline-none" placeholder="بريدك الإلكتروني" type="email"/>
+<button class="bg-primary text-on-primary-container font-bold px-10 py-4 rounded-md hover:shadow-lg hover:shadow-primary/20 transition-all">اشترك</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-[#40485d]/20 bg-[#000000]">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-16 w-full max-w-screen-2xl mx-auto">
+<div class="mb-8 md:mb-0">
+<span class="text-lg font-black text-blue-400 font-['Plus_Jakarta_Sans']">CNE Family</span>
+<p class="text-slate-500 text-xs mt-4 max-w-xs leading-relaxed uppercase tracking-widest font-bold">© 2024 CNE Family Engineering Editorial. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8 md:gap-12">
+<a class="text-slate-500 hover:text-blue-200 transition-all hover:translate-x-1 duration-300 font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-widest font-bold" href="#">Privacy Policy</a>
+<a class="text-slate-500 hover:text-blue-200 transition-all hover:translate-x-1 duration-300 font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-widest font-bold" href="#">Terms of Service</a>
+<a class="text-slate-500 hover:text-blue-200 transition-all hover:translate-x-1 duration-300 font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-widest font-bold" href="#">Curriculum</a>
+<a class="text-slate-500 hover:text-blue-200 transition-all hover:translate-x-1 duration-300 font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-widest font-bold" href="#">Faculty</a>
+<a class="text-slate-500 hover:text-blue-200 transition-all hover:translate-x-1 duration-300 font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-widest font-bold" href="#">Research</a>
+<a class="text-slate-500 hover:text-blue-200 transition-all hover:translate-x-1 duration-300 font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-widest font-bold" href="#">Contact</a>
+</div>
+</div>
+</footer>
+</body></html>

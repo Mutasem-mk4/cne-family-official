@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Tajawal:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-dim": "#5bf083",
+                    "surface-bright": "#1f2b49",
+                    "on-primary-fixed-variant": "#002a62",
+                    "secondary": "#6bff8f",
+                    "on-primary": "#002c66",
+                    "background": "#060e20",
+                    "surface-dim": "#060e20",
+                    "surface-variant": "#192540",
+                    "outline-variant": "#40485d",
+                    "surface": "#060e20",
+                    "on-tertiary-fixed": "#3f2e00",
+                    "tertiary-container": "#fdc425",
+                    "secondary-fixed-dim": "#5bf083",
+                    "secondary-container": "#006e2f",
+                    "on-primary-container": "#002150",
+                    "error-dim": "#d7383b",
+                    "on-tertiary": "#624900",
+                    "inverse-primary": "#005bc4",
+                    "tertiary-fixed-dim": "#edb60f",
+                    "error": "#ff716c",
+                    "primary-dim": "#699cff",
+                    "surface-tint": "#85adff",
+                    "on-secondary-fixed": "#004a1d",
+                    "surface-container-low": "#091328",
+                    "on-surface": "#dee5ff",
+                    "tertiary": "#ffd574",
+                    "on-primary-fixed": "#000000",
+                    "secondary-fixed": "#6bff8f",
+                    "on-tertiary-container": "#574000",
+                    "primary": "#85adff",
+                    "surface-container": "#0f1930",
+                    "on-secondary-fixed-variant": "#006a2d",
+                    "outline": "#6d758c",
+                    "on-error": "#490006",
+                    "on-secondary-container": "#e4ffe2",
+                    "on-surface-variant": "#a3aac4",
+                    "inverse-surface": "#faf8ff",
+                    "primary-fixed": "#6e9fff",
+                    "tertiary-dim": "#edb60f",
+                    "error-container": "#9f0519",
+                    "on-error-container": "#ffa8a3",
+                    "surface-container-high": "#141f38",
+                    "primary-fixed-dim": "#5391ff",
+                    "surface-container-highest": "#192540",
+                    "on-secondary": "#005f28",
+                    "tertiary-fixed": "#fdc425",
+                    "on-tertiary-fixed-variant": "#624900",
+                    "inverse-on-surface": "#4d556b",
+                    "primary-container": "#6e9fff",
+                    "surface-container-lowest": "#000000",
+                    "on-background": "#dee5ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.375rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Tajawal", "Plus Jakarta Sans"],
+                    "body": ["Tajawal", "Plus Jakarta Sans"],
+                    "label": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Tajawal', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-background text-on-surface selection:bg-primary/30">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#141f38]/70 backdrop-blur-xl shadow-[0_40px_40px_rgba(222,229,255,0.06)]">
+<div class="flex justify-between items-center px-8 py-4 max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold tracking-tighter text-blue-400 font-['Plus_Jakarta_Sans']">CNE Family</span>
+<div class="hidden md:flex items-center gap-6">
+<a class="text-slate-400 hover:text-blue-300 transition-colors duration-200 font-medium text-sm" href="#">Home</a>
+<a class="text-slate-400 hover:text-blue-300 transition-colors duration-200 font-medium text-sm" href="#">Courses</a>
+<a class="text-slate-400 hover:text-blue-300 transition-colors duration-200 font-medium text-sm" href="#">Study Plan</a>
+<a class="text-blue-400 border-b-2 border-blue-400 pb-1 font-medium text-sm" href="#">Tools</a>
+<a class="text-slate-400 hover:text-blue-300 transition-colors duration-200 font-medium text-sm" href="#">Events</a>
+<a class="text-slate-400 hover:text-blue-300 transition-colors duration-200 font-medium text-sm" href="#">About Us</a>
+</div>
+</div>
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold py-2 px-6 rounded-md active:scale-95 duration-150 text-sm">
+                Join Us
+            </button>
+</div>
+</nav>
+<main class="pt-24 pb-16 px-6 md:px-12 max-w-7xl mx-auto">
+<!-- Hero Header -->
+<header class="mb-16">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-surface-container-high rounded-full mb-6">
+<span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+<span class="text-[10px] font-bold uppercase tracking-widest text-primary-dim font-['Plus_Jakarta_Sans']">Engineering Ecosystem</span>
+</div>
+<h1 class="text-5xl md:text-6xl font-extrabold text-on-surface tracking-tight mb-4 leading-tight">الأدوات الهندسية الذكية</h1>
+<p class="text-on-surface-variant max-w-2xl text-lg leading-relaxed">منصتك المتكاملة لإدارة رحلتك الأكاديمية بفعالية. أدوات مصممة خصيصاً لطلاب الهندسة لتحسين الأداء وتنظيم الوقت.</p>
+</header>
+<!-- Featured Tools - Bento Grid Style -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-6 mb-20">
+<!-- GPA Calculator (Large Featured Card) -->
+<div class="md:col-span-8 group relative overflow-hidden bg-surface-container-high rounded-xl p-8 flex flex-col justify-between min-h-[420px]">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-8">
+<div class="w-14 h-14 bg-surface-variant flex items-center justify-center rounded-xl">
+<span class="material-symbols-outlined text-primary text-3xl">calculate</span>
+</div>
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider font-['Plus_Jakarta_Sans']">Most Popular</span>
+</div>
+<h2 class="text-3xl font-bold text-on-surface mb-3">حاسبة المعدل التراكمي (GPA)</h2>
+<p class="text-on-surface-variant max-w-md">نظام متطور لحساب المعدل الفصلي والتراكمي مع إمكانية التنبؤ بالمعدل المطلوب للوصول لهدف معين.</p>
+</div>
+<div class="relative z-10 flex flex-wrap gap-4 mt-8">
+<div class="px-4 py-2 bg-surface-container-lowest rounded-md text-xs font-bold text-on-surface-variant">4.0 Scale</div>
+<div class="px-4 py-2 bg-surface-container-lowest rounded-md text-xs font-bold text-on-surface-variant">5.0 Scale</div>
+<div class="px-4 py-2 bg-surface-container-lowest rounded-md text-xs font-bold text-on-surface-variant">Target Predictor</div>
+</div>
+<button class="relative z-10 mt-8 w-full md:w-fit bg-primary text-on-primary-container px-8 py-3 rounded-md font-bold hover:bg-primary-fixed transition-colors">ابدأ الحساب الآن</button>
+<!-- Decorative element -->
+<div class="absolute bottom-[-10%] left-[-5%] w-64 h-64 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors"></div>
+</div>
+<!-- Hours Tracker -->
+<div class="md:col-span-4 group bg-surface-container-high rounded-xl p-8 flex flex-col justify-between border-b-4 border-tertiary">
+<div>
+<div class="w-14 h-14 bg-surface-variant flex items-center justify-center rounded-xl mb-8">
+<span class="material-symbols-outlined text-tertiary text-3xl">history_toggle_off</span>
+</div>
+<h2 class="text-2xl font-bold text-on-surface mb-3">متتبع الساعات الدراسية</h2>
+<p class="text-on-surface-variant text-sm leading-relaxed">نظم وقتك بذكاء. تتبع الساعات المنجزة لكل مادة وحلل إنتاجيتك الأسبوعية من خلال رسوم بيانية تفاعلية.</p>
+</div>
+<div class="mt-8">
+<div class="flex justify-between items-end mb-2">
+<span class="text-xs font-bold text-on-surface-variant">تم إنجاز 65% من الهدف</span>
+<span class="text-xl font-black text-tertiary font-['Plus_Jakarta_Sans'] tracking-tighter">24/40hr</span>
+</div>
+<div class="h-2 w-full bg-surface-container-lowest rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-[65%] rounded-full shadow-[0_0_15px_rgba(253,196,37,0.3)]"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Secondary Tools Grid -->
+<section class="mb-24">
+<div class="flex items-center justify-between mb-8">
+<h3 class="text-xl font-bold tracking-tight text-on-surface flex items-center gap-3">
+<span class="w-1 h-6 bg-primary rounded-full"></span>
+                    أدوات مساعدة إضافية
+                </h3>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Card 1 -->
+<div class="bg-surface-container-low hover:bg-surface-container-high p-6 rounded-xl transition-all group">
+<div class="w-10 h-10 bg-surface-variant flex items-center justify-center rounded-lg mb-6 group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-xl">calendar_month</span>
+</div>
+<h4 class="font-bold text-on-surface mb-2">منظم الجداول</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed mb-4">قم بإنشاء جدولك الدراسي وتجنب تعارض المحاضرات بلمسة واحدة.</p>
+<a class="text-[10px] font-bold uppercase tracking-widest text-primary flex items-center gap-1 hover:gap-2 transition-all" href="#">
+                        فتح الأداة <span class="material-symbols-outlined text-sm">arrow_left</span>
+</a>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-low hover:bg-surface-container-high p-6 rounded-xl transition-all group">
+<div class="w-10 h-10 bg-surface-variant flex items-center justify-center rounded-lg mb-6 group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+<span class="material-symbols-outlined text-xl">database</span>
+</div>
+<h4 class="font-bold text-on-surface mb-2">بنك الأسئلة</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed mb-4">أرشيف ضخم من الاختبارات السابقة والحلول النموذجية لجميع التخصصات.</p>
+<a class="text-[10px] font-bold uppercase tracking-widest text-primary flex items-center gap-1 hover:gap-2 transition-all" href="#">
+                        تصفح البنك <span class="material-symbols-outlined text-sm">arrow_left</span>
+</a>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-low hover:bg-surface-container-high p-6 rounded-xl transition-all group">
+<div class="w-10 h-10 bg-surface-variant flex items-center justify-center rounded-lg mb-6 group-hover:bg-tertiary group-hover:text-on-tertiary transition-colors">
+<span class="material-symbols-outlined text-xl">conversion_path</span>
+</div>
+<h4 class="font-bold text-on-surface mb-2">محول الوحدات</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed mb-4">أداة سريعة لتحويل الوحدات الهندسية المعقدة (ضغط، طاقة، لزوجة).</p>
+<a class="text-[10px] font-bold uppercase tracking-widest text-primary flex items-center gap-1 hover:gap-2 transition-all" href="#">
+                        ابدأ التحويل <span class="material-symbols-outlined text-sm">arrow_left</span>
+</a>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-low hover:bg-surface-container-high p-6 rounded-xl transition-all group">
+<div class="w-10 h-10 bg-surface-variant flex items-center justify-center rounded-lg mb-6 group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-xl">architecture</span>
+</div>
+<h4 class="font-bold text-on-surface mb-2">المكتبة البرمجية</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed mb-4">أكواد جاهزة وخوارزميات مفيدة للطلاب في مشاريع البرمجة الهندسية.</p>
+<a class="text-[10px] font-bold uppercase tracking-widest text-primary flex items-center gap-1 hover:gap-2 transition-all" href="#">
+                        عرض الأكواد <span class="material-symbols-outlined text-sm">arrow_left</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Suggest a Tool Section -->
+<section class="bg-surface-container-lowest rounded-2xl overflow-hidden relative border border-outline-variant/10">
+<div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: radial-gradient(circle at 80% 20%, #85adff 0%, transparent 40%);"></div>
+<div class="relative z-10 flex flex-col md:flex-row items-center gap-12 p-12">
+<div class="md:w-1/2">
+<h3 class="text-3xl font-black text-on-surface mb-4">هل لديك فكرة لأداة جديدة؟</h3>
+<p class="text-on-surface-variant mb-8 leading-relaxed">نحن نؤمن بأن مجتمعنا هو مصدر الإلهام الأكبر. إذا كنت تعتقد أن هناك أداة يمكنها مساعدة زملائك، شاركنا فكرتك وسنعمل على تنفيذها.</p>
+<form class="space-y-4">
+<div class="relative">
+<input class="w-full bg-surface-container-low border-none rounded-md p-4 text-on-surface placeholder:text-slate-600 focus:ring-2 focus:ring-primary outline-none transition-all" placeholder="اسم الأداة المقترحة" type="text"/>
+</div>
+<div class="relative">
+<textarea class="w-full bg-surface-container-low border-none rounded-md p-4 text-on-surface placeholder:text-slate-600 focus:ring-2 focus:ring-primary outline-none transition-all" placeholder="اشرح لنا كيف ستعمل هذه الأداة وكيف ستفيد الطلاب..." rows="4"></textarea>
+</div>
+<button class="w-full bg-gradient-to-r from-primary to-primary-container text-on-primary py-4 rounded-md font-extrabold shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-shadow" type="button">إرسال الاقتراح</button>
+</form>
+</div>
+<div class="md:w-1/2 flex justify-center">
+<div class="relative w-full max-w-sm aspect-square bg-surface-container-high rounded-full flex items-center justify-center p-8">
+<div class="absolute inset-0 border-2 border-dashed border-outline-variant/30 rounded-full animate-[spin_20s_linear_infinite]"></div>
+<img class="w-full h-full object-cover rounded-full mix-blend-screen opacity-70" data-alt="close-up of electronic circuit board with blue led lights glowing in a dark engineering laboratory environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDH0nA1CfB60dg1eIHTgOACgkYUs6nQG9HePfOr3Akwdq1E_37A7M4hXTJ_BVZtXlIhyBxehYW4DoFPLz-e2CAC52OUqUgq-ygXaGq9trYCdf0OCLC_m40YJxlWzjyAI0aM9DS925SZf8lKSwsywm5uBkw-Uzwnu-jRV4pXiSwhLknNI97OtGM7BheD7cqoaIy_U2TTsLvwPFQirW2Lvy7ZuLuPEsLcQ3I8ZP_lsE9SUO5KLME4TvP3iYK1e-g8Ev5JrAcsqhKo3vdI"/>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#000000] w-full border-t border-[#40485d]/20">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-16 w-full max-w-screen-2xl mx-auto">
+<div class="mb-8 md:mb-0">
+<span class="text-lg font-black text-blue-400 font-['Plus_Jakarta_Sans'] uppercase tracking-tight">CNE Family</span>
+<p class="text-[10px] text-slate-500 mt-2 font-['Plus_Jakarta_Sans'] tracking-widest">ENGINEERING EDITORIAL</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8 mb-8 md:mb-0">
+<a class="text-slate-500 hover:text-blue-200 transition-all text-xs uppercase tracking-widest font-bold font-['Plus_Jakarta_Sans'] hover:translate-x-1 duration-300" href="#">Privacy Policy</a>
+<a class="text-slate-500 hover:text-blue-200 transition-all text-xs uppercase tracking-widest font-bold font-['Plus_Jakarta_Sans'] hover:translate-x-1 duration-300" href="#">Terms of Service</a>
+<a class="text-slate-500 hover:text-blue-200 transition-all text-xs uppercase tracking-widest font-bold font-['Plus_Jakarta_Sans'] hover:translate-x-1 duration-300" href="#">Curriculum</a>
+<a class="text-slate-500 hover:text-blue-200 transition-all text-xs uppercase tracking-widest font-bold font-['Plus_Jakarta_Sans'] hover:translate-x-1 duration-300" href="#">Faculty</a>
+<a class="text-slate-500 hover:text-blue-200 transition-all text-xs uppercase tracking-widest font-bold font-['Plus_Jakarta_Sans'] hover:translate-x-1 duration-300" href="#">Research</a>
+<a class="text-slate-500 hover:text-blue-200 transition-all text-xs uppercase tracking-widest font-bold font-['Plus_Jakarta_Sans'] hover:translate-x-1 duration-300" href="#">Contact</a>
+</div>
+<div class="text-slate-500 text-[10px] font-bold uppercase tracking-widest font-['Plus_Jakarta_Sans'] text-center md:text-right">
+                © 2024 CNE Family Engineering Editorial. All rights reserved.
+            </div>
+</div>
+</footer>
+</body></html>

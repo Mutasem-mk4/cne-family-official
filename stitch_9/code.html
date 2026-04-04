@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Tajawal:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-dim": "#5bf083",
+                    "surface-bright": "#1f2b49",
+                    "on-primary-fixed-variant": "#002a62",
+                    "secondary": "#6bff8f",
+                    "on-primary": "#002c66",
+                    "background": "#060e20",
+                    "surface-dim": "#060e20",
+                    "surface-variant": "#192540",
+                    "outline-variant": "#40485d",
+                    "surface": "#060e20",
+                    "on-tertiary-fixed": "#3f2e00",
+                    "tertiary-container": "#fdc425",
+                    "secondary-fixed-dim": "#5bf083",
+                    "secondary-container": "#006e2f",
+                    "on-primary-container": "#002150",
+                    "error-dim": "#d7383b",
+                    "on-tertiary": "#624900",
+                    "inverse-primary": "#005bc4",
+                    "tertiary-fixed-dim": "#edb60f",
+                    "error": "#ff716c",
+                    "primary-dim": "#699cff",
+                    "surface-tint": "#85adff",
+                    "on-secondary-fixed": "#004a1d",
+                    "surface-container-low": "#091328",
+                    "on-surface": "#dee5ff",
+                    "tertiary": "#ffd574",
+                    "on-primary-fixed": "#000000",
+                    "secondary-fixed": "#6bff8f",
+                    "on-tertiary-container": "#574000",
+                    "primary": "#85adff",
+                    "surface-container": "#0f1930",
+                    "on-secondary-fixed-variant": "#006a2d",
+                    "outline": "#6d758c",
+                    "on-error": "#490006",
+                    "on-secondary-container": "#e4ffe2",
+                    "on-surface-variant": "#a3aac4",
+                    "inverse-surface": "#faf8ff",
+                    "primary-fixed": "#6e9fff",
+                    "tertiary-dim": "#edb60f",
+                    "error-container": "#9f0519",
+                    "on-error-container": "#ffa8a3",
+                    "surface-container-high": "#141f38",
+                    "primary-fixed-dim": "#5391ff",
+                    "surface-container-highest": "#192540",
+                    "on-secondary": "#005f28",
+                    "tertiary-fixed": "#fdc425",
+                    "on-tertiary-fixed-variant": "#624900",
+                    "inverse-on-surface": "#4d556b",
+                    "primary-container": "#6e9fff",
+                    "surface-container-lowest": "#000000",
+                    "on-background": "#dee5ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Tajawal", "Plus Jakarta Sans"],
+                    "body": ["Tajawal", "Plus Jakarta Sans"],
+                    "label": ["Tajawal", "Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Tajawal', sans-serif; background-color: #060e20; color: #dee5ff; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .editorial-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2rem; }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- TopNavBar Shell -->
+<nav class="fixed top-0 w-full z-50 bg-[#141f38]/70 backdrop-blur-xl shadow-[0_40px_40px_rgba(222,229,255,0.06)]">
+<div class="flex justify-between items-center px-8 py-4 max-w-screen-2xl mx-auto">
+<div class="text-xl font-bold tracking-tighter text-blue-400 font-headline">CNE Family</div>
+<div class="hidden md:flex items-center gap-8 font-['Plus_Jakarta_Sans'] text-sm font-medium tracking-tight">
+<a class="text-slate-400 hover:text-blue-300 transition-colors duration-200" href="#">Home</a>
+<a class="text-slate-400 hover:text-blue-300 transition-colors duration-200" href="#">Courses</a>
+<a class="text-slate-400 hover:text-blue-300 transition-colors duration-200" href="#">Study Plan</a>
+<a class="text-slate-400 hover:text-blue-300 transition-colors duration-200" href="#">Tools</a>
+<a class="text-slate-400 hover:text-blue-300 transition-colors duration-200" href="#">Events</a>
+<a class="text-blue-400 border-b-2 border-blue-400 pb-1" href="#">About Us</a>
+</div>
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary-container px-6 py-2 rounded-md font-bold text-sm active:scale-95 duration-150">
+                Join Us
+            </button>
+</div>
+</nav>
+<main class="pt-32 pb-24">
+<!-- Hero Section: Intentional Asymmetry -->
+<section class="max-w-screen-2xl mx-auto px-8 mb-32">
+<div class="editorial-grid">
+<div class="col-span-12 lg:col-span-7">
+<span class="text-primary font-bold tracking-widest text-[0.6875rem] uppercase mb-4 block">هندسة المستقبل</span>
+<h1 class="text-5xl lg:text-7xl font-extrabold text-on-surface leading-tight mb-8">
+                        نحن نبني مجتمعاً <br/> <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">للمهندسين المبدعين</span>
+</h1>
+<p class="text-lg text-on-surface-variant max-w-2xl leading-relaxed">
+                        في CNE Family، نؤمن أن الهندسة ليست مجرد مهنة، بل هي شغف للابتكار والحل. نحن هنا لتوفير الموارد والأدوات التي يحتاجها كل طالب مهندس للتميز في مسيرته الدراسية والمهنية.
+                    </p>
+</div>
+<div class="col-span-12 lg:col-span-5 relative mt-12 lg:mt-0">
+<div class="aspect-square bg-surface-container-high rounded-xl overflow-hidden shadow-2xl relative z-10">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="Modern engineering lab with high-tech equipment and blue atmospheric lighting, clean architectural aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArtKOsAkIxT2TXhuw83dtAcQJBdBP3o_7nlX2sRPhplgEiQ8_oKM5vARVPhLJ7DFsoJWaDp6cHPAeeWa1X4qUZV72J3FRF3F29mjPTeH980289xJ7LvmJMu7plu3LoLVFH-kxFxELLF6O2zx350Lvjaj1ojBlA7bNOCSTc3RCTXyk2c9AI8FJ50CqOhdsSgw6P28zN2qxEPlsiR5-EP0qGkaShr726lGPr-Uk4rHxh-w32A7ydFVyOSp4mcjkv_7RO0oJthy5OaBjx"/>
+</div>
+<div class="absolute -bottom-8 -right-8 w-48 h-48 bg-primary/20 blur-[80px] rounded-full"></div>
+</div>
+</div>
+</section>
+<!-- Stats Section: Data-Rich Engineering Aesthetic -->
+<section class="bg-surface-container-low py-24 mb-32">
+<div class="max-w-screen-2xl mx-auto px-8">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+<div class="flex flex-col gap-2">
+<div class="text-[3.5rem] font-bold text-on-surface tracking-tighter flex items-baseline gap-2">
+                            +15K
+                            <span class="w-3 h-3 bg-primary rounded-full"></span>
+</div>
+<div class="text-[0.6875rem] font-bold uppercase tracking-widest text-primary-dim">طالب مهندس نشط</div>
+<div class="h-1 w-full bg-surface-container-highest mt-4 rounded-full overflow-hidden">
+<div class="h-full w-4/5 bg-primary"></div>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="text-[3.5rem] font-bold text-on-surface tracking-tighter flex items-baseline gap-2">
+                            120
+                            <span class="w-3 h-3 bg-secondary rounded-full"></span>
+</div>
+<div class="text-[0.6875rem] font-bold uppercase tracking-widest text-secondary-dim">مدرب وخبير أكاديمي</div>
+<div class="h-1 w-full bg-surface-container-highest mt-4 rounded-full overflow-hidden">
+<div class="h-full w-2/3 bg-secondary"></div>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="text-[3.5rem] font-bold text-on-surface tracking-tighter flex items-baseline gap-2">
+                            24/7
+                            <span class="w-3 h-3 bg-tertiary rounded-full"></span>
+</div>
+<div class="text-[0.6875rem] font-bold uppercase tracking-widest text-tertiary-dim">دعم فني وأكاديمي</div>
+<div class="h-1 w-full bg-surface-container-highest mt-4 rounded-full overflow-hidden">
+<div class="h-full w-full bg-tertiary"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Mission & Values: Glassmorphism Bento Grid -->
+<section class="max-w-screen-2xl mx-auto px-8 mb-32">
+<h2 class="text-3xl font-bold mb-12 text-center">قيمنا الجوهرية</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Value 1 -->
+<div class="bg-surface-container-high p-8 rounded-xl border-t border-outline-variant/20 flex flex-col gap-6">
+<div class="w-12 h-12 rounded-md bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">precision_manufacturing</span>
+</div>
+<h3 class="text-xl font-bold">الدقة والاتقان</h3>
+<p class="text-on-surface-variant leading-relaxed">نحن نلتزم بأعلى معايير الجودة في كل محتوى تعليمي نقدمه، مع التركيز على التفاصيل الهندسية الدقيقة.</p>
+</div>
+<!-- Value 2 -->
+<div class="bg-surface-container-high p-8 rounded-xl border-t border-outline-variant/20 flex flex-col gap-6">
+<div class="w-12 h-12 rounded-md bg-secondary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">groups</span>
+</div>
+<h3 class="text-xl font-bold">العمل الجماعي</h3>
+<p class="text-on-surface-variant leading-relaxed">نحن مجتمع واحد، نؤمن أن التعاون بين الطلاب والخبراء هو المفتاح الحقيقي للنجاح المهني والتقني.</p>
+</div>
+<!-- Value 3 -->
+<div class="bg-surface-container-high p-8 rounded-xl border-t border-outline-variant/20 flex flex-col gap-6">
+<div class="w-12 h-12 rounded-md bg-tertiary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary">lightbulb</span>
+</div>
+<h3 class="text-xl font-bold">الابتكار المستمر</h3>
+<p class="text-on-surface-variant leading-relaxed">نسعى دائماً لتحديث أدواتنا ومنصتنا لمواكبة التطورات التكنولوجية السريعة في عالم الهندسة.</p>
+</div>
+</div>
+</section>
+<!-- Team Section: Editorial Layout -->
+<section class="max-w-screen-2xl mx-auto px-8">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+<div>
+<span class="text-primary font-bold tracking-widest text-[0.6875rem] uppercase mb-4 block">فريق العمل</span>
+<h2 class="text-4xl font-bold">العقول المدبرة خلف المنصة</h2>
+</div>
+<div class="max-w-md text-on-surface-variant text-sm">
+                    نحن فخورون بفريقنا المكون من مهندسين، مصممين، ومطورين يعملون بشغف لتقديم أفضل تجربة تعليمية.
+                </div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Team Member 1 -->
+<div class="group">
+<div class="aspect-[3/4] bg-surface-container-lowest rounded-md overflow-hidden mb-4 relative">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Professional portrait of a male engineer in a smart casual outfit, studio lighting, deep blue background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDi2WUABBO3Ji6crsG7SEvvbSN-0UOhk2Ftb6UgwH378GL169gUYy9OxeaHtrLfz__yDgLnTQ3Yr_1m0fmM9MDhP_PgiD5xoQVYm0A2ZYM1rMzFEJ7KgBu8r7Cv5Dp-0itcITEjk1XikZZ1lywKlf_xoeKRGPgl_p576m_cdT5z95lE9h5XOwOJx9d3gZ8Yk30FnU7n451tyJLQiD9EbQDJ_OiWQxrKbA6pgHDr4J6OHMgbyAAyHZggqlW2iXiUxAoFVADr_ula0NiX"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<h4 class="text-lg font-bold">م. أحمد علي</h4>
+<p class="text-primary text-xs font-bold uppercase tracking-widest">المؤسس والرئيس التنفيذي</p>
+</div>
+<!-- Team Member 2 -->
+<div class="group">
+<div class="aspect-[3/4] bg-surface-container-lowest rounded-md overflow-hidden mb-4">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Professional portrait of a female software architect, modern office setting, soft dramatic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-Fxa740YuRCQfV1IBrvhVsO7UMZ3SyzbqUhhK3flmXgQIHpgA523aQgEkLbkkeGjRuSeUbfqSjseCil7VC2wZ8Jef1FyIHaV4FKeX3GoDpv4H7pK3rl1hzbwys-ACAtlzgprbEJM7haqhKESbejAQZzXPBwPgYu3cZcM2htgfYtbzhk551imew0COfcdIjfbVenBB_HVkPJHFIbPmWN2-Jh_lSPVERjiDGW6CLgFBBLm6ZNifHAKyhO60BhbngHMJPFvVpvdvWzpx"/>
+</div>
+<h4 class="text-lg font-bold">ليلى منصور</h4>
+<p class="text-primary text-xs font-bold uppercase tracking-widest">رئيسة قسم المناهج</p>
+</div>
+<!-- Team Member 3 -->
+<div class="group">
+<div class="aspect-[3/4] bg-surface-container-lowest rounded-md overflow-hidden mb-4">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Portrait of a young male creative director, urban tech environment, sharp focus, cool tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-i5vE9_ogT9SY1CxYeSs3PaCg4PUlhoQdV85auFb_XC7UKHpqVs8iyOtsNsHG7a3hgOzOJi8PktxBAAuk3e1WxGHl7FQuNCC-2VbpZ3VPmVx_eneziX9RB33nYeu7Ad3W1N3ToEqtlPruRzkAmEozQ2oNBhMQx5qx-fVaodhPpuFZuJj8RTcM_ndc_AuFqaI76xSP8pc4QZkm2dGoTOQvT51c9dF74rXyuGAHo9lA-0M0gwhFfjKwIyhjX0i1WVOAyBCprG69YOmh"/>
+</div>
+<h4 class="text-lg font-bold">عمر خالد</h4>
+<p class="text-primary text-xs font-bold uppercase tracking-widest">مدير تجربة المستخدم</p>
+</div>
+<!-- Team Member 4 -->
+<div class="group">
+<div class="aspect-[3/4] bg-surface-container-lowest rounded-md overflow-hidden mb-4">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Professional portrait of a woman working in engineering management, high-end office background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsRNL6ktf6i6eYw5oYA_UDUbhPb8fStBOe4B4EsTcOi-s2Y3rnbkKqou1EXq4i7RV4qmQMuPB-4wT-yEA6FrrysgO4kFW3SVc7cj0zJu_Lm-m5muzuUNWQKM-uPQvI74NGTCHgBO6wFOq1-ic7twGA2zkuXXrOuY4Bcsm0UyJeMaaKQlE7HOxwI8gKNTFj2m_m9JZTkuk8UsJXVIH_QGMdRAu474sd9emvvazDHj5FLmRDB_jT8Is4AxAPEBZYuD5wI5UJFJNIKtbV"/>
+</div>
+<h4 class="text-lg font-bold">سارة يوسف</h4>
+<p class="text-primary text-xs font-bold uppercase tracking-widest">مديرة العمليات</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Shell -->
+<footer class="w-full border-t border-[#40485d]/20 bg-[#000000]">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-16 w-full max-w-screen-2xl mx-auto">
+<div class="mb-8 md:mb-0">
+<div class="text-lg font-black text-blue-400 mb-2">CNE Family</div>
+<div class="font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-widest font-bold text-slate-500">
+                    © 2024 CNE Family Engineering Editorial. All rights reserved.
+                </div>
+</div>
+<div class="flex flex-wrap justify-center gap-8 font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-widest font-bold">
+<a class="text-slate-500 hover:text-blue-200 transition-all hover:translate-x-1 duration-300" href="#">Privacy Policy</a>
+<a class="text-slate-500 hover:text-blue-200 transition-all hover:translate-x-1 duration-300" href="#">Terms of Service</a>
+<a class="text-slate-500 hover:text-blue-200 transition-all hover:translate-x-1 duration-300" href="#">Curriculum</a>
+<a class="text-slate-500 hover:text-blue-200 transition-all hover:translate-x-1 duration-300" href="#">Faculty</a>
+<a class="text-slate-500 hover:text-blue-200 transition-all hover:translate-x-1 duration-300" href="#">Research</a>
+<a class="text-slate-500 hover:text-blue-200 transition-all hover:translate-x-1 duration-300" href="#">Contact</a>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Tajawal:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-dim": "#5bf083",
+                    "surface-bright": "#1f2b49",
+                    "on-primary-fixed-variant": "#002a62",
+                    "secondary": "#6bff8f",
+                    "on-primary": "#002c66",
+                    "background": "#060e20",
+                    "surface-dim": "#060e20",
+                    "surface-variant": "#192540",
+                    "outline-variant": "#40485d",
+                    "surface": "#060e20",
+                    "on-tertiary-fixed": "#3f2e00",
+                    "tertiary-container": "#fdc425",
+                    "secondary-fixed-dim": "#5bf083",
+                    "secondary-container": "#006e2f",
+                    "on-primary-container": "#002150",
+                    "error-dim": "#d7383b",
+                    "on-tertiary": "#624900",
+                    "inverse-primary": "#005bc4",
+                    "tertiary-fixed-dim": "#edb60f",
+                    "error": "#ff716c",
+                    "primary-dim": "#699cff",
+                    "surface-tint": "#85adff",
+                    "on-secondary-fixed": "#004a1d",
+                    "surface-container-low": "#091328",
+                    "on-surface": "#dee5ff",
+                    "tertiary": "#ffd574",
+                    "on-primary-fixed": "#000000",
+                    "secondary-fixed": "#6bff8f",
+                    "on-tertiary-container": "#574000",
+                    "primary": "#85adff",
+                    "surface-container": "#0f1930",
+                    "on-secondary-fixed-variant": "#006a2d",
+                    "outline": "#6d758c",
+                    "on-error": "#490006",
+                    "on-secondary-container": "#e4ffe2",
+                    "on-surface-variant": "#a3aac4",
+                    "inverse-surface": "#faf8ff",
+                    "primary-fixed": "#6e9fff",
+                    "tertiary-dim": "#edb60f",
+                    "error-container": "#9f0519",
+                    "on-error-container": "#ffa8a3",
+                    "surface-container-high": "#141f38",
+                    "primary-fixed-dim": "#5391ff",
+                    "surface-container-highest": "#192540",
+                    "on-secondary": "#005f28",
+                    "tertiary-fixed": "#fdc425",
+                    "on-tertiary-fixed-variant": "#624900",
+                    "inverse-on-surface": "#4d556b",
+                    "primary-container": "#6e9fff",
+                    "surface-container-lowest": "#000000",
+                    "on-background": "#dee5ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.375rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Tajawal", "Plus Jakarta Sans"],
+                    "body": ["Tajawal", "Plus Jakarta Sans"],
+                    "label": ["Tajawal", "Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Tajawal', 'Plus Jakarta Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-panel {
+            background: rgba(20, 31, 56, 0.7);
+            backdrop-filter: blur(24px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary/30">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#141f38]/70 backdrop-blur-xl shadow-[0_40px_40px_rgba(222,229,255,0.06)]">
+<div class="flex justify-between items-center px-8 py-4 max-w-screen-2xl mx-auto">
+<div class="text-xl font-bold tracking-tighter text-blue-400">CNE Family</div>
+<div class="hidden md:flex items-center space-x-reverse space-x-8">
+<a class="text-slate-400 font-['Plus_Jakarta_Sans'] text-sm font-medium tracking-tight hover:text-blue-300 transition-colors duration-200" href="#">Home</a>
+<a class="text-blue-400 border-b-2 border-blue-400 pb-1 font-['Plus_Jakarta_Sans'] text-sm font-medium tracking-tight" href="#">Courses</a>
+<a class="text-slate-400 font-['Plus_Jakarta_Sans'] text-sm font-medium tracking-tight hover:text-blue-300 transition-colors duration-200" href="#">Study Plan</a>
+<a class="text-slate-400 font-['Plus_Jakarta_Sans'] text-sm font-medium tracking-tight hover:text-blue-300 transition-colors duration-200" href="#">Tools</a>
+<a class="text-slate-400 font-['Plus_Jakarta_Sans'] text-sm font-medium tracking-tight hover:text-blue-300 transition-colors duration-200" href="#">Events</a>
+<a class="text-slate-400 font-['Plus_Jakarta_Sans'] text-sm font-medium tracking-tight hover:text-blue-300 transition-colors duration-200" href="#">About Us</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">search</button>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-md font-bold text-sm Active:scale-95 duration-150">Join Us</button>
+</div>
+</div>
+</nav>
+<main class="pt-24 pb-16 px-6 lg:px-12 max-w-screen-2xl mx-auto">
+<!-- Hero Section -->
+<header class="mb-12">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="max-w-2xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-high text-primary-dim text-xs font-bold tracking-widest uppercase mb-4">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                        مركز التعلم الهندسي
+                    </div>
+<h1 class="text-5xl font-extrabold text-on-surface tracking-tight mb-4">اكتشف مسارك الهندسي</h1>
+<p class="text-on-surface-variant text-lg max-w-xl">تصفح مجموعة من الدورات المتخصصة والمصممة بعناية لتناسب احتياجات المهندسين في مختلف التخصصات.</p>
+</div>
+</div>
+</header>
+<!-- Search and Filters -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+<div class="lg:col-span-8">
+<div class="relative group">
+<span class="absolute inset-y-0 right-4 flex items-center text-on-surface-variant group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined">search</span>
+</span>
+<input class="w-full bg-surface-container-low border-none rounded-md py-4 pr-12 pl-4 text-on-surface placeholder:text-outline focus:ring-1 focus:ring-primary transition-all" placeholder="ابحث عن دورة تدريبية أو تقنية محددة..." type="text"/>
+<div class="absolute bottom-0 left-0 right-0 h-[2px] bg-primary scale-x-0 group-focus-within:scale-x-100 transition-transform origin-center"></div>
+</div>
+</div>
+<div class="lg:col-span-4 flex gap-2">
+<button class="flex-1 bg-surface-container-high text-on-surface px-4 py-2 rounded-md flex items-center justify-center gap-2 hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined">tune</span>
+                    التصنيف
+                </button>
+<button class="flex-1 bg-surface-container-high text-on-surface px-4 py-2 rounded-md flex items-center justify-center gap-2 hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined">sort</span>
+                    الترتيب
+                </button>
+</div>
+</section>
+<!-- Category Tabs -->
+<div class="flex flex-wrap gap-4 mb-8 overflow-x-auto pb-2 no-scrollbar">
+<button class="bg-primary text-on-primary px-6 py-2 rounded-full text-sm font-bold whitespace-nowrap">الكل</button>
+<button class="bg-surface-container-high text-on-surface-variant hover:text-on-surface px-6 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-colors">هندسة الحاسوب</button>
+<button class="bg-surface-container-high text-on-surface-variant hover:text-on-surface px-6 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-colors">هندسة الاتصالات</button>
+<button class="bg-surface-container-high text-on-surface-variant hover:text-on-surface px-6 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-colors">الهندسة الطبية</button>
+<button class="bg-surface-container-high text-on-surface-variant hover:text-on-surface px-6 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-colors">الذكاء الاصطناعي</button>
+</div>
+<!-- Courses Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+<!-- Card 1: Computers -->
+<article class="group bg-surface-container-high rounded-md overflow-hidden hover:translate-y-[-4px] transition-all duration-300 shadow-lg">
+<div class="h-48 overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Modern high-performance computer hardware components on a glowing workbench with blue and teal ambient lighting and futuristic aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDc3jWgoF0_A7cYWoHkiibi6cp3fRp_P2-sKMrJl9nhncG6NJayGFjFBNVWlcnq2UisJOw8zUyZspd2xzopRgg3hA4NJ1QKEiO9g5Antm5td-Kwo0vcEika1lNblfAAkoQUJjCC7gIm_EmeCvUCDyGrwLAUVD_UxaJL9f4xEEmaeAljVgdVHWvRFYU-KYEdP5TxYRORNDNk8DfVyYBJz_T1dy80a_UNdLzBV30TskKZNLLtR66qo2jFw9VnDtYGPQjSmuJRmHjWdlZq"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-high to-transparent"></div>
+<span class="absolute top-4 right-4 bg-primary text-on-primary text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">Computers</span>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-2 text-primary-dim text-xs font-bold mb-3">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span>40 ساعة معتمدة</span>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-3 group-hover:text-primary transition-colors">بنية الحاسوب المتقدمة</h3>
+<p class="text-on-surface-variant text-sm mb-6 leading-relaxed">دراسة متعمقة في تصميم المعالجات والذاكرة وأنظمة النقل لرفع كفاءة الأداء البرمجي.</p>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center border border-outline-variant/20">
+<span class="material-symbols-outlined text-sm">person</span>
+</div>
+<span class="text-xs text-on-surface-variant font-medium">د. أحمد علي</span>
+</div>
+<button class="text-primary hover:text-primary-dim font-bold text-sm flex items-center gap-1 transition-colors">
+                            التفاصيل
+                            <span class="material-symbols-outlined text-base">arrow_back</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 2: Communications -->
+<article class="group bg-surface-container-high rounded-md overflow-hidden hover:translate-y-[-4px] transition-all duration-300 shadow-lg">
+<div class="h-48 overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Telecommunication tower against a deep twilight sky with signal waves visualized as glowing geometric patterns in the air" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2Td2FePW_rYgjz5MbWeqgh0ZTlmD3rcxcm6zdQ2lZfugybPli15wxGPDPpd3j54-sAG62yy1r3yu5nDz7BwKH9d0BZBM3n-jUHOdxNElB66mCb5UR22UM5XX9PzG5hYCxUuS3pkWef2mugEBIlJR-MAd8YdWCPYEb1DZINNO_sTHFHcCOq6eGCiRnoXAUh6srfPYpYcneWNVqH-p2rskRX49xduiFGzpfieVcxEuwzGCtcdyXley7kSgmHin0f1wNGjojRt1xfrpG"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-high to-transparent"></div>
+<span class="absolute top-4 right-4 bg-secondary text-on-secondary text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">Communications</span>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-2 text-secondary-dim text-xs font-bold mb-3">
+<span class="material-symbols-outlined text-sm">signal_cellular_alt</span>
+<span>32 ساعة معتمدة</span>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-3 group-hover:text-secondary transition-colors">تقنيات شبكات 5G والاتصالات</h3>
+<p class="text-on-surface-variant text-sm mb-6 leading-relaxed">استكشاف أحدث معايير الاتصالات اللاسلكية وتصميم الشبكات ذات الكفاءة العالية.</p>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center border border-outline-variant/20">
+<span class="material-symbols-outlined text-sm">person</span>
+</div>
+<span class="text-xs text-on-surface-variant font-medium">م. سارة محمود</span>
+</div>
+<button class="text-secondary hover:text-secondary-dim font-bold text-sm flex items-center gap-1 transition-colors">
+                            التفاصيل
+                            <span class="material-symbols-outlined text-base">arrow_back</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 3: Medical -->
+<article class="group bg-surface-container-high rounded-md overflow-hidden hover:translate-y-[-4px] transition-all duration-300 shadow-lg">
+<div class="h-48 overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="High-tech medical imaging screen showing detailed 3D anatomy with glowing surgical precision overlays in a dark clinical setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjz_LaSQf_WlIV0lda0z47ukg0qLFceXEUw8GoUECAVWTJgUnqme_N5hDwSKuFGBN_DV1wSJt4tcbaLJB72n4crmRKRLYKcKyoA5gxj25_p3JB6CrD6HksdQSb4tfJeyUPpO7OhPmKvxKTCSnT7k5QH2_gckyuL1WzXgnHtBJV3PW1MgR8tzElJ_UEUcqqlc08B-OaPacWd63taUbVqthcaF8mLvUx79GpQM7Ysusf4e8KHGRmyIL-JxeYYgaDv3lX5jKkMfHGPls9"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-high to-transparent"></div>
+<span class="absolute top-4 right-4 bg-tertiary text-on-tertiary text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">Medical</span>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-2 text-tertiary-dim text-xs font-bold mb-3">
+<span class="material-symbols-outlined text-sm">monitoring</span>
+<span>45 ساعة معتمدة</span>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-3 group-hover:text-tertiary transition-colors">تطوير الأجهزة الطبية الرقمية</h3>
+<p class="text-on-surface-variant text-sm mb-6 leading-relaxed">تعلم كيفية تصميم ومعايرة الأجهزة الطبية المتقدمة ومعالجة الإشارات الحيوية.</p>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center border border-outline-variant/20">
+<span class="material-symbols-outlined text-sm">person</span>
+</div>
+<span class="text-xs text-on-surface-variant font-medium">د. ليلى حسن</span>
+</div>
+<button class="text-tertiary hover:text-tertiary-dim font-bold text-sm flex items-center gap-1 transition-colors">
+                            التفاصيل
+                            <span class="material-symbols-outlined text-base">arrow_back</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 4: AI (Extra) -->
+<article class="group bg-surface-container-high rounded-md overflow-hidden hover:translate-y-[-4px] transition-all duration-300 shadow-lg">
+<div class="h-48 overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Abstract neural network visualization with flowing golden energy particles on a deep midnight blue background with cinematic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVbxQ_AQNCr979xghtUR7eCDctB83Wbx_tkLHdHj8orb5AzVNAGwRiNWfYV-mNtE0UQ9ID-eqg8kAdal6puIxsAPUI4YQLXOJDuZ_dEcjqcRRYK6EbSNOPPQWwImhkOcMEK5HOZhavJqrZBlXHEkHeBQ8ExLneRdY6ePsK8s0e-mxJmbKFj3Wg6HUk_S-Qx2N7lrGFfXMQF6tPlGnDhXuN3d6qO2sMXVvnnF-Ec3X6rCAATTW_G1xRymys03Cr4nZhfQkzAl4VVqLu"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-high to-transparent"></div>
+<span class="absolute top-4 right-4 bg-error text-on-error text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">AI</span>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-2 text-error-dim text-xs font-bold mb-3">
+<span class="material-symbols-outlined text-sm">psychology</span>
+<span>50 ساعة معتمدة</span>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-3 group-hover:text-error transition-colors">هندسة تعلم الآلة للأنظمة المدمجة</h3>
+<p class="text-on-surface-variant text-sm mb-6 leading-relaxed">دمج خوارزميات الذكاء الاصطناعي في الأجهزة والأنظمة المحدودة الموارد.</p>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center border border-outline-variant/20">
+<span class="material-symbols-outlined text-sm">person</span>
+</div>
+<span class="text-xs text-on-surface-variant font-medium">م. خالد يحيى</span>
+</div>
+<button class="text-error hover:text-error-dim font-bold text-sm flex items-center gap-1 transition-colors">
+                            التفاصيل
+                            <span class="material-symbols-outlined text-base">arrow_back</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 5: Software -->
+<article class="group bg-surface-container-high rounded-md overflow-hidden hover:translate-y-[-4px] transition-all duration-300 shadow-lg border border-transparent hover:border-primary/20">
+<div class="h-48 overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Abstract lines of code flowing vertically in vibrant neon blue and cyan over a dark background with bokeh lighting effects" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3kNj44qqG4-fj91iUD8SikFWKfQdAxWQbJwwMw891KnnyMXkHnEtB8aWipKB6VP2XAJwjj582z5CmAVVt6-dARJWjF2Bf_eB0GWhJM80aliS70WQHInTA-VYtvDB71Ycn4g6WQtx1NqeEKOvHbQCejrPX87T3Qep3enPH0BALKMwqj74ppSvha1mxlpOvshFAA6CMYN_ZTcfpGo7qDZy0epXTJg4Q2X7MopefT0imfpUZJsQI1kpU-mjWjGw5FkOzy3fZIQ0jifG8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-high to-transparent"></div>
+<span class="absolute top-4 right-4 bg-primary-fixed-dim text-on-primary-container text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">Software</span>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-2 text-primary-dim text-xs font-bold mb-3">
+<span class="material-symbols-outlined text-sm">terminal</span>
+<span>38 ساعة معتمدة</span>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-3 group-hover:text-primary transition-colors">أساسيات هندسة البرمجيات والنظم</h3>
+<p class="text-on-surface-variant text-sm mb-6 leading-relaxed">منهجيات بناء برمجيات قابلة للتطوير والصيانة باستخدام أنماط التصميم الحديثة.</p>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center border border-outline-variant/20">
+<span class="material-symbols-outlined text-sm">person</span>
+</div>
+<span class="text-xs text-on-surface-variant font-medium">م. نورا سعيد</span>
+</div>
+<button class="text-primary-fixed-dim hover:text-primary font-bold text-sm flex items-center gap-1 transition-colors">
+                            التفاصيل
+                            <span class="material-symbols-outlined text-base">arrow_back</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 6: Robotics -->
+<article class="group bg-surface-container-high rounded-md overflow-hidden hover:translate-y-[-4px] transition-all duration-300 shadow-lg border border-transparent hover:border-secondary/20">
+<div class="h-48 overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Industrial robotic arm working with high precision in a dark factory floor with sharp sparks and cool blue studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFPNO3talWvrdkyQtMwu8Xrym3KHi0dYJ9WZOIHwCGlrl0IVr_mz1cxLIrt8-WoEjYpnfpk0DkLQ4ADeIaQiWF6XFn-uyDknv4F8E6cQz9UWkJoccE9cpnAFShSzmvGAeQ4tPvZ3qOlpIRoKZ7_4akqpReX3mq0xg_r0h0d8o-AqZ-TkJB6KSv-RUXdj1xR9-uNj1Z-LwwkvAKIjdmKwLNcXrbqoqtlblvtFaVSvGMQ5pcCw5XVb1MieT7fn0vf0g35t4sSfghI60z"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-high to-transparent"></div>
+<span class="absolute top-4 right-4 bg-secondary-fixed text-on-secondary-fixed text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">Robotics</span>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-2 text-secondary-dim text-xs font-bold mb-3">
+<span class="material-symbols-outlined text-sm">precision_manufacturing</span>
+<span>42 ساعة معتمدة</span>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-3 group-hover:text-secondary transition-colors">مقدمة في الأنظمة الروبوتية والأتمتة</h3>
+<p class="text-on-surface-variant text-sm mb-6 leading-relaxed">فهم المحركات والمستشعرات والتحكم في الروبوتات وتطبيقاتها الصناعية.</p>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center border border-outline-variant/20">
+<span class="material-symbols-outlined text-sm">person</span>
+</div>
+<span class="text-xs text-on-surface-variant font-medium">د. يوسف علي</span>
+</div>
+<button class="text-secondary-fixed hover:text-secondary font-bold text-sm flex items-center gap-1 transition-colors">
+                            التفاصيل
+                            <span class="material-symbols-outlined text-base">arrow_back</span>
+</button>
+</div>
+</div>
+</article>
+</div>
+<!-- Pagination -->
+<div class="mt-16 flex justify-center items-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded bg-surface-container-high text-on-surface-variant hover:bg-primary hover:text-on-primary transition-all">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded bg-surface-container-lowest border border-outline-variant/30 text-on-surface hover:border-primary transition-all">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded bg-surface-container-lowest border border-outline-variant/30 text-on-surface hover:border-primary transition-all">3</button>
+<span class="text-outline mx-2">...</span>
+<button class="w-10 h-10 flex items-center justify-center rounded bg-surface-container-lowest border border-outline-variant/30 text-on-surface hover:border-primary transition-all">12</button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-[#000000] w-full border-t border-[#40485d]/20">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-16 w-full max-w-screen-2xl mx-auto gap-8">
+<div class="flex flex-col gap-4 text-center md:text-right">
+<div class="text-lg font-black text-blue-400">CNE Family</div>
+<p class="text-slate-500 font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-widest font-bold">© 2024 CNE Family Engineering Editorial. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-6 md:gap-12">
+<a class="text-slate-500 font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-widest font-bold hover:text-blue-200 transition-all hover:translate-x-1 duration-300" href="#">Privacy Policy</a>
+<a class="text-slate-500 font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-widest font-bold hover:text-blue-200 transition-all hover:translate-x-1 duration-300" href="#">Terms of Service</a>
+<a class="text-slate-500 font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-widest font-bold hover:text-blue-200 transition-all hover:translate-x-1 duration-300" href="#">Curriculum</a>
+<a class="text-slate-500 font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-widest font-bold hover:text-blue-200 transition-all hover:translate-x-1 duration-300" href="#">Faculty</a>
+<a class="text-slate-500 font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-widest font-bold hover:text-blue-200 transition-all hover:translate-x-1 duration-300" href="#">Research</a>
+<a class="text-slate-500 font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-widest font-bold hover:text-blue-200 transition-all hover:translate-x-1 duration-300" href="#">Contact</a>
+</div>
+</div>
+</footer>
+</body></html>
