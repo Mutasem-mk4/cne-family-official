@@ -683,7 +683,7 @@ async function renderActivities() {
         الأنشطة والفعاليات
       </div>
       <h1 class="section-title reveal">الأنشطة والفعاليات</h1>
-      <p class="section-subtitle reveal">مجتمع CNE النابض بالحياة.</p>
+      <p class="section-subtitle">ابقَ على اطلاع بآخر الفعاليات وورش العمل القادمة.</p>
     </div>
 
     <div class="container" style="padding-bottom:4rem">
@@ -888,12 +888,12 @@ function renderMajorSelection() {
       <div class="nb-card nb-blue reveal" onclick="setMajor('computer')" style="cursor:pointer; padding:3rem">
         <div style="font-size:4rem; margin-bottom:1.5rem">💻</div>
         <h3 style="font-size:2rem">هندسة الحاسوب</h3>
-        <p>تتبع مواد البرمجيات، الهاردوير، والأنظمة المضمنة.</p>
+        <p>تتبع مواد البرمجيات والعتاد (Hardware) والأنظمة المضمنة.</p>
       </div>
       <div class="nb-card nb-green reveal" onclick="setMajor('network')" style="cursor:pointer; padding:3rem">
         <div style="font-size:4rem; margin-bottom:1.5rem">🌐</div>
         <h3 style="font-size:2rem">هندسة الشبكات</h3>
-        <p>تتبع مواد الاتصالات، أمن الشبكات، والأنظمة السحابية.</p>
+        <p>تتبع مواد الاتصالات وأمن الشبكات والحوسبة السحابية.</p>
       </div>
     </div>
     ${renderFooter()}
@@ -911,7 +911,7 @@ function renderJoin() {
       <form class="form-card reveal" onsubmit="handleJoinSubmit(event)">
         <div class="form-group" style="margin-bottom:1.5rem">
           <label style="display:block; margin-bottom:0.5rem; font-weight:600">الاسم الكامل</label>
-          <input class="form-input" name="name" placeholder="أدخل اسمك الثلاثي" required style="width:100%">
+          <input class="form-input" name="name" placeholder="أدخل اسمك الكامل كما في الهوية الجامعية" required style="width:100%">
         </div>
         <div class="form-group" style="margin-bottom:2rem">
           <label style="display:block; margin-bottom:0.5rem; font-weight:600">الرقم الجامعي</label>

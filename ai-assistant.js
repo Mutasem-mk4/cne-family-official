@@ -26,7 +26,7 @@ class AIChatAssistant {
     
     // 3. Initial greeting after a small delay
     setTimeout(() => {
-      this.addMessage('bot', 'أهلاً بك! أنا مساعد CNE الذكي 🤖. يمكنني مساعدتك في الوصول إلى روابط المواد، الخطط الدراسية، أو تزويدك بتفاصيل عن تخصصك. كيف يمكنني خدمتك اليوم؟');
+      this.addMessage('bot', 'أهلاً بك! أنا مساعد CNE الذكي 🤖. يمكنني مساعدتك في الوصول إلى روابط المواد أو الخطط الدراسية أو تزويدك بتفاصيل عن تخصصك. كيف يمكنني خدمتك اليوم؟');
     }, 2000);
   }
 
@@ -53,8 +53,8 @@ class AIChatAssistant {
 
         <div class="ai-chat-input-container">
           <div class="ai-chat-suggestions" id="ai-suggestions">
-            <button class="ai-suggestion-btn">رابط كالكولاس 1</button>
-            <button class="ai-suggestion-btn">الخطة الشجرية</button>
+            <button class="ai-suggestion-btn">رابط التفاضل والتكامل 1</button>
+            <button class="ai-suggestion-btn">الخطة الدراسية</button>
             <button class="ai-suggestion-btn">حاسبة المعدل</button>
           </div>
           <div class="ai-chat-input-wrapper">
@@ -323,7 +323,7 @@ class AIChatAssistant {
     // 2. Show typing
     const typing = document.createElement('div');
     typing.className = 'message bot typing';
-    typing.innerText = 'جاري التفكير...';
+    typing.innerText = 'جاري معالجة طلبك...';
     document.getElementById('ai-chat-messages').appendChild(typing);
 
     // 3. Simple Search Logic
@@ -341,7 +341,7 @@ class AIChatAssistant {
 
     // Custom Triggers
     if (q.includes('أهلا') || q.includes('مرحبا') || q.includes('سلام')) {
-      return 'أهلاً بك يا زميلي! كيف يمكنني مساعدتك اليوم في رحلتك الدراسية؟';
+      return 'أهلاً بك في منصة CNE. كيف يمكنني مساعدتك اليوم في مسيرتك الأكاديمية؟';
     }
     
     if (q.includes('خطة') || q.includes('شجرية')) {
