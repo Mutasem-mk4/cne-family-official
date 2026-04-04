@@ -213,7 +213,7 @@ function initCounters() {
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.5 });
+  }, { threshold: 0.1 }); // Lower threshold for more reliable trigger on all devices
 
   counters.forEach(el => observer.observe(el));
 }
@@ -852,17 +852,7 @@ function initReveal() {
   }); 
 }
 
-function initCounters() {
-  document.querySelectorAll('.stat-number').forEach(el => {
-    const target = parseInt(el.dataset.count);
-    let count = 0;
-    const timer = setInterval(() => {
-      count += Math.ceil(target / 20);
-      if (count >= target) { el.textContent = target + (el.dataset.suffix || ''); clearInterval(timer); }
-      else el.textContent = count + (el.dataset.suffix || '');
-    }, 50);
-  });
-}
+
 
 // ── BOOTSTRAP ────────────────────────────────────────────────────
 initTheme();
