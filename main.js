@@ -130,10 +130,22 @@ window.addEventListener('popstate', () => render(window.location.pathname));
 
 document.addEventListener('click', e => {
   const link = e.target.closest('[data-link]');
+  // Also close mobile menu if a link is clicked
+  if (link && document.querySelector('.nav-links').classList.contains('offcanvas-active')) {
+    document.querySelector('.nav-links').classList.remove('offcanvas-active');
+  }
+  
   if (!link) return;
   e.preventDefault();
   navigate(link.getAttribute('href'));
 });
+
+const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+if (mobileMenuBtn) {
+  mobileMenuBtn.addEventListener('click', () => {
+    document.querySelector('.nav-links').classList.toggle('offcanvas-active');
+  });
+}
 
 // ── THEME & NAV ──────────────────────────────────────────────────
 function initTheme() {

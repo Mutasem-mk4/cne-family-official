@@ -1,0 +1,22 @@
+{
+  "cne-logo.png": {
+    "has_color": true,
+    "aspect": 2.8135048231511255
+  },
+  "cne-icon.png": {
+    "has_color": true,
+    "aspect": 0.865533230293663
+  },
+  "cne-logo-dark.png": {
+    "has_color": false,
+    "aspect": 1.0018518518518518
+  },
+  "cne-icon-black.png": {
+    "has_color": false,
+    "aspect": 1.0
+  },
+  "cne-social.png": {
+    "has_color": false,
+    "aspect": 6.780952380952381
+  }
+}
