@@ -296,8 +296,8 @@ async function renderHome() {
         </div>
         <div class="new-hero-content">
           <span class="new-hero-eyebrow">مستقبلك يبدأ من هنا</span>
-          <h1>CNE Family: المنصة المتكاملة لطلبة هندسة الحاسوب والشبكات</h1>
-          <p>اكتشف المصادر التعليمية، الخطط الدراسية، والمجتمع الهندسي الأكبر في مكان واحد.</p>
+          <h1>CNE Family: المنصة الأكاديمية المتكاملة لطلبة هندسة الحاسوب والشبكات</h1>
+          <p>اكتشف المصادر التعليمية والخطط الدراسية والمجتمع الهندسي الأكبر في مكان واحد.</p>
           <div class="new-hero-search">
             <div class="new-search-inner">
               <div class="new-search-icon-btn">
@@ -330,7 +330,7 @@ async function renderHome() {
       <div class="new-section-header reveal">
         <div>
           <h2>الأدوات الطلابية الذكية</h2>
-          <p>كل ما يلزمك لتسهيل مسيرتك الجامعية في متناول يدك</p>
+          <p>كل ما يلزمك لتيسير مسيرتك الجامعية في متناول يدك</p>
         </div>
         <div class="color-dots">
           <span style="background:var(--blue)"></span>
@@ -477,7 +477,7 @@ async function renderSubjects() {
     });
   }, 0);
 
-  const majorLabel = { computer: 'هندسة الحاسبات', network: 'هندسة الشبكات', medical: 'الهندسة الطبية', common: 'مواد مشتركة' };
+  const majorLabel = { computer: 'هندسة الحاسوب', network: 'هندسة الشبكات', medical: 'الهندسة الطبية', common: 'متطلبات عامة' };
   const majorIcons = { computer: 'computer', network: 'router', medical: 'medical_services', common: 'box' };
 
   const cards = allSubjects.map(s => `
@@ -493,10 +493,10 @@ async function renderSubjects() {
         </span>
         <h3>${s.name}</h3>
         <div class="academy-card-meta">
-          <span><span class="material-symbols-outlined" style="font-size:14px">play_circle</span> 12 درساً</span>
-          <span><span class="material-symbols-outlined" style="font-size:14px">schedule</span> 6 ساعات</span>
+          <span><span class="material-symbols-outlined" style="font-size:14px">menu_book</span> محتوى شامل</span>
+          <span><span class="material-symbols-outlined" style="font-size:14px">verified</span> مصادر معتمدة</span>
         </div>
-        <a href="${s.link || '#'}" target="_blank" class="academy-btn">ابدأ الدراسة الآن</a>
+        <a href="${s.link || '#'}" target="_blank" class="academy-btn">تصفح المصادر التعليمية</a>
       </div>
     </div>
   `).join('');
@@ -504,8 +504,8 @@ async function renderSubjects() {
   return `
     <section class="academy-hero reveal">
       <span class="new-hero-eyebrow">أكاديمية المهندسين الرقمية</span>
-      <h1 class="section-title">استكشف مصادر الهندسة الحديثة</h1>
-      <p class="section-subtitle" style="margin: 0 auto">مكتبة شاملة من الملخصات والملفات الأكاديمية لكل تخصصات القسم.</p>
+      <h1 class="section-title">استكشف مصادر المعرفة الهندسية</h1>
+      <p class="section-subtitle" style="margin: 0 auto">مكتبة شاملة من الملخصات والملفات الأكاديمية لدعم مسيرتك الدراسية.</p>
     </section>
 
     <div class="academy-search-wrap reveal">
@@ -538,7 +538,7 @@ async function renderAbout() {
     <div class="page-header reveal">
       <span class="new-hero-eyebrow">قصتنا تبدأ هنا</span>
       <h1 class="section-title">هندسة المستقبل بروح <span style="color:var(--blue)">العائلة الواحدة</span></h1>
-      <p class="section-subtitle" style="margin:0 auto">بدأنا كمبادرة طلابية بسيطة وتحولنا إلى أكبر تجمع تعليمي لدعم مهندسي الحاسبات والنظم.</p>
+      <p class="section-subtitle" style="margin:0 auto">بدأنا كمبادرة طلابية رائدة وتحولنا إلى أكبر مظلة أكاديمية لدعم طلبة هندسة الحاسوب والشبكات.</p>
     </div>
 
     <section class="new-section container reveal">
@@ -551,7 +551,7 @@ async function renderAbout() {
         <div class="col-12 col-md-6">
           <h2 style="font-weight:900; font-size:2.5rem; margin-bottom:1.5rem">كيف بدأت CNE Family؟</h2>
           <p style="font-size:1.1rem; line-height:1.8; color:var(--text-secondary)">
-            ولدت فكرة CNE Family من قلب التحديات التي يواجهها طلاب هندسة الحاسبات. كنا نرى الفجوة بين المناهج الأكاديمية وسوق العمل، وقررنا أن نكون الجسر الذي يربط بينهما.
+            ولدت فكرة CNE Family من قلب التحديات التي يواجهها طلاب الهندسة. كنا نلمس الفجوة بين المناهج الأكاديمية واحتياجات سوق العمل، وقررنا أن نكون الجسر الذي يربط بينهما لتأهيل جيل هندسي واعد.
           </p>
           <div style="display:flex; gap:1.5rem; margin-top:2rem">
             <div style="display:flex; align-items:center; gap:10px">
@@ -583,7 +583,7 @@ async function renderAbout() {
         </div>
         <div>
           <span class="about-stat-num" data-count="24" data-suffix="/7">0</span>
-          <span style="opacity:0.8; font-weight:700">دعم مستمر</span>
+          <span style="opacity:0.8; font-weight:700">دعم متواصل</span>
         </div>
       </div>
     </section>
@@ -753,7 +753,7 @@ function renderCalculator() {
   return `
     <div class="page-header">
       <h1 class="section-title reveal">حاسبة المعدل</h1>
-      <p class="section-subtitle reveal">احسب معدلك الفصلي بنظام الـ 4.0.</p>
+      <p class="section-subtitle reveal">احسب معدلك الفصلي بنظام 4.0 بدقة متناهية.</p>
     </div>
     <div class="container" style="padding-bottom:5rem">
       <div class="reveal">
@@ -830,8 +830,8 @@ async function renderTracker() {
   return `
     <div class="page-header reveal">
       <span class="new-hero-eyebrow">مسارك التعليمي</span>
-      <h1 class="section-title">خطتك الدراسية المثالية</h1>
-      <p class="section-subtitle" style="margin:0 auto">تتبع تقدمك في خطة ${major === 'computer' ? 'هندسة الحاسوب' : 'هندسة الشبكات'} (162 ساعة).</p>
+      <h1 class="section-title">مسارك التعليمي نحو التخرج</h1>
+      <p class="section-subtitle" style="margin:0 auto">تتبع إنجازك في متطلبات خطة ${major === 'computer' ? 'هندسة الحاسوب' : 'هندسة الشبكات'} (162 ساعة).</p>
       
       <div class="container" style="margin-top:4rem; max-width:800px">
         <div style="background:var(--surface); padding:2.5rem; border-radius:var(--radius-xl); box-shadow:var(--shadow-lg); border:1px solid var(--border)">
@@ -905,7 +905,7 @@ function renderJoin() {
   return `
     <div class="page-header">
       <h1 class="section-title reveal">انضم إلينا</h1>
-      <p class="section-subtitle reveal">كن جزءاً من عائلة CNE Family.</p>
+      <p class="section-subtitle reveal">كن جزءاً من مبادرتنا وساهم في خدمة زملائك.</p>
     </div>
     <div class="container" style="padding-bottom:5rem">
       <form class="form-card reveal" onsubmit="handleJoinSubmit(event)">
@@ -934,7 +934,7 @@ function renderLinks() {
         الروابط الهامة
       </div>
       <h1 class="section-title reveal">الروابط الهامة</h1>
-      <p class="section-subtitle reveal">أهم الروابط لمنصات الجامعة لمساعدتك في مسيرتك الأكاديمية.</p>
+      <p class="section-subtitle reveal">أهم الروابط لمنصات الجامعة الرسمية لدعم مسيرتك الأكاديمية.</p>
     </div>
 
     <div class="container" style="padding-bottom:10rem">
@@ -974,7 +974,7 @@ function renderFooter() {
           <p class="footer-tagline">بيتكم الأكاديمي والاجتماعي منذ عام 2011.</p>
         </div>
         <div class="col-12 col-md-6 col-lg-3">
-          <div class="footer-col-title">روابط أساسية</div>
+          <div class="footer-col-title">روابط سريعة</div>
           <div class="footer-links">
             <a href="/" data-link>الرئيسية</a>
             <a href="/subjects" data-link>المواد</a>
