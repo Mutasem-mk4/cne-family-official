@@ -718,7 +718,7 @@ function renderFooter() {
       <div class="footer-inner">
         <div>
           <div class="footer-brand-name" style="display:flex; align-items:center; gap:12px; margin-bottom:1rem">
-            <img src="/assets/logos/cne-icon.png" alt="CNE Logo" style="height:56px; border-radius:8px;">
+            <img src="/assets/logos/cne-icon.png" alt="CNE Logo" style="height:84px; border-radius:8px;">
           </div>
           <p class="footer-tagline">بيتك الأكاديمي منذ 2011.</p>
         </div>
