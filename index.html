@@ -3,78 +3,60 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="البيت الأكاديمي والاجتماعي لطلبة هندسة الحاسوب والشبكات في جامعة البلقاء التطبيقية" />
-    <title>CNE Family | مجتمع هندسة الحاسوب والشبكات</title>
-    <link rel="icon" href="assets/logos/cne-icon.png" type="image/png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap-grid.rtl.min.css">
-    <link rel="stylesheet" href="style.css?v=7.0" />
-    <link rel="stylesheet" href="wow-styles.css?v=7.0" />
-    <link rel="manifest" href="manifest.json" />
-    <meta name="theme-color" content="#3574C8" />
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
+    <meta
+      name="description"
+      content="منصة CNE Family لطلبة هندسة الحاسوب والشبكات: مواد، خطط دراسية، روابط رسمية، أدوات أكاديمية، وأنشطة."
+    />
+    <title>CNE Family | منصة هندسة الحاسوب والشبكات</title>
+    <link rel="icon" href="/assets/logos/cne-icon.png" type="image/png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#1f5eff" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Tajawal:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/wow-styles.css" />
   </head>
   <body>
-
-    <!-- NAVBAR -->
     <header id="navbar">
       <div class="nav-inner">
         <a href="/" class="nav-logo" data-link>
-          <img src="assets/logos/cne-icon.png" alt="CNE" class="logo-img" id="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <span class="logo-name hide-on-mobile">CNE <em>Family</em></span>
-          <div class="logo-fallback" style="display:none">
-            <div class="logo-squares">
-              <span style="background:#3574C8"></span>
-              <span style="background:#DD3B3F"></span>
-              <span style="background:#4CAF50"></span>
-              <span style="background:#F7C948"></span>
-            </div>
-            <span class="logo-name">CNE <em>Family</em></span>
-          </div>
+          <img src="/assets/logos/cne-icon.png" alt="CNE" class="logo-img" />
+          <span class="logo-name hide-on-mobile">CNE Family <em>BAU</em></span>
         </a>
 
-        <nav class="nav-links">
-          <a href="/about" data-link class="nav-link" id="nl-about">نبذة عنا</a>
-          <a href="/subjects" data-link class="nav-link" id="nl-subjects">المواد الدراسية</a>
-          <a href="/plans" data-link class="nav-link" id="nl-plans">الخطة الشجرية</a>
-          <a href="/tracker" data-link class="nav-link" id="nl-tracker">متتبع الخطة</a>
-          <a href="/links" data-link class="nav-link" id="nl-links">الروابط الهامة</a>
-          <a href="/activities" data-link class="nav-link" id="nl-activities">الأنشطة</a>
-          <a href="/calculator" data-link class="nav-link" id="nl-calculator">حاسبة المعدل</a>
+        <nav class="nav-links" id="nav-links">
+          <a href="/" data-link class="nav-link">الرئيسية</a>
+          <a href="/about" data-link class="nav-link">من نحن</a>
+          <a href="/subjects" data-link class="nav-link">المواد</a>
+          <a href="/plans" data-link class="nav-link">الخطط</a>
+          <a href="/tracker" data-link class="nav-link">المتتبع</a>
+          <a href="/activities" data-link class="nav-link">الأنشطة</a>
+          <a href="/calculator" data-link class="nav-link">حاسبة المعدل</a>
+          <a href="/links" data-link class="nav-link">الروابط</a>
         </nav>
 
         <div class="nav-actions">
-          <button id="theme-toggle" class="btn-icon" aria-label="Toggle Theme">
-            <svg class="sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-            <svg class="moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <button id="theme-toggle" class="btn-icon" aria-label="تبديل النمط">
+            <span class="material-symbols-outlined">contrast</span>
           </button>
-
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdD38YSdj9_m5Kiqc8h2oU6i1c22yeUtL2tqgSo-9Xagxrd0A/viewform?usp=header" target="_blank" rel="noopener" class="btn-join">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
-            انضم إلينا
-          </a>
-
-          <button id="mobile-menu-btn" class="btn-icon mobile-only" aria-label="Toggle Menu">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="3" y1="12" x2="21" y2="12"></line>
-              <line x1="3" y1="6" x2="21" y2="6"></line>
-              <line x1="3" y1="18" x2="21" y2="18"></line>
-            </svg>
+          <a href="/join" data-link class="btn-join">انضم إلينا</a>
+          <button id="mobile-menu-btn" class="btn-icon mobile-only" aria-label="فتح القائمة">
+            <span class="material-symbols-outlined">menu</span>
           </button>
         </div>
       </div>
     </header>
 
-    <!-- PAGE CONTENT -->
     <main id="page"></main>
 
-    <script type="module" src="main.js?v=7.0"></script>
-    <script src="ai-assistant.js?v=7.0"></script>
+    <script type="module" src="/main.js"></script>
   </body>
 </html>
