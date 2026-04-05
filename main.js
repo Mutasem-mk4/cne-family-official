@@ -217,9 +217,9 @@ async function renderHome() {
     <section class="home-hero reveal">
       <div class="home-hero-copy">
         <span class="eyebrow">CNE Family</span>
-        <h1>ماذا تريد أن تفعل الآن؟</h1>
+        <h1>ماذا تريد الآن؟</h1>
         <p>
-          اختر المهمة مباشرة: ابحث عن مادة، راجع الخطة، تابع تقدمك، أو افتح الروابط الرسمية.
+          اختر المهمة مباشرة ثم ادخل إلى الصفحة المناسبة بدون خطوات إضافية.
         </p>
         <div class="home-hero-actions">
           <a href="/subjects" data-link class="btn btn-primary">ابحث عن مادة</a>
@@ -229,34 +229,33 @@ async function renderHome() {
       <div class="home-hero-summary">
         <div class="home-summary-card home-summary-card-primary">
           <span class="home-summary-label">البدء السريع</span>
-          <strong>${state.subjects.length} مادة وروابط أساسية في مكان واحد</strong>
-          <p>إذا كنت جديداً ابدأ من الخطط، وإذا كنت تبحث عن مادة فابدأ من صفحة المواد.</p>
+          <strong>${state.subjects.length} مادة في مكتبة واحدة</strong>
+          <p>إذا كنت جديداً ابدأ من الخطط. إذا كنت تبحث عن مادة ابدأ من صفحة المواد.</p>
         </div>
       </div>
     </section>
 
     <section class="home-actions reveal">
-      ${renderHomeActionCard("ابحث عن مادة", "ادخل إلى ملفات المادة مباشرة.", "/subjects", "folder_open")}
-      ${renderHomeActionCard("راجع الخطة", "افتح الخطة الشجرية المناسبة.", "/plans", "schema")}
-      ${renderHomeActionCard("تابع تقدمك", "اعرف ما أنجزته وما تبقى عليك.", "/tracker", "target")}
-      ${renderHomeActionCard("افتح الروابط", "البوابة وجريدة المواد والتعلم الإلكتروني.", "/links", "link")}
+      ${renderHomeActionCard("المواد الدراسية", "ابحث عن المادة وافتح ملفاتها مباشرة.", "/subjects", "folder_open")}
+      ${renderHomeActionCard("الخطط الشجرية", "راجع الخطة المناسبة لكل مسار.", "/plans", "schema")}
+      ${renderHomeActionCard("متتبع الخطة", "اعرف ما أنجزته وما تبقى عليك.", "/tracker", "target")}
+      ${renderHomeActionCard("الروابط الأساسية", "ادخل إلى البوابة وجريدة المواد والتعلم الإلكتروني.", "/links", "link")}
     </section>
 
-    <section class="home-resources reveal">
-      <div class="home-section-head">
-        <div>
-          <span class="eyebrow">الأكثر استخداماً</span>
-          <h2>أهم الروابط الرسمية</h2>
-        </div>
+    <section class="home-quick-links reveal">
+      <div class="home-quick-links-head">
+        <span class="eyebrow">روابط سريعة</span>
         <a href="/links" data-link class="text-cta">كل الروابط</a>
       </div>
-      <div class="home-resources-grid">
+      <div class="home-quick-links-grid">
         ${QUICK_LINKS.map(
           (link) => `
-            <a href="${link.href}" target="_blank" rel="noopener" class="resource-card">
+            <a href="${link.href}" target="_blank" rel="noopener" class="home-quick-link-card">
               <span class="material-symbols-outlined">${link.icon}</span>
-              <h3>${link.title}</h3>
-              <p>${link.desc}</p>
+              <div>
+                <strong>${link.title}</strong>
+                <p>${link.desc}</p>
+              </div>
             </a>
           `,
         ).join("")}

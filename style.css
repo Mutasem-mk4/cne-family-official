@@ -266,7 +266,7 @@ p {
 
 .home-hero,
 .home-actions,
-.home-resources {
+.home-quick-links {
   margin-top: 22px;
 }
 
@@ -293,7 +293,7 @@ p {
 }
 
 .home-hero,
-.home-resources {
+.home-quick-links {
   background: var(--surface-2);
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
@@ -395,12 +395,12 @@ p {
   font-size: 1.12rem;
 }
 
-.home-resources {
+.home-quick-links {
   padding: 28px;
   border-radius: 34px;
 }
 
-.home-section-head {
+.home-quick-links-head {
   display: flex;
   justify-content: space-between;
   gap: 16px;
@@ -408,14 +408,38 @@ p {
   margin-bottom: 18px;
 }
 
-.home-section-head h2 {
-  font-size: clamp(1.8rem, 3vw, 3rem);
-}
-
-.home-resources-grid {
+.home-quick-links-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
+}
+
+.home-quick-link-card {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 18px;
+  border-radius: 22px;
+  background: var(--surface-3);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-soft);
+}
+
+.home-quick-link-card .material-symbols-outlined {
+  font-size: 1.8rem;
+  color: var(--blue);
+}
+
+.home-quick-link-card strong {
+  display: block;
+  margin-bottom: 4px;
+  font-family: var(--font-display);
+  font-size: 1rem;
+}
+
+.home-quick-link-card p {
+  color: var(--muted);
+  line-height: 1.6;
 }
 
 .hero {
@@ -1342,7 +1366,7 @@ p {
 
   .simple-grid,
   .home-actions,
-  .home-resources-grid,
+  .home-quick-links-grid,
   .about-scene,
   .majors-grid,
   .activity-feed,
@@ -1472,7 +1496,7 @@ p {
     font-size: 1rem;
   }
 
-  .home-resources {
+  .home-quick-links {
     padding: 22px;
   }
 
@@ -1485,7 +1509,7 @@ p {
   .home-summary-stats,
   .tool-ribbon,
   .home-actions,
-  .home-resources-grid,
+  .home-quick-links-grid,
   .simple-grid,
   .majors-grid,
   .activity-feed,
@@ -1499,7 +1523,7 @@ p {
   }
 
   .top-banner,
-  .home-section-head,
+  .home-quick-links-head,
   .section-head {
     flex-direction: column;
     align-items: flex-start;
