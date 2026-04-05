@@ -335,7 +335,7 @@ p {
 
 .home-hero-summary {
   display: grid;
-  gap: 14px;
+  align-content: start;
 }
 
 .home-summary-card {
@@ -366,33 +366,9 @@ p {
   font-size: 1.9rem;
 }
 
-.home-summary-stats {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.home-stat-box {
-  padding: 16px;
-  border-radius: 22px;
-  background: var(--surface-3);
-  border: 1px solid var(--line);
-}
-
-.home-stat-box strong {
-  display: block;
-  margin-bottom: 4px;
-  font-family: var(--font-display);
-  font-size: 1.8rem;
-}
-
-.home-stat-box span {
-  color: var(--muted);
-}
-
 .home-actions {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
 }
 
@@ -407,7 +383,7 @@ p {
   box-shadow: var(--shadow-soft);
 }
 
-.home-action-card .material-symbols-outlined {
+.home-action-icon {
   font-size: 2rem;
   color: var(--blue);
 }
@@ -416,7 +392,7 @@ p {
   display: block;
   margin-bottom: 6px;
   font-family: var(--font-display);
-  font-size: 1.05rem;
+  font-size: 1.12rem;
 }
 
 .home-resources {
@@ -787,6 +763,45 @@ p {
   display: grid;
   grid-template-columns: 320px 1fr;
   gap: 18px;
+}
+
+.subject-page,
+.links-page {
+  display: grid;
+  gap: 18px;
+}
+
+.subject-toolbar,
+.links-intro {
+  padding: 24px 28px;
+  border-radius: 28px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-soft);
+}
+
+.subject-toolbar {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 18px;
+  align-items: end;
+}
+
+.subject-toolbar-copy,
+.subject-toolbar-controls,
+.links-intro {
+  display: grid;
+  gap: 10px;
+}
+
+.subject-toolbar-copy h2,
+.links-intro h2 {
+  font-size: clamp(1.8rem, 3vw, 3rem);
+}
+
+.subject-toolbar-copy p,
+.links-intro p {
+  color: var(--muted);
 }
 
 .subject-sidebar {
@@ -1316,6 +1331,7 @@ p {
   .hero,
   .home-hero,
   .subject-shell,
+  .subject-toolbar,
   .calculator-layout,
   .tracker-overview,
   .join-layout,
@@ -1377,6 +1393,8 @@ p {
   .home-hero,
   .top-banner,
   .section,
+  .subject-toolbar,
+  .links-intro,
   .subject-sidebar,
   .subject-year,
   .about-panel,
@@ -1400,6 +1418,7 @@ p {
   .home-hero-copy h1,
   .top-banner h1,
   .section-head h2,
+  .subject-toolbar-copy h2,
   .subject-sidebar h2,
   .calculator-intro h2,
   .join-copy h2 {
@@ -1428,10 +1447,6 @@ p {
     width: 100%;
   }
 
-  .home-summary-stats {
-    display: none;
-  }
-
   .home-summary-card {
     padding: 18px;
   }
@@ -1453,8 +1468,17 @@ p {
     line-height: 1.55;
   }
 
+  .home-action-card strong {
+    font-size: 1rem;
+  }
+
   .home-resources {
     padding: 22px;
+  }
+
+  .subject-toolbar {
+    grid-template-columns: 1fr;
+    align-items: stretch;
   }
 
   .hero-stats,

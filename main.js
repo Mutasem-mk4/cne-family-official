@@ -213,58 +213,40 @@ function renderTopBanner({ label, title, copy, actionHref, actionLabel }) {
 }
 
 async function renderHome() {
-  const stats = [
-    { value: state.subjects.length, label: "مادة وأرشيف" },
-    { value: 3, label: "روابط أساسية" },
-    { value: 162, label: "ساعة في الخطة" },
-  ];
-
   return layout(`
     <section class="home-hero reveal">
       <div class="home-hero-copy">
         <span class="eyebrow">CNE Family</span>
-        <h1>الوصول إلى ما تحتاجه بسرعة.</h1>
+        <h1>ماذا تريد أن تفعل الآن؟</h1>
         <p>
-          المواد، الخطط، المتتبع، وأهم الروابط الرسمية ضمن ترتيب واضح ومباشر.
+          اختر المهمة مباشرة: ابحث عن مادة، راجع الخطة، تابع تقدمك، أو افتح الروابط الرسمية.
         </p>
         <div class="home-hero-actions">
-          <a href="/subjects" data-link class="btn btn-primary">المواد الدراسية</a>
-          <a href="/tracker" data-link class="btn btn-secondary">متتبع الخطة</a>
+          <a href="/subjects" data-link class="btn btn-primary">ابحث عن مادة</a>
+          <a href="/tracker" data-link class="btn btn-secondary">تابع تقدمك</a>
         </div>
       </div>
       <div class="home-hero-summary">
         <div class="home-summary-card home-summary-card-primary">
-          <span class="home-summary-label">الوصول السريع</span>
-          <strong>ابدأ من الصفحة المناسبة</strong>
-          <p>للبحث افتح المواد، وللمتابعة افتح المتتبع.</p>
-        </div>
-        <div class="home-summary-stats">
-          ${stats
-            .map(
-              (item) => `
-                <article class="home-stat-box">
-                  <strong>${item.value}</strong>
-                  <span>${item.label}</span>
-                </article>
-              `,
-            )
-            .join("")}
+          <span class="home-summary-label">البدء السريع</span>
+          <strong>${state.subjects.length} مادة وروابط أساسية في مكان واحد</strong>
+          <p>إذا كنت جديداً ابدأ من الخطط، وإذا كنت تبحث عن مادة فابدأ من صفحة المواد.</p>
         </div>
       </div>
-    </section>    
+    </section>
 
     <section class="home-actions reveal">
-      ${renderHomeActionCard("المواد الدراسية", "ابحث عن المادة وافتح ملفاتها مباشرة.", "/subjects", "folder_open")}
-      ${renderHomeActionCard("متتبع الخطة", "تابع الساعات والمواد التي أنجزتها.", "/tracker", "target")}
-      ${renderHomeActionCard("الخطط الشجرية", "راجع الخطة المناسبة لكل مسار.", "/plans", "schema")}
-      ${renderHomeActionCard("الروابط الأساسية", "افتح أهم المنصات الرسمية بسرعة.", "/links", "link")}
+      ${renderHomeActionCard("ابحث عن مادة", "ادخل إلى ملفات المادة مباشرة.", "/subjects", "folder_open")}
+      ${renderHomeActionCard("راجع الخطة", "افتح الخطة الشجرية المناسبة.", "/plans", "schema")}
+      ${renderHomeActionCard("تابع تقدمك", "اعرف ما أنجزته وما تبقى عليك.", "/tracker", "target")}
+      ${renderHomeActionCard("افتح الروابط", "البوابة وجريدة المواد والتعلم الإلكتروني.", "/links", "link")}
     </section>
 
     <section class="home-resources reveal">
       <div class="home-section-head">
         <div>
-          <span class="eyebrow">الروابط الأساسية</span>
-          <h2>أهم المنصات التي يستخدمها الطالب</h2>
+          <span class="eyebrow">الأكثر استخداماً</span>
+          <h2>أهم الروابط الرسمية</h2>
         </div>
         <a href="/links" data-link class="text-cta">كل الروابط</a>
       </div>
@@ -298,7 +280,7 @@ function renderRibbonCard(title, desc, href, icon, tone) {
 function renderHomeActionCard(title, desc, href, icon) {
   return `
     <a href="${href}" data-link class="home-action-card">
-      <span class="material-symbols-outlined">${icon}</span>
+      <span class="material-symbols-outlined home-action-icon">${icon}</span>
       <div>
         <strong>${title}</strong>
         <p>${desc}</p>
@@ -318,22 +300,26 @@ async function renderSubjects() {
 
   return layout(
     `
-      <section class="subject-shell reveal">
-        <aside class="subject-sidebar">
-          <span class="eyebrow">مستكشف المواد</span>
-          <h2>ابحث عن المادة بسرعة.</h2>
-          <p>صف المواد حسب التخصص، ثم افتح المادة المطلوبة مباشرة.</p>
-          <div class="subject-search">
-            <label for="subject-search">ابحث باسم المادة</label>
-            <input id="subject-search" type="search" placeholder="مثال: شبكات الحاسوب 1" />
+      <section class="subject-page reveal">
+        <section class="subject-toolbar">
+          <div class="subject-toolbar-copy">
+            <span class="eyebrow">المواد الدراسية</span>
+            <h2>ابحث عن المادة ثم افتحها مباشرة</h2>
+            <p>اكتب اسم المادة أو اختر التخصص لتقليل النتائج بسرعة.</p>
           </div>
-          <div class="filter-stack">
-            <button class="filter-chip is-active" data-major-filter="all">الكل ${counts.all}</button>
-            <button class="filter-chip" data-major-filter="common">مشترك ${counts.common}</button>
-            <button class="filter-chip" data-major-filter="computer">حاسوب ${counts.computer}</button>
-            <button class="filter-chip" data-major-filter="network">شبكات ${counts.network}</button>
+          <div class="subject-toolbar-controls">
+            <div class="subject-search">
+              <label for="subject-search">ابحث باسم المادة</label>
+              <input id="subject-search" type="search" placeholder="مثال: شبكات الحاسوب 1" />
+            </div>
+            <div class="filter-stack">
+              <button class="filter-chip is-active" data-major-filter="all">الكل ${counts.all}</button>
+              <button class="filter-chip" data-major-filter="common">مشترك ${counts.common}</button>
+              <button class="filter-chip" data-major-filter="computer">حاسوب ${counts.computer}</button>
+              <button class="filter-chip" data-major-filter="network">شبكات ${counts.network}</button>
+            </div>
           </div>
-        </aside>
+        </section>
 
         <div class="subject-content">
           ${Object.keys(years)
@@ -346,8 +332,8 @@ async function renderSubjects() {
     {
       heroBanner: {
         label: "المواد الدراسية",
-        title: "مكتبة مواد أوضح وأسهل في الاستخدام",
-        copy: "تنظيم حسب السنة والتخصص مع بحث مباشر وفلاتر بسيطة.",
+        title: "الوصول السريع إلى مواد القسم",
+        copy: "ابحث عن المادة المطلوبة ثم افتح ملفاتها مباشرة.",
       },
     },
   );
@@ -379,8 +365,7 @@ function renderSubjectCard(subject) {
         <span class="subject-year-mini">سنة ${subject.year}</span>
       </div>
       <h3>${subject.name}</h3>
-      <p>الدخول إلى ملفات المادة بشكل مباشر.</p>
-      <a href="${subject.link}" target="_blank" rel="noopener" class="btn btn-secondary btn-small">فتح المادة</a>
+      <a href="${subject.link}" target="_blank" rel="noopener" class="btn btn-secondary btn-small">افتح المادة</a>
     </article>
   `;
 }
@@ -568,7 +553,7 @@ async function renderTracker() {
         <section class="tracker-toolbar">
           <div class="tracker-toolbar-copy">
             <h3>اختر التخصص</h3>
-            <p>غيّر المسار لعرض الخطة المناسبة، ثم حدد المواد التي أنجزتها.</p>
+            <p>اختر المسار أولاً، ثم علّم المواد التي أنجزتها.</p>
           </div>
           <div class="major-switches">
             <button class="major-switch ${state.major === "computer" ? "is-current" : ""}" data-major-switch="computer">هندسة الحاسوب</button>
@@ -604,8 +589,8 @@ async function renderTracker() {
     {
       heroBanner: {
         label: "متتبع الخطة",
-        title: "تابع تقدمك في الخطة الدراسية",
-        copy: "متابعة الساعات والمواد بشكل أوضح وأسهل.",
+        title: "اعرف ما أنجزته وما تبقى عليك",
+        copy: "اختر التخصص ثم علّم المواد المنجزة لمتابعة تقدمك.",
       },
     },
   );
@@ -626,24 +611,32 @@ function renderTrackerCourse(course, completed) {
 function renderLinks() {
   return layout(
     `
-      <section class="links-board reveal">
+      <section class="links-page reveal">
+        <section class="links-intro">
+          <span class="eyebrow">الروابط الأساسية</span>
+          <h2>اختر المنصة التي تريد فتحها</h2>
+          <p>روابط مباشرة إلى أهم المنصات الرسمية التي يحتاجها الطالب يومياً.</p>
+        </section>
+
+        <section class="links-board">
         ${QUICK_LINKS.map(
           (link) => `
             <a href="${link.href}" target="_blank" rel="noopener" class="resource-card tone-${link.tone}">
               <span class="material-symbols-outlined">${link.icon}</span>
               <h3>${link.title}</h3>
               <p>${link.desc}</p>
-              <span class="text-cta">افتح المنصة</span>
+              <span class="text-cta">افتح الرابط</span>
             </a>
           `,
         ).join("")}
+        </section>
       </section>
     `,
     {
       heroBanner: {
         label: "الروابط الأساسية",
-        title: "الروابط الأساسية للطالب",
-        copy: "وصول مباشر إلى أهم المنصات الرسمية.",
+        title: "وصول مباشر إلى أهم المنصات الرسمية",
+        copy: "البوابة الطلابية، جريدة المواد، والتعلم الإلكتروني في صفحة واحدة.",
       },
     },
   );
