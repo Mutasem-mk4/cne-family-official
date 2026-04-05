@@ -1374,6 +1374,7 @@ p {
   }
 
   .hero,
+  .home-hero,
   .top-banner,
   .section,
   .subject-sidebar,
@@ -1391,6 +1392,10 @@ p {
     border-radius: 28px;
   }
 
+  #page {
+    padding: 16px 0 72px;
+  }
+
   .hero h1,
   .home-hero-copy h1,
   .top-banner h1,
@@ -1399,6 +1404,57 @@ p {
   .calculator-intro h2,
   .join-copy h2 {
     font-size: clamp(2rem, 10vw, 3.4rem);
+  }
+
+  .home-hero {
+    gap: 16px;
+  }
+
+  .home-hero-copy {
+    gap: 14px;
+  }
+
+  .home-hero-copy p {
+    font-size: 0.97rem;
+    line-height: 1.65;
+  }
+
+  .home-hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .home-hero-actions .btn {
+    width: 100%;
+  }
+
+  .home-summary-stats {
+    display: none;
+  }
+
+  .home-summary-card {
+    padding: 18px;
+  }
+
+  .home-summary-card strong {
+    font-size: 1.3rem;
+  }
+
+  .home-actions {
+    gap: 10px;
+  }
+
+  .home-action-card {
+    padding: 18px;
+  }
+
+  .home-action-card p {
+    font-size: 0.94rem;
+    line-height: 1.55;
+  }
+
+  .home-resources {
+    padding: 22px;
   }
 
   .hero-stats,

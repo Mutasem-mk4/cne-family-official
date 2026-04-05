@@ -223,21 +223,20 @@ async function renderHome() {
     <section class="home-hero reveal">
       <div class="home-hero-copy">
         <span class="eyebrow">CNE Family</span>
-        <h1>واجهة مختصرة تساعدك على الوصول لما تحتاجه بسرعة.</h1>
+        <h1>الوصول إلى ما تحتاجه بسرعة.</h1>
         <p>
-          هذه الصفحة تجمع أهم ما يحتاجه الطالب: المواد، الخطط، المتتبع،
-          وأهم الروابط الرسمية ضمن ترتيب أبسط وأسهل في الاستخدام.
+          المواد، الخطط، المتتبع، وأهم الروابط الرسمية ضمن ترتيب واضح ومباشر.
         </p>
         <div class="home-hero-actions">
           <a href="/subjects" data-link class="btn btn-primary">المواد الدراسية</a>
-          <a href="/plans" data-link class="btn btn-secondary">الخطط الشجرية</a>
+          <a href="/tracker" data-link class="btn btn-secondary">متتبع الخطة</a>
         </div>
       </div>
       <div class="home-hero-summary">
         <div class="home-summary-card home-summary-card-primary">
           <span class="home-summary-label">الوصول السريع</span>
-          <strong>ابدأ من الصفحة المناسبة مباشرة</strong>
-          <p>إذا كنت تريد مراجعة المواد فابدأ من المواد، وإذا كنت تريد معرفة تقدمك فابدأ من المتتبع.</p>
+          <strong>ابدأ من الصفحة المناسبة</strong>
+          <p>للبحث افتح المواد، وللمتابعة افتح المتتبع.</p>
         </div>
         <div class="home-summary-stats">
           ${stats
@@ -258,7 +257,7 @@ async function renderHome() {
       ${renderHomeActionCard("المواد الدراسية", "ابحث عن المادة وافتح ملفاتها مباشرة.", "/subjects", "folder_open")}
       ${renderHomeActionCard("متتبع الخطة", "تابع الساعات والمواد التي أنجزتها.", "/tracker", "target")}
       ${renderHomeActionCard("الخطط الشجرية", "راجع الخطة المناسبة لكل مسار.", "/plans", "schema")}
-      ${renderHomeActionCard("حاسبة المعدل", "احسب المعدل بسرعة وبدون خطوات زائدة.", "/calculator", "calculate")}
+      ${renderHomeActionCard("الروابط الأساسية", "افتح أهم المنصات الرسمية بسرعة.", "/links", "link")}
     </section>
 
     <section class="home-resources reveal">
