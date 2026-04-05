@@ -22,21 +22,21 @@ const ROUTES = {
 const QUICK_LINKS = [
   {
     title: "البوابة الطلابية",
-    desc: "التسجيل، العلامات، والساعات المعتمدة من المنصة الرسمية.",
+    desc: "الدخول إلى التسجيل والعلامات والساعات المعتمدة.",
     href: "http://appserver.fet.edu.jo:7778/reg_new/index.jsp",
     icon: "school",
     tone: "blue",
   },
   {
     title: "التعلم الإلكتروني",
-    desc: "الوصول إلى Moodle والواجبات والامتحانات والمحاضرات.",
+    desc: "الوصول إلى Moodle والواجبات والامتحانات.",
     href: "https://s3.ebalqa.courses/fet/login/index.php",
     icon: "laptop_chromebook",
     tone: "green",
   },
   {
     title: "جريدة المواد",
-    desc: "استعراض الشعب المطروحة وأوقات المحاضرات بسرعة.",
+    desc: "عرض الشعب المطروحة وأوقات المحاضرات.",
     href: "http://appserver.fet.edu.jo:7778/courses/index.jsp",
     icon: "library_books",
     tone: "orange",
@@ -46,13 +46,13 @@ const QUICK_LINKS = [
 const MAJORS = {
   computer: {
     label: "هندسة الحاسوب",
-    accent: "أنظمة، برمجيات، وبنية حاسوب",
+    accent: "مسار البرمجة والأنظمة",
     image: "/computer-plan.webp",
     tone: "blue",
   },
   network: {
     label: "هندسة الشبكات",
-    accent: "شبكات، أمن سيبراني، واتصالات",
+    accent: "مسار الشبكات والأمن",
     image: "/networking-plan.webp",
     tone: "green",
   },
@@ -223,10 +223,10 @@ async function renderHome() {
     <section class="hero reveal">
       <div class="hero-main">
         <div class="eyebrow">منصة CNE Family</div>
-        <h1>كل ما تحتاجه كطالب في مكان واحد وبشكل أبسط.</h1>
+        <h1>كل ما تحتاجه كطالب في مكان واحد.</h1>
         <p>
-          المواد، الخطط، المتتبع، والروابط الرسمية بدون ازدحام بصري أو تفاصيل غير مفيدة.
-          الهدف هو الوصول السريع إلى ما تحتاجه فعلاً.
+          المواد، الخطط، المتتبع، والروابط الرسمية ضمن واجهة أبسط وأوضح.
+          الهدف هو الوصول السريع إلى ما تحتاجه دون تشتيت.
         </p>
         <div class="hero-actions">
           <a href="/subjects" data-link class="btn btn-primary">استكشف المواد</a>
@@ -237,8 +237,8 @@ async function renderHome() {
       <div class="hero-side">
         <div class="hero-panel hero-panel-primary">
           <span class="hero-kicker">ابدأ بسرعة</span>
-          <strong>افتح الصفحة المناسبة مباشرة</strong>
-          <p>المواد للبحث، الخطط للمراجعة، والمتتبع لمتابعة الساعات بدون تشتيت.</p>
+          <strong>اختر ما تحتاجه مباشرة</strong>
+          <p>المواد للبحث، الخطط للمراجعة، والمتتبع لمتابعة التقدم.</p>
         </div>
         <div class="hero-stats">
           ${stats
@@ -256,17 +256,17 @@ async function renderHome() {
     </section>
 
     <section class="tool-ribbon reveal">
-      ${renderRibbonCard("المواد", "ابحث عن المادة وافتح أرشيفها مباشرة", "/subjects", "folder_open", "blue")}
+      ${renderRibbonCard("المواد", "ابحث عن المادة وافتح ملفاتها مباشرة", "/subjects", "folder_open", "blue")}
       ${renderRibbonCard("الخطط", "راجع الخطة الشجرية لكل مسار", "/plans", "schema", "orange")}
-      ${renderRibbonCard("المتتبع", "اعرف ما أنجزته وما تبقى عليك", "/tracker", "target", "green")}
-      ${renderRibbonCard("الروابط", "البوابة وجريدة المواد والتعلم الإلكتروني", "/links", "link", "red")}
+      ${renderRibbonCard("المتتبع", "تابع ما أنجزته وما تبقى عليك", "/tracker", "target", "green")}
+      ${renderRibbonCard("الروابط", "الوصول السريع إلى المنصات الأساسية", "/links", "link", "red")}
     </section>
 
     <section class="section reveal">
       <div class="section-head">
         <div>
           <span class="eyebrow">الأكثر استخداماً</span>
-          <h2>اختصارات مباشرة للمهام اليومية</h2>
+          <h2>روابط سريعة للمهام اليومية</h2>
         </div>
         <a href="/links" data-link class="text-cta">كل الروابط</a>
       </div>
@@ -311,8 +311,8 @@ async function renderSubjects() {
       <section class="subject-shell reveal">
         <aside class="subject-sidebar">
           <span class="eyebrow">مستكشف المواد</span>
-          <h2>ابحث، صفّ، وادخل إلى المادة مباشرة.</h2>
-          <p>واجهة أقرب إلى مكتبة موارد حقيقية، وليس مجرد قائمة مكررة من البطاقات.</p>
+          <h2>ابحث عن المادة بسرعة.</h2>
+          <p>صف المواد حسب التخصص، ثم افتح المادة المطلوبة مباشرة.</p>
           <div class="subject-search">
             <label for="subject-search">ابحث باسم المادة</label>
             <input id="subject-search" type="search" placeholder="مثال: شبكات الحاسوب 1" />
@@ -336,8 +336,8 @@ async function renderSubjects() {
     {
       heroBanner: {
         label: "المواد الدراسية",
-        title: "مكتبة مواد أوضح وأسرع في الاستخدام",
-        copy: "تنظيم حسب السنة والتخصص مع فلاتر ذكية ومسافة بصرية أفضل بين العناصر.",
+        title: "مكتبة مواد أوضح وأسهل في الاستخدام",
+        copy: "تنظيم حسب السنة والتخصص مع بحث مباشر وفلاتر بسيطة.",
       },
     },
   );
@@ -369,7 +369,7 @@ function renderSubjectCard(subject) {
         <span class="subject-year-mini">سنة ${subject.year}</span>
       </div>
       <h3>${subject.name}</h3>
-      <p>وصول مباشر إلى أرشيف المادة والملفات المساندة.</p>
+      <p>الدخول إلى ملفات المادة بشكل مباشر.</p>
       <a href="${subject.link}" target="_blank" rel="noopener" class="btn btn-secondary btn-small">فتح المادة</a>
     </article>
   `;
@@ -381,31 +381,31 @@ async function renderAbout() {
       <section class="about-scene reveal">
         <article class="about-panel about-panel-wide">
           <span class="eyebrow">من نحن</span>
-          <h2>CNE Family ليست مجرد صفحة، بل واجهة مجتمع أكاديمي.</h2>
+          <h2>CNE Family مساحة أكاديمية لخدمة الطلبة.</h2>
           <p>
-            الفكرة هي بناء مساحة رقمية محترمة بصرياً ومفيدة عملياً لطلبة هندسة الحاسوب والشبكات،
-            بحيث تكون نقطة الوصول الأولى للمواد، الخطط، والأدوات.
+            الهدف هو توفير مكان واضح وعملي يجمع المواد والخطط والأدوات الأساسية
+            لطلبة هندسة الحاسوب والشبكات.
           </p>
         </article>
         <article class="about-panel">
           <h3>الرسالة</h3>
-          <p>تقليل الفوضى ورفع وضوح المحتوى الأكاديمي.</p>
+          <p>تقديم محتوى أكاديمي واضح وسهل الوصول.</p>
         </article>
         <article class="about-panel">
           <h3>الرؤية</h3>
-          <p>منصة عربية جامعية تبدو احترافية وتعمل بسرعة.</p>
+          <p>منصة طلابية موثوقة وسريعة وسهلة الاستخدام.</p>
         </article>
         <article class="about-panel">
           <h3>القيمة</h3>
-          <p>تنظيم أفضل، وقت أقل ضائع، وتجربة تليق بالمحتوى.</p>
+          <p>تنظيم أفضل ووقت أقل ضائع على الطالب.</p>
         </article>
       </section>
     `,
     {
       heroBanner: {
         label: "عن CNE Family",
-        title: "هوية أوضح للمجتمع الأكاديمي داخل القسم",
-        copy: "صفحة مختصرة ومباشرة تشرح الدور الحقيقي للمنصة بدون حشو.",
+        title: "تعريف مختصر بالمنصة ودورها",
+        copy: "صفحة مباشرة تشرح الفكرة بدون تفاصيل زائدة.",
       },
     },
   );
@@ -423,7 +423,7 @@ function renderPlans() {
                 <div class="plan-showcase-copy">
                   <span class="eyebrow eyebrow-ghost">${major.label}</span>
                   <h2>${major.accent}</h2>
-                  <p>عرض أكبر وأوضح للخطة الشجرية مع إمكانية التكبير داخل الصفحة.</p>
+                  <p>عرض واضح للخطة الشجرية مع إمكانية التكبير.</p>
                   <button class="btn btn-primary" data-lightbox="${major.image}">تكبير الخطة</button>
                 </div>
                 <img src="${major.image}" alt="${major.label}" class="plan-showcase-image" />
@@ -436,8 +436,8 @@ function renderPlans() {
     {
       heroBanner: {
         label: "الخطط الدراسية",
-        title: "خطة شجرية تعرض نفسها بشكل محترم",
-        copy: "التركيز هنا على القراءة السهلة والتكبير السريع بدل وضع الصور داخل بطاقات ضعيفة.",
+        title: "الخطط الشجرية لكل مسار",
+        copy: "عرض أوضح وأسهل للقراءة مع تكبير مباشر.",
       },
     },
   );
@@ -453,8 +453,8 @@ async function renderActivities() {
     {
       heroBanner: {
         label: "الأنشطة",
-        title: "فعاليات المجتمع داخل عرض أكثر تحرراً وحيوية",
-        copy: "الأنشطة هنا تأخذ مساحة تحريرية أفضل مع تسلسل بصري أخف من التصميم السابق.",
+        title: "أنشطة وفعاليات المجتمع الطلابي",
+        copy: "عرض أبسط للفعاليات مع تركيز على العنوان والمحتوى.",
       },
     },
   );
@@ -484,8 +484,8 @@ function renderCalculator() {
       <section class="calculator-layout reveal">
         <article class="calculator-intro">
           <span class="eyebrow">GPA Tool</span>
-          <h2>حاسبة نظيفة وسريعة بدون تشويش بصري.</h2>
-          <p>أضف المواد، الساعات، والدرجة ثم احسب المعدل الفصلي بشكل مباشر.</p>
+          <h2>حاسبة معدل بسيطة وواضحة.</h2>
+          <p>أضف المواد والساعات والدرجة ثم احسب المعدل مباشرة.</p>
           <div class="calculator-result-box">
             <span>المعدل الحالي</span>
             <strong id="gpa-value">0.00</strong>
@@ -506,8 +506,8 @@ function renderCalculator() {
     {
       heroBanner: {
         label: "حاسبة المعدل",
-        title: "أداة عملية بتصميم مضغوط وواضح",
-        copy: "الهدف هنا أداة تستخدم فعلاً، لا واجهة مليئة بالعناصر غير المفيدة.",
+        title: "أداة سريعة لحساب المعدل",
+        copy: "واجهة بسيطة تركز على الحساب فقط.",
       },
     },
   );
@@ -524,30 +524,61 @@ async function renderTracker() {
   const years = groupBy(visibleCourses, "year");
   const totalHours = 162;
   const percent = Math.round((doneHours / totalHours) * 100);
+  const remainingHours = Math.max(totalHours - doneHours, 0);
+  const doneCourses = visibleCourses.filter((course) => completed.has(course.id)).length;
+  const totalCourses = visibleCourses.length;
+  const currentMajorLabel = state.major === "computer" ? "هندسة الحاسوب" : "هندسة الشبكات";
 
   return layout(
     `
       <section class="tracker-dashboard reveal">
-        <aside class="tracker-rail">
-          <span class="eyebrow">التقدم الأكاديمي</span>
-          <h2>${percent}%</h2>
-          <p>${doneHours} من ${totalHours} ساعة منجزة حتى الآن.</p>
-          <div class="tracker-progress"><span style="width:${percent}%"></span></div>
+        <section class="tracker-overview">
+          <div class="tracker-overview-main">
+            <span class="eyebrow">التقدم الأكاديمي</span>
+            <h2>${percent}%</h2>
+            <p>أكملت ${doneHours} ساعة من أصل ${totalHours} ساعة في مسار ${currentMajorLabel}.</p>
+            <div class="tracker-progress"><span style="width:${percent}%"></span></div>
+          </div>
+          <div class="tracker-overview-stats">
+            <article class="tracker-stat-card">
+              <strong>${doneHours}</strong>
+              <span>ساعات منجزة</span>
+            </article>
+            <article class="tracker-stat-card">
+              <strong>${remainingHours}</strong>
+              <span>ساعات متبقية</span>
+            </article>
+            <article class="tracker-stat-card">
+              <strong>${doneCourses}/${totalCourses}</strong>
+              <span>مواد مكتملة</span>
+            </article>
+          </div>
+        </section>
+
+        <section class="tracker-toolbar">
+          <div class="tracker-toolbar-copy">
+            <h3>اختر التخصص</h3>
+            <p>غيّر المسار لعرض الخطة المناسبة، ثم علّم المواد التي أنجزتها.</p>
+          </div>
           <div class="major-switches">
             <button class="major-switch ${state.major === "computer" ? "is-current" : ""}" data-major-switch="computer">هندسة الحاسوب</button>
             <button class="major-switch ${state.major === "network" ? "is-current" : ""}" data-major-switch="network">هندسة الشبكات</button>
           </div>
-        </aside>
+        </section>
 
-        <div class="tracker-board">
+        <div class="tracker-years">
           ${Object.keys(years)
             .sort((a, b) => Number(a) - Number(b))
             .map((year) => {
               const courses = years[year];
+              const completedInYear = courses.filter((course) => completed.has(course.id)).length;
               return `
-                <section class="tracker-column">
-                  <div class="tracker-column-head">
-                    <span>السنة ${year}</span>
+                <section class="tracker-year-section">
+                  <div class="tracker-year-head">
+                    <div>
+                      <span class="tracker-year-title">السنة ${year}</span>
+                      <p>${completedInYear} من ${courses.length} مواد مكتملة</p>
+                    </div>
                     <strong>${courses.length} مادة</strong>
                   </div>
                   <div class="tracker-course-list">
@@ -563,8 +594,8 @@ async function renderTracker() {
     {
       heroBanner: {
         label: "متتبع الخطة",
-        title: "لوحة تقدم أفضل من القوائم الثقيلة",
-        copy: "متابعة الساعات والمواد ضمن لوحة واضحة تفصل السنوات والمسار بشكل أفضل.",
+        title: "تابع تقدمك في الخطة الدراسية",
+        copy: "متابعة الساعات والمواد بشكل أوضح وأسهل.",
       },
     },
   );
@@ -574,7 +605,7 @@ function renderTrackerCourse(course, completed) {
   return `
     <label class="tracker-course ${completed.has(course.id) ? "is-done" : ""}">
       <input type="checkbox" data-course-toggle="${course.id}" ${completed.has(course.id) ? "checked" : ""} />
-      <div>
+      <div class="tracker-course-copy">
         <strong>${course.name}</strong>
         <small>${course.credits} ساعة${course.pre?.length ? ` • سابق: ${course.pre.join(", ")}` : ""}</small>
       </div>
@@ -601,8 +632,8 @@ function renderLinks() {
     {
       heroBanner: {
         label: "الروابط المهمة",
-        title: "نقاط الدخول الرسمية في واجهة أنظف",
-        copy: "بدل بطاقات متشابهة وضعيفة، كل رابط يأخذ مساحة أوضح ووزناً بصرياً مناسباً.",
+        title: "الروابط الأساسية للطالب",
+        copy: "وصول مباشر إلى أهم المنصات الرسمية.",
       },
     },
   );
@@ -614,8 +645,8 @@ function renderJoin() {
       <section class="join-layout reveal">
         <article class="join-copy">
           <span class="eyebrow">انضم إلى CNE Family</span>
-          <h2>نموذج أبسط وأكثر احتراماً للمستخدم.</h2>
-          <p>إذا كنت تريد المشاركة أو التواصل مع الفريق، اترك بياناتك وسنعود إليك.</p>
+          <h2>اترك بياناتك وسنتواصل معك.</h2>
+          <p>إذا كنت تريد المشاركة أو الاستفسار، أرسل بياناتك عبر النموذج.</p>
         </article>
         <form id="join-form" class="join-form">
           <label>
@@ -637,8 +668,8 @@ function renderJoin() {
     {
       heroBanner: {
         label: "الانضمام",
-        title: "دعوة مباشرة بدون زخرفة زائدة",
-        copy: "صفحة أخف وأكثر ثقة، مع تركيز كامل على الإجراء الأساسي.",
+        title: "نموذج بسيط للانضمام والتواصل",
+        copy: "التركيز هنا على الإجراء الأساسي فقط.",
       },
     },
   );
@@ -651,7 +682,7 @@ function renderFooter() {
         <img src="/assets/logos/cne-icon.png" alt="CNE logo" />
         <div>
           <strong>CNE Family</strong>
-          <p>منصة أكاديمية ومجتمعية لطلبة هندسة الحاسوب والشبكات في جامعة البلقاء التطبيقية.</p>
+          <p>منصة أكاديمية لطلبة هندسة الحاسوب والشبكات في جامعة البلقاء التطبيقية.</p>
         </div>
       </div>
       <div class="footer-nav">

@@ -1,5 +1,7 @@
 export function initWowEffects() {
-  document.querySelectorAll(".feature-card, .spotlight-card, .quick-link-card").forEach((card) => {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  document.querySelectorAll(".ribbon-card, .resource-card, .subject-card, .tracker-course").forEach((card) => {
     if (card.dataset.wowBound === "true") return;
     card.dataset.wowBound = "true";
 

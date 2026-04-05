@@ -877,16 +877,26 @@ p {
 
 .tracker-dashboard {
   display: grid;
-  grid-template-columns: 320px 1fr;
   gap: 18px;
 }
 
-.tracker-rail {
+.tracker-overview {
   display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
   gap: 16px;
+  padding: 24px;
+  border-radius: 28px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-soft);
 }
 
-.tracker-rail h2 {
+.tracker-overview-main {
+  display: grid;
+  gap: 14px;
+}
+
+.tracker-overview-main h2 {
   font-size: clamp(3rem, 8vw, 5rem);
 }
 
@@ -905,33 +915,93 @@ p {
   background: linear-gradient(135deg, var(--green), var(--blue));
 }
 
+.tracker-overview-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.tracker-stat-card {
+  padding: 18px;
+  border-radius: 22px;
+  background: var(--surface-3);
+  border: 1px solid var(--line);
+  display: grid;
+  gap: 6px;
+}
+
+.tracker-stat-card strong {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+}
+
+.tracker-stat-card span {
+  color: var(--muted);
+}
+
+.tracker-toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  padding: 20px 24px;
+  border-radius: 24px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+}
+
+.tracker-toolbar-copy {
+  display: grid;
+  gap: 6px;
+}
+
+.tracker-toolbar-copy p {
+  color: var(--muted);
+}
+
 .major-switches {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
 
-.tracker-board {
+.tracker-years {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
 }
 
-.tracker-column {
+.tracker-year-section {
   display: grid;
   gap: 14px;
+  padding: 22px;
+  border-radius: 24px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
 }
 
-.tracker-column-head {
+.tracker-year-head {
   display: flex;
   justify-content: space-between;
   gap: 10px;
   align-items: center;
 }
 
+.tracker-year-title {
+  display: block;
+  margin-bottom: 4px;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.tracker-year-head p {
+  color: var(--muted);
+}
+
 .tracker-course-list {
   display: grid;
   gap: 10px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .tracker-course {
@@ -955,6 +1025,11 @@ p {
 .tracker-course strong {
   display: block;
   margin-bottom: 4px;
+}
+
+.tracker-course-copy {
+  display: grid;
+  gap: 4px;
 }
 
 .tracker-course small {
@@ -1085,7 +1160,7 @@ p {
   .hero,
   .subject-shell,
   .calculator-layout,
-  .tracker-dashboard,
+  .tracker-overview,
   .join-layout,
   .plan-showcase,
   .site-footer {
@@ -1174,7 +1249,8 @@ p {
   .activity-wall,
   .subject-grid,
   .about-scene,
-  .tracker-board,
+  .tracker-overview-stats,
+  .tracker-course-list,
   .links-board {
     grid-template-columns: 1fr;
   }
@@ -1187,6 +1263,11 @@ p {
 
   .major-card {
     grid-template-columns: 1fr;
+  }
+
+  .tracker-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .grade-row {
