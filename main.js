@@ -220,31 +220,30 @@ async function renderHome() {
   ];
 
   return layout(`
-    <section class="hero reveal">
-      <div class="hero-main">
-        <div class="eyebrow">منصة CNE Family</div>
-        <h1>كل ما تحتاجه كطالب في مكان واحد.</h1>
+    <section class="home-hero reveal">
+      <div class="home-hero-copy">
+        <span class="eyebrow">CNE Family</span>
+        <h1>واجهة مختصرة تساعدك على الوصول لما تحتاجه بسرعة.</h1>
         <p>
-          المواد، الخطط، المتتبع، والروابط الرسمية ضمن واجهة أبسط وأوضح.
-          الهدف هو الوصول السريع إلى ما تحتاجه دون تشتيت.
+          هذه الصفحة تجمع أهم ما يحتاجه الطالب: المواد، الخطط، المتتبع،
+          وأهم الروابط الرسمية ضمن ترتيب أبسط وأسهل في الاستخدام.
         </p>
-        <div class="hero-actions">
-          <a href="/subjects" data-link class="btn btn-primary">استكشف المواد</a>
-          <a href="/tracker" data-link class="btn btn-secondary">افتح المتتبع</a>
+        <div class="home-hero-actions">
+          <a href="/subjects" data-link class="btn btn-primary">المواد الدراسية</a>
+          <a href="/plans" data-link class="btn btn-secondary">الخطط الشجرية</a>
         </div>
       </div>
-
-      <div class="hero-side">
-        <div class="hero-panel hero-panel-primary">
-          <span class="hero-kicker">ابدأ بسرعة</span>
-          <strong>اختر ما تحتاجه مباشرة</strong>
-          <p>المواد للبحث، الخطط للمراجعة، والمتتبع لمتابعة التقدم.</p>
+      <div class="home-hero-summary">
+        <div class="home-summary-card home-summary-card-primary">
+          <span class="home-summary-label">الوصول السريع</span>
+          <strong>ابدأ من الصفحة المناسبة مباشرة</strong>
+          <p>إذا كنت تريد مراجعة المواد فابدأ من المواد، وإذا كنت تريد معرفة تقدمك فابدأ من المتتبع.</p>
         </div>
-        <div class="hero-stats">
+        <div class="home-summary-stats">
           ${stats
             .map(
               (item) => `
-                <article class="stat-box">
+                <article class="home-stat-box">
                   <strong>${item.value}</strong>
                   <span>${item.label}</span>
                 </article>
@@ -253,27 +252,27 @@ async function renderHome() {
             .join("")}
         </div>
       </div>
+    </section>    
+
+    <section class="home-actions reveal">
+      ${renderHomeActionCard("المواد الدراسية", "ابحث عن المادة وافتح ملفاتها مباشرة.", "/subjects", "folder_open")}
+      ${renderHomeActionCard("متتبع الخطة", "تابع الساعات والمواد التي أنجزتها.", "/tracker", "target")}
+      ${renderHomeActionCard("الخطط الشجرية", "راجع الخطة المناسبة لكل مسار.", "/plans", "schema")}
+      ${renderHomeActionCard("حاسبة المعدل", "احسب المعدل بسرعة وبدون خطوات زائدة.", "/calculator", "calculate")}
     </section>
 
-    <section class="tool-ribbon reveal">
-      ${renderRibbonCard("المواد", "ابحث عن المادة وافتح ملفاتها مباشرة", "/subjects", "folder_open", "blue")}
-      ${renderRibbonCard("الخطط", "راجع الخطة الشجرية لكل مسار", "/plans", "schema", "orange")}
-      ${renderRibbonCard("المتتبع", "تابع ما أنجزته وما تبقى عليك", "/tracker", "target", "green")}
-      ${renderRibbonCard("الروابط", "الوصول السريع إلى المنصات الأساسية", "/links", "link", "red")}
-    </section>
-
-    <section class="section reveal">
-      <div class="section-head">
+    <section class="home-resources reveal">
+      <div class="home-section-head">
         <div>
-          <span class="eyebrow">الأكثر استخداماً</span>
-          <h2>روابط سريعة للمهام اليومية</h2>
+          <span class="eyebrow">الروابط الأساسية</span>
+          <h2>أهم المنصات التي يستخدمها الطالب</h2>
         </div>
         <a href="/links" data-link class="text-cta">كل الروابط</a>
       </div>
-      <div class="simple-grid">
+      <div class="home-resources-grid">
         ${QUICK_LINKS.map(
           (link) => `
-            <a href="${link.href}" target="_blank" rel="noopener" class="resource-card tone-${link.tone}">
+            <a href="${link.href}" target="_blank" rel="noopener" class="resource-card">
               <span class="material-symbols-outlined">${link.icon}</span>
               <h3>${link.title}</h3>
               <p>${link.desc}</p>
@@ -288,6 +287,18 @@ async function renderHome() {
 function renderRibbonCard(title, desc, href, icon, tone) {
   return `
     <a href="${href}" data-link class="ribbon-card tone-${tone}">
+      <span class="material-symbols-outlined">${icon}</span>
+      <div>
+        <strong>${title}</strong>
+        <p>${desc}</p>
+      </div>
+    </a>
+  `;
+}
+
+function renderHomeActionCard(title, desc, href, icon) {
+  return `
+    <a href="${href}" data-link class="home-action-card">
       <span class="material-symbols-outlined">${icon}</span>
       <div>
         <strong>${title}</strong>
