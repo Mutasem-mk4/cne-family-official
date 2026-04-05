@@ -83,7 +83,7 @@ async function bootstrap() {
   initTheme();
   bindGlobalEvents();
   await render(window.location.pathname);
-  registerServiceWorker();
+  unregisterLegacyServiceWorkers();
 }
 
 async function loadData() {
@@ -179,10 +179,11 @@ function closeMobileMenu() {
   document.getElementById("nav-links")?.classList.remove("is-open");
 }
 
-function registerServiceWorker() {
+function unregisterLegacyServiceWorkers() {
   if (!("serviceWorker" in navigator)) return;
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("/sw.js").catch(() => {});
+  window.addEventListener("load", async () => {
+    const registrations = await navigator.serviceWorker.getRegistrations();
+    await Promise.all(registrations.map((registration) => registration.unregister()));
   });
 }
 
