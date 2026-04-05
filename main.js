@@ -483,7 +483,7 @@ function renderCalculator() {
     `
       <section class="calculator-layout reveal">
         <article class="calculator-intro">
-          <span class="eyebrow">GPA Tool</span>
+          <span class="eyebrow">حاسبة المعدل</span>
           <h2>حاسبة معدل بسيطة وواضحة.</h2>
           <p>أضف المواد والساعات والدرجة ثم احسب المعدل مباشرة.</p>
           <div class="calculator-result-box">
@@ -536,7 +536,7 @@ async function renderTracker() {
           <div class="tracker-overview-main">
             <span class="eyebrow">التقدم الأكاديمي</span>
             <h2>${percent}%</h2>
-            <p>أكملت ${doneHours} ساعة من أصل ${totalHours} ساعة في مسار ${currentMajorLabel}.</p>
+            <p>أنجزت ${doneHours} ساعة من أصل ${totalHours} ساعة في مسار ${currentMajorLabel}.</p>
             <div class="tracker-progress"><span style="width:${percent}%"></span></div>
           </div>
           <div class="tracker-overview-stats">
@@ -558,7 +558,7 @@ async function renderTracker() {
         <section class="tracker-toolbar">
           <div class="tracker-toolbar-copy">
             <h3>اختر التخصص</h3>
-            <p>غيّر المسار لعرض الخطة المناسبة، ثم علّم المواد التي أنجزتها.</p>
+            <p>غيّر المسار لعرض الخطة المناسبة، ثم حدد المواد التي أنجزتها.</p>
           </div>
           <div class="major-switches">
             <button class="major-switch ${state.major === "computer" ? "is-current" : ""}" data-major-switch="computer">هندسة الحاسوب</button>
@@ -577,7 +577,7 @@ async function renderTracker() {
                   <div class="tracker-year-head">
                     <div>
                       <span class="tracker-year-title">السنة ${year}</span>
-                      <p>${completedInYear} من ${courses.length} مواد مكتملة</p>
+                      <p>أنجزت ${completedInYear} من ${courses.length} مواد</p>
                     </div>
                     <strong>${courses.length} مادة</strong>
                   </div>
@@ -631,7 +631,7 @@ function renderLinks() {
     `,
     {
       heroBanner: {
-        label: "الروابط المهمة",
+        label: "الروابط الأساسية",
         title: "الروابط الأساسية للطالب",
         copy: "وصول مباشر إلى أهم المنصات الرسمية.",
       },
@@ -644,9 +644,9 @@ function renderJoin() {
     `
       <section class="join-layout reveal">
         <article class="join-copy">
-          <span class="eyebrow">انضم إلى CNE Family</span>
+          <span class="eyebrow">الانضمام</span>
           <h2>اترك بياناتك وسنتواصل معك.</h2>
-          <p>إذا كنت تريد المشاركة أو الاستفسار، أرسل بياناتك عبر النموذج.</p>
+          <p>إذا كنت تريد المشاركة أو الاستفسار، أرسل بياناتك عبر هذا النموذج.</p>
         </article>
         <form id="join-form" class="join-form">
           <label>
@@ -667,7 +667,7 @@ function renderJoin() {
     `,
     {
       heroBanner: {
-        label: "الانضمام",
+        label: "التواصل والانضمام",
         title: "نموذج بسيط للانضمام والتواصل",
         copy: "التركيز هنا على الإجراء الأساسي فقط.",
       },
@@ -681,8 +681,8 @@ function renderFooter() {
       <div class="footer-brand">
         <img src="/assets/logos/cne-icon.png" alt="CNE logo" />
         <div>
-          <strong>CNE Family</strong>
-          <p>منصة أكاديمية لطلبة هندسة الحاسوب والشبكات في جامعة البلقاء التطبيقية.</p>
+          <strong> CNE Family </strong>
+          <p>منصة أكاديمية مخصصة لطلبة هندسة الحاسوب والشبكات في جامعة البلقاء التطبيقية.</p>
         </div>
       </div>
       <div class="footer-nav">
