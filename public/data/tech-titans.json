@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-09T23:25:46.281Z",
+  "generatedAt": "2026-04-09T23:26:38.491Z",
   "source": "telegram-webhook",
   "titans": [
     {
@@ -13,7 +13,7 @@
     },
     {
       "name": "Rand",
-      "title": "Hacker",
+      "title": "half hacker",
       "score": 981,
       "streak": "1 wins",
       "tone": "pink",
