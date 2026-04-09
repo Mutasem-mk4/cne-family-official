@@ -1,31 +1,40 @@
 {
-  "generatedAt": "2026-04-09T22:51:05.437Z",
+  "generatedAt": "2026-04-09T22:58:29.825Z",
   "source": "telegram-webhook",
   "titans": [
+    {
+      "name": "Test User",
+      "title": "Security Engineer",
+      "score": 999,
+      "streak": "1 wins",
+      "tone": "blue",
+      "image": "/assets/tech-titans/test-user.jpg",
+      "badge": "01"
+    },
+    {
+      "name": "Mutasem",
+      "title": "Security Engineer",
+      "score": 999,
+      "streak": "1 wins",
+      "tone": "green",
+      "image": "/assets/tech-titans/mutasem.jpg",
+      "badge": "02"
+    },
     {
       "name": "Titan Nova",
       "title": "AI Systems Lead",
       "score": 980,
       "streak": "12 wins",
-      "badge": "01",
+      "badge": "03",
       "tone": "blue",
       "image": "/assets/logos/cne-icon.png"
-    },
-    {
-      "name": "Mutasem",
-      "title": "Frontend Lead",
-      "score": 980,
-      "streak": "12 wins",
-      "tone": "blue",
-      "image": "/assets/logos/cne-icon.png",
-      "badge": "02"
     },
     {
       "name": "Cipher Queen",
       "title": "Cybersecurity Captain",
       "score": 955,
       "streak": "9 wins",
-      "badge": "03",
+      "badge": "04",
       "tone": "orange",
       "image": "/assets/logos/cne-icon.png"
     },
@@ -34,27 +43,9 @@
       "title": "Network Architect",
       "score": 930,
       "streak": "7 wins",
-      "badge": "04",
+      "badge": "05",
       "tone": "green",
       "image": "/assets/logos/cne-icon.png"
-    },
-    {
-      "name": "Kernel Pulse",
-      "title": "Systems Builder",
-      "score": 905,
-      "streak": "5 wins",
-      "badge": "05",
-      "tone": "sand",
-      "image": "/assets/logos/cne-icon.png"
-    },
-    {
-      "name": "Test User",
-      "title": "Security Engineer",
-      "score": 9,
-      "streak": "1 wins",
-      "tone": "red",
-      "image": "/assets/tech-titans/test-user.jpg",
-      "badge": "06"
     }
   ]
 }
