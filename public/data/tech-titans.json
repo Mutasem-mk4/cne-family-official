@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-09T23:37:33.551Z",
+  "generatedAt": "2026-04-09T23:37:51.773Z",
   "source": "telegram-webhook",
   "titans": [
     {
@@ -39,13 +39,13 @@
       "badge": "04"
     },
     {
-      "name": "Titan Nova",
-      "title": "AI Systems Lead",
-      "score": 980,
-      "streak": "12 wins",
-      "badge": "05",
+      "name": "him",
+      "title": "bro",
+      "score": 982,
+      "streak": "3 wins",
       "tone": "blue",
-      "image": "/assets/logos/cne-icon.png"
+      "image": "/assets/logos/cne-icon.png",
+      "badge": "05"
     }
   ]
 }
