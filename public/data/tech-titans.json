@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-09T22:55:27.070Z",
+  "generatedAt": "2026-04-09T22:56:38.375Z",
   "source": "telegram-webhook",
   "titans": [
     {
@@ -7,7 +7,7 @@
       "title": "Security Engineer",
       "score": 999,
       "streak": "1 wins",
-      "tone": "red",
+      "tone": "blue",
       "image": "/assets/tech-titans/test-user.jpg",
       "badge": "01"
     },
