@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-09T23:37:51.773Z",
+  "generatedAt": "2026-04-09T23:38:30.346Z",
   "source": "telegram-webhook",
   "titans": [
     {
@@ -21,22 +21,13 @@
       "badge": "02"
     },
     {
-      "name": "Fathe",
-      "title": "bro",
-      "score": 982,
-      "streak": "1 wins",
-      "tone": "blue",
-      "image": "/assets/tech-titans/fathe.jpg",
-      "badge": "03"
-    },
-    {
       "name": "tytan",
       "title": "bro",
       "score": 982,
       "streak": "1 wins",
       "tone": "blue",
       "image": "/assets/logos/cne-icon.png",
-      "badge": "04"
+      "badge": "03"
     },
     {
       "name": "him",
@@ -45,6 +36,15 @@
       "streak": "3 wins",
       "tone": "blue",
       "image": "/assets/logos/cne-icon.png",
+      "badge": "04"
+    },
+    {
+      "name": "Fathe",
+      "title": "bro",
+      "score": 200,
+      "streak": "1 wins",
+      "tone": "blue",
+      "image": "/assets/tech-titans/fathe.jpg",
       "badge": "05"
     }
   ]
