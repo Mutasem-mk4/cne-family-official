@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-09T22:51:05.437Z",
+  "generatedAt": "2026-04-09T22:53:59.996Z",
   "source": "telegram-webhook",
   "titans": [
     {
@@ -46,15 +46,6 @@
       "badge": "05",
       "tone": "sand",
       "image": "/assets/logos/cne-icon.png"
-    },
-    {
-      "name": "Test User",
-      "title": "Security Engineer",
-      "score": 9,
-      "streak": "1 wins",
-      "tone": "red",
-      "image": "/assets/tech-titans/test-user.jpg",
-      "badge": "06"
     }
   ]
 }
