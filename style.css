@@ -237,7 +237,8 @@ p {
 
 .btn-join {
   color: #fff;
-  background: var(--ink);
+  background: linear-gradient(135deg, var(--orange), #d95f17);
+  box-shadow: 0 14px 30px rgba(239, 134, 48, 0.28);
 }
 
 .mobile-only {
