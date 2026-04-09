@@ -1,16 +1,7 @@
 {
-  "generatedAt": "2026-04-09T23:39:29.122Z",
+  "generatedAt": "2026-04-09T23:39:58.470Z",
   "source": "telegram-webhook",
   "titans": [
-    {
-      "name": "Mutasem",
-      "title": "Security Engineer",
-      "score": 999,
-      "streak": "1 wins",
-      "tone": "blue",
-      "image": "/assets/tech-titans/mutasem.jpg",
-      "badge": "01"
-    },
     {
       "name": "Rand",
       "title": "half hacker",
@@ -18,7 +9,7 @@
       "streak": "1 wins",
       "tone": "pink",
       "image": "/assets/tech-titans/rand.jpg",
-      "badge": "02"
+      "badge": "01"
     },
     {
       "name": "tytan",
@@ -27,7 +18,7 @@
       "streak": "1 wins",
       "tone": "blue",
       "image": "/assets/logos/cne-icon.png",
-      "badge": "03"
+      "badge": "02"
     },
     {
       "name": "him",
@@ -36,7 +27,7 @@
       "streak": "3 wins",
       "tone": "blue",
       "image": "/assets/logos/cne-icon.png",
-      "badge": "04"
+      "badge": "03"
     },
     {
       "name": "lion",
@@ -45,6 +36,15 @@
       "streak": "1 wins",
       "tone": "blue",
       "image": "/assets/logos/cne-icon.png",
+      "badge": "04"
+    },
+    {
+      "name": "Mutasem",
+      "title": "Security Engineer",
+      "score": 100,
+      "streak": "1 wins",
+      "tone": "blue",
+      "image": "/assets/tech-titans/mutasem.jpg",
       "badge": "05"
     }
   ]
