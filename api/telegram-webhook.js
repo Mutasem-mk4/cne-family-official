@@ -1,4 +1,4 @@
-const ALLOWED_TONES = new Set(["blue", "green", "orange", "red", "sand"]);
+const ALLOWED_TONES = new Set(["blue", "green", "orange", "red", "sand", "pink", "purple", "teal", "yellow", "indigo"]);
 const DEFAULT_IMAGE = "/assets/logos/cne-icon.png";
 
 export default async function handler(req, res) {

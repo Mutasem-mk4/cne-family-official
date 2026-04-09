@@ -13,6 +13,10 @@
   --red: #de4a46;
   --sand: #d6b88a;
   --purple: #6b4df4;
+  --pink: #e84393;
+  --teal: #0891b2;
+  --yellow: #d4a017;
+  --indigo: #4338ca;
   --shadow: 0 8px 24px rgba(28, 37, 58, 0.06);
   --shadow-soft: 0 4px 12px rgba(28, 37, 58, 0.04);
   --radius-xl: 36px;
@@ -1018,11 +1022,36 @@ p {
   --tone: var(--sand);
 }
 
+.tone-purple {
+  --tone: var(--purple);
+}
+
+.tone-pink {
+  --tone: var(--pink);
+}
+
+.tone-teal {
+  --tone: var(--teal);
+}
+
+.tone-yellow {
+  --tone: var(--yellow);
+}
+
+.tone-indigo {
+  --tone: var(--indigo);
+}
+
 .tone-blue,
 .tone-green,
 .tone-orange,
 .tone-red,
-.tone-sand {
+.tone-sand,
+.tone-purple,
+.tone-pink,
+.tone-teal,
+.tone-yellow,
+.tone-indigo {
   position: relative;
   overflow: hidden;
 }
@@ -1031,7 +1060,12 @@ p {
 .tone-green::before,
 .tone-orange::before,
 .tone-red::before,
-.tone-sand::before {
+.tone-sand::before,
+.tone-purple::before,
+.tone-pink::before,
+.tone-teal::before,
+.tone-yellow::before,
+.tone-indigo::before {
   content: "";
   position: absolute;
   inset: 0;
