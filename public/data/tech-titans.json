@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-09T23:18:01.500Z",
+  "generatedAt": "2026-04-09T23:19:57.991Z",
   "source": "telegram-webhook",
   "titans": [
     {
@@ -41,7 +41,7 @@
     {
       "name": "Rand",
       "title": "Hacker",
-      "score": 200,
+      "score": 900,
       "streak": "1 wins",
       "tone": "blue",
       "image": "/assets/tech-titans/rand.jpg",
