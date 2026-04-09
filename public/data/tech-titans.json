@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-09T23:20:36.678Z",
+  "generatedAt": "2026-04-09T23:25:46.281Z",
   "source": "telegram-webhook",
   "titans": [
     {
@@ -16,7 +16,7 @@
       "title": "Hacker",
       "score": 981,
       "streak": "1 wins",
-      "tone": "blue",
+      "tone": "pink",
       "image": "/assets/tech-titans/rand.jpg",
       "badge": "02"
     },
