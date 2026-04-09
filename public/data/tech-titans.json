@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-09T23:38:30.346Z",
+  "generatedAt": "2026-04-09T23:39:29.122Z",
   "source": "telegram-webhook",
   "titans": [
     {
@@ -39,12 +39,12 @@
       "badge": "04"
     },
     {
-      "name": "Fathe",
+      "name": "lion",
       "title": "bro",
-      "score": 200,
+      "score": 201,
       "streak": "1 wins",
       "tone": "blue",
-      "image": "/assets/tech-titans/fathe.jpg",
+      "image": "/assets/logos/cne-icon.png",
       "badge": "05"
     }
   ]
