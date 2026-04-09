@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-09T23:18:01.500Z",
+  "generatedAt": "2026-04-09T23:20:36.678Z",
   "source": "telegram-webhook",
   "titans": [
     {
@@ -12,11 +12,20 @@
       "badge": "01"
     },
     {
+      "name": "Rand",
+      "title": "Hacker",
+      "score": 981,
+      "streak": "1 wins",
+      "tone": "blue",
+      "image": "/assets/tech-titans/rand.jpg",
+      "badge": "02"
+    },
+    {
       "name": "Titan Nova",
       "title": "AI Systems Lead",
       "score": 980,
       "streak": "12 wins",
-      "badge": "02",
+      "badge": "03",
       "tone": "blue",
       "image": "/assets/logos/cne-icon.png"
     },
@@ -25,7 +34,7 @@
       "title": "Cybersecurity Captain",
       "score": 955,
       "streak": "9 wins",
-      "badge": "03",
+      "badge": "04",
       "tone": "orange",
       "image": "/assets/logos/cne-icon.png"
     },
@@ -34,18 +43,9 @@
       "title": "Network Architect",
       "score": 930,
       "streak": "7 wins",
-      "badge": "04",
+      "badge": "05",
       "tone": "green",
       "image": "/assets/logos/cne-icon.png"
-    },
-    {
-      "name": "Rand",
-      "title": "Hacker",
-      "score": 200,
-      "streak": "1 wins",
-      "tone": "blue",
-      "image": "/assets/tech-titans/rand.jpg",
-      "badge": "05"
     }
   ]
 }
