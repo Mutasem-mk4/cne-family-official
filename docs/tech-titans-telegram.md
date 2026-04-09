@@ -7,6 +7,15 @@ Add these GitHub Actions secrets:
 - `TELEGRAM_BOT_TOKEN`: the rotated bot token
 - `TELEGRAM_SOURCE_CHAT_ID`: the chat or channel id the bot should read from
 
+For instant updates, also add these Netlify environment variables:
+
+- `TELEGRAM_BOT_TOKEN`
+- `TELEGRAM_SOURCE_CHAT_ID`
+- `TELEGRAM_WEBHOOK_SECRET`
+- `GITHUB_REPO_TOKEN`
+- `GITHUB_REPOSITORY`
+- `TECH_TITANS_TAG`
+
 Telegram setup checks:
 
 - If this bot already uses a webhook anywhere else, `getUpdates` will not work. Remove the webhook first.
@@ -19,6 +28,12 @@ Workflow:
 - GitHub Action: `.github/workflows/tech-titans-sync.yml`
 - Manual run: `workflow_dispatch`
 - Weekly run: every Saturday at `09:00 UTC`
+
+Instant webhook:
+
+- Netlify function: `/.netlify/functions/telegram-webhook`
+- Telegram should post directly to that endpoint
+- Each valid message updates the repo immediately, which triggers a fresh deploy
 
 Message format:
 
@@ -64,3 +79,24 @@ Notes:
 - The workflow reads only new Telegram updates after the saved offset.
 - If no photo is attached, the site falls back to the CNE icon.
 - The sync script now prints chat ids, chat types, and tag detection info when it finds updates that do not match.
+
+Recommended real-time setup:
+
+1. Rotate the bot token in BotFather.
+2. In Netlify, set the environment variables listed above.
+3. Create a GitHub fine-grained token with contents write access to this repo and store it as `GITHUB_REPO_TOKEN`.
+4. Register the Telegram webhook:
+
+```text
+https://api.telegram.org/bot<YOUR_BOT_TOKEN>/setWebhook?url=https://<your-netlify-domain>/.netlify/functions/telegram-webhook&secret_token=<YOUR_TELEGRAM_WEBHOOK_SECRET>
+```
+
+5. Send a photo message with `#techtitans` and the Titan metadata.
+
+Result:
+
+- Telegram calls the Netlify function immediately
+- The function updates `public/data/tech-titans.json`
+- The function uploads the image to `public/assets/tech-titans/`
+- GitHub receives a commit
+- Netlify deploys the updated site

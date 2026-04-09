@@ -255,7 +255,9 @@ function renderTopBanner({ label, title, copy, actionHref, actionLabel }) {
 }
 
 async function renderHome() {
-  const techTitans = state.techTitans?.length ? state.techTitans : DEFAULT_TECH_TITANS;
+  const techTitans = [...(state.techTitans?.length ? state.techTitans : DEFAULT_TECH_TITANS)].sort(
+    (left, right) => Number(right.score || 0) - Number(left.score || 0),
+  );
 
   return layout(`
     <section class="home-command reveal">
