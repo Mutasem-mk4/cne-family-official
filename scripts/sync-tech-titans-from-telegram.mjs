@@ -97,6 +97,7 @@ if (!titans.length) {
 
 const sortedTitans = titans
   .sort((left, right) => Number(right.score || 0) - Number(left.score || 0))
+  .slice(0, 5)
   .map((titan, index) => ({
     ...titan,
     badge: String(index + 1).padStart(2, "0"),

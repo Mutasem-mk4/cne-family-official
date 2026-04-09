@@ -27,16 +27,29 @@ export default async function handler(req, res) {
     const message = update.message || update.channel_post;
     if (!message) return res.status(200).json({ ok: true, ignored: "No message payload" });
     if (String(message.chat?.id) !== String(sourceChatId)) {
+      await telegram(botToken, "sendMessage", {
+        chat_id: message.chat.id,
+        text: `⚠️ عذراً، المشكلة هنا! هذا الجروب/المحادثة تملك الآيدي: ${message.chat.id}\nلكن في إعدادات Vercel تم وضع الآيدي: ${sourceChatId}`
+      }).catch(() => {});
       return res.status(200).json({ ok: true, ignored: "Message from different chat" });
     }
 
     const body = `${message.text || ""}\n${message.caption || ""}`.trim();
     if (!body.toLowerCase().includes(tag)) {
+      await telegram(botToken, "sendMessage", {
+        chat_id: message.chat.id,
+        text: `⚠️ البوت قرأ رسالتك، ولكنه لم يجد الهاشتاج المطلوب (${tag}).\n\nنص الرسالة الذي قرأه البوت هو:\n${body}`
+      }).catch(() => {});
       return res.status(200).json({ ok: true, ignored: "Missing Tech Titans tag" });
     }
 
     const metadata = extractTitanMetadata(body);
     if (!metadata) {
+      await telegram(botToken, "sendMessage", {
+        chat_id: sourceChatId,
+        text: "⚠️ لم أتمكن من قراءة البيانات. تأكد من كتابة المفاتيح (name, title) باللغة الإنجليزية وبشكل صحيح.",
+        reply_to_message_id: message.message_id
+      }).catch(() => {});
       return res.status(400).json({ ok: false, error: "Could not parse titan metadata" });
     }
 
@@ -61,6 +74,7 @@ export default async function handler(req, res) {
     const merged = mergeTitan(current.titans, nextTitan);
     const sortedTitans = merged
       .sort((left, right) => Number(right.score || 0) - Number(left.score || 0))
+      .slice(0, 5)
       .map((titan, index) => ({
         ...titan,
         badge: String(index + 1).padStart(2, "0"),
@@ -81,6 +95,13 @@ export default async function handler(req, res) {
       ) + "\n",
       "Sync Tech Titans from Telegram webhook",
     );
+
+    const rankIndex = sortedTitans.findIndex(t => t.name === nextTitan.name) + 1;
+    await telegram(botToken, "sendMessage", {
+      chat_id: sourceChatId,
+      text: `✅ تم إضافة/تحديث البطل: ${nextTitan.name} في المركز #${rankIndex}\n\nالتحديثات الآن في طريقها للموقع! 🚀`,
+      reply_to_message_id: message.message_id
+    }).catch(() => {});
 
     return res.status(200).json({
       ok: true,
