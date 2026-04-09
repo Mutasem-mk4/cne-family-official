@@ -719,18 +719,18 @@ function renderTitanFeaturedCard(titan, rank) {
 function renderTitanListCard(titan, rank) {
   return `
     <article class="titan-list-card">
-      <div class="titan-list-rank tone-${titan.tone}">
-        <span>#${rank}</span>
-        <small>${titan.badge}</small>
-      </div>
       ${renderTitanImage(titan, "titan-list-image")}
       <div class="titan-list-copy">
         <strong>${titan.name}</strong>
         <p>${titan.title}</p>
+        <span class="titan-list-streak">${titan.streak}</span>
       </div>
-      <div class="titan-list-score">
-        <strong>${titan.score}</strong>
-        <span>${titan.streak}</span>
+      <div class="titan-list-meta">
+        <div class="titan-list-rank tone-${titan.tone}">
+          <span>#${rank}</span>
+          <small>${titan.badge}</small>
+        </div>
+        <strong class="titan-list-score-num">${titan.score}</strong>
       </div>
     </article>
   `;
