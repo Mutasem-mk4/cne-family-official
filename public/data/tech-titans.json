@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-09T23:36:18.789Z",
+  "generatedAt": "2026-04-09T23:37:33.551Z",
   "source": "telegram-webhook",
   "titans": [
     {
@@ -30,21 +30,21 @@
       "badge": "03"
     },
     {
+      "name": "tytan",
+      "title": "bro",
+      "score": 982,
+      "streak": "1 wins",
+      "tone": "blue",
+      "image": "/assets/logos/cne-icon.png",
+      "badge": "04"
+    },
+    {
       "name": "Titan Nova",
       "title": "AI Systems Lead",
       "score": 980,
       "streak": "12 wins",
-      "badge": "04",
-      "tone": "blue",
-      "image": "/assets/logos/cne-icon.png"
-    },
-    {
-      "name": "Cipher Queen",
-      "title": "Cybersecurity Captain",
-      "score": 955,
-      "streak": "9 wins",
       "badge": "05",
-      "tone": "orange",
+      "tone": "blue",
       "image": "/assets/logos/cne-icon.png"
     }
   ]
