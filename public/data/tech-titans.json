@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-09T23:33:11.355Z",
+  "generatedAt": "2026-04-09T23:34:28.058Z",
   "source": "telegram-webhook",
   "titans": [
     {
@@ -12,21 +12,21 @@
       "badge": "01"
     },
     {
+      "name": "Rand",
+      "title": "half hacker",
+      "score": 983,
+      "streak": "1 wins",
+      "tone": "pink",
+      "image": "/assets/tech-titans/rand.jpg",
+      "badge": "02"
+    },
+    {
       "name": "Fathe",
       "title": "bro",
       "score": 982,
       "streak": "1 wins",
       "tone": "blue",
       "image": "/assets/tech-titans/fathe.jpg",
-      "badge": "02"
-    },
-    {
-      "name": "Rand",
-      "title": "half hacker",
-      "score": 981,
-      "streak": "1 wins",
-      "tone": "pink",
-      "image": "/assets/tech-titans/rand.jpg",
       "badge": "03"
     },
     {
