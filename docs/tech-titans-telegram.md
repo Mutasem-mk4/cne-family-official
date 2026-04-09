@@ -7,7 +7,7 @@ Add these GitHub Actions secrets:
 - `TELEGRAM_BOT_TOKEN`: the rotated bot token
 - `TELEGRAM_SOURCE_CHAT_ID`: the chat or channel id the bot should read from
 
-For instant updates, also add these Netlify environment variables:
+For instant updates in Vercel, add these environment variables:
 
 - `TELEGRAM_BOT_TOKEN`
 - `TELEGRAM_SOURCE_CHAT_ID`
@@ -31,7 +31,7 @@ Workflow:
 
 Instant webhook:
 
-- Netlify function: `/.netlify/functions/telegram-webhook`
+- Vercel function: `/api/telegram-webhook`
 - Telegram should post directly to that endpoint
 - Each valid message updates the repo immediately, which triggers a fresh deploy
 
@@ -83,20 +83,20 @@ Notes:
 Recommended real-time setup:
 
 1. Rotate the bot token in BotFather.
-2. In Netlify, set the environment variables listed above.
+2. In Vercel, set the environment variables listed above.
 3. Create a GitHub fine-grained token with contents write access to this repo and store it as `GITHUB_REPO_TOKEN`.
 4. Register the Telegram webhook:
 
 ```text
-https://api.telegram.org/bot<YOUR_BOT_TOKEN>/setWebhook?url=https://<your-netlify-domain>/.netlify/functions/telegram-webhook&secret_token=<YOUR_TELEGRAM_WEBHOOK_SECRET>
+https://api.telegram.org/bot<YOUR_BOT_TOKEN>/setWebhook?url=https://<your-vercel-domain>/api/telegram-webhook&secret_token=<YOUR_TELEGRAM_WEBHOOK_SECRET>
 ```
 
 5. Send a photo message with `#techtitans` and the Titan metadata.
 
 Result:
 
-- Telegram calls the Netlify function immediately
+- Telegram calls the Vercel function immediately
 - The function updates `public/data/tech-titans.json`
 - The function uploads the image to `public/assets/tech-titans/`
 - GitHub receives a commit
-- Netlify deploys the updated site
+- Vercel deploys the updated site

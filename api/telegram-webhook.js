@@ -1,10 +1,10 @@
 const ALLOWED_TONES = new Set(["blue", "green", "orange", "red", "sand"]);
 const DEFAULT_IMAGE = "/assets/logos/cne-icon.png";
 
-export default async (request) => {
+export default async function handler(req, res) {
   try {
-    if (request.method !== "POST") {
-      return json({ ok: false, error: "Method not allowed" }, 405);
+    if (req.method !== "POST") {
+      return res.status(405).json({ ok: false, error: "Method not allowed" });
     }
 
     const botToken = process.env.TELEGRAM_BOT_TOKEN;
@@ -15,29 +15,29 @@ export default async (request) => {
     const tag = (process.env.TECH_TITANS_TAG || "#techtitans").trim().toLowerCase();
 
     if (!botToken || !sourceChatId || !secretToken || !githubToken) {
-      return json({ ok: false, error: "Missing required environment variables" }, 500);
+      return res.status(500).json({ ok: false, error: "Missing required environment variables" });
     }
 
-    const incomingSecret = request.headers.get("x-telegram-bot-api-secret-token");
+    const incomingSecret = req.headers["x-telegram-bot-api-secret-token"];
     if (incomingSecret !== secretToken) {
-      return json({ ok: false, error: "Invalid webhook secret" }, 401);
+      return res.status(401).json({ ok: false, error: "Invalid webhook secret" });
     }
 
-    const update = await request.json();
+    const update = req.body || {};
     const message = update.message || update.channel_post;
-    if (!message) return json({ ok: true, ignored: "No message payload" });
+    if (!message) return res.status(200).json({ ok: true, ignored: "No message payload" });
     if (String(message.chat?.id) !== String(sourceChatId)) {
-      return json({ ok: true, ignored: "Message from different chat" });
+      return res.status(200).json({ ok: true, ignored: "Message from different chat" });
     }
 
     const body = `${message.text || ""}\n${message.caption || ""}`.trim();
     if (!body.toLowerCase().includes(tag)) {
-      return json({ ok: true, ignored: "Missing Tech Titans tag" });
+      return res.status(200).json({ ok: true, ignored: "Missing Tech Titans tag" });
     }
 
     const metadata = extractTitanMetadata(body);
     if (!metadata) {
-      return json({ ok: false, error: "Could not parse titan metadata" }, 400);
+      return res.status(400).json({ ok: false, error: "Could not parse titan metadata" });
     }
 
     const current = await readRepoJson(repository, githubToken, "public/data/tech-titans.json", {
@@ -82,21 +82,18 @@ export default async (request) => {
       "Sync Tech Titans from Telegram webhook",
     );
 
-    return json({
+    return res.status(200).json({
       ok: true,
       updated: nextTitan.name,
       titans: sortedTitans.length,
     });
   } catch (error) {
-    return json(
-      {
-        ok: false,
-        error: error instanceof Error ? error.message : "Unknown error",
-      },
-      500,
-    );
+    return res.status(500).json({
+      ok: false,
+      error: error instanceof Error ? error.message : "Unknown error",
+    });
   }
-};
+}
 
 function extractTitanMetadata(body) {
   return parseJsonMetadata(body) || parseLineMetadata(body);
@@ -255,11 +252,4 @@ function slugify(value) {
     .trim()
     .replace(/[-\s]+/g, "-")
     .replace(/^-+|-+$/g, "") || "titan";
-}
-
-function json(payload, status = 200) {
-  return new Response(JSON.stringify(payload), {
-    status,
-    headers: { "content-type": "application/json; charset=utf-8" },
-  });
 }
