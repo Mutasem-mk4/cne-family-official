@@ -614,8 +614,8 @@ p {
 .titan-featured-card {
   position: relative;
   display: grid;
-  gap: 18px;
-  min-height: 100%;
+  gap: 14px;
+  align-content: start;
   padding: 22px;
   border-radius: 28px;
   background: var(--surface-3);
@@ -666,7 +666,6 @@ p {
 }
 
 .titan-score-box {
-  margin-top: auto;
   display: flex;
   justify-content: space-between;
   gap: 12px;
