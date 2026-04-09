@@ -402,6 +402,163 @@ p {
   border-radius: 34px;
 }
 
+.home-command,
+.home-route-grid,
+.home-spotlight {
+  margin-top: 22px;
+}
+
+.home-command,
+.home-route-grid,
+.home-spotlight,
+.home-quick-links,
+.titans-board {
+  position: relative;
+}
+
+.home-command {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 22px;
+  padding: 34px;
+  border-radius: 36px;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(32, 88, 245, 0.16), transparent 28%),
+    radial-gradient(circle at 88% 12%, rgba(13, 139, 99, 0.12), transparent 24%),
+    var(--surface-2);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.home-command-copy {
+  display: grid;
+  gap: 18px;
+  align-content: center;
+}
+
+.home-command-copy h1 {
+  font-size: clamp(2.7rem, 5vw, 5.2rem);
+  max-width: 9ch;
+}
+
+.home-command-copy p,
+.home-command-highlight p,
+.home-metric-card span,
+.home-action-copy p {
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.home-command-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.home-command-panel {
+  display: grid;
+  gap: 14px;
+}
+
+.home-command-highlight {
+  min-height: 220px;
+  padding: 24px;
+  border-radius: 30px;
+  color: #fff;
+  background: linear-gradient(145deg, color-mix(in srgb, var(--blue) 82%, #07111f), #09172a 74%);
+}
+
+.home-command-kicker {
+  display: inline-flex;
+  width: fit-content;
+  margin-bottom: 14px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.home-command-highlight strong {
+  display: block;
+  margin-bottom: 10px;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+}
+
+.home-command-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.home-metric-card {
+  padding: 18px;
+  border-radius: 22px;
+  background: var(--surface-3);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-soft);
+}
+
+.home-metric-card strong {
+  display: block;
+  margin-bottom: 4px;
+  font-family: var(--font-display);
+  font-size: 2rem;
+}
+
+.home-route-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.home-action-card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 14px;
+  align-items: center;
+  padding: 20px;
+  border-radius: 24px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-soft);
+}
+
+.home-action-icon-wrap {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--blue) 9%, var(--surface-3));
+}
+
+.home-action-icon {
+  font-size: 1.9rem;
+  color: var(--blue);
+}
+
+.home-action-copy {
+  display: grid;
+  gap: 4px;
+}
+
+.home-action-copy strong {
+  font-family: var(--font-display);
+  font-size: 1.04rem;
+}
+
+.home-action-arrow {
+  color: var(--muted);
+}
+
+.home-spotlight {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+  gap: 18px;
+}
+
 .titans-board {
   padding: 30px;
   border-radius: 34px;
@@ -446,33 +603,23 @@ p {
   line-height: 1.8;
 }
 
-.titans-stage {
+.titans-featured {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
-  align-items: end;
-  margin-bottom: 16px;
+  grid-template-columns: minmax(220px, 0.9fr) minmax(0, 1.1fr);
+  gap: 14px;
+  align-items: stretch;
 }
 
-.titan-podium-card {
+.titan-featured-card {
   position: relative;
   display: grid;
   gap: 18px;
-  min-height: 220px;
+  min-height: 100%;
   padding: 22px;
   border-radius: 28px;
   background: var(--surface-3);
   border: 1px solid var(--line);
   box-shadow: var(--shadow-soft);
-}
-
-.titan-podium-card.rank-1 {
-  min-height: 280px;
-}
-
-.titan-podium-card.rank-2,
-.titan-podium-card.rank-3 {
-  min-height: 240px;
 }
 
 .titan-rank-badge {
@@ -485,7 +632,7 @@ p {
   background: var(--ink);
 }
 
-.titan-podium-copy strong,
+.titan-featured-copy strong,
 .titan-list-copy strong {
   display: block;
   margin-bottom: 6px;
@@ -493,7 +640,7 @@ p {
   font-size: 1.3rem;
 }
 
-.titan-podium-copy p,
+.titan-featured-copy p,
 .titan-list-copy p {
   color: var(--muted);
   line-height: 1.6;
@@ -578,8 +725,8 @@ p {
 
 .home-quick-links-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+  grid-template-columns: 1fr;
+  gap: 12px;
 }
 
 .home-quick-link-card {
@@ -1536,6 +1683,8 @@ p {
 @media (max-width: 1080px) {
   .hero,
   .home-hero,
+  .home-command,
+  .home-spotlight,
   .subject-shell,
   .subject-toolbar,
   .calculator-layout,
@@ -1548,6 +1697,7 @@ p {
 
   .simple-grid,
   .home-actions,
+  .home-route-grid,
   .home-quick-links-grid,
   .titans-stage,
   .about-scene,
@@ -1598,6 +1748,7 @@ p {
 
   .hero,
   .home-hero,
+  .home-command,
   .top-banner,
   .section,
   .subject-toolbar,
@@ -1623,6 +1774,7 @@ p {
 
   .hero h1,
   .home-hero-copy h1,
+  .home-command-copy h1,
   .top-banner h1,
   .section-head h2,
   .subject-toolbar-copy h2,
@@ -1638,6 +1790,25 @@ p {
 
   .home-hero-copy {
     gap: 14px;
+  }
+
+  .home-command {
+    gap: 16px;
+    padding: 22px;
+  }
+
+  .home-command-panel,
+  .home-command-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .home-command-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .home-command-actions .btn {
+    width: 100%;
   }
 
   .home-hero-copy p {
@@ -1696,6 +1867,7 @@ p {
   .home-summary-stats,
   .tool-ribbon,
   .home-actions,
+  .home-route-grid,
   .home-quick-links-grid,
   .titans-stage,
   .simple-grid,
@@ -1716,6 +1888,11 @@ p {
   .section-head {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .titans-featured,
+  .home-spotlight {
+    grid-template-columns: 1fr;
   }
 
   .major-card {

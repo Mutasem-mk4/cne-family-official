@@ -249,72 +249,85 @@ function renderTopBanner({ label, title, copy, actionHref, actionLabel }) {
 
 async function renderHome() {
   return layout(`
-    <section class="home-hero reveal">
-      <div class="home-hero-copy">
+    <section class="home-command reveal">
+      <div class="home-command-copy">
         <span class="eyebrow">CNE Family</span>
-        <h1>ماذا تريد الآن؟</h1>
+        <h1>كل ما يحتاجه الطالب في مسار واحد واضح.</h1>
         <p>
-          اختر المهمة مباشرة ثم ادخل إلى الصفحة المناسبة بدون خطوات إضافية.
+          ابدأ من المهمة التي تريدها الآن: مادة، خطة، متتبع، أو رابط رسمي. الواجهة الرئيسية
+          صارت أقرب إلى لوحة قيادة بدل تكديس أقسام متشابهة.
         </p>
-        <div class="home-hero-actions">
-          <a href="/subjects" data-link class="btn btn-primary">ابحث عن مادة</a>
-          <a href="/tracker" data-link class="btn btn-secondary">تابع تقدمك</a>
+        <div class="home-command-actions">
+          <a href="/subjects" data-link class="btn btn-primary">ابدأ من المواد</a>
+          <a href="/plans" data-link class="btn btn-secondary">راجع الخطط</a>
         </div>
       </div>
-      <div class="home-hero-summary">
-        <div class="home-summary-card home-summary-card-primary">
-          <span class="home-summary-label">البدء السريع</span>
-          <strong>${state.subjects.length} مادة في مكتبة واحدة</strong>
-          <p>إذا كنت جديداً ابدأ من الخطط. إذا كنت تبحث عن مادة ابدأ من صفحة المواد.</p>
+      <div class="home-command-panel">
+        <article class="home-command-highlight">
+          <span class="home-command-kicker">البدء السريع</span>
+          <strong>${state.subjects.length} مادة</strong>
+          <p>مكتبة واحدة تجمع مواد القسم مع انتقال مباشر إلى الملفات الأساسية.</p>
+        </article>
+        <div class="home-command-metrics">
+          <div class="home-metric-card">
+            <strong>4</strong>
+            <span>مسارات رئيسية</span>
+          </div>
+          <div class="home-metric-card">
+            <strong>${QUICK_LINKS.length}</strong>
+            <span>روابط يومية</span>
+          </div>
+          <div class="home-metric-card">
+            <strong>${TECH_TITANS.length}</strong>
+            <span>أسماء في اللوحة</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="home-actions reveal">
+    <section class="home-route-grid reveal">
       ${renderHomeActionCard("المواد الدراسية", "ابحث عن المادة وافتح ملفاتها مباشرة.", "/subjects", "folder_open")}
       ${renderHomeActionCard("الخطط الشجرية", "راجع الخطة المناسبة لكل مسار.", "/plans", "schema")}
       ${renderHomeActionCard("متتبع الخطة", "اعرف ما أنجزته وما تبقى عليك.", "/tracker", "target")}
       ${renderHomeActionCard("الروابط الأساسية", "ادخل إلى البوابة وجريدة المواد والتعلم الإلكتروني.", "/links", "link")}
     </section>
 
-    <section class="titans-board reveal">
-      <div class="titans-board-head">
-        <div>
-          <span class="eyebrow">Tech Titans</span>
-          <h2>Leaderboard</h2>
+    <section class="home-spotlight reveal">
+      <section class="titans-board">
+        <div class="titans-board-head">
+          <div>
+            <span class="eyebrow">Tech Titans</span>
+            <h2>Leaderboard</h2>
+          </div>
+          <p>التركيز هنا على الاسم الأول ثم بقية الترتيب ضمن مساحة مضغوطة وأوضح.</p>
         </div>
-        <p>واجهة لعرض أبرز الأسماء بشكل واضح ولافت على الصفحة الرئيسية.</p>
-      </div>
+        <div class="titans-featured">
+          ${renderTitanFeaturedCard(TECH_TITANS[0], 1)}
+          <div class="titans-list">
+            ${TECH_TITANS.slice(1).map((titan, index) => renderTitanListCard(titan, index + 2)).join("")}
+          </div>
+        </div>
+      </section>
 
-      <div class="titans-stage">
-        ${TECH_TITANS.slice(0, 3)
-          .map((titan, index) => renderTitanPodiumCard(titan, index + 1))
-          .join("")}
-      </div>
-
-      <div class="titans-list">
-        ${TECH_TITANS.map((titan, index) => renderTitanListCard(titan, index + 1)).join("")}
-      </div>
-    </section>
-
-    <section class="home-quick-links reveal">
-      <div class="home-quick-links-head">
-        <span class="eyebrow">روابط سريعة</span>
-        <a href="/links" data-link class="text-cta">كل الروابط</a>
-      </div>
-      <div class="home-quick-links-grid">
-        ${QUICK_LINKS.map(
-          (link) => `
-            <a href="${link.href}" target="_blank" rel="noopener" class="home-quick-link-card">
-              <span class="material-symbols-outlined">${link.icon}</span>
-              <div>
-                <strong>${link.title}</strong>
-                <p>${link.desc}</p>
-              </div>
-            </a>
-          `,
-        ).join("")}
-      </div>
+      <section class="home-quick-links">
+        <div class="home-quick-links-head">
+          <span class="eyebrow">روابط سريعة</span>
+          <a href="/links" data-link class="text-cta">كل الروابط</a>
+        </div>
+        <div class="home-quick-links-grid">
+          ${QUICK_LINKS.map(
+            (link) => `
+              <a href="${link.href}" target="_blank" rel="noopener" class="home-quick-link-card">
+                <span class="material-symbols-outlined">${link.icon}</span>
+                <div>
+                  <strong>${link.title}</strong>
+                  <p>${link.desc}</p>
+                </div>
+              </a>
+            `,
+          ).join("")}
+        </div>
+      </section>
     </section>
   `);
 }
@@ -334,11 +347,14 @@ function renderRibbonCard(title, desc, href, icon, tone) {
 function renderHomeActionCard(title, desc, href, icon) {
   return `
     <a href="${href}" data-link class="home-action-card">
-      <span class="material-symbols-outlined home-action-icon">${icon}</span>
-      <div>
+      <div class="home-action-icon-wrap">
+        <span class="material-symbols-outlined home-action-icon">${icon}</span>
+      </div>
+      <div class="home-action-copy">
         <strong>${title}</strong>
         <p>${desc}</p>
       </div>
+      <span class="material-symbols-outlined home-action-arrow">arrow_outward</span>
     </a>
   `;
 }
@@ -672,11 +688,11 @@ function renderTrackerCourse(course, completed) {
   `;
 }
 
-function renderTitanPodiumCard(titan, rank) {
+function renderTitanFeaturedCard(titan, rank) {
   return `
-    <article class="titan-podium-card tone-${titan.tone} rank-${rank}">
+    <article class="titan-featured-card tone-${titan.tone}">
       <span class="titan-rank-badge">#${rank}</span>
-      <div class="titan-podium-copy">
+      <div class="titan-featured-copy">
         <strong>${titan.name}</strong>
         <p>${titan.title}</p>
       </div>
