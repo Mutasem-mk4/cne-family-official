@@ -24,6 +24,13 @@ await fs.mkdir(path.dirname(STATE_PATH), { recursive: true });
 await fs.mkdir(path.dirname(OUTPUT_JSON_PATH), { recursive: true });
 await fs.mkdir(OUTPUT_ASSETS_DIR, { recursive: true });
 
+const webhookInfo = await telegram("getWebhookInfo", {});
+if (webhookInfo.url) {
+  throw new Error(
+    `Telegram webhook is active for this bot (${webhookInfo.url}). getUpdates will not work until the webhook is removed.`,
+  );
+}
+
 const state = await readJson(STATE_PATH, { lastUpdateId: 0 });
 const updates = await telegram("getUpdates", {
   offset: Number(state.lastUpdateId || 0) + 1,
@@ -32,7 +39,7 @@ const updates = await telegram("getUpdates", {
 });
 
 if (!updates.length) {
-  console.log("No new Telegram updates.");
+  console.log("No new Telegram updates. Confirm the bot can see messages in the source chat.");
   process.exit(0);
 }
 
@@ -54,6 +61,22 @@ const nextState = {
 if (!titanMessages.length) {
   await writeJson(STATE_PATH, nextState);
   console.log("No matching Tech Titans updates found.");
+  console.log(
+    JSON.stringify(
+      updates.map((update) => {
+        const payload = update.message || update.channel_post;
+        return {
+          updateId: update.update_id,
+          chatId: payload?.chat?.id ?? null,
+          chatType: payload?.chat?.type ?? null,
+          hasPhoto: Boolean(payload?.photo?.length),
+          hasTag: `${payload?.text || ""}\n${payload?.caption || ""}`.toLowerCase().includes(REQUIRED_TAG),
+        };
+      }),
+      null,
+      2,
+    ),
+  );
   process.exit(0);
 }
 
@@ -107,16 +130,7 @@ async function parseTitanMessage(message) {
 
 function extractTitanMetadata(message) {
   const body = (message.caption || message.text || "").trim();
-  const jsonMatch = body.match(/\{[\s\S]*\}/);
-  if (!jsonMatch) return null;
-
-  try {
-    const parsed = JSON.parse(jsonMatch[0]);
-    if (!parsed.name || !parsed.title) return null;
-    return parsed;
-  } catch {
-    return null;
-  }
+  return parseJsonMetadata(body) || parseLineMetadata(body);
 }
 
 async function downloadMessagePhoto(message, name) {
@@ -192,4 +206,46 @@ function slugify(value) {
     .trim()
     .replace(/[-\s]+/g, "-")
     .replace(/^-+|-+$/g, "") || "titan";
+}
+
+function parseJsonMetadata(body) {
+  const jsonMatch = body.match(/\{[\s\S]*\}/);
+  if (!jsonMatch) return null;
+
+  try {
+    const parsed = JSON.parse(jsonMatch[0]);
+    if (!parsed.name || !parsed.title) return null;
+    return parsed;
+  } catch {
+    return null;
+  }
+}
+
+function parseLineMetadata(body) {
+  const lines = body
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .filter((line) => !line.startsWith("#"));
+
+  if (!lines.length) return null;
+
+  const data = {};
+
+  for (const line of lines) {
+    const match = line.match(/^([a-zA-Z_]+)\s*:\s*(.+)$/);
+    if (!match) continue;
+    const [, key, value] = match;
+    data[key.toLowerCase()] = value.trim();
+  }
+
+  if (!data.name || !data.title) return null;
+
+  return {
+    name: data.name,
+    title: data.title,
+    score: Number(data.score || 0),
+    streak: data.streak || "",
+    tone: data.tone || "blue",
+  };
 }
