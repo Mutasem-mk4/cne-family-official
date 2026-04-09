@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-09T23:10:52.938Z",
+  "generatedAt": "2026-04-09T23:18:01.500Z",
   "source": "telegram-webhook",
   "titans": [
     {
@@ -39,12 +39,12 @@
       "image": "/assets/logos/cne-icon.png"
     },
     {
-      "name": "Test User",
-      "title": "Security Engineer",
-      "score": 9,
+      "name": "Rand",
+      "title": "Hacker",
+      "score": 200,
       "streak": "1 wins",
       "tone": "blue",
-      "image": "/assets/tech-titans/test-user.jpg",
+      "image": "/assets/tech-titans/rand.jpg",
       "badge": "05"
     }
   ]
