@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-09T22:56:38.375Z",
+  "generatedAt": "2026-04-09T22:58:29.825Z",
   "source": "telegram-webhook",
   "titans": [
     {
@@ -12,22 +12,22 @@
       "badge": "01"
     },
     {
+      "name": "Mutasem",
+      "title": "Security Engineer",
+      "score": 999,
+      "streak": "1 wins",
+      "tone": "green",
+      "image": "/assets/tech-titans/mutasem.jpg",
+      "badge": "02"
+    },
+    {
       "name": "Titan Nova",
       "title": "AI Systems Lead",
       "score": 980,
       "streak": "12 wins",
-      "badge": "02",
+      "badge": "03",
       "tone": "blue",
       "image": "/assets/logos/cne-icon.png"
-    },
-    {
-      "name": "Mutasem",
-      "title": "Frontend Lead",
-      "score": 980,
-      "streak": "12 wins",
-      "tone": "blue",
-      "image": "/assets/logos/cne-icon.png",
-      "badge": "03"
     },
     {
       "name": "Cipher Queen",
