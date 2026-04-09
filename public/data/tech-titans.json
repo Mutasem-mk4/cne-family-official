@@ -1,13 +1,22 @@
 {
-  "generatedAt": "2026-04-09T00:00:00.000Z",
-  "source": "local-seed",
+  "generatedAt": "2026-04-09T22:37:22.904Z",
+  "source": "telegram-webhook",
   "titans": [
+    {
+      "name": "Mutasem",
+      "title": "Backend Lead",
+      "score": 999,
+      "streak": "",
+      "tone": "blue",
+      "image": "/assets/logos/cne-icon.png",
+      "badge": "01"
+    },
     {
       "name": "Titan Nova",
       "title": "AI Systems Lead",
       "score": 980,
       "streak": "12 wins",
-      "badge": "01",
+      "badge": "02",
       "tone": "blue",
       "image": "/assets/logos/cne-icon.png"
     },
@@ -16,7 +25,7 @@
       "title": "Cybersecurity Captain",
       "score": 955,
       "streak": "9 wins",
-      "badge": "02",
+      "badge": "03",
       "tone": "orange",
       "image": "/assets/logos/cne-icon.png"
     },
@@ -25,7 +34,7 @@
       "title": "Network Architect",
       "score": 930,
       "streak": "7 wins",
-      "badge": "03",
+      "badge": "04",
       "tone": "green",
       "image": "/assets/logos/cne-icon.png"
     },
@@ -34,7 +43,7 @@
       "title": "Systems Builder",
       "score": 905,
       "streak": "5 wins",
-      "badge": "04",
+      "badge": "05",
       "tone": "sand",
       "image": "/assets/logos/cne-icon.png"
     }
