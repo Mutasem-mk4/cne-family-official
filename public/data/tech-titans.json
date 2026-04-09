@@ -1,13 +1,22 @@
 {
-  "generatedAt": "2026-04-09T22:53:59.996Z",
+  "generatedAt": "2026-04-09T22:55:27.070Z",
   "source": "telegram-webhook",
   "titans": [
+    {
+      "name": "Test User",
+      "title": "Security Engineer",
+      "score": 999,
+      "streak": "1 wins",
+      "tone": "red",
+      "image": "/assets/tech-titans/test-user.jpg",
+      "badge": "01"
+    },
     {
       "name": "Titan Nova",
       "title": "AI Systems Lead",
       "score": 980,
       "streak": "12 wins",
-      "badge": "01",
+      "badge": "02",
       "tone": "blue",
       "image": "/assets/logos/cne-icon.png"
     },
@@ -18,14 +27,14 @@
       "streak": "12 wins",
       "tone": "blue",
       "image": "/assets/logos/cne-icon.png",
-      "badge": "02"
+      "badge": "03"
     },
     {
       "name": "Cipher Queen",
       "title": "Cybersecurity Captain",
       "score": 955,
       "streak": "9 wins",
-      "badge": "03",
+      "badge": "04",
       "tone": "orange",
       "image": "/assets/logos/cne-icon.png"
     },
@@ -34,17 +43,8 @@
       "title": "Network Architect",
       "score": 930,
       "streak": "7 wins",
-      "badge": "04",
-      "tone": "green",
-      "image": "/assets/logos/cne-icon.png"
-    },
-    {
-      "name": "Kernel Pulse",
-      "title": "Systems Builder",
-      "score": 905,
-      "streak": "5 wins",
       "badge": "05",
-      "tone": "sand",
+      "tone": "green",
       "image": "/assets/logos/cne-icon.png"
     }
   ]
