@@ -43,6 +43,41 @@ const QUICK_LINKS = [
   },
 ];
 
+const TECH_TITANS = [
+  {
+    name: "Titan Nova",
+    title: "AI Systems Lead",
+    score: 980,
+    streak: "12 wins",
+    badge: "01",
+    tone: "blue",
+  },
+  {
+    name: "Cipher Queen",
+    title: "Cybersecurity Captain",
+    score: 955,
+    streak: "9 wins",
+    badge: "02",
+    tone: "orange",
+  },
+  {
+    name: "Packet Rider",
+    title: "Network Architect",
+    score: 930,
+    streak: "7 wins",
+    badge: "03",
+    tone: "green",
+  },
+  {
+    name: "Kernel Pulse",
+    title: "Systems Builder",
+    score: 905,
+    streak: "5 wins",
+    badge: "04",
+    tone: "sand",
+  },
+];
+
 const MAJORS = {
   computer: {
     label: "هندسة الحاسوب",
@@ -240,6 +275,26 @@ async function renderHome() {
       ${renderHomeActionCard("الخطط الشجرية", "راجع الخطة المناسبة لكل مسار.", "/plans", "schema")}
       ${renderHomeActionCard("متتبع الخطة", "اعرف ما أنجزته وما تبقى عليك.", "/tracker", "target")}
       ${renderHomeActionCard("الروابط الأساسية", "ادخل إلى البوابة وجريدة المواد والتعلم الإلكتروني.", "/links", "link")}
+    </section>
+
+    <section class="titans-board reveal">
+      <div class="titans-board-head">
+        <div>
+          <span class="eyebrow">Tech Titans</span>
+          <h2>Leaderboard</h2>
+        </div>
+        <p>واجهة لعرض أبرز الأسماء بشكل واضح ولافت على الصفحة الرئيسية.</p>
+      </div>
+
+      <div class="titans-stage">
+        ${TECH_TITANS.slice(0, 3)
+          .map((titan, index) => renderTitanPodiumCard(titan, index + 1))
+          .join("")}
+      </div>
+
+      <div class="titans-list">
+        ${TECH_TITANS.map((titan, index) => renderTitanListCard(titan, index + 1)).join("")}
+      </div>
     </section>
 
     <section class="home-quick-links reveal">
@@ -511,12 +566,12 @@ async function renderTracker() {
   const visibleCourses = state.curriculum.filter(
     (course) => course.major === "common" || course.major === state.major,
   );
+  const totalHours = visibleCourses.reduce((sum, course) => sum + Number(course.credits || 0), 0);
   const completed = new Set(getCompletedCourses());
   const doneHours = visibleCourses
     .filter((course) => completed.has(course.id))
     .reduce((sum, course) => sum + Number(course.credits || 0), 0);
   const years = groupBy(visibleCourses, "year");
-  const totalHours = 162;
   const percent = Math.round((doneHours / totalHours) * 100);
   const remainingHours = Math.max(totalHours - doneHours, 0);
   const doneCourses = visibleCourses.filter((course) => completed.has(course.id)).length;
@@ -596,15 +651,72 @@ async function renderTracker() {
 }
 
 function renderTrackerCourse(course, completed) {
+  const prerequisiteLabels = getCoursePrerequisiteLabels(course);
+  const subject = findSubjectForCourse(course);
+  const subjectAction =
+    subject && subject.link && subject.link !== "#"
+      ? `<a href="${subject.link}" target="_blank" rel="noopener" class="btn btn-secondary btn-small tracker-course-link">افتح المادة</a>`
+      : "";
+
   return `
-    <label class="tracker-course ${completed.has(course.id) ? "is-done" : ""}">
-      <input type="checkbox" data-course-toggle="${course.id}" ${completed.has(course.id) ? "checked" : ""} />
-      <div class="tracker-course-copy">
-        <strong>${course.name}</strong>
-        <small>${course.credits} ساعة${course.pre?.length ? ` • سابق: ${course.pre.join(", ")}` : ""}</small>
-      </div>
-    </label>
+    <article class="tracker-course ${completed.has(course.id) ? "is-done" : ""}">
+      <label class="tracker-course-main">
+        <input type="checkbox" data-course-toggle="${course.id}" ${completed.has(course.id) ? "checked" : ""} />
+        <div class="tracker-course-copy">
+          <strong>${course.name}</strong>
+          <small>${course.credits} ساعة${prerequisiteLabels.length ? ` • سابق: ${prerequisiteLabels.join("، ")}` : ""}</small>
+        </div>
+      </label>
+      ${subjectAction}
+    </article>
   `;
+}
+
+function renderTitanPodiumCard(titan, rank) {
+  return `
+    <article class="titan-podium-card tone-${titan.tone} rank-${rank}">
+      <span class="titan-rank-badge">#${rank}</span>
+      <div class="titan-podium-copy">
+        <strong>${titan.name}</strong>
+        <p>${titan.title}</p>
+      </div>
+      <div class="titan-score-box">
+        <span>${titan.score}</span>
+        <small>${titan.streak}</small>
+      </div>
+    </article>
+  `;
+}
+
+function renderTitanListCard(titan, rank) {
+  return `
+    <article class="titan-list-card">
+      <div class="titan-list-rank tone-${titan.tone}">
+        <span>#${rank}</span>
+        <small>${titan.badge}</small>
+      </div>
+      <div class="titan-list-copy">
+        <strong>${titan.name}</strong>
+        <p>${titan.title}</p>
+      </div>
+      <div class="titan-list-score">
+        <strong>${titan.score}</strong>
+        <span>${titan.streak}</span>
+      </div>
+    </article>
+  `;
+}
+
+function getCoursePrerequisiteLabels(course) {
+  return (course.pre || []).map((id) => findCourseById(id)?.name || id);
+}
+
+function findCourseById(id) {
+  return state.curriculum.find((course) => course.id === id);
+}
+
+function findSubjectForCourse(course) {
+  return state.subjects.find((subject) => subject.name === course.name);
 }
 
 function renderLinks() {
