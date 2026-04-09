@@ -1,0 +1,50 @@
+name: Sync Tech Titans
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 9 * * 6"
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Sync Tech Titans from Telegram
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_SOURCE_CHAT_ID: ${{ secrets.TELEGRAM_SOURCE_CHAT_ID }}
+          TECH_TITANS_TAG: "#techtitans"
+        run: node scripts/sync-tech-titans-from-telegram.mjs
+
+      - name: Build site
+        run: npm run build
+
+      - name: Commit and push changes
+        run: |
+          if git diff --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data/tech-titans.json public/assets/tech-titans .github/tech-titans-sync-state.json
+          git commit -m "Sync Tech Titans from Telegram"
+          git push

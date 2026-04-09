@@ -4,6 +4,7 @@ const state = {
   subjects: [],
   activities: [],
   curriculum: [],
+  techTitans: [],
   major: localStorage.getItem("study_major") || "computer",
 };
 
@@ -43,7 +44,7 @@ const QUICK_LINKS = [
   },
 ];
 
-const TECH_TITANS = [
+const DEFAULT_TECH_TITANS = [
   {
     name: "Titan Nova",
     title: "AI Systems Lead",
@@ -51,6 +52,7 @@ const TECH_TITANS = [
     streak: "12 wins",
     badge: "01",
     tone: "blue",
+    image: "/assets/logos/cne-icon.png",
   },
   {
     name: "Cipher Queen",
@@ -59,6 +61,7 @@ const TECH_TITANS = [
     streak: "9 wins",
     badge: "02",
     tone: "orange",
+    image: "/assets/logos/cne-icon.png",
   },
   {
     name: "Packet Rider",
@@ -67,6 +70,7 @@ const TECH_TITANS = [
     streak: "7 wins",
     badge: "03",
     tone: "green",
+    image: "/assets/logos/cne-icon.png",
   },
   {
     name: "Kernel Pulse",
@@ -75,6 +79,7 @@ const TECH_TITANS = [
     streak: "5 wins",
     badge: "04",
     tone: "sand",
+    image: "/assets/logos/cne-icon.png",
   },
 ];
 
@@ -122,15 +127,17 @@ async function bootstrap() {
 }
 
 async function loadData() {
-  const [subjectsPayload, activitiesPayload, curriculumPayload] = await Promise.all([
+  const [subjectsPayload, activitiesPayload, curriculumPayload, techTitansPayload] = await Promise.all([
     fetchJSON("/data/subjects.json"),
     fetchJSON("/data/activities.json"),
     fetchJSON("/data/curriculum.json"),
+    fetchJSON("/data/tech-titans.json").catch(() => ({ titans: DEFAULT_TECH_TITANS })),
   ]);
 
   state.subjects = subjectsPayload.subjects || [];
   state.activities = activitiesPayload || [];
   state.curriculum = curriculumPayload.curriculum || [];
+  state.techTitans = techTitansPayload.titans?.length ? techTitansPayload.titans : DEFAULT_TECH_TITANS;
 }
 
 async function fetchJSON(path) {
@@ -248,6 +255,8 @@ function renderTopBanner({ label, title, copy, actionHref, actionLabel }) {
 }
 
 async function renderHome() {
+  const techTitans = state.techTitans?.length ? state.techTitans : DEFAULT_TECH_TITANS;
+
   return layout(`
     <section class="home-command reveal">
       <div class="home-command-copy">
@@ -278,7 +287,7 @@ async function renderHome() {
             <span>روابط يومية</span>
           </div>
           <div class="home-metric-card">
-            <strong>${TECH_TITANS.length}</strong>
+            <strong>${techTitans.length}</strong>
             <span>أسماء في اللوحة</span>
           </div>
         </div>
@@ -302,9 +311,9 @@ async function renderHome() {
           <p>التركيز هنا على الاسم الأول ثم بقية الترتيب ضمن مساحة مضغوطة وأوضح.</p>
         </div>
         <div class="titans-featured">
-          ${renderTitanFeaturedCard(TECH_TITANS[0], 1)}
+          ${renderTitanFeaturedCard(techTitans[0], 1)}
           <div class="titans-list">
-            ${TECH_TITANS.slice(1).map((titan, index) => renderTitanListCard(titan, index + 2)).join("")}
+            ${techTitans.slice(1).map((titan, index) => renderTitanListCard(titan, index + 2)).join("")}
           </div>
         </div>
       </section>
@@ -692,6 +701,7 @@ function renderTitanFeaturedCard(titan, rank) {
   return `
     <article class="titan-featured-card tone-${titan.tone}">
       <span class="titan-rank-badge">#${rank}</span>
+      ${renderTitanImage(titan, "titan-featured-image")}
       <div class="titan-featured-copy">
         <strong>${titan.name}</strong>
         <p>${titan.title}</p>
@@ -711,6 +721,7 @@ function renderTitanListCard(titan, rank) {
         <span>#${rank}</span>
         <small>${titan.badge}</small>
       </div>
+      ${renderTitanImage(titan, "titan-list-image")}
       <div class="titan-list-copy">
         <strong>${titan.name}</strong>
         <p>${titan.title}</p>
@@ -721,6 +732,11 @@ function renderTitanListCard(titan, rank) {
       </div>
     </article>
   `;
+}
+
+function renderTitanImage(titan, className) {
+  const src = titan?.image || "/assets/logos/cne-icon.png";
+  return `<img src="${src}" alt="${titan?.name || "Tech Titan"}" class="${className}" loading="lazy" />`;
 }
 
 function getCoursePrerequisiteLabels(course) {
