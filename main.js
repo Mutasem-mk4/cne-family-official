@@ -959,8 +959,49 @@ function initTrackerControls() {
       if (checkbox.checked) completed.add(id);
       else completed.delete(id);
       localStorage.setItem("completed_courses", JSON.stringify([...completed]));
-      render("/tracker");
+
+      // Update card class in-place — no scroll jump
+      const article = checkbox.closest(".tracker-course");
+      if (article) article.classList.toggle("is-done", checkbox.checked);
+
+      updateTrackerStats(completed);
     });
+  });
+}
+
+function updateTrackerStats(completed) {
+  const visibleCourses = state.curriculum.filter(
+    (course) => course.major === "common" || course.major === state.major,
+  );
+  const totalHours = visibleCourses.reduce((sum, c) => sum + Number(c.credits || 0), 0);
+  const doneHours = visibleCourses
+    .filter((c) => completed.has(c.id))
+    .reduce((sum, c) => sum + Number(c.credits || 0), 0);
+  const doneCourses = visibleCourses.filter((c) => completed.has(c.id)).length;
+  const totalCourses = visibleCourses.length;
+  const percent = Math.round((doneHours / totalHours) * 100) || 0;
+  const remaining = Math.max(totalHours - doneHours, 0);
+  const majorLabel = state.major === "computer" ? "\u0647\u0646\u062f\u0633\u0629 \u0627\u0644\u062d\u0627\u0633\u0648\u0628" : "\u0647\u0646\u062f\u0633\u0629 \u0627\u0644\u0634\u0628\u0643\u0627\u062a";
+
+  const bar = document.querySelector(".tracker-progress span");
+  if (bar) bar.style.width = `${percent}%`;
+
+  const h2 = document.querySelector(".tracker-overview-main h2");
+  if (h2) h2.textContent = `${percent}%`;
+
+  const desc = document.querySelector(".tracker-overview-main > p");
+  if (desc) desc.textContent = `\u0623\u0646\u062c\u0632\u062a ${doneHours} \u0633\u0627\u0639\u0629 \u0645\u0646 \u0623\u0635\u0644 ${totalHours} \u0633\u0627\u0639\u0629 \u0641\u064a \u0645\u0633\u0627\u0631 ${majorLabel}.`;
+
+  const cards = document.querySelectorAll(".tracker-stat-card strong");
+  if (cards[0]) cards[0].textContent = doneHours;
+  if (cards[1]) cards[1].textContent = remaining;
+  if (cards[2]) cards[2].textContent = `${doneCourses}/${totalCourses}`;
+
+  document.querySelectorAll(".tracker-year-section").forEach((section) => {
+    const allCbs = section.querySelectorAll("[data-course-toggle]");
+    const doneInYear = [...allCbs].filter((cb) => cb.checked).length;
+    const p = section.querySelector(".tracker-year-head p");
+    if (p) p.textContent = `\u0623\u0646\u062c\u0632\u062a ${doneInYear} \u0645\u0646 ${allCbs.length} \u0645\u0648\u0627\u062f`;
   });
 }
 
