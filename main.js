@@ -948,7 +948,46 @@ function initTrackerControls() {
     button.addEventListener("click", () => {
       state.major = button.dataset.majorSwitch;
       localStorage.setItem("study_major", state.major);
-      render("/tracker");
+
+      // Update active button
+      document.querySelectorAll("[data-major-switch]").forEach((btn) =>
+        btn.classList.toggle("is-current", btn === button)
+      );
+
+      // Re-render courses list in-place — no scroll jump
+      const completed = new Set(getCompletedCourses());
+      const visibleCourses = state.curriculum.filter(
+        (c) => c.major === "common" || c.major === state.major,
+      );
+      const years = groupBy(visibleCourses, "year");
+      const container = document.querySelector(".tracker-years");
+      if (container) {
+        container.innerHTML = Object.keys(years)
+          .sort((a, b) => Number(a) - Number(b))
+          .map((year) => {
+            const courses = years[year];
+            const doneInYear = courses.filter((c) => completed.has(c.id)).length;
+            return `
+              <section class="tracker-year-section">
+                <div class="tracker-year-head">
+                  <div>
+                    <span class="tracker-year-title">السنة ${year}</span>
+                    <p>أنجزت ${doneInYear} من ${courses.length} مواد</p>
+                  </div>
+                  <strong>${courses.length} مادة</strong>
+                </div>
+                <div class="tracker-course-list">
+                  ${courses.map((course) => renderTrackerCourse(course, completed)).join("")}
+                </div>
+              </section>
+            `;
+          })
+          .join("");
+        // Re-bind new checkboxes
+        bindNewCheckboxes();
+      }
+
+      updateTrackerStats(completed);
     });
   });
 
@@ -964,6 +1003,21 @@ function initTrackerControls() {
       const article = checkbox.closest(".tracker-course");
       if (article) article.classList.toggle("is-done", checkbox.checked);
 
+      updateTrackerStats(completed);
+    });
+  });
+}
+
+function bindNewCheckboxes() {
+  document.querySelectorAll("[data-course-toggle]").forEach((checkbox) => {
+    checkbox.addEventListener("change", () => {
+      const completed = new Set(getCompletedCourses());
+      const id = checkbox.dataset.courseToggle;
+      if (checkbox.checked) completed.add(id);
+      else completed.delete(id);
+      localStorage.setItem("completed_courses", JSON.stringify([...completed]));
+      const article = checkbox.closest(".tracker-course");
+      if (article) article.classList.toggle("is-done", checkbox.checked);
       updateTrackerStats(completed);
     });
   });
