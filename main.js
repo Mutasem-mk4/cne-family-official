@@ -383,16 +383,15 @@ async function renderSubjects() {
   return layout(
     `
       <section class="subject-page reveal">
-        <nav class="subject-year-nav">
-          ${sortedYears.map((year) => `
-            <button class="year-nav-chip" data-year-jump="${year}">
-              السنة ${year}
-              <span>${years[year].length} مادة</span>
-            </button>
-          `).join("")}
-        </nav>
-
         <section class="subject-toolbar">
+          <nav class="subject-year-nav">
+            ${sortedYears.map((year) => `
+              <button class="year-nav-chip" data-year-jump="${year}">
+                السنة ${year}
+                <span>${years[year].length}</span>
+              </button>
+            `).join("")}
+          </nav>
           <div class="subject-toolbar-copy">
             <span class="eyebrow">المواد الدراسية</span>
             <h2>ابحث عن المادة ثم افتحها مباشرة</h2>
