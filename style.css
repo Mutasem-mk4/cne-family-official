@@ -1216,6 +1216,57 @@ p {
   gap: 18px;
 }
 
+.subject-year-nav {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 72px;
+  z-index: 10;
+  padding: 12px 0;
+}
+
+.year-nav-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  backdrop-filter: blur(12px);
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.year-nav-chip span {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.year-nav-chip:hover {
+  background: var(--surface-3);
+  box-shadow: var(--shadow-soft);
+}
+
+.year-nav-chip.is-active {
+  background: var(--ink);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+.year-nav-chip.is-active span {
+  color: rgba(255,255,255,0.65);
+}
+
 .subject-toolbar,
 .links-intro {
   padding: 24px 28px;

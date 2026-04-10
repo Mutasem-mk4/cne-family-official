@@ -372,6 +372,7 @@ function renderHomeActionCard(title, desc, href, icon) {
 
 async function renderSubjects() {
   const years = groupBy(state.subjects, "year");
+  const sortedYears = Object.keys(years).sort((a, b) => Number(a) - Number(b));
   const counts = {
     all: state.subjects.length,
     computer: state.subjects.filter((subject) => subject.major === "computer").length,
@@ -382,6 +383,15 @@ async function renderSubjects() {
   return layout(
     `
       <section class="subject-page reveal">
+        <nav class="subject-year-nav">
+          ${sortedYears.map((year) => `
+            <button class="year-nav-chip" data-year-jump="${year}">
+              السنة ${year}
+              <span>${years[year].length} مادة</span>
+            </button>
+          `).join("")}
+        </nav>
+
         <section class="subject-toolbar">
           <div class="subject-toolbar-copy">
             <span class="eyebrow">المواد الدراسية</span>
@@ -403,8 +413,7 @@ async function renderSubjects() {
         </section>
 
         <div class="subject-content">
-          ${Object.keys(years)
-            .sort((a, b) => Number(a) - Number(b))
+          ${sortedYears
             .map((year) => renderSubjectYear(year, years[year]))
             .join("")}
         </div>
@@ -903,6 +912,36 @@ function initSubjectExplorer() {
       apply();
     });
   });
+
+  // Year jump buttons
+  const yearChips = [...document.querySelectorAll("[data-year-jump]")];
+  yearChips.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const year = btn.dataset.yearJump;
+      const target = document.querySelector(`[data-year-group="${year}"]`);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  });
+
+  // Highlight active year chip on scroll
+  if (yearChips.length && "IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const year = entry.target.dataset.yearGroup;
+            yearChips.forEach((btn) =>
+              btn.classList.toggle("is-active", btn.dataset.yearJump === year)
+            );
+          }
+        });
+      },
+      { rootMargin: "-30% 0px -60% 0px" }
+    );
+    document.querySelectorAll("[data-year-group]").forEach((el) => observer.observe(el));
+  }
 }
 
 function initTrackerControls() {
