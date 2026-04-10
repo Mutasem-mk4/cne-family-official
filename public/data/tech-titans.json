@@ -1,51 +1,51 @@
 {
-  "generatedAt": "2026-04-09T23:20:36.678Z",
+  "generatedAt": "2026-04-09T23:41:05.182Z",
   "source": "telegram-webhook",
   "titans": [
     {
-      "name": "Mutasem",
-      "title": "Security Engineer",
-      "score": 999,
+      "name": "Rand",
+      "title": "half hacker",
+      "score": 983,
       "streak": "1 wins",
-      "tone": "green",
-      "image": "/assets/tech-titans/mutasem.jpg",
+      "tone": "pink",
+      "image": "/assets/tech-titans/rand.jpg",
       "badge": "01"
     },
     {
-      "name": "Rand",
-      "title": "Hacker",
-      "score": 981,
+      "name": "tytan",
+      "title": "bro",
+      "score": 982,
       "streak": "1 wins",
       "tone": "blue",
-      "image": "/assets/tech-titans/rand.jpg",
+      "image": "/assets/logos/cne-icon.png",
       "badge": "02"
     },
     {
-      "name": "Titan Nova",
-      "title": "AI Systems Lead",
-      "score": 980,
-      "streak": "12 wins",
-      "badge": "03",
+      "name": "him",
+      "title": "bro",
+      "score": 982,
+      "streak": "3 wins",
       "tone": "blue",
-      "image": "/assets/logos/cne-icon.png"
+      "image": "/assets/logos/cne-icon.png",
+      "badge": "03"
     },
     {
-      "name": "Cipher Queen",
-      "title": "Cybersecurity Captain",
-      "score": 955,
-      "streak": "9 wins",
-      "badge": "04",
-      "tone": "orange",
-      "image": "/assets/logos/cne-icon.png"
+      "name": "lion",
+      "title": "bro",
+      "score": 201,
+      "streak": "1 wins",
+      "tone": "blue",
+      "image": "/assets/logos/cne-icon.png",
+      "badge": "04"
     },
     {
-      "name": "Packet Rider",
-      "title": "Network Architect",
-      "score": 930,
-      "streak": "7 wins",
-      "badge": "05",
-      "tone": "green",
-      "image": "/assets/logos/cne-icon.png"
+      "name": "engineer",
+      "title": "Security Engineer",
+      "score": 101,
+      "streak": "1 wins",
+      "tone": "blue",
+      "image": "/assets/logos/cne-icon.png",
+      "badge": "05"
     }
   ]
 }
