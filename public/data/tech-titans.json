@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-10T21:28:49.893Z",
+  "generatedAt": "2026-04-10T21:31:29.706Z",
   "source": "telegram-webhook",
   "titans": [
     {
@@ -12,13 +12,22 @@
       "badge": "01"
     },
     {
+      "name": "Rand2",
+      "title": "half hacker",
+      "score": 983,
+      "streak": "1 wins",
+      "tone": "pink",
+      "image": "/assets/tech-titans/rand2.jpg",
+      "badge": "02"
+    },
+    {
       "name": "tytan",
       "title": "bro",
       "score": 982,
       "streak": "1 wins",
       "tone": "blue",
       "image": "/assets/logos/cne-icon.png",
-      "badge": "02"
+      "badge": "03"
     },
     {
       "name": "him",
@@ -27,21 +36,12 @@
       "streak": "3 wins",
       "tone": "blue",
       "image": "/assets/logos/cne-icon.png",
-      "badge": "03"
+      "badge": "04"
     },
     {
       "name": "lion",
       "title": "bro",
       "score": 201,
-      "streak": "1 wins",
-      "tone": "blue",
-      "image": "/assets/logos/cne-icon.png",
-      "badge": "04"
-    },
-    {
-      "name": "engineer",
-      "title": "Security Engineer",
-      "score": 101,
       "streak": "1 wins",
       "tone": "blue",
       "image": "/assets/logos/cne-icon.png",
