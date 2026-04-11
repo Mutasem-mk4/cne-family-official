@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-11T12:47:02.791Z",
+  "generatedAt": "2026-04-11T12:47:40.538Z",
   "source": "telegram-webhook",
   "titans": [
     {
@@ -39,12 +39,12 @@
       "badge": "04"
     },
     {
-      "name": "Rand2",
-      "title": "half hacker",
-      "score": 3,
+      "name": "Fathe",
+      "title": "bro",
+      "score": 200,
       "streak": "1 wins",
-      "tone": "pink",
-      "image": "/assets/tech-titans/rand2.jpg",
+      "tone": "blue",
+      "image": "/assets/tech-titans/fathe.jpg",
       "badge": "05"
     }
   ]
