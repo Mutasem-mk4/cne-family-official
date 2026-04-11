@@ -1,16 +1,7 @@
 {
-  "generatedAt": "2026-04-10T21:32:31.782Z",
+  "generatedAt": "2026-04-11T12:46:24.529Z",
   "source": "telegram-webhook",
   "titans": [
-    {
-      "name": "Rand",
-      "title": "half hacker",
-      "score": 984,
-      "streak": "1 wins",
-      "tone": "pink",
-      "image": "/assets/tech-titans/rand.jpg",
-      "badge": "01"
-    },
     {
       "name": "Rand2",
       "title": "half hacker",
@@ -18,7 +9,7 @@
       "streak": "1 wins",
       "tone": "pink",
       "image": "/assets/tech-titans/rand2.jpg",
-      "badge": "02"
+      "badge": "01"
     },
     {
       "name": "tytan",
@@ -27,7 +18,7 @@
       "streak": "1 wins",
       "tone": "blue",
       "image": "/assets/logos/cne-icon.png",
-      "badge": "03"
+      "badge": "02"
     },
     {
       "name": "him",
@@ -36,7 +27,7 @@
       "streak": "3 wins",
       "tone": "blue",
       "image": "/assets/logos/cne-icon.png",
-      "badge": "04"
+      "badge": "03"
     },
     {
       "name": "lion",
@@ -45,6 +36,15 @@
       "streak": "1 wins",
       "tone": "blue",
       "image": "/assets/logos/cne-icon.png",
+      "badge": "04"
+    },
+    {
+      "name": "Rand",
+      "title": "half hacker",
+      "score": 2,
+      "streak": "1 wins",
+      "tone": "pink",
+      "image": "/assets/tech-titans/rand.jpg",
       "badge": "05"
     }
   ]
