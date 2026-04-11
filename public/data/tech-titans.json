@@ -1,16 +1,7 @@
 {
-  "generatedAt": "2026-04-11T13:27:24.990Z",
+  "generatedAt": "2026-04-11T13:29:22.509Z",
   "source": "telegram-webhook",
   "titans": [
-    {
-      "name": "Shahed",
-      "title": "half hacker",
-      "score": 1000,
-      "streak": "1 wins",
-      "tone": "pink",
-      "image": "/assets/tech-titans/shahed.jpg",
-      "badge": "01"
-    },
     {
       "name": "Mutasem",
       "title": "Security Engineer",
@@ -18,7 +9,7 @@
       "streak": "1 wins",
       "tone": "blue",
       "image": "/assets/tech-titans/mutasem.jpg",
-      "badge": "02"
+      "badge": "01"
     },
     {
       "name": "tytan",
@@ -27,7 +18,7 @@
       "streak": "1 wins",
       "tone": "blue",
       "image": "/assets/logos/cne-icon.png",
-      "badge": "03"
+      "badge": "02"
     },
     {
       "name": "him",
@@ -36,7 +27,7 @@
       "streak": "3 wins",
       "tone": "blue",
       "image": "/assets/logos/cne-icon.png",
-      "badge": "04"
+      "badge": "03"
     },
     {
       "name": "lion",
@@ -45,6 +36,15 @@
       "streak": "1 wins",
       "tone": "blue",
       "image": "/assets/logos/cne-icon.png",
+      "badge": "04"
+    },
+    {
+      "name": "Shahed",
+      "title": "half hacker",
+      "score": 1,
+      "streak": "1 wins",
+      "tone": "pink",
+      "image": "/assets/tech-titans/shahed.jpg",
       "badge": "05"
     }
   ]
