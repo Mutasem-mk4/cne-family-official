@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-18T14:41:48.364Z",
+  "generatedAt": "2026-04-19T18:30:21.543Z",
   "source": "telegram-webhook",
   "titans": [
     {
@@ -16,7 +16,7 @@
       "title": "Security Engineer",
       "score": 999,
       "streak": "1 wins",
-      "tone": "blue",
+      "tone": "orange",
       "image": "/assets/tech-titans/mutasem.jpg",
       "badge": "02"
     },
