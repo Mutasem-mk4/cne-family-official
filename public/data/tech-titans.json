@@ -1,16 +1,7 @@
 {
-  "generatedAt": "2026-04-19T18:30:21.543Z",
+  "generatedAt": "2026-04-19T18:30:27.824Z",
   "source": "telegram-webhook",
   "titans": [
-    {
-      "name": "ameera",
-      "title": "bro",
-      "score": 1000000,
-      "streak": "1 wins",
-      "tone": "orange",
-      "image": "/assets/logos/cne-icon.png",
-      "badge": "01"
-    },
     {
       "name": "Mutasem",
       "title": "Security Engineer",
@@ -18,7 +9,7 @@
       "streak": "1 wins",
       "tone": "orange",
       "image": "/assets/tech-titans/mutasem.jpg",
-      "badge": "02"
+      "badge": "01"
     },
     {
       "name": "tytan",
@@ -27,7 +18,7 @@
       "streak": "1 wins",
       "tone": "blue",
       "image": "/assets/logos/cne-icon.png",
-      "badge": "03"
+      "badge": "02"
     },
     {
       "name": "him",
@@ -36,7 +27,7 @@
       "streak": "3 wins",
       "tone": "blue",
       "image": "/assets/logos/cne-icon.png",
-      "badge": "04"
+      "badge": "03"
     },
     {
       "name": "lion",
@@ -44,6 +35,15 @@
       "score": 201,
       "streak": "1 wins",
       "tone": "blue",
+      "image": "/assets/logos/cne-icon.png",
+      "badge": "04"
+    },
+    {
+      "name": "ameera",
+      "title": "bro",
+      "score": 100,
+      "streak": "1 wins",
+      "tone": "orange",
       "image": "/assets/logos/cne-icon.png",
       "badge": "05"
     }
