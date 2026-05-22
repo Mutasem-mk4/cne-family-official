@@ -735,6 +735,9 @@ function renderClickablePlanImage(majorKey, major) {
     })
     .filter(({ subject }) => subject?.link && subject.link !== "#");
 
+  console.log(`[DEBUG] renderClickablePlanImage: majorKey=${majorKey}, total hotspots defined=${(PLAN_HOTSPOTS[majorKey] || []).length}, rendered=${hotspots.length}`);
+  hotspots.forEach(h => console.log(`  -> ${h.subject.name}: left=${(h.x/PLAN_IMAGE_SIZE.width*100).toFixed(1)}% top=${(h.y/PLAN_IMAGE_SIZE.height*100).toFixed(1)}%`));
+
   return `
     <div class="plan-image-map" aria-label="خطة ${major.label} - اضغط على اسم المادة لفتح ملفاتها">
       <div class="plan-viewport">

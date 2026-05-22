@@ -2160,10 +2160,10 @@ p {
   display: block;
   border-radius: 12px;
   color: transparent;
-  background: transparent;
+  background: rgba(255, 0, 0, 0.3); /* DEBUG: visible red */
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid transparent;
+  border: 2px solid rgba(255, 255, 0, 1); /* DEBUG: bright yellow border */
 }
 
 .plan-hotspot:hover {
