@@ -2576,10 +2576,10 @@ p {
 
 .lightbox-content {
   flex: 1;
-  overflow: hidden; /* Prevent content-level scroll to let contain work */
+  overflow: hidden; 
   display: grid;
   place-items: center;
-  padding: 32px;
+  padding: 40px 120px; /* Compressed from the sides */
   background: #020617;
 }
 
@@ -2597,7 +2597,24 @@ p {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  box-shadow: 0 0 50px rgba(0,0,0,0.5);
+  box-shadow: 0 0 80px rgba(0,0,0,0.6);
+}
+
+@media (max-width: 1024px) {
+  .lightbox-content {
+    padding: 20px 40px;
+  }
+}
+
+@media (max-width: 640px) {
+  .lightbox-content {
+    padding: 10px;
+    overflow: auto;
+  }
+  
+  .lightbox-content .plan-viewport {
+    height: auto;
+  }
 }
 
 .lightbox-close {
