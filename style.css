@@ -2118,7 +2118,7 @@ p {
 .plan-image-map {
   position: relative;
   overflow: auto;
-  max-height: 620px;
+  max-height: 640px;
   width: 100%;
   border-radius: 24px;
   border: 1px solid var(--line);
@@ -2127,11 +2127,17 @@ p {
   scrollbar-color: var(--blue) transparent;
 }
 
+.plan-viewport {
+  position: relative;
+  width: fit-content;
+  min-width: 100%;
+}
+
 .plan-showcase-image {
   display: block;
   width: 100%;
   height: auto;
-  min-width: 1000px; /* Ensures detail is kept when compressed */
+  min-width: 1100px; /* Ensures detail and hotspot accuracy */
   object-fit: contain;
 }
 
