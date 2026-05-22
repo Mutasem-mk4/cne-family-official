@@ -261,46 +261,45 @@ async function renderHome() {
 
   return layout(`
     <section class="home-command reveal">
-      <div class="home-command-copy">
-        <span class="eyebrow">CNE Family</span>
-        <h1>كل ما يحتاجه الطالب في مسار واحد واضح.</h1>
-        <p>
-          ابدأ من المهمة التي تريدها الآن: مادة، خطة، متتبع، أو رابط رسمي. الواجهة الرئيسية
-          صارت أقرب إلى لوحة قيادة بدل تكديس أقسام متشابهة.
-        </p>
-        <div class="home-command-actions">
-          <a href="/subjects" data-link class="btn btn-primary">ابدأ من المواد</a>
-          <a href="/plans" data-link class="btn btn-secondary">راجع الخطط</a>
+      <div class="hero-command-board">
+        <div class="hero-command-copy">
+          <span class="home-command-label">CNE Family BAU</span>
+          <h1>نقطة بداية واضحة ليومك الدراسي.</h1>
+          <p>
+            كل ما يحتاجه طالب هندسة الحاسوب والشبكات في مكان واحد: المواد، الخطط،
+            المتابعة، والروابط الرسمية.
+          </p>
         </div>
-      </div>
-      <div class="home-command-panel">
-        <article class="home-command-highlight">
-          <span class="home-command-kicker">البدء السريع</span>
-          <strong>${state.subjects.length} مادة</strong>
-          <p>مكتبة واحدة تجمع مواد القسم مع انتقال مباشر إلى الملفات الأساسية.</p>
-        </article>
-        <div class="home-command-metrics">
-          <div class="home-metric-card">
-            <strong>4</strong>
-            <span>مسارات رئيسية</span>
-          </div>
-          <div class="home-metric-card">
-            <strong>${QUICK_LINKS.length}</strong>
-            <span>روابط يومية</span>
-          </div>
-          <div class="home-metric-card">
-            <strong>${techTitans.length}</strong>
-            <span>أسماء في اللوحة</span>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <section class="home-route-grid reveal">
-      ${renderHomeActionCard("المواد الدراسية", "ابحث عن المادة وافتح ملفاتها مباشرة.", "/subjects", "folder_open")}
-      ${renderHomeActionCard("الخطط الشجرية", "راجع الخطة المناسبة لكل مسار.", "/plans", "schema")}
-      ${renderHomeActionCard("متتبع الخطة", "اعرف ما أنجزته وما تبقى عليك.", "/tracker", "target")}
-      ${renderHomeActionCard("الروابط الأساسية", "ادخل إلى البوابة وجريدة المواد والتعلم الإلكتروني.", "/links", "link")}
+        <div class="hero-primary-actions">
+          <a href="/subjects" data-link class="btn btn-primary">
+            <span class="material-symbols-outlined">folder_open</span>
+            افتح المواد
+          </a>
+          <a href="/tracker" data-link class="btn btn-secondary">
+            <span class="material-symbols-outlined">target</span>
+            تابع الخطة
+          </a>
+        </div>
+      </div>
+
+      <aside class="hero-quick-panel" aria-label="مهام سريعة">
+        <div class="hero-quick-head">
+          <span>ابدأ بسرعة</span>
+          <strong>اختر المهمة</strong>
+        </div>
+        <div class="hero-command-list" aria-label="أوامر البدء السريع">
+          ${renderHeroCommand("01", "المواد الدراسية", "افتح ملفات المادة مباشرة.", "/subjects", "folder_open", true)}
+          ${renderHeroCommand("02", "الخطط الشجرية", "راجع الخطة المناسبة لمسارك.", "/plans", "account_tree")}
+          ${renderHeroCommand("03", "متتبع الخطة", "اعرف ما أنجزته وما تبقى عليك.", "/tracker", "track_changes")}
+          ${renderHeroCommand("04", "الروابط الأساسية", "ادخل إلى منصات الجامعة اليومية.", "/links", "link")}
+        </div>
+        <div class="hero-snapshot">
+          <div><strong>${state.subjects.length}</strong><span>مادة منظمة</span></div>
+          <div><strong>4</strong><span>مسارات رئيسية</span></div>
+          <div><strong>${QUICK_LINKS.length}</strong><span>روابط يومية</span></div>
+        </div>
+      </aside>
     </section>
 
     <section class="home-spotlight reveal">
@@ -366,6 +365,20 @@ function renderHomeActionCard(title, desc, href, icon) {
         <p>${desc}</p>
       </div>
       <span class="material-symbols-outlined home-action-arrow">arrow_outward</span>
+    </a>
+  `;
+}
+
+function renderHeroCommand(index, title, desc, href, icon, primary = false) {
+  return `
+    <a href="${href}" data-link class="hero-command ${primary ? "is-primary" : ""}">
+      <span class="hero-command-index">${index}</span>
+      <span class="material-symbols-outlined hero-command-icon">${icon}</span>
+      <span class="hero-command-text">
+        <strong>${title}</strong>
+        <small>${desc}</small>
+      </span>
+      <span class="material-symbols-outlined hero-command-arrow">arrow_back</span>
     </a>
   `;
 }
