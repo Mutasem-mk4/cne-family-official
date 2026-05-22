@@ -472,31 +472,36 @@ p {
 }
 
 .home-command {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: block;
+  margin: 0;
   padding: 0;
-  margin-top: 0;
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
 }
 
 .hero-command-board.hero-premium {
-  min-height: 72vh;
-  margin-bottom: 48px;
-  border-radius: 0;
+  min-height: 80vh;
+  margin-bottom: 42px;
+  border-radius: 36px;
   background-color: #020617;
-  border: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--line);
+  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.45);
   display: flex;
   align-items: center;
   position: relative;
   overflow: hidden;
+}
+
+.hero-command-background {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.hero-image-full {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 30% center; /* Pushes the team to the left (RTL end) */
+  display: block;
 }
 
 .hero-image-mask {
@@ -505,87 +510,97 @@ p {
   background: linear-gradient(
     to left,
     rgba(2, 6, 23, 1) 0%,
-    rgba(2, 6, 23, 0.85) 30%,
-    rgba(2, 6, 23, 0.4) 60%,
-    rgba(2, 6, 23, 0.1) 100%
+    rgba(2, 6, 23, 0.9) 35%,
+    rgba(2, 6, 23, 0.6) 55%,
+    transparent 100%
   );
-  z-index: 1;
+  z-index: 2;
 }
 
 [dir="ltr"] .hero-image-mask {
   background: linear-gradient(
     to right,
     rgba(2, 6, 23, 1) 0%,
-    rgba(2, 6, 23, 0.85) 30%,
-    rgba(2, 6, 23, 0.4) 60%,
-    rgba(2, 6, 23, 0.1) 100%
+    rgba(2, 6, 23, 0.9) 35%,
+    rgba(2, 6, 23, 0.6) 55%,
+    transparent 100%
   );
 }
 
 .hero-command-content {
   position: relative;
   z-index: 10;
-  padding: 80px 0;
-  width: min(calc(100% - 56px), var(--container));
-  margin: 0 auto;
+  padding: 60px 80px;
+  width: 100%;
+  max-width: 860px; /* Limits text width to prevent overlapping the photo center */
   display: grid;
-  gap: 42px;
+  gap: 36px;
 }
 
 .hero-badge {
   display: inline-flex;
-  padding: 8px 18px;
+  padding: 8px 16px;
   border-radius: 999px;
   background: rgba(239, 134, 48, 0.15);
   border: 1px solid rgba(239, 134, 48, 0.3);
   color: var(--orange);
   font-weight: 800;
   font-size: 0.8rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   width: fit-content;
 }
 
 .hero-premium h1 {
-  font-size: clamp(3.2rem, 6vw, 5.2rem);
+  font-size: clamp(2.8rem, 5vw, 4.4rem);
   color: #ffffff;
-  line-height: 1.05;
-  max-width: 16ch;
-  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  line-height: 1.1;
+  max-width: 14ch;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .hero-premium p {
-  font-size: clamp(1.15rem, 1.5vw, 1.45rem);
-  color: rgba(255, 255, 255, 0.8);
+  font-size: clamp(1.1rem, 1.3vw, 1.25rem);
+  color: rgba(255, 255, 255, 0.75);
   line-height: 1.6;
-  max-width: 50ch;
-  font-weight: 500;
+  max-width: 48ch;
+}
+
+.hero-primary-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .hero-metrics {
   display: flex;
   align-items: center;
-  gap: 48px;
+  gap: 40px;
   padding-top: 32px;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   width: fit-content;
 }
 
 @media (max-width: 1024px) {
   .hero-command-content {
-    padding: 60px 0;
+    padding: 60px;
+    max-width: none;
     text-align: center;
     justify-items: center;
   }
   
-  .hero-premium h1 {
-    max-width: none;
-  }
-  
-  .hero-premium p {
-    margin-inline: auto;
+  .hero-image-full {
+    object-position: center;
   }
 
+  .hero-image-mask {
+    background: linear-gradient(to top, rgba(2, 6, 23, 1) 0%, rgba(2, 6, 23, 0.8) 50%, rgba(2, 6, 23, 0.4) 100%);
+  }
+
+  .hero-primary-actions {
+    justify-content: center;
+  }
+  
   .hero-metrics {
     margin-inline: auto;
   }
@@ -593,33 +608,25 @@ p {
 
 @media (max-width: 640px) {
   .hero-premium {
-    min-height: 80vh;
+    min-height: 700px;
+    border-radius: 28px;
   }
 
   .hero-command-content {
-    padding: 40px 0;
+    padding: 40px 24px;
     gap: 32px;
   }
 
   .hero-metrics {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    grid-template-columns: 1fr;
+    gap: 20px;
+    border-top: 0;
     width: 100%;
   }
 
   .metric-divider {
     display: none;
-  }
-  
-  .hero-image-mask {
-    background: linear-gradient(
-      to top,
-      rgba(2, 6, 23, 1) 0%,
-      rgba(2, 6, 23, 0.8) 40%,
-      rgba(2, 6, 23, 0.2) 100%
-    );
   }
 }
 
