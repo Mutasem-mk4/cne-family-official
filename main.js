@@ -520,8 +520,11 @@ function renderPlans() {
                 <div class="plan-showcase-copy">
                   <span class="eyebrow eyebrow-ghost">${major.label}</span>
                   <h2>${major.accent}</h2>
-                  <p>عرض واضح للخطة الشجرية مع إمكانية التكبير.</p>
-                  <button class="btn btn-primary" data-lightbox="${major.image}">تكبير الخطة</button>
+                  <p>عرض واضح للخطة الشجرية مع إمكانية التكبير أو التحميل.</p>
+                  <div class="plan-actions">
+                    <button class="btn btn-primary" data-lightbox="${major.image}">تكبير الخطة</button>
+                    <a class="btn btn-secondary" href="${major.image}" download="${key}-study-plan">تحميل الخطة</a>
+                  </div>
                 </div>
                 <img src="${major.image}" alt="${major.label}" class="plan-showcase-image" />
               </article>
@@ -861,9 +864,32 @@ function renderFooter() {
         <a href="/tracker" data-link>المتتبع</a>
       </div>
       <div class="footer-social">
-        <a href="https://www.instagram.com/cne.fet" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://www.facebook.com/cne.fet" target="_blank" rel="noopener">Facebook</a>
-        <a href="https://www.youtube.com/@CNEteamCNE_FAMILY" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://www.instagram.com/direct/t/17845518497752784/?__pwa=1" target="_blank" rel="noopener" class="social-link social-chat">
+          <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M12 2.5c-5.5 0-10 3.8-10 8.5 0 2.7 1.5 5.1 3.9 6.6v3.2c0 .5.6.8 1 .5l3.1-1.8c.6.1 1.3.2 2 .2 5.5 0 10-3.8 10-8.5s-4.5-8.7-10-8.7Zm1 11.5-2.5-2.6-4.9 2.6 5.4-5.7 2.5 2.6 4.9-2.6L13 14Z" />
+          </svg>
+          <span>Chat on Instagram</span>
+        </a>
+        <a href="https://www.instagram.com/cne.fet" target="_blank" rel="noopener" class="social-link social-instagram">
+          <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2" />
+            <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2" />
+            <circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" />
+          </svg>
+          <span>Instagram</span>
+        </a>
+        <a href="https://www.facebook.com/cne.fet" target="_blank" rel="noopener" class="social-link social-facebook">
+          <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M14.2 8.2V6.7c0-.7.2-1.1 1.2-1.1h1.7V2.7c-.8-.1-1.7-.2-2.5-.2-2.6 0-4.4 1.6-4.4 4.5v1.2H7.3v3.3h2.9v10h3.6v-10h2.9l.5-3.3h-3Z" />
+          </svg>
+          <span>Facebook</span>
+        </a>
+        <a href="https://www.youtube.com/@CNEteamCNE_FAMILY" target="_blank" rel="noopener" class="social-link social-youtube">
+          <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M21.6 7.1a3 3 0 0 0-2.1-2.1C17.7 4.5 12 4.5 12 4.5s-5.7 0-7.5.5a3 3 0 0 0-2.1 2.1C2 8.9 2 12 2 12s0 3.1.4 4.9A3 3 0 0 0 4.5 19c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1c.4-1.8.4-4.9.4-4.9s0-3.1-.4-4.9ZM10 15.4V8.6l5.8 3.4L10 15.4Z" />
+          </svg>
+          <span>YouTube</span>
+        </a>
       </div>
     </footer>
   `;

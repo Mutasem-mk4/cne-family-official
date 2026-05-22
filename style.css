@@ -1855,6 +1855,11 @@ p {
   gap: 14px;
 }
 
+.subject-card h3 {
+  padding-block: 2px;
+  line-height: 1.35;
+}
+
 .subject-card-top {
   display: flex;
   justify-content: space-between;
@@ -1937,6 +1942,12 @@ p {
 .plan-showcase-copy {
   display: grid;
   gap: 14px;
+}
+
+.plan-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .plan-showcase-copy h2 {
@@ -2262,6 +2273,57 @@ p {
   gap: 10px;
 }
 
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  color: #eef3ff;
+  transition: transform 180ms ease, color 180ms ease;
+}
+
+.social-icon {
+  width: 30px;
+  height: 30px;
+  padding: 7px;
+  border-radius: 999px;
+  background: rgba(238, 243, 255, 0.1);
+  flex: 0 0 auto;
+}
+
+.social-link:hover {
+  transform: translateY(-2px);
+}
+
+.social-chat {
+  margin-bottom: 6px;
+  padding: 9px 12px;
+  border-radius: 999px;
+  background: rgba(238, 243, 255, 0.1);
+  font-weight: 800;
+}
+
+.social-chat .social-icon {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.social-chat:hover {
+  color: #e36cff;
+  background: rgba(227, 108, 255, 0.14);
+}
+
+.social-instagram:hover {
+  color: #ff8a3d;
+}
+
+.social-facebook:hover {
+  color: #5d96ff;
+}
+
+.social-youtube:hover {
+  color: #ff4f4f;
+}
+
 .lightbox-overlay {
   position: fixed;
   inset: 0;
@@ -2526,6 +2588,15 @@ p {
     width: 100%;
   }
 
+  .plan-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .plan-actions .btn {
+    width: 100%;
+  }
+
   .hero-command-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -2609,6 +2680,30 @@ p {
     align-items: stretch;
   }
 
+  .subject-page {
+    gap: 14px;
+  }
+
+  .subject-toolbar {
+    gap: 14px;
+  }
+
+  .subject-toolbar-controls {
+    gap: 12px;
+  }
+
+  .filter-stack {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .filter-chip {
+    padding: 10px 8px;
+    text-align: center;
+    white-space: nowrap;
+  }
+
   .hero-stats,
   .home-summary-stats,
   .tool-ribbon,
@@ -2620,12 +2715,45 @@ p {
   .majors-grid,
   .activity-feed,
   .activity-wall,
-  .subject-grid,
   .about-scene,
   .tracker-overview-stats,
   .tracker-course-list,
   .links-board {
     grid-template-columns: 1fr;
+  }
+
+  .subject-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .subject-card {
+    gap: 10px;
+    padding: 14px;
+    border-radius: 18px;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .subject-card-top {
+    gap: 6px;
+  }
+
+  .subject-card h3 {
+    font-size: 1.02rem;
+    line-height: 1.35;
+  }
+
+  .subject-card .btn {
+    min-height: 42px;
+    padding: 10px;
+    border-radius: 14px;
+    font-size: 0.9rem;
+  }
+
+  .major-tag,
+  .subject-year-mini {
+    padding: 5px 8px;
+    font-size: 0.72rem;
   }
 
   .top-banner,
@@ -2795,6 +2923,115 @@ p {
   .site-footer {
     padding: 16px;
     border-radius: 22px;
+  }
+
+  .subject-toolbar {
+    gap: 12px;
+  }
+
+  .subject-year-nav {
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+
+  .year-nav-chip {
+    padding: 8px 12px;
+    font-size: 0.82rem;
+  }
+
+  .subject-toolbar-copy {
+    gap: 6px;
+  }
+
+  .subject-toolbar-copy h2 {
+    font-size: clamp(1.65rem, 9vw, 2.25rem);
+    line-height: 1.08;
+  }
+
+  .subject-toolbar-copy p {
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+
+  .subject-search {
+    gap: 6px;
+  }
+
+  .subject-search label {
+    font-size: 0.86rem;
+  }
+
+  .subject-search input {
+    min-height: 46px;
+    padding: 11px 12px;
+    border-radius: 14px;
+    font-size: 0.92rem;
+  }
+
+  .filter-stack {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .filter-chip {
+    padding: 9px 8px;
+    border-radius: 14px;
+    font-size: 0.86rem;
+  }
+
+  .subject-content {
+    gap: 12px;
+  }
+
+  .subject-year {
+    padding: 14px;
+  }
+
+  .subject-year-head {
+    margin-bottom: 12px;
+  }
+
+  .subject-year-label {
+    font-size: 1.05rem;
+  }
+
+  .subject-year-head strong {
+    font-size: 0.88rem;
+  }
+
+  .subject-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .subject-card {
+    gap: 8px;
+    min-height: 148px;
+    padding: 10px;
+    border-radius: 16px;
+  }
+
+  .subject-card-top {
+    align-items: flex-start;
+  }
+
+  .major-tag,
+  .subject-year-mini {
+    padding: 4px 7px;
+    border-radius: 10px;
+    font-size: 0.66rem;
+  }
+
+  .subject-card h3 {
+    font-size: 0.92rem;
+    line-height: 1.32;
+  }
+
+  .subject-card .btn {
+    min-height: 38px;
+    padding: 8px;
+    border-radius: 12px;
+    font-size: 0.82rem;
+    align-self: end;
   }
 
   .home-command {
@@ -3067,6 +3304,34 @@ p {
 }
 
 @media (max-width: 360px) {
+  .subject-grid {
+    gap: 7px;
+  }
+
+  .subject-year {
+    padding: 12px;
+  }
+
+  .subject-card {
+    min-height: 140px;
+    padding: 9px;
+  }
+
+  .major-tag,
+  .subject-year-mini {
+    font-size: 0.62rem;
+    padding: 4px 6px;
+  }
+
+  .subject-card h3 {
+    font-size: 0.84rem;
+  }
+
+  .subject-card .btn {
+    min-height: 36px;
+    font-size: 0.78rem;
+  }
+
   .hero-command-copy h1 {
     font-size: clamp(2rem, 10vw, 2.35rem);
   }
