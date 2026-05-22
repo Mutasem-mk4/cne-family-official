@@ -1046,13 +1046,7 @@ function openInteractiveLightbox(majorKey) {
   overlay.className = "lightbox-overlay";
   overlay.innerHTML = `
     <div class="lightbox-inner reveal is-visible">
-      <header class="lightbox-header">
-        <div>
-          <span class="eyebrow">${major.label}</span>
-          <h3>${major.accent}</h3>
-        </div>
-        <button class="lightbox-close material-symbols-outlined" type="button" aria-label="إغلاق">close</button>
-      </header>
+      <button class="lightbox-close material-symbols-outlined" type="button" aria-label="إغلاق">close</button>
       <div class="lightbox-content">
         ${renderClickablePlanImage(majorKey, major)}
       </div>
