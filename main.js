@@ -287,26 +287,23 @@ async function renderHome() {
               تابع الخطة
             </a>
           </div>
+
+          <div class="hero-stats-overlay">
+            <div class="hero-stat-item">
+              <strong>${state.subjects.length}</strong>
+              <span>مادة منظمة</span>
+            </div>
+            <div class="hero-stat-item">
+              <strong>4</strong>
+              <span>مسارات رئيسية</span>
+            </div>
+            <div class="hero-stat-item">
+              <strong>${QUICK_LINKS.length}</strong>
+              <span>روابط يومية</span>
+            </div>
+          </div>
         </div>
       </div>
-
-      <aside class="hero-quick-panel" aria-label="مهام سريعة">
-        <div class="hero-quick-head">
-          <span>ابدأ بسرعة</span>
-          <strong>اختر المهمة</strong>
-        </div>
-        <div class="hero-command-list" aria-label="أوامر البدء السريع">
-          ${renderHeroCommand("01", "المواد الدراسية", "افتح ملفات المادة مباشرة.", "/subjects", "folder_open", true)}
-          ${renderHeroCommand("02", "الخطط الشجرية", "راجع الخطة المناسبة لمسارك.", "/subjects", "account_tree")}
-          ${renderHeroCommand("03", "متتبع الخطة", "اعرف ما أنجزته وما تبقى عليك.", "/tracker", "track_changes")}
-          ${renderHeroCommand("04", "الروابط الأساسية", "ادخل إلى منصات الجامعة اليومية.", "/links", "link")}
-        </div>
-        <div class="hero-snapshot">
-          <div><strong>${state.subjects.length}</strong><span>مادة منظمة</span></div>
-          <div><strong>4</strong><span>مسارات رئيسية</span></div>
-          <div><strong>${QUICK_LINKS.length}</strong><span>روابط يومية</span></div>
-        </div>
-      </aside>
     </section>
 
     <section class="home-spotlight reveal">
