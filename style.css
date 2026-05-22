@@ -2592,8 +2592,8 @@ p {
 
 .lightbox-content .plan-image-map {
   width: 92vw;
-  max-width: calc(92vh * 1.414); /* 1530 / 1082 = 1.414 */
-  aspect-ratio: 1530 / 1082;
+  max-width: calc(92vh * 1.4145); /* 3508 / 2480 = 1.4145 */
+  aspect-ratio: 3508 / 2480;
   margin: 0 auto;
   border: none;
   background: transparent;
