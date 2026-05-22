@@ -615,7 +615,7 @@ function renderPlansStage() {
   `;
 }
 
-const PLAN_IMAGE_SIZE = { width: 1530, height: 830 };
+const PLAN_IMAGE_SIZE = { width: 1530, height: 1082 };
 
 const COMMON_PLAN_HOTSPOTS = [
   // ROW 1
@@ -719,10 +719,40 @@ const PLAN_HOTSPOTS = {
   network: [...COMMON_PLAN_HOTSPOTS, ...NETWORK_PLAN_HOTSPOTS],
 };
 
+const SUBJECT_NAME_MAP = {
+  "التفاضل والتكامل 1": "تفاضل وتكامل 1",
+  "الإحصاء والاحتمالات للمهندسين": "إحصاء واحتمالات للهندسة",
+  "البرمجة للمهندسين (C++)": "البرمجة للمهندسين",
+  "مختبر الفيزياء العامة 1": "مختبر الفيزياء العامة",
+  "التفاضل والتكامل 2": "تفاضل وتكامل 2",
+  "الدوائر الكهربائية 1": "دوائر كهربائية 1",
+  "التقنيات العددية": "تقنيات عددية",
+  "مختبر قواعد البيانات": "مختبر أنظمة قواعد البيانات",
+  "الدوائر الكهربائية 2": "دوائر كهربائية 2",
+  "الإلكترونيات 1": "إلكترونيات 1",
+  "الأنظمة والإشارات": "أنظمة وإشارات",
+  "اتصالات وتراسل البيانات": "إتصالات وتراسل بيانات",
+  "مختبر بنية ومعمارية الحاسوب": "مختبر معمارية الحاسوب وتنظيمه",
+  "بنية ومعمارية الحاسوب": "معمارية الحاسوب وتنظيمه",
+  "الآلات الكهربائية": "آلات كهربائية",
+  "الإلكترونيات الرقمية": "إلكترونيات رقمية",
+  "أنظمة التحكم الآلي": "أنظمة التحكم",
+  "بنية الحاسوب المتقدمة": "معمارية الحواسيب المتقدمة",
+  "البرمجة المتقدمة": "برمجة متقدمة",
+  "مختبر الإلكترونيات 1": "مختبر إلكترونيات 1",
+  "اللغة الإنجليزية 1": "إنجليزي تطبيقي 1",
+  "اللغة الإنجليزية 2": "إنجليزي تطبيقي 2",
+  "الكتابة التقنية والمهارات الحيايتة": "الكتابة التقنية والأخلاقيات المهنية",
+  "موضوعات خاصة في هندسة الحاسوب": "موضوعات خاصة"
+};
+
 function renderClickablePlanImage(majorKey, major) {
   const subjectsByName = new Map(state.subjects.map((subject) => [subject.name, subject]));
   const hotspots = (PLAN_HOTSPOTS[majorKey] || [])
-    .map(([name, x, y, width, height]) => ({ subject: subjectsByName.get(name), x, y, width, height }))
+    .map(([name, x, y, width, height]) => {
+      const mappedName = SUBJECT_NAME_MAP[name] || name;
+      return { subject: subjectsByName.get(mappedName), x, y, width, height };
+    })
     .filter(({ subject }) => subject?.link && subject.link !== "#");
 
   return `
