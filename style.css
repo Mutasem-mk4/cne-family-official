@@ -2113,26 +2113,26 @@ p {
   grid-area: frame;
   position: relative;
   width: 100%;
-  border-radius: 32px;
+  border-radius: 28px;
   border: 1px solid var(--line);
-  background: var(--surface-3);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+  background: #020617;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.12);
   overflow: hidden;
-  /* Frame size matches image aspect ratio exactly */
-  aspect-ratio: 3508 / 2480; 
+  /* Let the content define the height naturally */
 }
 
 .plan-viewport {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: auto;
+  line-height: 0; /* Fixes unexpected bottom spacing */
 }
 
 .plan-showcase-image {
   width: 100%;
-  height: 100%;
-  object-fit: contain;
+  height: auto;
   display: block;
+  object-fit: cover;
 }
 
 @media (max-width: 1120px) {
@@ -2158,21 +2158,41 @@ p {
   position: absolute;
   z-index: 2;
   display: block;
-  border-radius: 10px;
+  border-radius: 12px;
   color: transparent;
   background: transparent;
   cursor: pointer;
-  transition: background 160ms ease, box-shadow 160ms ease, outline-color 160ms ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid transparent;
 }
 
-.plan-hotspot:hover,
+.plan-hotspot:hover {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(4px);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 0 20px rgba(32, 88, 245, 0.25),
+    inset 0 0 12px rgba(255, 255, 255, 0.1);
+  transform: scale(1.02);
+}
+
+.plan-hotspot:active {
+  transform: scale(0.96);
+  background: rgba(255, 255, 255, 0.2);
+  transition-duration: 0.1s;
+}
+
+/* Subtle pulse effect to show they are clickable */
+@keyframes hotspotPulse {
+  0% { box-shadow: 0 0 0 0 rgba(32, 88, 245, 0.1); }
+  70% { box-shadow: 0 0 0 6px rgba(32, 88, 245, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(32, 88, 245, 0); }
+}
+
 .plan-hotspot:focus-visible {
-  outline: 2px solid rgba(255, 255, 255, 0.7);
-  outline-offset: 1px;
-  background: rgba(255, 255, 255, 0.08);
-  box-shadow:
-    inset 0 0 0 1px rgba(14, 22, 36, 0.35),
-    0 10px 24px rgba(14, 22, 36, 0.28);
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+  background: rgba(32, 88, 245, 0.1);
 }
 
 .calculator-layout {
@@ -3969,5 +3989,172 @@ p {
 
   .hero-snapshot {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* About Page Enhancements */
+.about-hero {
+  margin-top: 22px;
+}
+
+.team-structure {
+  margin-top: 48px;
+  padding: 48px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.team-head {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.team-head .eyebrow {
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.team-head h2 {
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  margin-bottom: 16px;
+  color: var(--ink);
+}
+
+.team-head p {
+  color: var(--muted);
+  font-size: clamp(1.1rem, 1.4vw, 1.3rem);
+  max-width: 50ch;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.org-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+.org-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+.org-role-title {
+  padding: 10px 28px;
+  background: var(--ink);
+  color: var(--bg);
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  box-shadow: var(--shadow-soft);
+}
+
+.org-members {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  width: 100%;
+}
+
+.org-member-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 32px 24px;
+  background: var(--surface-3);
+  border: 1px solid var(--line);
+  border-radius: 32px;
+  width: 240px;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-soft);
+}
+
+.org-member-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow);
+  border-color: var(--orange);
+}
+
+.member-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 30px;
+  overflow: hidden;
+  border: 6px solid var(--bg);
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.3s ease;
+}
+
+.org-member-card:hover .member-avatar {
+  transform: scale(1.05) rotate(3deg);
+}
+
+.member-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.member-info {
+  display: grid;
+  gap: 6px;
+}
+
+.member-info strong {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+
+.member-info span {
+  font-size: 0.95rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+@media (max-width: 1024px) {
+  .team-structure {
+    padding: 40px 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .org-members {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+  
+  .org-member-card {
+    width: 100%;
+    padding: 24px 16px;
+    border-radius: 24px;
+  }
+  
+  .member-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .org-members {
+    grid-template-columns: 1fr;
+  }
+  
+  .team-head h2 {
+    font-size: 2rem;
   }
 }

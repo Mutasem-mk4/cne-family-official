@@ -483,17 +483,67 @@ function renderSubjectCard(subject) {
 }
 
 async function renderAbout() {
+  const team = [
+    {
+      role: "الإدارة",
+      members: [
+        { name: "معتصم خرما", title: "مؤسس ومنتج تقني", image: "/assets/tech-titans/mutasem.jpg" },
+      ]
+    },
+    {
+      role: "فريق القيادة",
+      members: [
+        { name: "معتز", title: "قائد تقني", image: "/assets/tech-titans/mutaz.jpg" },
+        { name: "رند", title: "مسؤولة المحتوى", image: "/assets/tech-titans/rand.jpg" },
+        { name: "شاهد", title: "مسؤولة العلاقات", image: "/assets/tech-titans/shahed.jpg" },
+        { name: "فتحي", title: "قائد المجتمع الرقمي", image: "/assets/tech-titans/fathe.jpg" },
+      ]
+    }
+  ];
+
   return layout(
     `
-      <section class="about-scene reveal">
+      <section class="about-hero reveal">
         <article class="about-panel about-panel-wide">
           <span class="eyebrow">من نحن</span>
           <h2>CNE Family مساحة أكاديمية لخدمة الطلبة.</h2>
           <p>
-            الهدف هو توفير مكان واضح وعملي يجمع المواد والخطط والأدوات الأساسية
-            لطلبة هندسة الحاسوب والشبكات.
+            تأسست CNE Family لتكون المرجع الأول لطلبة هندسة الحاسوب والشبكات في جامعة البلقاء التطبيقية. 
+            نحن فريق من الطلبة نهدف إلى تبسيط الرحلة الجامعية من خلال توفير المحتوى الأكاديمي المنظم والأدوات التقنية المساعدة.
           </p>
         </article>
+      </section>
+
+      <section class="team-structure reveal">
+        <div class="team-head">
+          <span class="eyebrow">الهيكل التنظيمي</span>
+          <h2>الإدارة والقيادة</h2>
+          <p>نخبة من الطلبة المتطوعين لخدمة زملائهم وتطوير المنصة.</p>
+        </div>
+        
+        <div class="org-chart">
+          ${team.map(group => `
+            <div class="org-group">
+              <h3 class="org-role-title">${group.role}</h3>
+              <div class="org-members">
+                ${group.members.map(member => `
+                  <div class="org-member-card">
+                    <div class="member-avatar">
+                      <img src="${member.image}" alt="${member.name}" onerror="this.src='/assets/logos/cne-icon.png'">
+                    </div>
+                    <div class="member-info">
+                      <strong>${member.name}</strong>
+                      <span>${member.title}</span>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </section>
+
+      <section class="about-scene reveal">
         <article class="about-panel">
           <h3>الرسالة</h3>
           <p>تقديم محتوى أكاديمي واضح وسهل الوصول.</p>
@@ -512,7 +562,7 @@ async function renderAbout() {
       heroBanner: {
         label: "عن CNE Family",
         title: "تعريف مختصر بالمنصة ودورها",
-        copy: "صفحة مباشرة تشرح الفكرة بدون تفاصيل زائدة.",
+        copy: "صفحة مباشرة تشرح الفكرة وتستعرض الفريق القائم عليها.",
       },
     },
   );
@@ -993,6 +1043,7 @@ function renderFooter() {
       </div>
       <div class="footer-nav">
         <a href="/" data-link>الرئيسية</a>
+        <a href="/about" data-link>عن المنصة</a>
         <a href="/subjects" data-link>المواد</a>
         <a href="/tracker" data-link>المتتبع</a>
       </div>
