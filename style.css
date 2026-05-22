@@ -2566,13 +2566,13 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 32px;
+  padding: 100px 120px; /* Increased buffer to ensure 100% visibility of the entire map */
   background: #020617;
 }
 
 .lightbox-content .plan-viewport {
-  width: 100%;
-  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2590,19 +2590,25 @@ p {
 .lightbox-close {
   position: absolute;
   top: 32px;
-  left: 32px;
+  right: 32px; /* Moved to right (RTL start) to avoid overlapping the red category boxes */
   z-index: 120;
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   color: #fff;
   cursor: pointer;
   transition: all 0.25s ease;
+}
+
+.lightbox-close:hover {
+  background: var(--red);
+  border-color: var(--red);
+  transform: scale(1.1) rotate(90deg);
 }
 
 .lightbox-close:hover {
