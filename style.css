@@ -2590,22 +2590,31 @@ p {
   background: #020617;
 }
 
+.lightbox-content .plan-image-map {
+  width: 92vw;
+  max-width: calc(92vh * 1.414); /* 1530 / 1082 = 1.414 */
+  aspect-ratio: 1530 / 1082;
+  margin: 0 auto;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+  display: block;
+}
+
 .lightbox-content .plan-viewport {
   position: relative;
+  width: 100%;
+  height: 100%;
   display: block;
-  max-width: 92vw;
-  max-height: 92vh;
-  width: fit-content;
-  height: fit-content;
 }
 
 .lightbox-content .plan-showcase-image {
-  max-width: 92vw;
-  max-height: 92vh;
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 100%;
   display: block;
   box-shadow: 0 0 80px rgba(0, 0, 0, 0.6);
+  border-radius: 16px;
 }
 
 .lightbox-close {
