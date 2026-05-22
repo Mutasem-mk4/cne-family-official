@@ -44,7 +44,7 @@ class AIChatAssistant {
             <span class="ai-chat-dot"></span>
             <strong>مساعد CNE الذكي</strong>
           </div>
-          <button id="ai-chat-close" class="ai-chat-close">&times;</button>
+          <button id="ai-chat-close" class="ai-chat-close material-symbols-outlined">close</button>
         </div>
         
         <div id="ai-chat-messages" class="ai-chat-messages">
@@ -59,9 +59,7 @@ class AIChatAssistant {
           </div>
           <div class="ai-chat-input-wrapper">
             <input type="text" id="ai-input" placeholder="اسألني عن مادة أو رابط ما..." autocomplete="off">
-            <button id="ai-send" class="ai-send">
-              <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-            </button>
+            <button id="ai-send" class="ai-send material-symbols-outlined">send</button>
           </div>
         </div>
       </div>
@@ -69,48 +67,48 @@ class AIChatAssistant {
       <style>
         .ai-fab {
           position: fixed;
-          bottom: 30px;
-          right: 30px;
-          width: 60px;
-          height: 60px;
-          border-radius: 50%;
-          background: linear-gradient(135deg, var(--primary), var(--primary-light, #4a90e2));
+          bottom: 32px;
+          right: 32px;
+          width: 64px;
+          height: 64px;
+          border-radius: 22px;
+          background: linear-gradient(135deg, var(--blue), #1a4cd8);
           color: white;
-          border: none;
-          box-shadow: 0 10px 25px rgba(53, 116, 200, 0.4);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          box-shadow: 0 12px 30px rgba(32, 88, 245, 0.35);
           cursor: pointer;
           z-index: 1000;
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 24px;
-          transition: transform 0.3s var(--ease), box-shadow 0.3s;
+          font-size: 28px;
+          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .ai-fab:hover {
-          transform: scale(1.1) rotate(5deg);
-          box-shadow: 0 15px 30px rgba(53, 116, 200, 0.5);
+          transform: scale(1.1) rotate(8deg);
+          box-shadow: 0 18px 40px rgba(32, 88, 245, 0.45);
         }
 
         .ai-chat-window {
           position: fixed;
-          bottom: 100px;
-          right: 30px;
-          width: 380px;
-          height: 500px;
+          bottom: 110px;
+          right: 32px;
+          width: min(400px, calc(100vw - 64px));
+          height: min(580px, calc(100vh - 160px));
           background: var(--surface);
-          border: 1px solid var(--border);
-          border-radius: 20px;
-          box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+          border: 1px solid var(--line);
+          border-radius: 28px;
+          box-shadow: 0 25px 60px rgba(0,0,0,0.3);
           z-index: 1001;
           display: flex;
           flex-direction: column;
           overflow: hidden;
           opacity: 0;
-          transform: translateY(20px) scale(0.95);
+          transform: translateY(30px) scale(0.92);
           pointer-events: none;
-          transition: all 0.3s var(--ease);
-          backdrop-filter: blur(15px);
+          transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+          backdrop-filter: blur(20px);
         }
 
         .ai-chat-window.active {
@@ -120,9 +118,9 @@ class AIChatAssistant {
         }
 
         .ai-chat-header {
-          padding: 16px 20px;
-          background: rgba(53, 116, 200, 0.05);
-          border-bottom: 1px solid var(--border);
+          padding: 20px 24px;
+          background: var(--surface-2);
+          border-bottom: 1px solid var(--line);
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -131,43 +129,61 @@ class AIChatAssistant {
         .ai-chat-header-info {
           display: flex;
           align-items: center;
-          gap: 10px;
+          gap: 12px;
         }
 
         .ai-chat-dot {
-          width: 8px;
-          height: 8px;
-          background: #4caf50;
+          width: 10px;
+          height: 10px;
+          background: #10b981;
           border-radius: 50%;
-          box-shadow: 0 0 10px #4caf50;
+          box-shadow: 0 0 12px rgba(16, 185, 129, 0.5);
+        }
+
+        .ai-chat-header-info strong {
+          font-family: var(--font-display);
+          font-size: 1.1rem;
         }
 
         .ai-chat-close {
-          background: none;
+          width: 32px;
+          height: 32px;
+          border-radius: 10px;
+          background: var(--line);
           border: none;
-          font-size: 24px;
-          color: var(--text-muted);
+          font-size: 20px;
+          color: var(--muted);
           cursor: pointer;
+          display: grid;
+          place-items: center;
+          transition: all 0.2s;
+        }
+
+        .ai-chat-close:hover {
+          background: var(--red);
+          color: white;
         }
 
         .ai-chat-messages {
           flex: 1;
-          padding: 20px;
+          padding: 24px;
           overflow-y: auto;
           display: flex;
           flex-direction: column;
-          gap: 15px;
+          gap: 18px;
           scrollbar-width: thin;
+          background: radial-gradient(circle at top right, rgba(32, 88, 245, 0.03), transparent 40%);
         }
 
         .message {
-          max-width: 85%;
-          padding: 12px 16px;
-          border-radius: 15px;
+          max-width: 88%;
+          padding: 14px 18px;
+          border-radius: 20px;
           font-size: 0.95rem;
-          line-height: 1.5;
+          line-height: 1.6;
           position: relative;
-          animation: messageAppear 0.3s var(--ease);
+          box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+          animation: messageAppear 0.4s var(--ease);
         }
 
         @keyframes messageAppear {
@@ -177,87 +193,133 @@ class AIChatAssistant {
 
         .message.bot {
           align-self: flex-start;
-          background: var(--surface-light, #f0f4f8);
-          color: var(--text);
-          border-bottom-left-radius: 2px;
-          border: 1px solid var(--border);
+          background: var(--surface-3);
+          color: var(--ink);
+          border-bottom-left-radius: 4px;
+          border: 1px solid var(--line);
         }
 
         .message.user {
           align-self: flex-end;
-          background: var(--primary);
+          background: var(--blue);
           color: white;
-          border-bottom-right-radius: 2px;
+          border-bottom-right-radius: 4px;
           text-align: right;
+          box-shadow: 0 8px 20px rgba(32, 88, 245, 0.2);
         }
 
         .ai-chat-input-container {
-          padding: 15px;
-          border-top: 1px solid var(--border);
-          background: rgba(var(--surface-rgb), 0.5);
+          padding: 20px;
+          border-top: 1px solid var(--line);
+          background: var(--surface-2);
         }
 
         .ai-chat-suggestions {
           display: flex;
-          gap: 8px;
-          margin-bottom: 12px;
+          gap: 10px;
+          margin-bottom: 16px;
           overflow-x: auto;
-          padding-bottom: 5px;
+          padding-bottom: 8px;
           scrollbar-width: none;
         }
 
+        .ai-chat-suggestions::-webkit-scrollbar { display: none; }
+
         .ai-suggestion-btn {
           white-space: nowrap;
-          padding: 6px 12px;
-          background: rgba(53, 116, 200, 0.1);
-          border: 1px solid rgba(53, 116, 200, 0.2);
-          border-radius: 20px;
-          font-size: 0.8rem;
-          color: var(--primary);
+          padding: 8px 14px;
+          background: var(--surface-3);
+          border: 1px solid var(--line);
+          border-radius: 12px;
+          font-size: 0.82rem;
+          font-weight: 700;
+          color: var(--muted);
           cursor: pointer;
           transition: all 0.2s;
         }
 
         .ai-suggestion-btn:hover {
-          background: var(--primary);
-          color: white;
+          color: var(--blue);
+          border-color: var(--blue);
+          background: rgba(32, 88, 245, 0.05);
         }
 
         .ai-chat-input-wrapper {
           display: flex;
-          gap: 10px;
-          background: var(--surface);
-          border: 1px solid var(--border);
-          border-radius: 25px;
-          padding: 5px 15px;
+          gap: 12px;
+          background: var(--surface-3);
+          border: 1px solid var(--line);
+          border-radius: 18px;
+          padding: 6px 16px;
           align-items: center;
+          box-shadow: var(--shadow-soft);
+          transition: border-color 0.2s;
+        }
+
+        .ai-chat-input-wrapper:focus-within {
+          border-color: var(--blue);
         }
 
         .ai-chat-input-wrapper input {
           flex: 1;
           border: none;
           background: none;
-          padding: 8px 0;
-          color: var(--text);
+          padding: 10px 0;
+          color: var(--ink);
           outline: none;
           font-family: inherit;
         }
 
         .ai-send {
-          background: none;
+          width: 40px;
+          height: 40px;
+          background: var(--blue);
           border: none;
-          color: var(--primary);
+          color: white;
+          border-radius: 12px;
           cursor: pointer;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          display: grid;
+          place-items: center;
+          transition: all 0.2s;
         }
 
-        .ai-typing {
-          font-size: 0.8rem;
-          color: var(--text-muted);
-          margin-left: 20px;
-          display: none;
+        .ai-send:hover {
+          background: #1a4cd8;
+          transform: scale(1.05);
+        }
+
+        .typing-indicator {
+          display: flex;
+          gap: 4px;
+          padding: 12px 18px;
+          background: var(--surface-3);
+          border-radius: 20px;
+          width: fit-content;
+          border: 1px solid var(--line);
+          align-self: flex-start;
+          animation: messageAppear 0.3s var(--ease);
+        }
+
+        .typing-dot {
+          width: 6px;
+          height: 6px;
+          background: var(--muted);
+          border-radius: 50%;
+          animation: typingPulse 1.4s infinite ease-in-out both;
+          opacity: 0.4;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typingPulse {
+          0%, 80%, 100% { transform: scale(0.6); }
+          40% { transform: scale(1.2); opacity: 1; }
+        }
+
+        @media (max-width: 640px) {
+          .ai-fab { bottom: 20px; right: 20px; width: 56px; height: 56px; }
+          .ai-chat-window { bottom: 84px; right: 20px; width: calc(100vw - 40px); height: calc(100vh - 120px); border-radius: 24px; }
         }
       </style>
     `;
@@ -307,8 +369,22 @@ class AIChatAssistant {
     container.appendChild(msg);
     container.scrollTop = container.scrollHeight;
     
-    // Store in history
     this.messages.push({ role, text });
+  }
+
+  showTypingIndicator() {
+    const container = document.getElementById('ai-chat-messages');
+    const indicator = document.createElement('div');
+    indicator.id = 'ai-typing-indicator';
+    indicator.className = 'typing-indicator';
+    indicator.innerHTML = `
+      <span class="typing-dot"></span>
+      <span class="typing-dot"></span>
+      <span class="typing-dot"></span>
+    `;
+    container.appendChild(indicator);
+    container.scrollTop = container.scrollHeight;
+    return indicator;
   }
 
   async handleUserInput() {
@@ -316,24 +392,16 @@ class AIChatAssistant {
     const query = input.value.trim();
     if (!query) return;
 
-    // 1. Add user message
     this.addMessage('user', query);
     input.value = '';
 
-    // 2. Show typing
-    const typing = document.createElement('div');
-    typing.className = 'message bot typing';
-    typing.innerText = 'جاري معالجة طلبك...';
-    document.getElementById('ai-chat-messages').appendChild(typing);
-
-    // 3. Simple Search Logic
+    const typing = this.showTypingIndicator();
     const response = await this.generateResponse(query);
 
-    // 4. Reveal response after delay
     setTimeout(() => {
       typing.remove();
       this.addMessage('bot', response);
-    }, 1000);
+    }, 800 + Math.random() * 800);
   }
 
   async generateResponse(query) {
