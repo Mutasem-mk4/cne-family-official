@@ -261,7 +261,7 @@ async function renderHome() {
 
   return layout(`
     <section class="home-command reveal">
-      <div class="hero-command-board hero-variant-full">
+      <div class="hero-command-board hero-premium">
         <div class="hero-command-background">
           <img src="/assets/images/hero-cne.jpg" alt="CNE Family Group" class="hero-image-full">
           <div class="hero-image-mask"></div>
@@ -269,37 +269,39 @@ async function renderHome() {
         
         <div class="hero-command-content">
           <div class="hero-command-copy">
-            <span class="home-command-label">CNE Family BAU</span>
-            <h1>نقطة بداية واضحة ليومك الدراسي.</h1>
+            <span class="hero-badge">CNE Family Official Platform</span>
+            <h1>نقطة بداية واضحة لمستقبلك الهندسي.</h1>
             <p>
-              كل ما يحتاجه طالب هندسة الحاسوب والشبكات في مكان واحد: المواد، الخطط،
-              المتابعة، والروابط الرسمية.
+              المنصة الأكاديمية الشاملة لطلبة هندسة الحاسوب والشبكات: محتوى منظم،
+              أدوات ذكية، ومجتمع تقني متكامل.
             </p>
           </div>
 
           <div class="hero-primary-actions">
-            <a href="/subjects" data-link class="btn btn-primary">
-              <span class="material-symbols-outlined">folder_open</span>
-              افتح المواد
+            <a href="/subjects" data-link class="btn btn-primary btn-xl">
+              <span class="material-symbols-outlined">folder_managed</span>
+              تصفح المواد الدراسية
             </a>
-            <a href="/tracker" data-link class="btn btn-secondary btn-glass">
-              <span class="material-symbols-outlined">target</span>
-              تابع الخطة
+            <a href="/tracker" data-link class="btn btn-secondary btn-glass btn-xl">
+              <span class="material-symbols-outlined">analytics</span>
+              تتبع تقدمك الأكاديمي
             </a>
           </div>
 
-          <div class="hero-stats-overlay">
-            <div class="hero-stat-item">
+          <div class="hero-metrics">
+            <div class="metric-item">
               <strong>${state.subjects.length}</strong>
-              <span>مادة منظمة</span>
+              <span>مادة دراسية</span>
             </div>
-            <div class="hero-stat-item">
+            <div class="metric-divider"></div>
+            <div class="metric-item">
               <strong>4</strong>
-              <span>مسارات رئيسية</span>
+              <span>مسارات تخصص</span>
             </div>
-            <div class="hero-stat-item">
+            <div class="metric-divider"></div>
+            <div class="metric-item">
               <strong>${QUICK_LINKS.length}</strong>
-              <span>روابط يومية</span>
+              <span>خدمات طلابية</span>
             </div>
           </div>
         </div>
