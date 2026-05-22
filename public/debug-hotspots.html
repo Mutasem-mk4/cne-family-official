@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotspot Debug Test</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #0a0a0a; color: #fff; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+    h1 { margin-bottom: 20px; font-size: 18px; }
+    
+    .test-container {
+      width: 92vw;
+      max-width: calc(92vh * 1.414);
+      aspect-ratio: 1530 / 1082;
+      position: relative;
+      margin: 0 auto;
+      border: 2px solid lime;
+    }
+    
+    .test-container img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    
+    .test-container .plan-viewport {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .hotspot {
+      position: absolute;
+      z-index: 10;
+      display: block;
+      background: rgba(255, 0, 0, 0.35);
+      border: 2px solid yellow;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      color: #fff;
+      font-size: 8px;
+      overflow: hidden;
+      text-align: center;
+      line-height: 1;
+      padding: 2px;
+    }
+    
+    .hotspot:hover {
+      background: rgba(0, 255, 0, 0.5);
+      border-color: #fff;
+    }
+    
+    #log { margin-top: 20px; padding: 10px; background: #222; border-radius: 8px; width: 92vw; max-height: 300px; overflow: auto; font-family: monospace; font-size: 12px; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <h1>🔴 Hotspot Debug Test - Click any red box to test</h1>
+  <div class="test-container">
+    <div class="plan-viewport" id="viewport">
+      <img src="/computer-plan.webp" alt="Computer Plan">
+    </div>
+  </div>
+  <div id="log"></div>
+
+  <script>
+    const PLAN_IMAGE_SIZE = { width: 1530, height: 1082 };
+    
+    const testHotspots = [
+      // Row 1 samples across the width
+      ["تفاضل وتكامل 1", 1055, 115, 105, 70, "https://drive.google.com/drive/folders/1hq2Kg4IojUVFL7TrZqxjD4ggomuJXFHy"],
+      ["الفيزياء العامة 1", 925, 115, 105, 70, "https://drive.google.com/drive/folders/1x78scbdKPb2sS6NHg_atrFPtf93uEwEC"],
+      ["الكيمياء العامة 1", 405, 115, 105, 70, "https://drive.google.com/drive/folders/1OMvMJfyE6QRXX7dEgosr12Qqqm4Yv9HY"],
+      ["موضوعات خاصة", 75, 115, 105, 70, "https://drive.google.com/drive/folders/1ulOhjV6F8qdvx8yrd7gkw7TqF_BBeRAG"],
+      ["إنجليزي تطبيقي 1", 1430, 115, 105, 70, "https://drive.google.com/drive/folders/18BSSdtGWVpvckA2mW1GMlHmv7fJzy_Ea"],
+      // Row 4 samples
+      ["إلكترونيات 1", 925, 445, 105, 70, "https://drive.google.com/drive/folders/1GuB5UYK6v3rCT0CuP_fE0R2DBahrLNsi"],
+      ["دوائر كهربائية 2", 795, 445, 105, 70, "https://drive.google.com/drive/folders/1APNCoIncHpWj92dByRIHjdaiXXynGUGq"],
+      // Row 7 samples
+      ["مختبر شبكات الحاسوب", 925, 755, 105, 70, "https://drive.google.com/drive/folders/1_wAiEwNp0V4-n61P6koi19Q6QZpxcwcz"],
+      ["معالجة الصور الرقمية", 75, 755, 105, 70, "https://drive.google.com/drive/folders/1viNT1g2aeOL5izTkQjiwza7jXcsWficK"],
+    ];
+    
+    const viewport = document.getElementById('viewport');
+    const log = document.getElementById('log');
+    
+    function addLog(msg) {
+      log.textContent += msg + '\n';
+      console.log(msg);
+    }
+    
+    testHotspots.forEach(([name, x, y, w, h, link]) => {
+      const left = (x / PLAN_IMAGE_SIZE.width) * 100;
+      const top = (y / PLAN_IMAGE_SIZE.height) * 100;
+      const width = (w / PLAN_IMAGE_SIZE.width) * 100;
+      const height = (h / PLAN_IMAGE_SIZE.height) * 100;
+      
+      const a = document.createElement('a');
+      a.href = link;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.className = 'hotspot';
+      a.style.cssText = `left:${left.toFixed(3)}%;top:${top.toFixed(3)}%;width:${width.toFixed(3)}%;height:${height.toFixed(3)}%;`;
+      a.title = name;
+      a.textContent = name;
+      a.addEventListener('click', (e) => {
+        addLog(`✅ CLICKED: ${name} → ${link}`);
+      });
+      viewport.appendChild(a);
+      
+      addLog(`Added: "${name}" at left=${left.toFixed(1)}% top=${top.toFixed(1)}% w=${width.toFixed(1)}% h=${height.toFixed(1)}%`);
+    });
+    
+    addLog(`\n✅ Total hotspots added: ${testHotspots.length}`);
+    addLog(`📐 Container aspect ratio: 1530/1082 = ${(1530/1082).toFixed(4)}`);
+    addLog(`\nClick any RED box to verify it opens the Drive link!`);
+  </script>
+</body>
+</html>
