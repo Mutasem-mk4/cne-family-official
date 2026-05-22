@@ -261,7 +261,12 @@ async function renderHome() {
 
   return layout(`
     <section class="home-command reveal">
-      <div class="hero-command-board">
+      <div class="hero-command-board hero-variant-full">
+        <div class="hero-command-background">
+          <img src="/assets/images/hero-cne.jpg" alt="CNE Family Group" class="hero-image-full">
+          <div class="hero-image-mask"></div>
+        </div>
+        
         <div class="hero-command-content">
           <div class="hero-command-copy">
             <span class="home-command-label">CNE Family BAU</span>
@@ -277,16 +282,11 @@ async function renderHome() {
               <span class="material-symbols-outlined">folder_open</span>
               افتح المواد
             </a>
-            <a href="/tracker" data-link class="btn btn-secondary">
+            <a href="/tracker" data-link class="btn btn-secondary btn-glass">
               <span class="material-symbols-outlined">target</span>
               تابع الخطة
             </a>
           </div>
-        </div>
-
-        <div class="hero-command-visual">
-          <img src="/assets/images/hero-cne.jpg" alt="CNE Family Group" class="hero-image">
-          <div class="hero-image-overlay"></div>
         </div>
       </div>
 
