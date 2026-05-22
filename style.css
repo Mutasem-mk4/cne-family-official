@@ -2538,34 +2538,34 @@ p {
 
 .lightbox-inner {
   position: relative;
-  width: min(1400px, 100%);
-  height: min(90vh, 100%);
+  width: min(1000px, 92%); /* More compact modal width */
+  max-height: 82vh; /* Reduced height to avoid full-screen feel */
   display: flex;
   flex-direction: column;
   background: var(--surface);
-  border-radius: 32px;
+  border-radius: 28px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   overflow: hidden;
-  box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 40px 80px -15px rgba(0, 0, 0, 0.6);
 }
 
 .lightbox-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 32px;
+  padding: 16px 24px;
   border-bottom: 1px solid var(--line);
   background: var(--surface-2);
 }
 
 .lightbox-header h3 {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 }
 
 .lightbox-content {
   flex: 1;
   overflow: auto;
-  padding: 20px;
+  padding: 12px;
   background: #020617;
   scrollbar-width: thin;
 }
@@ -2575,7 +2575,7 @@ p {
 }
 
 .lightbox-content .plan-showcase-image {
-  min-width: 1400px; /* Larger in lightbox for readability */
+  min-width: 1100px; /* Balanced size for readability and hotspots */
 }
 
 .lightbox-close {
