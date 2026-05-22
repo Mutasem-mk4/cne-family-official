@@ -262,24 +262,31 @@ async function renderHome() {
   return layout(`
     <section class="home-command reveal">
       <div class="hero-command-board">
-        <div class="hero-command-copy">
-          <span class="home-command-label">CNE Family BAU</span>
-          <h1>نقطة بداية واضحة ليومك الدراسي.</h1>
-          <p>
-            كل ما يحتاجه طالب هندسة الحاسوب والشبكات في مكان واحد: المواد، الخطط،
-            المتابعة، والروابط الرسمية.
-          </p>
+        <div class="hero-command-content">
+          <div class="hero-command-copy">
+            <span class="home-command-label">CNE Family BAU</span>
+            <h1>نقطة بداية واضحة ليومك الدراسي.</h1>
+            <p>
+              كل ما يحتاجه طالب هندسة الحاسوب والشبكات في مكان واحد: المواد، الخطط،
+              المتابعة، والروابط الرسمية.
+            </p>
+          </div>
+
+          <div class="hero-primary-actions">
+            <a href="/subjects" data-link class="btn btn-primary">
+              <span class="material-symbols-outlined">folder_open</span>
+              افتح المواد
+            </a>
+            <a href="/tracker" data-link class="btn btn-secondary">
+              <span class="material-symbols-outlined">target</span>
+              تابع الخطة
+            </a>
+          </div>
         </div>
 
-        <div class="hero-primary-actions">
-          <a href="/subjects" data-link class="btn btn-primary">
-            <span class="material-symbols-outlined">folder_open</span>
-            افتح المواد
-          </a>
-          <a href="/tracker" data-link class="btn btn-secondary">
-            <span class="material-symbols-outlined">target</span>
-            تابع الخطة
-          </a>
+        <div class="hero-command-visual">
+          <img src="/assets/images/hero-cne.jpg" alt="CNE Family Group" class="hero-image">
+          <div class="hero-image-overlay"></div>
         </div>
       </div>
 
