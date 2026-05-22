@@ -12,7 +12,7 @@ const ROUTES = {
   "/": renderHome,
   "/about": renderAbout,
   "/subjects": renderSubjects,
-  "/plans": renderPlans,
+  "/plans": renderSubjects,
   "/activities": renderActivities,
   "/calculator": renderCalculator,
   "/tracker": renderTracker,
@@ -290,7 +290,7 @@ async function renderHome() {
         </div>
         <div class="hero-command-list" aria-label="أوامر البدء السريع">
           ${renderHeroCommand("01", "المواد الدراسية", "افتح ملفات المادة مباشرة.", "/subjects", "folder_open", true)}
-          ${renderHeroCommand("02", "الخطط الشجرية", "راجع الخطة المناسبة لمسارك.", "/plans", "account_tree")}
+          ${renderHeroCommand("02", "الخطط الشجرية", "راجع الخطة المناسبة لمسارك.", "/subjects", "account_tree")}
           ${renderHeroCommand("03", "متتبع الخطة", "اعرف ما أنجزته وما تبقى عليك.", "/tracker", "track_changes")}
           ${renderHeroCommand("04", "الروابط الأساسية", "ادخل إلى منصات الجامعة اليومية.", "/links", "link")}
         </div>
@@ -309,7 +309,6 @@ async function renderHome() {
             <span class="eyebrow">Tech Titans</span>
             <h2>Leaderboard</h2>
           </div>
-          <p>التركيز هنا على الاسم الأول ثم بقية الترتيب ضمن مساحة مضغوطة وأوضح.</p>
         </div>
         <div class="titans-featured">
           ${renderTitanFeaturedCard(techTitans[0], 1)}
@@ -424,6 +423,8 @@ async function renderSubjects() {
           </div>
         </section>
 
+        ${renderPlansStage()}
+
         <div class="subject-content">
           ${sortedYears
             .map((year) => renderSubjectYear(year, years[year]))
@@ -457,7 +458,10 @@ function renderSubjectYear(year, subjects) {
 
 function renderSubjectCard(subject) {
   return `
-    <article
+    <a
+      href="${subject.link}"
+      target="_blank"
+      rel="noopener"
       class="subject-card"
       data-major="${subject.major}"
       data-name="${subject.name.toLowerCase()}"
@@ -467,8 +471,8 @@ function renderSubjectCard(subject) {
         <span class="subject-year-mini">سنة ${subject.year}</span>
       </div>
       <h3>${subject.name}</h3>
-      <a href="${subject.link}" target="_blank" rel="noopener" class="btn btn-secondary btn-small">افتح المادة</a>
-    </article>
+      <span class="btn btn-secondary btn-small">افتح المادة</span>
+    </a>
   `;
 }
 
@@ -511,27 +515,7 @@ async function renderAbout() {
 function renderPlans() {
   return layout(
     `
-      <section class="plans-stage reveal">
-        ${Object.entries(MAJORS)
-          .filter(([key]) => key !== "common")
-          .map(([key, major]) => {
-            return `
-              <article class="plan-showcase tone-${major.tone}">
-                <div class="plan-showcase-copy">
-                  <span class="eyebrow eyebrow-ghost">${major.label}</span>
-                  <h2>${major.accent}</h2>
-                  <p>عرض واضح للخطة الشجرية مع إمكانية التكبير أو التحميل.</p>
-                  <div class="plan-actions">
-                    <button class="btn btn-primary" data-lightbox="${major.image}">تكبير الخطة</button>
-                    <a class="btn btn-secondary" href="${major.image}" download="${key}-study-plan">تحميل الخطة</a>
-                  </div>
-                </div>
-                <img src="${major.image}" alt="${major.label}" class="plan-showcase-image" />
-              </article>
-            `;
-          })
-          .join("")}
-      </section>
+      ${renderPlansStage()}
     `,
     {
       heroBanner: {
@@ -541,6 +525,148 @@ function renderPlans() {
       },
     },
   );
+}
+
+function renderPlansStage() {
+  return `
+    <section class="plans-stage reveal" aria-label="الخطط الشجرية">
+      ${Object.entries(MAJORS)
+        .filter(([key]) => key !== "common")
+        .map(([key, major]) => {
+          return `
+            <article class="plan-showcase tone-${major.tone}">
+              <div class="plan-showcase-copy">
+                <span class="eyebrow eyebrow-ghost">${major.label}</span>
+                <h2>${major.accent}</h2>
+                <p>اضغط على اسم المادة داخل الخطة لفتح ملفاتها مباشرة.</p>
+                <div class="plan-actions">
+                  <button class="btn btn-primary" data-lightbox="${major.image}">تكبير الخطة</button>
+                  <a class="btn btn-secondary" href="${major.image}" download="${key}-study-plan">تحميل الخطة</a>
+                </div>
+              </div>
+              ${renderClickablePlanImage(key, major)}
+            </article>
+          `;
+        })
+        .join("")}
+    </section>
+  `;
+}
+
+const PLAN_IMAGE_SIZE = { width: 3508, height: 2480 };
+
+const COMMON_PLAN_HOTSPOTS = [
+  ["الكيمياء العامة 1", 388, 180, 260, 178],
+  ["مختبر الكيمياء العامة", 390, 438, 260, 168],
+  ["مهارات الحاسوب", 708, 180, 260, 178],
+  ["البرمجة للمهندسين (C++)", 708, 438, 260, 178],
+  ["المشغل الهندسي", 1336, 178, 260, 178],
+  ["مختبر الفيزياء العامة 1", 1336, 436, 260, 170],
+  ["الفيزياء العامة 1", 1652, 180, 260, 178],
+  ["الفيزياء العامة 2", 1652, 438, 260, 178],
+  ["التفاضل والتكامل 1", 1968, 180, 260, 178],
+  ["التفاضل والتكامل 2", 1968, 438, 260, 178],
+  ["الإحصاء والاحتمالات للمهندسين", 2286, 180, 260, 178],
+  ["الذكاء الاصطناعي وتعلم الآلة", 2286, 438, 260, 178],
+  ["الجبر الخطي", 2604, 692, 260, 178],
+  ["المعادلات التفاضلية العادية", 1968, 692, 260, 178],
+  ["التقنيات العددية", 2286, 692, 260, 178],
+  ["الدوائر الكهربائية 1", 1652, 692, 260, 178],
+  ["الدوائر الكهربائية 2", 1652, 940, 260, 178],
+  ["مختبر الدوائر الكهربائية", 1652, 1438, 260, 168],
+  ["الإلكترونيات 1", 1968, 940, 260, 178],
+  ["مختبر الإلكترونيات", 1968, 1680, 260, 168],
+  ["اتصالات وتراسل البيانات", 2604, 940, 260, 178],
+  ["الأنظمة والإشارات", 2286, 940, 260, 178],
+  ["أساسيات الأمن السيبراني", 2286, 1680, 260, 178],
+  ["شبكات الحاسوب 1", 2604, 1438, 260, 178],
+  ["بروتوكولات الشبكات", 2604, 1680, 260, 178],
+  ["اللغة العربية التطبيقية", 2916, 480, 260, 178],
+  ["اللغة الإنجليزية 1", 3232, 480, 260, 178],
+  ["التربية الوطنية", 2916, 730, 260, 178],
+  ["اللغة الإنجليزية 2", 3232, 730, 260, 178],
+  ["الريادة والابتكار", 2916, 970, 260, 178],
+  ["الكتابة التقنية والمهارات الحيايتة", 3232, 970, 260, 178],
+  ["العلوم العسكرية", 2916, 1214, 260, 178],
+  ["الاقتصاد الهندسي", 3232, 1214, 260, 178],
+  ["تصميم المنطق الرقمي", 708, 690, 260, 178],
+  ["مختبر تصميم المنطق الرقمي", 390, 690, 260, 168],
+  ["أنظمة المعالجات الدقيقة", 708, 940, 260, 178],
+  ["مختبر أنظمة المعالجات الدقيقة", 390, 940, 260, 168],
+  ["بنية ومعمارية الحاسوب", 708, 1188, 260, 178],
+  ["مختبر بنية الحاسوب", 390, 1188, 260, 168],
+  ["بنية الحاسوب المتقدمة", 708, 1438, 260, 178],
+  ["تراكيب البيانات والخوارزميات", 1024, 690, 260, 178],
+  ["مختبر تراكيب البيانات والخوارزميات", 1340, 690, 260, 168],
+  ["أنظمة قواعد البيانات", 1024, 940, 260, 178],
+  ["مختبر قواعد البيانات", 1340, 940, 260, 168],
+  ["أنظمة التشغيل", 1024, 1188, 260, 178],
+  ["البرمجة كينونية التوجه", 1024, 1438, 260, 178],
+  ["الإسلام والحياة", 3232, 1454, 260, 178],
+  ["إنترنت الأشياء", 60, 1450, 260, 178],
+];
+
+const COMPUTER_PLAN_HOTSPOTS = [
+  ["موضوعات خاصة في هندسة الحاسوب", 60, 154, 260, 178],
+  ["الحوسبة السحابية", 60, 1180, 260, 178],
+  ["الإلكترونيات الرقمية", 1968, 1188, 260, 178],
+  ["أنظمة التحكم الآلي", 2286, 1188, 260, 178],
+  ["مختبر شبكات الحاسوب", 1968, 1680, 260, 168],
+  ["الآلات الكهربائية", 1652, 1188, 260, 178],
+  ["أنظمة معالجات متوازية", 390, 1438, 260, 178],
+  ["البرمجة المتقدمة", 1024, 1438, 260, 178],
+];
+
+const NETWORK_PLAN_HOTSPOTS = [
+  ["النمذجة والمحاكاة", 60, 404, 260, 178],
+  ["الشبكات اللاسلكية", 60, 1180, 260, 178],
+  ["مختبر شبكات الحاسوب", 2286, 1438, 260, 168],
+  ["أنظمة التحقيقات والأدلة الرقمية", 1338, 1680, 260, 178],
+  ["مختبر التحقيقات الرقمية", 1338, 1928, 260, 168],
+  ["مختبر أمن الشبكات والإنترنت", 1652, 1680, 260, 168],
+  ["مختبر بروتوكولات الشبكة", 1652, 1928, 260, 168],
+  ["تشفير وأمن أنظمة الشبكات", 1968, 1680, 260, 178],
+  ["برمجة الشبكات", 2604, 1928, 260, 178],
+  ["أساسيات الأمن السيبراني", 2286, 1680, 260, 178],
+  ["بروتوكولات الشبكات", 2604, 1680, 260, 178],
+];
+
+const PLAN_HOTSPOTS = {
+  computer: [...COMMON_PLAN_HOTSPOTS, ...COMPUTER_PLAN_HOTSPOTS],
+  network: [...COMMON_PLAN_HOTSPOTS, ...NETWORK_PLAN_HOTSPOTS],
+};
+
+function renderClickablePlanImage(majorKey, major) {
+  const subjectsByName = new Map(state.subjects.map((subject) => [subject.name, subject]));
+  const hotspots = (PLAN_HOTSPOTS[majorKey] || [])
+    .map(([name, x, y, width, height]) => ({ subject: subjectsByName.get(name), x, y, width, height }))
+    .filter(({ subject }) => subject?.link && subject.link !== "#");
+
+  return `
+    <div class="plan-image-map" aria-label="خطة ${major.label} - اضغط على اسم المادة لفتح ملفاتها">
+      <img src="${major.image}" alt="${major.label}" class="plan-showcase-image" />
+      ${hotspots.map(renderPlanHotspot).join("")}
+    </div>
+  `;
+}
+
+function renderPlanHotspot({ subject, x, y, width, height }) {
+  const left = (x / PLAN_IMAGE_SIZE.width) * 100;
+  const top = (y / PLAN_IMAGE_SIZE.height) * 100;
+  const boxWidth = (width / PLAN_IMAGE_SIZE.width) * 100;
+  const boxHeight = (height / PLAN_IMAGE_SIZE.height) * 100;
+
+  return `
+    <a
+      href="${subject.link}"
+      target="_blank"
+      rel="noopener"
+      class="plan-hotspot"
+      style="left:${left.toFixed(3)}%;top:${top.toFixed(3)}%;width:${boxWidth.toFixed(3)}%;height:${boxHeight.toFixed(3)}%;"
+      aria-label="افتح ملفات ${subject.name}"
+      title="${subject.name}"
+    ></a>
+  `;
 }
 
 async function renderActivities() {
@@ -860,15 +986,15 @@ function renderFooter() {
       <div class="footer-nav">
         <a href="/" data-link>الرئيسية</a>
         <a href="/subjects" data-link>المواد</a>
-        <a href="/plans" data-link>الخطط</a>
         <a href="/tracker" data-link>المتتبع</a>
       </div>
       <div class="footer-social">
         <a href="https://www.instagram.com/direct/t/17845518497752784/?__pwa=1" target="_blank" rel="noopener" class="social-link social-chat">
           <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path fill="currentColor" d="M12 2.5c-5.5 0-10 3.8-10 8.5 0 2.7 1.5 5.1 3.9 6.6v3.2c0 .5.6.8 1 .5l3.1-1.8c.6.1 1.3.2 2 .2 5.5 0 10-3.8 10-8.5s-4.5-8.7-10-8.7Zm1 11.5-2.5-2.6-4.9 2.6 5.4-5.7 2.5 2.6 4.9-2.6L13 14Z" />
+            <path d="M21 3 3.8 10.1c-.9.4-.9 1.7.1 2l6.2 1.9 1.9 6.2c.3 1 1.6 1 2 .1L21 3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+            <path d="m10.2 13.8 4.4-4.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
           </svg>
-          <span>Chat on Instagram</span>
+          <span>Contact us</span>
         </a>
         <a href="https://www.instagram.com/cne.fet" target="_blank" rel="noopener" class="social-link social-instagram">
           <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -876,19 +1002,19 @@ function renderFooter() {
             <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2" />
             <circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" />
           </svg>
-          <span>Instagram</span>
+          <span>CNE.FET</span>
         </a>
         <a href="https://www.facebook.com/cne.fet" target="_blank" rel="noopener" class="social-link social-facebook">
           <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
             <path fill="currentColor" d="M14.2 8.2V6.7c0-.7.2-1.1 1.2-1.1h1.7V2.7c-.8-.1-1.7-.2-2.5-.2-2.6 0-4.4 1.6-4.4 4.5v1.2H7.3v3.3h2.9v10h3.6v-10h2.9l.5-3.3h-3Z" />
           </svg>
-          <span>Facebook</span>
+          <span>CNE.FET</span>
         </a>
         <a href="https://www.youtube.com/@CNEteamCNE_FAMILY" target="_blank" rel="noopener" class="social-link social-youtube">
           <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
             <path fill="currentColor" d="M21.6 7.1a3 3 0 0 0-2.1-2.1C17.7 4.5 12 4.5 12 4.5s-5.7 0-7.5.5a3 3 0 0 0-2.1 2.1C2 8.9 2 12 2 12s0 3.1.4 4.9A3 3 0 0 0 4.5 19c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1c.4-1.8.4-4.9.4-4.9s0-3.1-.4-4.9ZM10 15.4V8.6l5.8 3.4L10 15.4Z" />
           </svg>
-          <span>YouTube</span>
+          <span>CNE Family</span>
         </a>
       </div>
     </footer>

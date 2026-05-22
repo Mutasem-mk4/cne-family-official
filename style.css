@@ -1066,16 +1066,29 @@ p {
 }
 
 .titans-board-head {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 18px;
-  margin-bottom: 22px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  padding-inline: 4px;
+}
+
+.titans-board-head > div {
+  display: contents;
 }
 
 .titans-board-head h2 {
-  margin-top: 10px;
+  grid-column: 2;
+  justify-self: center;
+  margin-top: 0;
   font-size: clamp(2rem, 3.5vw, 3.6rem);
+  line-height: 0.95;
+}
+
+.titans-board-head .eyebrow {
+  grid-column: 1;
+  justify-self: start;
 }
 
 .titans-board-head p {
@@ -1086,7 +1099,7 @@ p {
 
 .titans-featured {
   display: grid;
-  grid-template-columns: minmax(220px, 0.9fr) minmax(0, 1.1fr);
+  grid-template-columns: minmax(220px, 0.95fr) minmax(0, 1.05fr);
   gap: 14px;
   align-items: stretch;
 }
@@ -1094,13 +1107,20 @@ p {
 .titan-featured-card {
   position: relative;
   display: grid;
-  gap: 14px;
-  align-content: start;
-  padding: 22px;
-  border-radius: 28px;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 12px;
+  align-content: stretch;
+  height: 100%;
+  padding: 18px;
+  border-radius: 24px;
   background: var(--surface-3);
   border: 1px solid var(--line);
   box-shadow: var(--shadow-soft);
+}
+
+.titan-featured-copy {
+  align-self: start;
+  padding-top: 8px;
 }
 
 .titan-rank-badge {
@@ -1124,9 +1144,9 @@ p {
 
 .titan-featured-image {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 11;
   object-fit: cover;
-  border-radius: 22px;
+  border-radius: 20px;
   border: 1px solid var(--line);
   background: var(--surface-2);
 }
@@ -1150,6 +1170,8 @@ p {
   justify-content: space-between;
   gap: 12px;
   align-items: end;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
 }
 
 .titan-score-box span,
@@ -1171,11 +1193,12 @@ p {
 
 .titan-list-card {
   display: grid;
-  grid-template-columns: 130px 1fr auto;
-  gap: 18px;
+  grid-template-columns: 96px minmax(0, 1fr) 78px;
+  gap: 14px;
   align-items: center;
-  padding: 16px 18px;
-  border-radius: 22px;
+  min-height: 112px;
+  padding: 12px;
+  border-radius: 20px;
   background: var(--surface-3);
   border: 1px solid var(--line);
   box-shadow: var(--shadow-soft);
@@ -1185,9 +1208,9 @@ p {
   display: grid;
   place-items: center;
   gap: 2px;
-  min-width: 72px;
-  padding: 12px 10px;
-  border-radius: 18px;
+  min-width: 58px;
+  padding: 8px;
+  border-radius: 16px;
   background: var(--surface-2);
   border: 1px solid var(--line);
 }
@@ -1205,13 +1228,14 @@ p {
 .titan-list-copy {
   display: grid;
   gap: 4px;
+  min-width: 0;
 }
 
 .titan-list-image {
-  width: 130px;
-  height: 130px;
+  width: 96px;
+  height: 96px;
   object-fit: cover;
-  border-radius: 18px;
+  border-radius: 16px;
   border: 1px solid var(--line);
   background: var(--surface-2);
 }
@@ -1224,7 +1248,7 @@ p {
 
 .titan-list-meta {
   display: grid;
-  gap: 10px;
+  gap: 8px;
   justify-items: center;
   align-content: center;
 }
@@ -1934,34 +1958,83 @@ p {
 
 .plan-showcase {
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 18px;
-  align-items: center;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  align-items: stretch;
 }
 
 .plan-showcase-copy {
   display: grid;
-  gap: 14px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "label actions"
+    "title actions"
+    "copy actions";
+  gap: 8px 18px;
+  align-items: center;
+}
+
+.plan-showcase-copy .eyebrow {
+  grid-area: label;
+  justify-self: start;
+}
+
+.plan-showcase-copy p {
+  grid-area: copy;
+  max-width: 720px;
 }
 
 .plan-actions {
+  grid-area: actions;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  justify-content: flex-end;
 }
 
 .plan-showcase-copy h2 {
+  grid-area: title;
   font-size: clamp(1.8rem, 3vw, 3.2rem);
   padding-block: 6px;
   line-height: 1.25;
 }
 
-.plan-showcase-image {
+.plan-image-map {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3508 / 2480;
   width: 100%;
-  min-height: 360px;
-  object-fit: cover;
   border-radius: 24px;
   border: 1px solid var(--line);
+  background: var(--surface-2);
+}
+
+.plan-showcase-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.plan-hotspot {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  border-radius: 10px;
+  color: transparent;
+  background: transparent;
+  cursor: pointer;
+  transition: background 160ms ease, box-shadow 160ms ease, outline-color 160ms ease;
+}
+
+.plan-hotspot:hover,
+.plan-hotspot:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.7);
+  outline-offset: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow:
+    inset 0 0 0 1px rgba(14, 22, 36, 0.35),
+    0 10px 24px rgba(14, 22, 36, 0.28);
 }
 
 .calculator-layout {
@@ -2604,14 +2677,13 @@ p {
   }
 
   .plan-showcase {
-    grid-template-columns: minmax(0, 0.95fr) minmax(220px, 1.05fr);
     gap: 14px;
     padding: 18px;
     border-radius: 22px;
   }
 
   .plan-showcase-copy {
-    gap: 10px;
+    gap: 8px 12px;
   }
 
   .plan-showcase-copy h2 {
@@ -2636,9 +2708,7 @@ p {
     font-size: 0.88rem;
   }
 
-  .plan-showcase-image {
-    min-height: 0;
-    height: 220px;
+  .plan-image-map {
     border-radius: 18px;
   }
 
@@ -3236,13 +3306,18 @@ p {
   }
 
   .plan-showcase {
-    grid-template-columns: 1fr;
     gap: 12px;
     padding: 14px;
     border-radius: 20px;
   }
 
   .plan-showcase-copy {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "label"
+      "title"
+      "copy"
+      "actions";
     gap: 8px;
   }
 
@@ -3264,8 +3339,7 @@ p {
     font-size: 0.82rem;
   }
 
-  .plan-showcase-image {
-    height: 168px;
+  .plan-image-map {
     border-radius: 16px;
   }
 
@@ -3641,10 +3715,6 @@ p {
   .plan-actions .btn {
     min-height: 38px;
     font-size: 0.76rem;
-  }
-
-  .plan-showcase-image {
-    height: 138px;
   }
 
   .tracker-overview-stats {
