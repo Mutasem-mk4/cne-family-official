@@ -478,8 +478,8 @@ p {
 }
 
 .hero-command-board.hero-premium {
-  min-height: 62vh;
-  margin-bottom: 42px;
+  min-height: 52vh;
+  margin-bottom: 32px;
   border-radius: 36px;
   background-color: #020617;
   border: 1px solid var(--line);
@@ -530,11 +530,11 @@ p {
 .hero-command-content {
   position: relative;
   z-index: 10;
-  padding: 60px 80px;
+  padding: 40px 80px;
   width: 100%;
   max-width: 860px; /* Limits text width to prevent overlapping the photo center */
   display: grid;
-  gap: 36px;
+  gap: 28px;
 }
 
 .hero-badge {
