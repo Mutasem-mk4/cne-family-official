@@ -345,13 +345,7 @@ async function renderHome() {
         </div>
       </section>
     </section>
-  `, {
-    heroBanner: {
-      label: "المنصة الرسمية",
-      title: "CNE Family Official Platform",
-      copy: "نقطة بداية واضحة لمستقبلك الهندسي في جامعة البلقاء التطبيقية.",
-    },
-  });
+  `);
 }
 
 function renderRibbonCard(title, desc, href, icon, tone) {
