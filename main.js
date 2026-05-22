@@ -18,6 +18,7 @@ const ROUTES = {
   "/tracker": renderTracker,
   "/links": renderLinks,
   "/join": renderJoin,
+  "/map": renderMap,
 };
 
 const QUICK_LINKS = [
@@ -562,25 +563,6 @@ async function renderAbout() {
           <p>تنظيم أفضل ووقت أقل ضائع على الطالب.</p>
         </article>
       </section>
-
-      <section class="campus-location reveal">
-        <div class="campus-head">
-          <span class="eyebrow">المقر الرئيسي</span>
-          <h2>كلية الهندسة التكنولوجية</h2>
-          <p>جامعة البلقاء التطبيقية - عمان، الأردن.</p>
-        </div>
-        <div class="map-container">
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3384.644444444444!2d35.98888888888889!3d31.96666666666666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151b600000000001%3A0x0!2zMzHCsDU4JzAwLjAiTiAzNcKwNTknMjAuMCJF!5e0!3m2!1sar!2sjo!4v1716390000000!5m2!1sar!2sjo" 
-            width="100%" 
-            height="450" 
-            style="border:0;" 
-            allowfullscreen="" 
-            loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
-        </div>
-      </section>
     `,
     {
       heroBanner: {
@@ -1076,6 +1058,38 @@ function renderJoin() {
   );
 }
 
+async function renderMap() {
+  return layout(
+    `
+      <section class="campus-location reveal">
+        <div class="campus-head">
+          <span class="eyebrow">المقر الرئيسي</span>
+          <h2>كلية الهندسة التكنولوجية</h2>
+          <p>جامعة البلقاء التطبيقية - عمان، الأردن.</p>
+        </div>
+        <div class="map-container">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3384.644444444444!2d35.98888888888889!3d31.96666666666666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151b600000000001%3A0x0!2zMzHCsDU4JzAwLjAiTiAzNcKwNTknMjAuMCJF!5e0!3m2!1sar!2sjo!4v1716390000000!5m2!1sar!2sjo" 
+            width="100%" 
+            height="550" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </section>
+    `,
+    {
+      heroBanner: {
+        label: "خريطة الكلية",
+        title: "موقع كلية الهندسة التكنولوجية",
+        copy: "تصفح الخريطة التفاعلية للوصول إلى الكلية بسهولة.",
+      },
+    },
+  );
+}
+
 function renderFooter() {
   return `
     <footer class="site-footer">
@@ -1090,6 +1104,7 @@ function renderFooter() {
         <a href="/" data-link>الرئيسية</a>
         <a href="/about" data-link>عن المنصة</a>
         <a href="/subjects" data-link>المواد</a>
+        <a href="/map" data-link>الخريطة</a>
         <a href="/tracker" data-link>المتتبع</a>
       </div>
       <div class="footer-social">
