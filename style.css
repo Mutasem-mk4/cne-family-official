@@ -2074,73 +2074,76 @@ p {
 
 .plan-showcase {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
-  align-items: stretch;
+  grid-template-columns: 340px 1fr;
+  grid-template-areas: "copy frame";
+  gap: 32px;
+  align-items: start;
+  padding: 32px;
+  border-radius: 32px;
 }
 
 .plan-showcase-copy {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  grid-template-areas:
-    "label actions"
-    "title actions"
-    "copy actions";
-  gap: 8px 18px;
-  align-items: center;
-}
-
-.plan-showcase-copy .eyebrow {
-  grid-area: label;
-  justify-self: start;
-}
-
-.plan-showcase-copy p {
   grid-area: copy;
-  max-width: 720px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "label"
+    "title"
+    "copy"
+    "actions";
+  gap: 20px;
+  align-content: start;
 }
 
 .plan-actions {
   grid-area: actions;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: flex-end;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  justify-content: stretch;
 }
 
-.plan-showcase-copy h2 {
-  grid-area: title;
-  font-size: clamp(1.8rem, 3vw, 3.2rem);
-  padding-block: 6px;
-  line-height: 1.25;
+.plan-actions .btn {
+  width: 100%;
 }
 
 .plan-image-map {
+  grid-area: frame;
   position: relative;
   overflow: auto;
-  max-height: 420px;
-  width: min(100%, 880px); /* Compressed horizontally */
-  margin-inline: auto; /* Centered in the layout */
+  max-height: 520px;
+  width: 100%; /* Spans remaining column space */
   border-radius: 20px;
   border: 1px solid var(--line);
-  background: var(--surface-2);
+  background: #020617;
   scrollbar-width: thin;
   scrollbar-color: var(--blue) transparent;
+  box-shadow: inset 0 0 40px rgba(0,0,0,0.4);
 }
 
 .plan-viewport {
   position: relative;
   width: fit-content;
-  min-width: 100%;
-  margin: 0 auto;
 }
 
 .plan-showcase-image {
   display: block;
-  width: 100%;
+  width: auto;
   height: auto;
-  min-width: 1000px;
-  object-fit: contain;
+  min-width: 1400px; /* High detail "full size" inside the compressed frame */
+  object-fit: none;
+}
+
+@media (max-width: 1080px) {
+  .plan-showcase {
+    grid-template-columns: 1fr;
+    grid-template-areas: "copy" "frame";
+    padding: 24px;
+  }
+  
+  .plan-actions {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .plan-hotspot {
