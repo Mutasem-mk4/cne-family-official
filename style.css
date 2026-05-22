@@ -1952,6 +1952,8 @@ p {
 
 .plan-showcase-copy h2 {
   font-size: clamp(1.8rem, 3vw, 3.2rem);
+  padding-block: 6px;
+  line-height: 1.25;
 }
 
 .plan-showcase-image {
@@ -2597,6 +2599,49 @@ p {
     width: 100%;
   }
 
+  .plans-stage {
+    gap: 12px;
+  }
+
+  .plan-showcase {
+    grid-template-columns: minmax(0, 0.95fr) minmax(220px, 1.05fr);
+    gap: 14px;
+    padding: 18px;
+    border-radius: 22px;
+  }
+
+  .plan-showcase-copy {
+    gap: 10px;
+  }
+
+  .plan-showcase-copy h2 {
+    font-size: clamp(1.55rem, 4.8vw, 2.3rem);
+    line-height: 1.1;
+  }
+
+  .plan-showcase p {
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+
+  .plan-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .plan-actions .btn {
+    min-height: 42px;
+    padding: 10px;
+    border-radius: 14px;
+    font-size: 0.88rem;
+  }
+
+  .plan-showcase-image {
+    min-height: 0;
+    height: 220px;
+    border-radius: 18px;
+  }
+
   .hero-command-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -2868,6 +2913,158 @@ p {
   .tracker-course-link {
     width: 100%;
   }
+
+  .tracker-dashboard {
+    gap: 14px;
+  }
+
+  .tracker-overview {
+    gap: 14px;
+    padding: 18px;
+    border-radius: 24px;
+  }
+
+  .tracker-overview-main {
+    gap: 10px;
+  }
+
+  .tracker-overview-main h2 {
+    font-size: clamp(2.4rem, 11vw, 4rem);
+  }
+
+  .tracker-overview-main p {
+    line-height: 1.55;
+  }
+
+  .tracker-progress {
+    height: 10px;
+  }
+
+  .tracker-overview-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .tracker-stat-card {
+    min-height: 84px;
+    padding: 12px;
+    border-radius: 16px;
+  }
+
+  .tracker-stat-card strong {
+    font-size: 1.35rem;
+  }
+
+  .tracker-stat-card span {
+    font-size: 0.84rem;
+    line-height: 1.35;
+  }
+
+  .tracker-toolbar {
+    display: grid;
+    gap: 12px;
+    padding: 16px;
+    border-radius: 20px;
+  }
+
+  .tracker-toolbar-copy h3 {
+    font-size: 1.15rem;
+  }
+
+  .tracker-toolbar-copy p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .major-switches {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .major-switch {
+    padding: 10px 8px;
+    border-radius: 14px;
+    font-size: 0.86rem;
+    text-align: center;
+  }
+
+  .tracker-years {
+    gap: 12px;
+  }
+
+  .tracker-year-section {
+    gap: 12px;
+    padding: 16px;
+    border-radius: 20px;
+  }
+
+  .tracker-year-head {
+    align-items: flex-start;
+  }
+
+  .tracker-year-title {
+    font-size: 1.08rem;
+  }
+
+  .tracker-year-head p,
+  .tracker-year-head strong {
+    font-size: 0.84rem;
+    line-height: 1.35;
+  }
+
+  .tracker-course-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .tracker-course {
+    display: grid;
+    align-content: space-between;
+    gap: 10px;
+    min-height: 148px;
+    padding: 10px;
+    border-radius: 16px;
+  }
+
+  .tracker-course-main {
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .tracker-course input {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    flex: 0 0 auto;
+  }
+
+  .tracker-course-copy {
+    min-width: 0;
+    gap: 3px;
+  }
+
+  .tracker-course strong {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+    line-height: 1.3;
+  }
+
+  .tracker-course small {
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: 0.74rem;
+    line-height: 1.35;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .tracker-course-link {
+    min-height: 36px;
+    padding: 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+  }
 }
 
 @media (max-width: 560px) {
@@ -3032,6 +3229,107 @@ p {
     border-radius: 12px;
     font-size: 0.82rem;
     align-self: end;
+  }
+
+  .plans-stage {
+    gap: 10px;
+  }
+
+  .plan-showcase {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 14px;
+    border-radius: 20px;
+  }
+
+  .plan-showcase-copy {
+    gap: 8px;
+  }
+
+  .plan-showcase-copy h2 {
+    font-size: clamp(1.45rem, 8vw, 2rem);
+  }
+
+  .plan-showcase p {
+    font-size: 0.88rem;
+  }
+
+  .plan-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .plan-actions .btn {
+    min-height: 40px;
+    padding: 9px 8px;
+    font-size: 0.82rem;
+  }
+
+  .plan-showcase-image {
+    height: 168px;
+    border-radius: 16px;
+  }
+
+  .tracker-overview {
+    padding: 14px;
+  }
+
+  .tracker-overview-main h2 {
+    font-size: clamp(2.1rem, 13vw, 3.1rem);
+  }
+
+  .tracker-overview-main p {
+    font-size: 0.9rem;
+  }
+
+  .tracker-stat-card {
+    min-height: 72px;
+    padding: 10px 6px;
+    text-align: center;
+  }
+
+  .tracker-stat-card strong {
+    font-size: 1.18rem;
+  }
+
+  .tracker-stat-card span {
+    font-size: 0.76rem;
+  }
+
+  .tracker-toolbar,
+  .tracker-year-section {
+    padding: 14px;
+  }
+
+  .tracker-course-list {
+    gap: 7px;
+  }
+
+  .tracker-course {
+    min-height: 136px;
+    padding: 9px;
+  }
+
+  .tracker-course-main {
+    gap: 6px;
+  }
+
+  .tracker-course input {
+    width: 17px;
+    height: 17px;
+  }
+
+  .tracker-course strong {
+    font-size: 0.82rem;
+    line-height: 1.28;
+  }
+
+  .tracker-course small {
+    font-size: 0.68rem;
+  }
+
+  .tracker-course-link {
+    min-height: 34px;
+    font-size: 0.76rem;
   }
 
   .home-command {
@@ -3330,6 +3628,56 @@ p {
   .subject-card .btn {
     min-height: 36px;
     font-size: 0.78rem;
+  }
+
+  .plan-showcase {
+    padding: 12px;
+  }
+
+  .plan-showcase-copy h2 {
+    font-size: clamp(1.35rem, 8vw, 1.75rem);
+  }
+
+  .plan-actions .btn {
+    min-height: 38px;
+    font-size: 0.76rem;
+  }
+
+  .plan-showcase-image {
+    height: 138px;
+  }
+
+  .tracker-overview-stats {
+    gap: 6px;
+  }
+
+  .tracker-stat-card {
+    min-height: 68px;
+  }
+
+  .major-switch {
+    font-size: 0.78rem;
+  }
+
+  .tracker-year-section {
+    padding: 12px;
+  }
+
+  .tracker-course-list {
+    gap: 6px;
+  }
+
+  .tracker-course {
+    min-height: 130px;
+    padding: 8px;
+  }
+
+  .tracker-course strong {
+    font-size: 0.78rem;
+  }
+
+  .tracker-course small {
+    font-size: 0.64rem;
   }
 
   .hero-command-copy h1 {
