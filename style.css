@@ -2591,21 +2591,21 @@ p {
 }
 
 .lightbox-content .plan-viewport {
-  /* This ensures the interactive area always fits within the screen with breathing room */
-  width: 92vw;
-  height: auto;
-  max-height: 92vh;
-  aspect-ratio: 3508 / 2480;
   position: relative;
   display: block;
+  max-width: 92vw;
+  max-height: 92vh;
+  width: fit-content;
+  height: fit-content;
 }
 
 .lightbox-content .plan-showcase-image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+  max-width: 92vw;
+  max-height: 92vh;
+  width: auto;
+  height: auto;
   display: block;
-  box-shadow: 0 0 80px rgba(0,0,0,0.6);
+  box-shadow: 0 0 80px rgba(0, 0, 0, 0.6);
 }
 
 .lightbox-close {
