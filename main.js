@@ -264,7 +264,7 @@ async function renderHome() {
     <section class="home-command reveal">
       <div class="hero-command-board hero-premium">
         <div class="hero-command-background">
-          <img src="/assets/images/hero-cne.jpg" alt="CNE Family Group" class="hero-image-full">
+          <img src="/assets/images/hero-cne.webp" alt="CNE Family Group" class="hero-image-full">
           <div class="hero-image-mask"></div>
         </div>
         
@@ -345,7 +345,13 @@ async function renderHome() {
         </div>
       </section>
     </section>
-  `);
+  `, {
+    heroBanner: {
+      label: "المنصة الرسمية",
+      title: "CNE Family Official Platform",
+      copy: "نقطة بداية واضحة لمستقبلك الهندسي في جامعة البلقاء التطبيقية.",
+    },
+  });
 }
 
 function renderRibbonCard(title, desc, href, icon, tone) {
