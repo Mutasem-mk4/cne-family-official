@@ -2072,49 +2072,49 @@ p {
   gap: 18px;
 }
 
+.home-command {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
 .plan-showcase {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
   align-items: stretch;
-  margin-top: 64px;
+  margin-top: 48px;
 }
 
 .plan-showcase-copy {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  text-align: center;
   gap: 24px;
-  width: min(calc(100% - 64px), var(--container));
-  margin: 0 auto;
 }
 
 .plan-showcase-copy h2 {
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-size: clamp(1.8rem, 3.5vw, 3.2rem);
   line-height: 1.1;
-  max-width: 15ch;
 }
 
 .plan-actions {
   display: flex;
-  gap: 16px;
-  justify-content: center;
+  gap: 12px;
 }
 
 .plan-image-map {
   position: relative;
-  width: 100vw;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  border-radius: 32px;
+  border: 1px solid var(--line);
   background: var(--surface-3);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
   overflow: hidden;
-  /* Frame size = image aspect ratio */
-  aspect-ratio: 3508 / 2480;
+  /* Proportional height based on image aspect ratio */
+  aspect-ratio: 3508 / 2480; 
 }
 
 .plan-viewport {
@@ -2130,18 +2130,23 @@ p {
   display: block;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
+  .plan-showcase-copy {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+  
   .plan-image-map {
     aspect-ratio: auto;
-    height: auto;
-    overflow: auto;
     min-height: 500px;
+    overflow: auto;
   }
   
   .plan-showcase-image {
     width: auto;
     height: auto;
-    min-width: 900px;
+    min-width: 1000px;
   }
 }
 
