@@ -2566,25 +2566,26 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12vh 10vw; /* Viewport-based padding ensures it fits perfectly on any screen */
+  padding: 0;
   background: #020617;
 }
 
 .lightbox-content .plan-viewport {
-  max-width: 100%;
-  max-height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  /* This ensures the interactive area always fits within the screen with breathing room */
+  width: 92vw;
+  height: auto;
+  max-height: 92vh;
+  aspect-ratio: 3508 / 2480;
+  position: relative;
+  display: block;
 }
 
 .lightbox-content .plan-showcase-image {
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
-  box-shadow: 0 0 100px rgba(0,0,0,0.8);
+  display: block;
+  box-shadow: 0 0 80px rgba(0,0,0,0.6);
 }
 
 .lightbox-close {
