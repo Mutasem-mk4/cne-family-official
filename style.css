@@ -2491,7 +2491,7 @@ p {
   }
 
   .hero-command-list {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .hero-command {
@@ -2644,30 +2644,192 @@ p {
 }
 
 @media (max-width: 560px) {
+  .nav-inner,
+  .site-footer {
+    width: min(calc(100% - 24px), var(--container));
+  }
+
+  .nav-inner {
+    min-height: 76px;
+  }
+
+  #page {
+    padding: 4px 0 56px;
+  }
+
+  .hero,
+  .home-hero,
+  .top-banner,
+  .section,
+  .subject-toolbar,
+  .links-intro,
+  .subject-sidebar,
+  .subject-year,
+  .about-panel,
+  .plan-showcase,
+  .calculator-intro,
+  .calculator-card,
+  .tracker-rail,
+  .tracker-column,
+  .join-copy,
+  .join-form,
+  .site-footer {
+    padding: 16px;
+    border-radius: 22px;
+  }
+
   .home-command {
-    padding: 10px 0 18px;
+    gap: 12px;
+    padding: 8px 0 16px;
   }
 
   .hero-command-board,
   .hero-quick-panel {
     padding: 16px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .hero-command-board {
+    gap: 14px;
+    background:
+      radial-gradient(circle at 14% 10%, color-mix(in srgb, var(--orange) 18%, transparent), transparent 30%),
+      var(--surface);
+  }
+
+  .hero-command-copy {
+    gap: 8px;
   }
 
   .hero-command-copy h1 {
-    font-size: clamp(2rem, 12vw, 2.9rem);
-    max-width: 11ch;
+    font-size: clamp(2.2rem, 10.6vw, 2.85rem);
+    max-width: 12ch;
+    line-height: 1.05;
+  }
+
+  .hero-command-copy p {
+    font-size: 0.94rem;
+    line-height: 1.55;
+  }
+
+  .home-command-label,
+  .hero-quick-head span {
+    font-size: 0.82rem;
+  }
+
+  .hero-primary-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .hero-primary-actions .btn {
+    min-height: 48px;
+    padding: 12px 10px;
+    border-radius: 16px;
+    font-size: 0.92rem;
+    white-space: nowrap;
+  }
+
+  .hero-quick-panel {
+    gap: 12px;
+  }
+
+  .hero-quick-head {
+    align-items: center;
+    padding-bottom: 10px;
+  }
+
+  .hero-quick-head strong {
+    font-size: 1.12rem;
+  }
+
+  .hero-command-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
   }
 
   .hero-command {
-    grid-template-columns: auto minmax(0, 1fr);
-    gap: 10px;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 8px;
+    min-height: 106px;
+    padding: 12px 8px;
+    text-align: center;
+    border-radius: 16px;
   }
 
-  .hero-command-index {
+  .hero-command-index,
+  .hero-command-arrow,
+  .hero-command-text small {
+    display: none;
+  }
+
+  .hero-command-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 13px;
+  }
+
+  .hero-command-text {
+    max-width: none;
+  }
+
+  .hero-command-text strong {
+    font-size: 0.95rem;
+    line-height: 1.25;
+  }
+
+  .hero-snapshot {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .hero-snapshot div {
+    min-height: 64px;
+    padding: 10px 6px;
+    text-align: center;
+  }
+
+  .hero-snapshot strong {
+    font-size: 1.2rem;
+  }
+
+  .hero-snapshot span {
+    font-size: 0.78rem;
+    line-height: 1.3;
+  }
+
+  .home-quick-links,
+  .titans-board {
+    padding: 16px;
+    border-radius: 22px;
+  }
+
+  .home-quick-link-card,
+  .home-action-card,
+  .titan-list-card {
+    border-radius: 18px;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero-command-copy h1 {
+    font-size: clamp(2rem, 10vw, 2.35rem);
+  }
+
+  .hero-command-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hero-command {
+    min-height: 100px;
+  }
+
+  .hero-command-text small {
     display: none;
   }
 
   .hero-snapshot {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
