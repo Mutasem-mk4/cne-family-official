@@ -2080,40 +2080,45 @@ p {
 
 .plan-showcase {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 32px;
-  align-items: stretch;
-  margin-top: 48px;
+  grid-template-columns: 320px 1fr; /* Text on right, Image on left */
+  grid-template-areas: "copy frame";
+  gap: 48px;
+  align-items: center;
+  margin-top: 56px;
 }
 
 .plan-showcase-copy {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 24px;
+  grid-area: copy;
+  display: grid;
+  gap: 28px;
+  text-align: right;
 }
 
 .plan-showcase-copy h2 {
-  font-size: clamp(1.8rem, 3.5vw, 3.2rem);
+  font-size: clamp(1.8rem, 3.5vw, 3.4rem);
   line-height: 1.1;
 }
 
 .plan-actions {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 12px;
 }
 
+.plan-actions .btn {
+  width: 100%;
+}
+
 .plan-image-map {
+  grid-area: frame;
   position: relative;
   width: 100%;
-  max-width: 100%;
-  margin: 0 auto;
   border-radius: 32px;
   border: 1px solid var(--line);
   background: var(--surface-3);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  /* Proportional height based on image aspect ratio */
+  /* Frame size matches image aspect ratio exactly */
   aspect-ratio: 3508 / 2480; 
 }
 
@@ -2130,23 +2135,22 @@ p {
   display: block;
 }
 
-@media (max-width: 1024px) {
-  .plan-showcase-copy {
-    flex-direction: column;
+@media (max-width: 1120px) {
+  .plan-showcase {
+    grid-template-columns: 1fr;
+    grid-template-areas: "copy" "frame";
     text-align: center;
-    gap: 16px;
+    gap: 32px;
   }
   
-  .plan-image-map {
-    aspect-ratio: auto;
-    min-height: 500px;
-    overflow: auto;
+  .plan-showcase-copy {
+    justify-items: center;
+    text-align: center;
   }
-  
-  .plan-showcase-image {
-    width: auto;
-    height: auto;
-    min-width: 1000px;
+
+  .plan-actions {
+    grid-template-columns: repeat(2, 1fr);
+    width: fit-content;
   }
 }
 
