@@ -2118,9 +2118,9 @@ p {
 .plan-image-map {
   position: relative;
   overflow: auto;
-  max-height: 640px;
+  max-height: 420px; /* More organized inline */
   width: 100%;
-  border-radius: 24px;
+  border-radius: 20px;
   border: 1px solid var(--line);
   background: var(--surface-2);
   scrollbar-width: thin;
@@ -2131,13 +2131,14 @@ p {
   position: relative;
   width: fit-content;
   min-width: 100%;
+  margin: 0 auto;
 }
 
 .plan-showcase-image {
   display: block;
   width: 100%;
   height: auto;
-  min-width: 1100px; /* Ensures detail and hotspot accuracy */
+  min-width: 1000px;
   object-fit: contain;
 }
 
@@ -2530,24 +2531,71 @@ p {
   z-index: 100;
   display: grid;
   place-items: center;
-  padding: 22px;
-  background: rgba(5, 10, 18, 0.82);
+  padding: 40px;
+  background: rgba(2, 6, 23, 0.94);
+  backdrop-filter: blur(12px);
 }
 
 .lightbox-inner {
   position: relative;
-  width: min(1100px, 100%);
+  width: min(1400px, 100%);
+  height: min(90vh, 100%);
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border-radius: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.7);
 }
 
-.lightbox-inner img {
-  width: 100%;
-  max-height: 88vh;
-  object-fit: contain;
-  border-radius: 26px;
-  background: #fff;
+.lightbox-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 32px;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface-2);
+}
+
+.lightbox-header h3 {
+  font-size: 1.4rem;
+}
+
+.lightbox-content {
+  flex: 1;
+  overflow: auto;
+  padding: 20px;
+  background: #020617;
+  scrollbar-width: thin;
+}
+
+.lightbox-content .plan-viewport {
+  margin: 0 auto;
+}
+
+.lightbox-content .plan-showcase-image {
+  min-width: 1400px; /* Larger in lightbox for readability */
 }
 
 .lightbox-close {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: var(--surface-3);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.lightbox-close:hover {
+  background: var(--red);
+  color: #fff;
+  border-color: var(--red);
+}
   position: absolute;
   top: 14px;
   left: 14px;

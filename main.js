@@ -546,7 +546,7 @@ function renderPlansStage() {
                 <h2>${major.accent}</h2>
                 <p>اضغط على اسم المادة داخل الخطة لفتح ملفاتها مباشرة.</p>
                 <div class="plan-actions">
-                  <button class="btn btn-primary" data-lightbox="${major.image}">تكبير الخطة</button>
+                  <button class="btn btn-primary" data-major-lightbox="${key}">تكبير الخطة</button>
                   <a class="btn btn-secondary" href="${major.image}" download="${key}-study-plan">تحميل الخطة</a>
                 </div>
               </div>
@@ -1030,29 +1030,55 @@ function renderFooter() {
 }
 
 function initLightbox() {
-  document.querySelectorAll("[data-lightbox]").forEach((button) => {
+  document.querySelectorAll("[data-major-lightbox]").forEach((button) => {
     button.addEventListener("click", () => {
-      openLightbox(button.dataset.lightbox);
+      const majorKey = button.dataset.majorLightbox;
+      openInteractiveLightbox(majorKey);
     });
   });
 }
 
-function openLightbox(src) {
+function openInteractiveLightbox(majorKey) {
+  const major = MAJORS[majorKey];
+  if (!major) return;
+
   const overlay = document.createElement("div");
   overlay.className = "lightbox-overlay";
   overlay.innerHTML = `
-    <div class="lightbox-inner">
-      <button class="lightbox-close material-symbols-outlined" type="button">close</button>
-      <img src="${src}" alt="plan preview" />
+    <div class="lightbox-inner reveal is-visible">
+      <header class="lightbox-header">
+        <div>
+          <span class="eyebrow">${major.label}</span>
+          <h3>${major.accent}</h3>
+        </div>
+        <button class="lightbox-close material-symbols-outlined" type="button" aria-label="إغلاق">close</button>
+      </header>
+      <div class="lightbox-content">
+        ${renderClickablePlanImage(majorKey, major)}
+      </div>
     </div>
   `;
   document.body.appendChild(overlay);
+  document.body.style.overflow = "hidden";
+
+  const close = () => {
+    overlay.remove();
+    document.body.style.overflow = "";
+  };
 
   overlay.addEventListener("click", (event) => {
     if (event.target === overlay || event.target.closest(".lightbox-close")) {
-      overlay.remove();
+      close();
     }
   });
+
+  const onKey = (e) => {
+    if (e.key === "Escape") {
+      close();
+      window.removeEventListener("keydown", onKey);
+    }
+  };
+  window.addEventListener("keydown", onKey);
 }
 
 function initSubjectExplorer() {
