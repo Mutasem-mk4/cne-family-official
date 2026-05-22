@@ -475,19 +475,27 @@ p {
   display: block;
   margin: 0;
   padding: 0;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
 }
 
 .hero-command-board.hero-premium {
-  min-height: 80vh;
-  margin-bottom: 42px;
-  border-radius: 36px;
+  min-height: 85vh;
+  margin-bottom: 48px;
+  border-radius: 0; /* Edge to edge */
   background-color: #020617;
-  border: 1px solid var(--line);
-  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.45);
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: center;
   position: relative;
   overflow: hidden;
+  width: 100%;
 }
 
 .hero-command-background {
@@ -500,7 +508,7 @@ p {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 30% center; /* Pushes the team to the left (RTL end) */
+  object-position: center 20%;
   display: block;
 }
 
@@ -510,9 +518,9 @@ p {
   background: linear-gradient(
     to left,
     rgba(2, 6, 23, 1) 0%,
-    rgba(2, 6, 23, 0.9) 35%,
-    rgba(2, 6, 23, 0.6) 55%,
-    transparent 100%
+    rgba(2, 6, 23, 0.92) 25%,
+    rgba(2, 6, 23, 0.6) 50%,
+    rgba(2, 6, 23, 0.2) 100%
   );
   z-index: 2;
 }
@@ -521,80 +529,75 @@ p {
   background: linear-gradient(
     to right,
     rgba(2, 6, 23, 1) 0%,
-    rgba(2, 6, 23, 0.9) 35%,
-    rgba(2, 6, 23, 0.6) 55%,
-    transparent 100%
+    rgba(2, 6, 23, 0.92) 25%,
+    rgba(2, 6, 23, 0.6) 50%,
+    rgba(2, 6, 23, 0.2) 100%
   );
 }
 
 .hero-command-content {
   position: relative;
   z-index: 10;
-  padding: 60px 80px;
-  width: 100%;
-  max-width: 860px; /* Limits text width to prevent overlapping the photo center */
+  padding: 80px 0;
+  width: min(calc(100% - 56px), var(--container)); /* Aligns with site content */
+  margin: 0 auto;
   display: grid;
-  gap: 36px;
+  gap: 48px;
 }
 
 .hero-badge {
   display: inline-flex;
-  padding: 8px 16px;
+  padding: 8px 18px;
   border-radius: 999px;
-  background: rgba(239, 134, 48, 0.15);
-  border: 1px solid rgba(239, 134, 48, 0.3);
+  background: rgba(239, 134, 48, 0.18);
+  border: 1px solid rgba(239, 134, 48, 0.35);
   color: var(--orange);
   font-weight: 800;
-  font-size: 0.8rem;
-  letter-spacing: 0.05em;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   width: fit-content;
 }
 
 .hero-premium h1 {
-  font-size: clamp(2.8rem, 5vw, 4.4rem);
+  font-size: clamp(3.2rem, 6.5vw, 5.2rem);
   color: #ffffff;
-  line-height: 1.1;
-  max-width: 14ch;
-  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  line-height: 1.05;
+  max-width: 16ch;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
 }
 
 .hero-premium p {
-  font-size: clamp(1.1rem, 1.3vw, 1.25rem);
-  color: rgba(255, 255, 255, 0.75);
-  line-height: 1.6;
-  max-width: 48ch;
+  font-size: clamp(1.15rem, 1.6vw, 1.4rem);
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.65;
+  max-width: 52ch;
 }
 
 .hero-primary-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 18px;
 }
 
 .hero-metrics {
   display: flex;
   align-items: center;
-  gap: 40px;
-  padding-top: 32px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 56px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
   width: fit-content;
 }
 
 @media (max-width: 1024px) {
   .hero-command-content {
-    padding: 60px;
-    max-width: none;
+    padding: 60px 0;
     text-align: center;
     justify-items: center;
   }
   
-  .hero-image-full {
-    object-position: center;
-  }
-
   .hero-image-mask {
-    background: linear-gradient(to top, rgba(2, 6, 23, 1) 0%, rgba(2, 6, 23, 0.8) 50%, rgba(2, 6, 23, 0.4) 100%);
+    background: linear-gradient(to top, rgba(2, 6, 23, 1) 0%, rgba(2, 6, 23, 0.85) 45%, rgba(2, 6, 23, 0.4) 100%);
   }
 
   .hero-primary-actions {
@@ -603,25 +606,25 @@ p {
   
   .hero-metrics {
     margin-inline: auto;
+    gap: 42px;
   }
 }
 
 @media (max-width: 640px) {
   .hero-premium {
-    min-height: 700px;
-    border-radius: 28px;
+    min-height: 85vh;
   }
 
   .hero-command-content {
-    padding: 40px 24px;
-    gap: 32px;
+    padding: 40px 0;
+    gap: 36px;
   }
 
   .hero-metrics {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-    border-top: 0;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     width: 100%;
   }
 
