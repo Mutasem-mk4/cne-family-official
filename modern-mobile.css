@@ -3,143 +3,148 @@
 /* --- HERO SECTION --- */
 @media (max-width: 768px) {
   .hero-premium {
-    min-height: 100vh !important;
+    min-height: 520px !important; /* Shorter height for 'widthwise' feel */
+    height: auto !important;
     display: flex !important;
     flex-direction: column !important;
-    justify-content: flex-end !important;
-    padding: 0 0 100px 0 !important;
+    justify-content: center !important;
+    padding: 60px 0 !important;
     aspect-ratio: auto !important;
   }
 
   .hero-command-content {
-    padding: 20px !important;
+    padding: 24px !important;
     max-width: none !important;
     text-align: center !important;
-    gap: 24px !important;
+    gap: 20px !important;
   }
 
   .hero-premium h1 {
-    font-size: 2.2rem !important;
+    font-size: 2.1rem !important;
     line-height: 1.1 !important;
-    margin-bottom: 12px !important;
+    margin-bottom: 8px !important;
     text-shadow: 0 4px 15px rgba(0,0,0,0.6) !important;
   }
 
   .hero-premium p {
-    font-size: 1.05rem !important;
-    color: rgba(255,255,255,0.95) !important;
+    font-size: 0.95rem !important;
+    color: rgba(255,255,255,0.9) !important;
     line-height: 1.5 !important;
+    max-width: 32ch !important;
+    margin: 0 auto !important;
   }
 
   .hero-primary-actions {
     display: flex !important;
-    flex-direction: column !important;
+    flex-direction: row !important; /* Row on tablets, column on small phones */
+    justify-content: center !important;
     gap: 12px !important;
     width: 100% !important;
-    margin-top: 20px !important;
+    margin-top: 10px !important;
   }
 
   .hero-primary-actions .btn {
-    width: 100% !important;
-    min-height: 54px !important;
-    justify-content: center !important;
-    font-size: 1rem !important;
-    border-radius: 16px !important;
+    flex: 1 !important;
+    max-width: 200px !important;
+    min-height: 48px !important;
+    font-size: 0.9rem !important;
+    padding: 10px 16px !important;
   }
 
   .hero-metrics {
     display: flex !important;
-    flex-wrap: wrap !important;
+    flex-wrap: nowrap !important;
     justify-content: center !important;
-    gap: 20px 30px !important;
-    padding: 24px 0 0 0 !important;
-    margin-top: 32px !important;
-    border-top: 1px solid rgba(255,255,255,0.15) !important;
+    gap: 15px !important;
+    padding: 20px 0 0 0 !important;
+    margin-top: 24px !important;
+    border-top: 1px solid rgba(255,255,255,0.1) !important;
     width: 100% !important;
   }
 
   .metric-item strong {
-    font-size: 1.8rem !important;
-    color: #ff9d42 !important; /* Brighter orange */
-    display: block !important;
+    font-size: 1.4rem !important;
+    color: #ff9d42 !important;
   }
 
   .metric-item span {
-    color: #fff !important;
-    font-size: 0.85rem !important;
-    opacity: 0.9 !important;
-  }
-
-  .metric-divider {
-    display: none !important;
+    font-size: 0.75rem !important;
   }
 }
 
-/* --- LEADERSHIP (NET/TOPOLOGY) --- */
+@media (max-width: 480px) {
+  .hero-premium {
+    min-height: 480px !important;
+    padding: 40px 0 !important;
+  }
+
+  .hero-primary-actions {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .hero-primary-actions .btn {
+    width: 100% !important;
+    max-width: 280px !important;
+  }
+}
+
+/* --- LEADERSHIP (STRUCTURAL GRID) --- */
 @media (max-width: 768px) {
   .team-structure {
     padding: 40px 12px !important;
-    margin-top: 40px !important;
   }
 
   .org-members {
     display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-columns: repeat(2, 1fr) !important; /* Force 2 columns */
     gap: 12px !important;
     width: 100% !important;
-    padding: 0 !important;
+    padding: 10px 0 !important;
+    position: relative !important;
+  }
+
+  /* Connecting vertical line for 'structure' look */
+  .org-members::before {
+    content: "" !important;
+    position: absolute !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    left: 50% !important;
+    width: 1px !important;
+    background: var(--line) !important;
+    opacity: 0.5 !important;
+    z-index: 0 !important;
   }
 
   .org-member-card {
     width: 100% !important;
     max-width: none !important;
-    padding: 14px 10px !important;
-    border-radius: 20px !important;
-    gap: 8px !important;
-    min-height: auto !important;
+    padding: 14px 8px !important;
+    border-radius: 18px !important;
+    gap: 6px !important;
+    background: var(--surface-3) !important;
+    z-index: 1 !important;
   }
 
   .member-avatar {
-    width: 70px !important;
-    height: 70px !important;
-    border-radius: 16px !important;
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 14px !important;
     border-width: 3px !important;
   }
 
   .member-info strong {
-    font-size: 1rem !important;
-    display: block !important;
+    font-size: 0.95rem !important;
   }
 
   .member-info span {
     font-size: 0.75rem !important;
   }
 
-  /* Nodes staggered on mobile */
+  /* Staggered nodes for structural feel */
   .org-members > :nth-child(even) {
-    transform: translateY(20px) !important;
-  }
-}
-
-/* Very narrow screens */
-@media (max-width: 360px) {
-  .org-members {
-    grid-template-columns: 1fr !important;
-  }
-  
-  .org-members > :nth-child(even) {
-    transform: none !important;
-  }
-
-  .org-member-card {
-    flex-direction: row !important;
-    text-align: right !important;
-    padding: 12px !important;
-  }
-
-  .member-avatar {
-    width: 54px !important;
-    height: 54px !important;
+    transform: translateY(24px) !important;
   }
 }
 
@@ -147,22 +152,27 @@
 @media (max-width: 768px) {
   .about-scene {
     display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 32px !important;
-    padding: 40px 20px !important;
-  }
-
-  .about-scene::after {
-    top: 5% !important;
-    bottom: 5% !important;
-    left: 50% !important;
-    width: 2px !important;
-    height: auto !important;
-    background: linear-gradient(to bottom, transparent, var(--blue), transparent) !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important;
+    padding: 32px 12px !important;
   }
 
   .about-panel {
-    padding: 24px !important;
-    border-radius: 24px !important;
+    padding: 16px !important;
+    border-radius: 20px !important;
+    min-height: 140px !important;
   }
+
+  .about-panel h3 {
+    font-size: 1.1rem !important;
+    padding: 4px 12px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .about-panel p {
+    font-size: 0.85rem !important;
+  }
+
+  .about-scene .about-panel:nth-child(1) { grid-column: span 2 !important; }
 }
+
