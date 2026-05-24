@@ -594,7 +594,7 @@ p {
   }
 
   .hero-image-mask {
-    background: linear-gradient(to top, rgba(2, 6, 23, 1) 0%, rgba(2, 6, 23, 0.85) 50%, rgba(2, 6, 23, 0.5) 100%);
+    background: linear-gradient(to top, rgba(2, 6, 23, 1) 0%, rgba(2, 6, 23, 0.9) 60%, rgba(2, 6, 23, 0.4) 100%);
   }
 
   .hero-primary-actions {
@@ -610,88 +610,103 @@ p {
 @media (max-width: 768px) {
   .hero-premium h1 {
     font-size: clamp(2.2rem, 8vw, 3.2rem);
+    text-shadow: 0 4px 20px rgba(0,0,0,0.5);
   }
 
   .hero-premium p {
     font-size: 1.1rem;
     max-width: none;
+    color: rgba(255, 255, 255, 0.9);
   }
 
   .hero-metrics {
     gap: 24px;
+    color: #fff;
+  }
+
+  .metric-item strong {
+    color: var(--orange);
   }
 }
 
 @media (max-width: 640px) {
   .hero-premium {
     min-height: auto;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: auto;
     border-radius: 28px;
-    padding: 40px 0;
+    padding: 60px 0;
   }
 
   .hero-command-content {
-    padding: 32px 20px;
-    gap: 28px;
+    padding: 40px 20px;
+    gap: 32px;
   }
 
   .hero-primary-actions {
+    display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
+    width: 100%;
   }
 
   .hero-primary-actions .btn {
     width: 100%;
+    min-height: 56px;
+    font-size: 1rem;
     justify-content: center;
   }
 
   .hero-metrics {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: center;
     width: 100%;
-    padding: 24px 0 0;
-    gap: 12px;
+    padding: 32px 0 0;
+    gap: 24px 40px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .metric-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .metric-item strong {
-    font-size: 1.8rem;
+    font-size: 2.2rem;
+    line-height: 1;
   }
 
   .metric-item span {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
+    opacity: 0.8;
   }
 
   .metric-divider {
-    display: block;
-    width: 1px;
-    height: 32px;
-    background: rgba(255, 255, 255, 0.1);
+    display: none;
   }
 }
 
 @media (max-width: 480px) {
   .hero-premium {
-    aspect-ratio: auto;
-    min-height: 620px;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 80px;
   }
 
   .hero-premium h1 {
-    font-size: 1.85rem;
+    font-size: 2.1rem;
   }
 
   .hero-badge {
-    font-size: 0.7rem;
-    padding: 6px 12px;
+    font-size: 0.75rem;
+    padding: 8px 16px;
+    background: rgba(239, 134, 48, 0.25);
   }
 
   .hero-metrics {
-    flex-wrap: wrap;
-    justify-content: center;
     gap: 20px 32px;
-  }
-
-  .metric-divider {
-    display: none;
   }
 }
 
@@ -4346,57 +4361,91 @@ p {
   }
 
   .org-members {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 16px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 10px;
   }
   
   .org-members > :nth-child(even) {
-    transform: none;
+    transform: translateY(16px);
   }
 
   .org-member-card {
-    width: calc(50% - 12px);
+    width: 100%;
     max-width: none;
-    padding: 24px 16px;
-    border-radius: 28px;
+    padding: 16px 12px;
+    border-radius: 24px;
+    gap: 12px;
   }
   
   .member-avatar {
-    width: 100px;
-    height: 100px;
-    border-radius: 28px;
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    border-width: 4px;
+  }
+
+  .member-info strong {
+    font-size: 1.1rem;
+    line-height: 1.2;
+  }
+
+  .member-info span {
+    font-size: 0.8rem;
+    opacity: 0.7;
   }
 
   .org-member-card::before {
-    display: none;
+    display: block;
+    width: 20px;
+    right: -12px;
+    opacity: 0.3;
   }
 }
 
 @media (max-width: 480px) {
-  .org-member-card {
-    width: 100%;
+  .org-members {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
   
   .team-head h2 {
     font-size: 2rem;
   }
+
+  .member-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+  }
+
+  .member-info strong {
+    font-size: 0.95rem;
+  }
 }
 
 @media (max-width: 360px) {
+  .org-members {
+    grid-template-columns: 1fr;
+  }
+
+  .org-members > :nth-child(even) {
+    transform: none;
+  }
+  
   .org-member-card {
     flex-direction: row;
     text-align: right;
-    padding: 16px;
+    padding: 12px;
     gap: 16px;
     border-radius: 20px;
   }
 
   .member-avatar {
-    width: 70px;
-    height: 70px;
-    border-radius: 16px;
+    width: 60px;
+    height: 60px;
+    border-radius: 14px;
     flex-shrink: 0;
   }
 
