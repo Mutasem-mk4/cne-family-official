@@ -4042,71 +4042,85 @@ p {
   margin-top: 22px;
 }
 
+/* Leadership Section: Net Layout */
 .team-structure {
-  margin-top: 48px;
-  padding: 48px;
+  margin-top: 64px;
+  padding: 80px 48px;
   background: var(--surface-2);
   border: 1px solid var(--line);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow);
-  backdrop-filter: blur(18px);
+  backdrop-filter: blur(24px);
+  position: relative;
+  overflow: hidden;
 }
 
-.team-head {
-  text-align: center;
-  margin-bottom: 56px;
+/* Background Net Pattern */
+.team-structure::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(var(--line) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.4;
+  z-index: 0;
 }
 
-.team-head .eyebrow {
-  justify-content: center;
-  margin-bottom: 12px;
-}
-
-.team-head h2 {
-  font-size: clamp(2.2rem, 5vw, 3.8rem);
-  margin-bottom: 16px;
-  color: var(--ink);
-}
-
-.team-head p {
-  color: var(--muted);
-  font-size: clamp(1.1rem, 1.4vw, 1.3rem);
-  max-width: 50ch;
-  margin: 0 auto;
-  line-height: 1.6;
+.team-head, .org-chart {
+  position: relative;
+  z-index: 1;
 }
 
 .org-chart {
   display: flex;
   flex-direction: column;
-  gap: 64px;
+  gap: 80px;
 }
 
 .org-group {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 32px;
+  gap: 48px;
+  width: 100%;
 }
 
 .org-role-title {
-  padding: 10px 28px;
+  padding: 12px 32px;
   background: var(--ink);
   color: var(--bg);
   border-radius: 999px;
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  box-shadow: var(--shadow-soft);
+  letter-spacing: 0.1em;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+/* Connecting line for group title */
+.org-role-title::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 2px;
+  height: 48px;
+  background: linear-gradient(to bottom, var(--line), transparent);
 }
 
 .org-members {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 32px;
   width: 100%;
+  padding: 20px;
+  position: relative;
+}
+
+/* Scattering effect for the 'net' look */
+.org-members > :nth-child(even) {
+  transform: translateY(24px);
 }
 
 .org-member-card {
@@ -4117,31 +4131,54 @@ p {
   padding: 32px 24px;
   background: var(--surface-3);
   border: 1px solid var(--line);
-  border-radius: 32px;
-  width: 240px;
+  border-radius: 36px;
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto;
   text-align: center;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   box-shadow: var(--shadow-soft);
+  position: relative;
+}
+
+/* Connecting 'threads' between cards */
+.org-member-card::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  right: -32px;
+  width: 32px;
+  height: 2px;
+  background: var(--line);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.org-members:hover .org-member-card::before {
+  opacity: 0.5;
 }
 
 .org-member-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow);
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   border-color: var(--orange);
+  z-index: 10;
 }
 
 .member-avatar {
-  width: 120px;
-  height: 120px;
-  border-radius: 30px;
+  width: 130px;
+  height: 130px;
+  border-radius: 36px;
   overflow: hidden;
   border: 6px solid var(--bg);
   box-shadow: var(--shadow-soft);
-  transition: transform 0.3s ease;
+  transition: transform 0.4s ease;
+  position: relative;
 }
 
 .org-member-card:hover .member-avatar {
-  transform: scale(1.05) rotate(3deg);
+  transform: scale(1.1) rotate(5deg);
 }
 
 .member-avatar img {
@@ -4157,94 +4194,87 @@ p {
 
 .member-info strong {
   font-family: var(--font-display);
-  font-size: 1.35rem;
+  font-size: 1.4rem;
   color: var(--ink);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 
 .member-info span {
   font-size: 0.95rem;
   color: var(--muted);
   font-weight: 500;
+  opacity: 0.8;
 }
 
 @media (max-width: 1024px) {
   .team-structure {
-    padding: 32px 20px;
-    margin-top: 32px;
+    padding: 60px 24px;
+  }
+  
+  .org-members {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
   }
 }
 
 @media (max-width: 768px) {
   .team-structure {
-    padding: 24px 16px;
-    border-radius: 20px;
-  }
-
-  .team-head {
-    margin-bottom: 32px;
+    padding: 48px 16px;
+    border-radius: 28px;
   }
 
   .org-members {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
   }
   
+  .org-members > :nth-child(even) {
+    transform: none;
+  }
+
   .org-member-card {
-    width: 100%;
-    padding: 16px 12px;
-    border-radius: 20px;
-    gap: 12px;
+    width: calc(50% - 12px);
+    max-width: none;
+    padding: 24px 16px;
+    border-radius: 28px;
   }
   
   .member-avatar {
-    width: 80px;
-    height: 80px;
-    border-radius: 20px;
-    border-width: 4px;
+    width: 100px;
+    height: 100px;
+    border-radius: 28px;
   }
 
-  .member-info strong {
-    font-size: 1.1rem;
-  }
-
-  .member-info span {
-    font-size: 0.85rem;
+  .org-member-card::before {
+    display: none;
   }
 }
 
 @media (max-width: 480px) {
-  .org-members {
-    grid-template-columns: repeat(2, 1fr);
+  .org-member-card {
+    width: 100%;
   }
   
   .team-head h2 {
-    font-size: 1.75rem;
-  }
-
-  .org-role-title {
-    padding: 8px 20px;
-    font-size: 0.85rem;
+    font-size: 2rem;
   }
 }
 
 @media (max-width: 360px) {
-  .org-members {
-    grid-template-columns: 1fr;
-  }
-  
   .org-member-card {
     flex-direction: row;
     text-align: right;
-    padding: 12px;
+    padding: 16px;
     gap: 16px;
+    border-radius: 20px;
   }
 
   .member-avatar {
-    width: 60px;
-    height: 60px;
-    border-radius: 14px;
+    width: 70px;
+    height: 70px;
+    border-radius: 16px;
     flex-shrink: 0;
   }
 
