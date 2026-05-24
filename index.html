@@ -25,7 +25,7 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=block"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/legacy.css?v=5.0.0" />
+    <link rel="stylesheet" href="/legacy.css?v=6.0.0" />
     <style>
       /* NUCLEAR MOBILE OVERRIDES - INLINED */
       @media (max-width: 768px) {
@@ -48,40 +48,63 @@
         .hero-metrics { gap: 10px !important; margin-top: 15px !important; padding-top: 15px !important; }
         .metric-item strong { font-size: 1.2rem !important; }
         
-        /* FORCE STRUCTURAL LEADERSHIP GRID */
+        /* REFINED LEADERSHIP GRID */
+        .org-group {
+          gap: 32px !important; /* Space between title and grid */
+        }
+        .org-role-title {
+          z-index: 10 !important; /* Keep title above the line */
+          margin-bottom: 16px !important;
+        }
         .org-members {
           display: grid !important;
           grid-template-columns: repeat(2, 1fr) !important;
-          gap: 12px !important;
-          padding: 15px 5px !important;
+          gap: 20px 16px !important; /* More vertical gap, less horizontal */
+          padding: 20px 10px 40px 10px !important;
           position: relative !important;
-          background: rgba(0,0,0,0.02) !important;
-          border-radius: 20px !important;
+          background: transparent !important;
+          align-items: start !important; /* Align tops before staggering */
         }
         .org-member-card { 
           width: 100% !important; 
-          padding: 12px 6px !important; 
-          border-radius: 14px !important; 
-          background: #fff !important;
-          border: 1px solid rgba(0,0,0,0.05) !important;
-          box-shadow: 0 4px 10px rgba(0,0,0,0.04) !important;
+          padding: 16px 10px !important; 
+          border-radius: 20px !important; 
+          background: var(--surface-3) !important;
+          border: 1px solid var(--line) !important;
+          box-shadow: var(--shadow-soft) !important;
           text-align: center !important;
+          display: flex !important;
+          flex-direction: column !important;
+          align-items: center !important;
+          gap: 8px !important;
+          position: relative !important;
+          z-index: 2 !important;
         }
-        .member-avatar { width: 52px !important; height: 52px !important; border-radius: 12px !important; margin: 0 auto !important; }
-        .member-info strong { font-size: 0.85rem !important; display: block !important; margin-top: 5px !important; }
-        .member-info span { font-size: 0.7rem !important; opacity: 0.8 !important; }
+        .member-avatar { 
+          width: 64px !important; 
+          height: 64px !important; 
+          border-radius: 16px !important; 
+          margin: 0 !important; 
+          border: 3px solid var(--bg) !important;
+        }
+        .member-info { display: flex !important; flex-direction: column !important; gap: 4px !important; }
+        .member-info strong { font-size: 0.95rem !important; display: block !important; margin: 0 !important; line-height: 1.2 !important; }
+        .member-info span { font-size: 0.75rem !important; opacity: 0.8 !important; }
         
-        /* Topology Stagger */
-        .org-members > :nth-child(even) { transform: translateY(15px) !important; }
+        /* Clean Topology Stagger */
+        .org-members > :nth-child(even) { transform: translateY(32px) !important; }
         
-        /* Structural Connector Line */
+        /* Fixed Structural Connector Line */
         .org-members::after {
           content: "" !important;
           position: absolute !important;
-          top: 0; bottom: 0; left: 50%;
-          width: 1px !important;
-          background: rgba(0,0,0,0.1) !important;
+          top: -30px !important; /* Connect up to the title */
+          bottom: 20px !important;
+          left: 50% !important;
+          width: 2px !important;
+          background: linear-gradient(to bottom, transparent, var(--line) 10%, var(--line) 90%, transparent) !important;
           z-index: 0 !important;
+          transform: translateX(-50%) !important;
         }
       }
     </style>
