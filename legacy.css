@@ -689,10 +689,10 @@ p {
 
 @media (max-width: 480px) {
   .hero-premium {
-    min-height: 100vh;
+    min-height: 380px;
     display: flex;
-    align-items: flex-end;
-    padding-bottom: 80px;
+    align-items: center;
+    padding-bottom: 40px;
   }
 
   .hero-premium h1 {
