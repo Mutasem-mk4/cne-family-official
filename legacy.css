@@ -4179,6 +4179,16 @@ p {
   margin-top: 22px;
 }
 
+.icon-large {
+  font-size: 3.5rem !important;
+  color: var(--blue);
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, var(--blue), var(--indigo));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: block;
+}
+
 /* Leadership Section: Net Layout */
 .team-structure {
   margin-top: 64px;
@@ -4246,76 +4256,85 @@ p {
   background: linear-gradient(to bottom, var(--line), transparent);
 }
 
-.org-members {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 32px;
-  width: 100%;
-  padding: 20px;
-  position: relative;
+.org-members-grid-v3 {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 20px !important;
+  width: 100% !important;
+  padding: 20px 0 !important;
+  position: relative !important;
 }
 
-/* Scattering effect for the 'net' look */
-.org-members > :nth-child(even) {
-  transform: translateY(24px);
+/* Centering for Leadership Group (fewer than 4) */
+.org-group:first-child .org-members-grid-v3 {
+  display: flex !important;
+  justify-content: center !important;
+  flex-wrap: wrap !important;
 }
 
-.org-member-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  padding: 32px 24px;
-  background: var(--surface-3);
-  border: 1px solid var(--line);
-  border-radius: 36px;
-  width: 100%;
-  max-width: 280px;
-  margin: 0 auto;
-  text-align: center;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: var(--shadow-soft);
-  position: relative;
+.org-members-grid-v3 > :nth-child(even) {
+  transform: translateY(32px) !important;
 }
 
-/* Connecting 'threads' between cards */
-.org-member-card::before {
+.org-member-card-v3 {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 24px 12px !important;
+  background: var(--surface-3) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 28px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  text-align: center !important;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  box-shadow: var(--shadow-soft) !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+.org-group:first-child .org-member-card-v3 {
+  flex: 0 1 240px !important;
+}
+
+/* Connecting 'threads' */
+.org-member-card-v3::before {
   content: "";
   position: absolute;
   z-index: -1;
   top: 50%;
-  right: -32px;
-  width: 32px;
+  right: -24px;
+  width: 24px;
   height: 2px;
   background: var(--line);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
-.org-members:hover .org-member-card::before {
+.org-members-grid-v3:hover .org-member-card-v3::before {
   opacity: 0.5;
 }
 
-.org-member-card:hover {
-  transform: translateY(-12px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  border-color: var(--orange);
-  z-index: 10;
+.org-member-card-v3:hover {
+  transform: translateY(-8px) scale(1.02) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1) !important;
+  border-color: var(--orange) !important;
 }
 
 .member-avatar {
-  width: 130px;
-  height: 130px;
-  border-radius: 36px;
+  width: 100px !important;
+  height: 100px !important;
+  border-radius: 24px !important;
   overflow: hidden;
-  border: 6px solid var(--bg);
+  border: 4px solid var(--bg) !important;
   box-shadow: var(--shadow-soft);
   transition: transform 0.4s ease;
   position: relative;
 }
 
-.org-member-card:hover .member-avatar {
-  transform: scale(1.1) rotate(5deg);
+.org-member-card-v3:hover .member-avatar {
+  transform: scale(1.08) rotate(3deg);
 }
 
 .member-avatar img {
@@ -4326,35 +4345,33 @@ p {
 
 .member-info {
   display: grid;
-  gap: 6px;
+  gap: 4px;
 }
 
 .member-info strong {
   font-family: var(--font-display);
-  font-size: 1.4rem;
+  font-size: 1.15rem !important;
   color: var(--ink);
   letter-spacing: -0.01em;
 }
 
 .member-info span {
-  font-size: 0.95rem;
+  font-size: 0.82rem !important;
   color: var(--muted);
   font-weight: 500;
   opacity: 0.8;
 }
 
+/* Tablets/Small Screens */
 @media (max-width: 1024px) {
-  .team-structure {
-    padding: 60px 24px;
+  .org-members-grid-v3 {
+    grid-template-columns: repeat(2, 1fr) !important;
   }
-  
-  .org-members {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+  .org-group:first-child .org-members-grid-v3 {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
   }
 }
-
-@media (max-width: 768px) {
   .team-structure {
     padding: 48px 16px;
     border-radius: 28px;
