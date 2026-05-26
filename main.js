@@ -395,14 +395,7 @@ async function renderSubjects() {
       <section class="subject-page reveal">
         ${renderPlansStage()}
       </section>
-    `,
-    {
-      heroBanner: {
-        label: "الخطط الدراسية",
-        title: "الخطط الشجرية للمواد",
-        copy: "تصفح الخطط الدراسية التفاعلية لكل تخصص مباشرة.",
-      },
-    },
+    `
   );
 }
 
