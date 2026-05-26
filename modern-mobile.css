@@ -897,11 +897,8 @@
     pointer-events: none !important;     /* prevent image drag stealing touch */
   }
 
-  /* Hotspots: make touch target taller (scale with image) */
+  /* Hotspots: style on mobile */
   .plan-showcase .plan-hotspot {
-    /* On mobile the hotspot percentage positions still work correctly
-       because they're relative to the image width inside .plan-viewport */
-    min-height: 28px !important;
     border-radius: 8px !important;
   }
 
