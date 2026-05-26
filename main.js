@@ -533,9 +533,6 @@ function renderPlansStage() {
           return `
             <article class="plan-showcase tone-${major.tone}">
               <div class="plan-showcase-copy">
-                <span class="eyebrow eyebrow-ghost">${major.label}</span>
-                <h2>${major.accent}</h2>
-                <p>اضغط على اسم المادة داخل الخطة لفتح ملفاتها مباشرة.</p>
                 <div class="plan-actions">
                   <button class="btn btn-primary" data-major-lightbox="${key}">تكبير الخطة</button>
                   <a class="btn btn-secondary" href="${major.image}" download="${key}-study-plan">تحميل الخطة</a>
