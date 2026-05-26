@@ -14,7 +14,8 @@
   { "name": "مهارات الحاسوب", "major": "common", "year": 1, "link": "https://drive.google.com/drive/folders/1bKfr87ylyS4tNuntWCNpoB5vrC6Cerwc" },
   { "name": "المشغل الهندسي", "major": "common", "year": 1, "link": "https://drive.google.com/drive/folders/1vGqKMoe2xk5p-rmIHk1xwoBdT0x8vFfI" },
   { "name": "العلوم العسكرية", "major": "common", "year": 1, "link": "https://drive.google.com/drive/folders/1z_pN49Mya_GcX21Ik_6r9rxDJ31UEUAT" },
-  { "name": "الرسم الهندسي", "major": "common", "year": 1, "link": "https://drive.google.com/drive/folders/1v-A-N2m_Uo6nN_k_uG_xR_9_X_8_X_X" },
+  { "name": "الثقافة الإسلامية", "major": "common", "year": 1, "link": "https://drive.google.com/drive/folders/11eprWVRylctP7pHxgBh_qJMHdbt9NCSb" },
+  { "name": "الرسم الهندسي", "major": "common", "year": 1, "link": "#" },
 
   { "name": "الجبر الخطي", "major": "common", "year": 2, "link": "https://drive.google.com/drive/folders/1a3LyrGbdXRpFio_wWJGkPISAFJbB_Iks" },
   { "name": "المعادلات التفاضلية العادية", "major": "common", "year": 2, "link": "https://drive.google.com/drive/folders/1akmY9gWC1HjGUTbNMF_ACib1bphj3nHD" },
@@ -52,6 +53,7 @@
   { "name": "آلات كهربائية", "major": "computer", "year": 3, "link": "https://drive.google.com/drive/folders/1b4L_fFkWOjM-HQ-rFKc_CCY1JpZZwmUl" },
 
   { "name": "الذكاء الاصطناعي وتعلم الآلة", "major": "common", "year": 4, "link": "https://drive.google.com/drive/folders/1U4YlJdFF0juUbgV4Rc_IXXy9J0mY-Nbe" },
+  { "name": "مختبر الذكاء الاصطناعي وتعلم الآلة", "major": "computer", "year": 4, "link": "https://drive.google.com/drive/folders/1U4YlJdFF0juUbgV4Rc_IXXy9J0mY-Nbe" },
   { "name": "إنترنت الأشياء", "major": "common", "year": 4, "link": "https://drive.google.com/drive/folders/1viNT1g2aeOL5izTkQjiwza7jXcsWficK" },
   { "name": "أساسيات الأمن السيبراني", "major": "common", "year": 4, "link": "https://drive.google.com/drive/folders/10QuU6QSNUCVqdY4pWUZK_ppe6z-OCUOB" },
   { "name": "برمجة متقدمة", "major": "computer", "year": 4, "link": "https://drive.google.com/drive/folders/1Y8pSy_6WMImwtV1HGnUC509b16BcDoCT" },
@@ -59,10 +61,10 @@
   { "name": "معمارية الحواسيب المتقدمة", "major": "computer", "year": 4, "link": "https://drive.google.com/drive/folders/1sLxSPMjOVtQmCt6i3JSIHFXj9YfcAJ2q" },
   { "name": "موضوعات خاصة", "major": "computer", "year": 4, "link": "https://drive.google.com/drive/folders/1ulOhjV6F8qdvx8yrd7gkw7TqF_BBeRAG" },
   { "name": "الحوسبة السحابية", "major": "computer", "year": 4, "link": "https://drive.google.com/drive/folders/11E3lvsrFuTGIrdZDsmHkEOjFJIX5atCr" },
-  { "name": "المنطق المشوش", "major": "computer", "year": 4, "link": "https://drive.google.com/drive/folders/1-8yGqYpFuR87HiYJniMIt-XX5iLYHTsv" },
-  { "name": "تصميم رقمي متقدم", "major": "computer", "year": 4, "link": "https://drive.google.com/drive/folders/1lpVUMokUqc8LYKzGNfpcv_ZFM90qDC_4" },
-  { "name": "تقييم أداء الحاسوب", "major": "computer", "year": 4, "link": "https://drive.google.com/drive/folders/1vE78m9EqL9m_b-DMljWuZijWA5ZJ-oMh" },
-  { "name": "معالجة الصور الرقمية", "major": "computer", "year": 4, "link": "https://drive.google.com/drive/folders/1viNT1g2aeOL5izTkQjiwza7jXcsWficK" },
+  { "name": "المنطق المشوش", "major": "computer", "year": 4, "link": "#" },
+  { "name": "تصميم رقمي متقدم", "major": "computer", "year": 4, "link": "#" },
+  { "name": "تقييم أداء الحاسوب", "major": "computer", "year": 4, "link": "#" },
+  { "name": "معالجة الصور الرقمية", "major": "computer", "year": 4, "link": "#" },
 
   { "name": "مختبر أمن الشبكات والإنترنت", "major": "network", "year": 4, "link": "https://drive.google.com/drive/folders/1GEm7NFaYgPH2onEa_iSKpwVmQEnVOxNo" },
   { "name": "تشفير وأمن أنظمة الشبكات", "major": "network", "year": 4, "link": "https://drive.google.com/drive/folders/1PFiopy1cn7cC_fJQgfPO3dswm898p4Hf" },
@@ -74,8 +76,8 @@
   { "name": "موضوعات خاصة في هندسة الشبكات", "major": "network", "year": 4, "link": "https://drive.google.com/drive/folders/1cf5nTGeoQ7tUSUo4RMAdRvteRIhVd78J" },
   { "name": "الشبكات اللاسلكية", "major": "network", "year": 4, "link": "https://drive.google.com/drive/folders/1eL8IWTuHwl4lzN4HJxtduQByCfRr4jqH" },
 
-  { "name": "الأنظمة المضمنة", "major": "common", "year": 4, "link": "https://drive.google.com/drive/folders/1viNT1g2aeOL5izTkQjiwza7jXcsWficK" },
-  { "name": "مختبر الأنظمة المضمنة", "major": "common", "year": 4, "link": "https://drive.google.com/drive/folders/1U4YlJdFF0juUbgV4Rc_IXXy9J0mY-Nbe" },
+  { "name": "الأنظمة المضمنة", "major": "common", "year": 4, "link": "#" },
+  { "name": "مختبر الأنظمة المضمنة", "major": "common", "year": 4, "link": "#" },
   { "name": "مختبر أنظمة التحكم", "major": "common", "year": 4, "link": "https://drive.google.com/drive/folders/1qptP4y8hczv6cuCo10ppFS62qH6ZQOrG" },
 
   { "name": "مشروع تخرج 1", "major": "common", "year": 5, "link": "#" },
