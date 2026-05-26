@@ -871,24 +871,20 @@
     white-space: nowrap !important;
   }
 
-  /* ── Plan image map: scrollable box, not a shrunk image ── */
+  /* ── Plan image map: fully visible and responsive (no horizontal scroll) ── */
   .plan-showcase .plan-image-map {
     order: 2 !important;
     width: 100% !important;
     border-radius: 16px !important;
-    overflow-x: auto !important;         /* horizontal scroll for plan image */
-    overflow-y: hidden !important;
-    -webkit-overflow-scrolling: touch !important;
+    overflow: hidden !important;
     border: 1px solid var(--line) !important;
-    /* Scroll snap feel */
-    scroll-snap-type: x mandatory !important;
+    aspect-ratio: 3508 / 2480 !important;
   }
 
-  /* Plan viewport: fixed display width so the image stays full-size
-     and the container scrolls rather than squashing it */
+  /* Plan viewport: fully responsive, scales with container */
   .plan-showcase .plan-viewport {
-    width: 900px !important;             /* minimum readable width for plan */
-    min-width: 900px !important;
+    width: 100% !important;
+    min-width: unset !important;
     position: relative !important;
     line-height: 0 !important;
   }
@@ -913,36 +909,10 @@
   .plan-showcase .plan-hotspot-missing {
     opacity: 1 !important;
   }
-
-  /* Scroll hint: subtle gradient on the right edge to signal scrollability */
-  .plan-showcase .plan-image-map::after {
-    content: "" !important;
-    position: absolute !important;
-    top: 0 !important;
-    right: 0 !important;  /* RTL: hint on left side (start of read direction) */
-    width: 32px !important;
-    height: 100% !important;
-    background: linear-gradient(to right, transparent, rgba(2, 6, 23, 0.35)) !important;
-    pointer-events: none !important;
-    z-index: 5 !important;
-    border-radius: 0 16px 16px 0 !important;
-  }
-
-  [dir="rtl"] .plan-showcase .plan-image-map::after {
-    right: auto !important;
-    left: 0 !important;
-    background: linear-gradient(to left, transparent, rgba(2, 6, 23, 0.35)) !important;
-    border-radius: 16px 0 0 16px !important;
-  }
 }
 
 /* Extra small — keep plan viewport readable at 320px */
 @media (max-width: 479px) {
-  .plan-showcase .plan-viewport {
-    width: 720px !important;
-    min-width: 720px !important;
-  }
-
   .plan-showcase {
     padding: 12px !important;
     border-radius: 18px !important;
@@ -957,9 +927,7 @@
 
 /* 640px–767px: a bit more space, slightly wider viewport */
 @media (min-width: 640px) and (max-width: 767px) {
-  .plan-showcase .plan-viewport {
-    width: 1080px !important;
-    min-width: 1080px !important;
-  }
+  /* Removed viewport overrides to allow 100% width scaling */
 }
+
 
