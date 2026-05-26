@@ -489,3 +489,264 @@
     height: 40px !important;
   }
 }
+
+/* ============================================================
+   ABOUT PAGE — Mobile (320px–767px)
+   ============================================================ */
+
+/* ─── 7. TEAM STRUCTURE SECTION ─────────────────────────────── */
+@media (max-width: 767px) {
+  .team-structure {
+    padding: 36px 16px !important;
+    border-radius: 24px !important;
+    margin-top: 20px !important;
+    overflow: hidden !important;
+  }
+
+  /* Section heading */
+  .team-head {
+    text-align: center !important;
+    margin-bottom: 32px !important;
+  }
+
+  .team-head h2 {
+    font-size: clamp(1.6rem, 6vw, 2.2rem) !important;
+    line-height: 1.2 !important;
+  }
+
+  .team-head p {
+    font-size: 0.9rem !important;
+    line-height: 1.6 !important;
+    max-width: none !important;
+  }
+
+  /* Org chart: single column, tighter gaps */
+  .org-chart {
+    gap: 40px !important;
+  }
+
+  .org-group {
+    gap: 24px !important;
+    align-items: stretch !important;
+  }
+
+  /* Role title badge */
+  .org-role-title {
+    align-self: center !important;
+    font-size: 0.85rem !important;
+    padding: 10px 24px !important;
+    letter-spacing: 0.06em !important;
+  }
+
+  /* Hide connector line between badge and cards (broken on mobile) */
+  .org-role-title::after {
+    display: none !important;
+  }
+
+  /* ── MEMBER GRID → single column of horizontal rows ── */
+  .org-members-grid-v3 {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    padding: 0 !important;
+    width: 100% !important;
+    grid-template-columns: unset !important;
+  }
+
+  /* Override first-group's special centering */
+  .org-group:first-child .org-members-grid-v3 {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: unset !important;
+    flex-wrap: unset !important;
+    width: 100% !important;
+  }
+
+  /* Reset staggered vertical offset (desktop-only effect) */
+  .org-members-grid-v3 > :nth-child(even) {
+    transform: none !important;
+  }
+
+  /* ── MEMBER CARD → horizontal row (avatar left, info right) ── */
+  .org-member-card-v3 {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 14px !important;
+    padding: 14px 16px !important;
+    border-radius: 18px !important;
+    text-align: right !important;
+    width: 100% !important;
+  }
+
+  .org-member-card-v3:hover {
+    transform: none !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  /* First group cards: override flex-basis */
+  .org-group:first-child .org-member-card-v3 {
+    flex: unset !important;
+    width: 100% !important;
+  }
+
+  /* Avatar: compact, left side */
+  .member-avatar {
+    width: 56px !important;
+    height: 56px !important;
+    border-radius: 14px !important;
+    border-width: 3px !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Disable rotate animation on touch */
+  .org-member-card-v3:hover .member-avatar {
+    transform: none !important;
+  }
+
+  /* Info text: takes remaining width, RTL aligned */
+  .member-info {
+    flex: 1 !important;
+    min-width: 0 !important;
+    text-align: right !important;
+    gap: 2px !important;
+    display: grid !important;
+  }
+
+  .member-info strong {
+    font-size: 1rem !important;
+    display: block !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .member-info span {
+    font-size: 0.8rem !important;
+    opacity: 0.75 !important;
+    display: block !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  /* Hide connector threads (desktop decoration) */
+  .org-member-card-v3::before {
+    display: none !important;
+  }
+}
+
+/* ─── 8. ABOUT-SCENE (Mission / Vision / Values) ────────────── */
+@media (max-width: 767px) {
+  .about-scene {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important;
+    padding: 28px 16px !important;
+    border-radius: 24px !important;
+    margin-top: 16px !important;
+    grid-template-columns: unset !important;
+  }
+
+  /* Remove horizontal topology line (looks wrong in 1-col layout) */
+  .about-scene::after {
+    display: none !important;
+  }
+
+  /* Reset stagger offsets */
+  .about-scene .about-panel:nth-child(1),
+  .about-scene .about-panel:nth-child(2),
+  .about-scene .about-panel:nth-child(3) {
+    transform: none !important;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+
+  .about-panel {
+    padding: 24px 20px !important;
+    border-radius: 20px !important;
+    align-items: flex-start !important;
+    text-align: right !important;
+    min-height: unset !important;
+  }
+
+  /* Disable scale on touch devices */
+  .about-panel:hover {
+    transform: none !important;
+  }
+
+  .about-panel .icon-large,
+  .about-panel .material-symbols-outlined {
+    font-size: 2rem !important;
+    margin-bottom: 8px !important;
+  }
+
+  .about-panel h3 {
+    font-size: clamp(1.1rem, 4.5vw, 1.4rem) !important;
+    margin-bottom: 8px !important;
+    padding: 6px 14px !important;
+  }
+
+  .about-panel p {
+    font-size: clamp(0.88rem, 3.2vw, 1rem) !important;
+    line-height: 1.6 !important;
+    text-align: right !important;
+  }
+}
+
+/* ─── 9. TOP-BANNER (page title section on inner pages) ────── */
+@media (max-width: 767px) {
+  .top-banner {
+    padding: 28px 20px !important;
+    border-radius: 24px !important;
+    gap: 12px !important;
+  }
+
+  .top-banner h1 {
+    font-size: clamp(1.6rem, 6.5vw, 2.4rem) !important;
+    line-height: 1.2 !important;
+  }
+
+  .top-banner p {
+    font-size: clamp(0.88rem, 3.2vw, 1rem) !important;
+    line-height: 1.6 !important;
+  }
+}
+
+/* ─── 10. 360px FLOOR — About page safety net ──────────────── */
+@media (max-width: 360px) {
+  .team-structure {
+    padding: 24px 12px !important;
+  }
+
+  .org-member-card-v3 {
+    padding: 10px 12px !important;
+    gap: 10px !important;
+  }
+
+  .member-avatar {
+    width: 46px !important;
+    height: 46px !important;
+    border-radius: 10px !important;
+  }
+
+  .member-info strong {
+    font-size: 0.88rem !important;
+  }
+
+  .member-info span {
+    font-size: 0.72rem !important;
+  }
+
+  .about-scene {
+    padding: 20px 12px !important;
+  }
+
+  .about-panel {
+    padding: 18px 14px !important;
+  }
+
+  .top-banner {
+    padding: 20px 12px !important;
+  }
+}
