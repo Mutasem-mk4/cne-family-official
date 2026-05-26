@@ -835,7 +835,7 @@
     text-align: right !important;
     justify-items: unset !important;
     align-items: flex-start !important;
-    order: 1 !important;
+    order: 2 !important;
   }
 
   .plan-showcase-copy .eyebrow {
@@ -873,7 +873,7 @@
 
   /* ── Plan image map: fully visible and responsive (no horizontal scroll) ── */
   .plan-showcase .plan-image-map {
-    order: 2 !important;
+    order: 1 !important;
     width: 100% !important;
     border-radius: 16px !important;
     overflow: hidden !important;
