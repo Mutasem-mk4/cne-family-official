@@ -1,178 +1,491 @@
-/* Modern Mobile Fixes - Overrides legacy style.css */
+/* ============================================================
+   modern-mobile.css  v2.0.0
+   Mobile-first overrides for all screens ≤ 767px
+   Desktop layout (≥ 768px) is untouched.
+   ============================================================ */
 
-/* --- HERO SECTION --- */
-@media (max-width: 768px) {
-  .hero-premium {
-    min-height: 520px !important; /* Shorter height for 'widthwise' feel */
+/* ─── 1. NAVBAR ────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  /* Outer shell: logo LEFT, actions RIGHT (RTL doc → flip with ltr) */
+  .nav-inner {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 10px 16px !important;
+    min-height: 64px !important;
+    direction: ltr !important; /* logo left, hamburger right visually */
+  }
+
+  /* Logo stays on the left edge */
+  .nav-logo {
+    direction: rtl !important; /* text inside stays RTL */
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 6px 10px !important;
+    border-radius: 16px !important;
+    background: color-mix(in srgb, var(--surface-3) 70%, transparent) !important;
+    border: 1px solid color-mix(in srgb, var(--line) 70%, transparent) !important;
+  }
+
+  .logo-img {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  /* Actions cluster (theme toggle + hamburger) on the right */
+  .nav-actions {
+    display: flex !important;
+    direction: ltr !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 6px !important;
+    border-radius: 999px !important;
+    background: color-mix(in srgb, var(--surface-3) 62%, transparent) !important;
+    border: 1px solid color-mix(in srgb, var(--line) 70%, transparent) !important;
+    backdrop-filter: blur(14px) !important;
+  }
+
+  /* Hamburger icon: always visible on mobile */
+  .mobile-only {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* Join button: hidden on mobile */
+  .btn-join,
+  .hide-on-mobile {
+    display: none !important;
+  }
+
+  /* Dropdown nav panel */
+  .nav-links {
+    position: fixed !important;
+    top: 72px !important;
+    right: 12px !important;
+    left: 12px !important;
+    display: none !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 4px !important;
+    padding: 12px !important;
+    border-radius: 20px !important;
+    background: var(--surface) !important;
+    border: 1px solid var(--line) !important;
+    box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.35) !important;
+    z-index: 999 !important;
+    direction: rtl !important;
+  }
+
+  .nav-links.is-open {
+    display: flex !important;
+  }
+
+  .nav-link {
+    display: block !important;
+    padding: 14px 16px !important;
+    border-radius: 12px !important;
+    font-size: 1.05rem !important;
+    font-weight: 600 !important;
+    text-align: right !important;
+    transition: background 0.15s !important;
+  }
+
+  .nav-link:hover,
+  .nav-link.is-active {
+    background: var(--surface-2) !important;
+  }
+}
+
+/* ─── 2. HERO SECTION ─────────────────────────────────────── */
+@media (max-width: 767px) {
+  /* Full-height card stacked vertically */
+  .hero-command-board.hero-premium {
+    min-height: 560px !important;
     height: auto !important;
+    aspect-ratio: auto !important;
+    border-radius: 28px !important;
     display: flex !important;
     flex-direction: column !important;
-    justify-content: center !important;
-    padding: 60px 0 !important;
-    aspect-ratio: auto !important;
+    align-items: stretch !important;
+    justify-content: flex-end !important;
+    padding: 0 !important;
+    margin-bottom: 20px !important;
   }
 
+  /* Image fills the card, gradient from bottom */
+  .hero-image-full {
+    object-position: center top !important;
+  }
+
+  .hero-image-mask {
+    background: linear-gradient(
+      to top,
+      rgba(2, 6, 23, 1) 0%,
+      rgba(2, 6, 23, 0.92) 45%,
+      rgba(2, 6, 23, 0.4) 80%,
+      transparent 100%
+    ) !important;
+  }
+
+  /* Content panel at the bottom */
   .hero-command-content {
-    padding: 24px !important;
+    padding: 28px 20px 32px !important;
     max-width: none !important;
-    text-align: center !important;
     gap: 20px !important;
+    text-align: right !important;
+    justify-items: start !important;
   }
 
+  /* Badge */
+  .hero-badge {
+    font-size: 0.7rem !important;
+    padding: 6px 12px !important;
+  }
+
+  /* Heading: clamp for all mobile widths */
   .hero-premium h1 {
-    font-size: 2.1rem !important;
-    line-height: 1.1 !important;
-    margin-bottom: 8px !important;
-    text-shadow: 0 4px 15px rgba(0,0,0,0.6) !important;
+    font-size: clamp(1.75rem, 7.5vw, 2.8rem) !important;
+    line-height: 1.15 !important;
+    max-width: none !important;
+    text-shadow: 0 3px 14px rgba(0, 0, 0, 0.6) !important;
   }
 
+  /* Sub-copy */
   .hero-premium p {
-    font-size: 0.95rem !important;
-    color: rgba(255,255,255,0.9) !important;
-    line-height: 1.5 !important;
-    max-width: 32ch !important;
-    margin: 0 auto !important;
+    font-size: clamp(0.9rem, 3.5vw, 1.05rem) !important;
+    color: rgba(255, 255, 255, 0.88) !important;
+    line-height: 1.6 !important;
+    max-width: none !important;
   }
 
+  /* CTA buttons: full width column stack */
   .hero-primary-actions {
     display: flex !important;
-    flex-direction: row !important; /* Row on tablets, column on small phones */
-    justify-content: center !important;
+    flex-direction: column !important;
     gap: 12px !important;
     width: 100% !important;
-    margin-top: 10px !important;
   }
 
   .hero-primary-actions .btn {
-    flex: 1 !important;
-    max-width: 200px !important;
-    min-height: 48px !important;
-    font-size: 0.9rem !important;
-    padding: 10px 16px !important;
+    width: 100% !important;
+    min-height: 52px !important;
+    font-size: clamp(0.88rem, 3.5vw, 1rem) !important;
+    justify-content: center !important;
+    border-radius: 16px !important;
   }
 
+  /* Metrics strip */
   .hero-metrics {
     display: flex !important;
-    flex-wrap: nowrap !important;
-    justify-content: center !important;
-    gap: 15px !important;
-    padding: 20px 0 0 0 !important;
-    margin-top: 24px !important;
-    border-top: 1px solid rgba(255,255,255,0.1) !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-start !important;
+    gap: 16px 32px !important;
+    padding-top: 20px !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
     width: 100% !important;
+  }
+
+  .metric-item {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
   }
 
   .metric-item strong {
-    font-size: 1.4rem !important;
-    color: #ff9d42 !important;
+    font-size: 1.6rem !important;
+    line-height: 1 !important;
+    color: var(--orange) !important;
   }
 
   .metric-item span {
-    font-size: 0.75rem !important;
+    font-size: 0.8rem !important;
+    opacity: 0.85 !important;
+  }
+
+  .metric-divider {
+    display: none !important;
   }
 }
 
-@media (max-width: 480px) {
-  .hero-premium {
+/* Extra small: 320px–479px */
+@media (max-width: 479px) {
+  .hero-command-board.hero-premium {
     min-height: 480px !important;
-    padding: 40px 0 !important;
+    border-radius: 22px !important;
   }
 
-  .hero-primary-actions {
-    flex-direction: column !important;
-    align-items: center !important;
+  .hero-command-content {
+    padding: 20px 16px 28px !important;
+    gap: 16px !important;
+  }
+
+  .hero-premium h1 {
+    font-size: clamp(1.55rem, 8vw, 2rem) !important;
   }
 
   .hero-primary-actions .btn {
-    width: 100% !important;
-    max-width: 280px !important;
+    min-height: 48px !important;
+    font-size: 0.9rem !important;
   }
 }
 
-/* --- LEADERSHIP (STRUCTURAL GRID) --- */
-@media (max-width: 768px) {
-  .team-structure {
-    padding: 40px 12px !important;
-  }
-
-  .org-members {
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important; /* Force 2 columns */
-    gap: 12px !important;
-    width: 100% !important;
-    padding: 10px 0 !important;
-    position: relative !important;
-  }
-
-  /* Connecting vertical line for 'structure' look */
-  .org-members::before {
-    content: "" !important;
-    position: absolute !important;
-    top: 0 !important;
-    bottom: 0 !important;
-    left: 50% !important;
-    width: 1px !important;
-    background: var(--line) !important;
-    opacity: 0.5 !important;
-    z-index: 0 !important;
-  }
-
-  .org-member-card {
-    width: 100% !important;
-    max-width: none !important;
-    padding: 14px 8px !important;
-    border-radius: 18px !important;
-    gap: 6px !important;
-    background: var(--surface-3) !important;
-    z-index: 1 !important;
-  }
-
-  .member-avatar {
-    width: 60px !important;
-    height: 60px !important;
-    border-radius: 14px !important;
-    border-width: 3px !important;
-  }
-
-  .member-info strong {
-    font-size: 0.95rem !important;
-  }
-
-  .member-info span {
-    font-size: 0.75rem !important;
-  }
-
-  /* Staggered nodes for structural feel */
-  .org-members > :nth-child(even) {
-    transform: translateY(24px) !important;
-  }
-}
-
-/* --- ABOUT SECTION TOPOLOGY --- */
-@media (max-width: 768px) {
-  .about-scene {
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
+/* ─── 3. HOME SPOTLIGHT (titans + quick-links) ─────────────── */
+@media (max-width: 767px) {
+  /* Stack titans and quick-links vertically */
+  .home-spotlight {
+    display: flex !important;
+    flex-direction: column !important;
     gap: 16px !important;
-    padding: 32px 12px !important;
+    grid-template-columns: unset !important;
   }
 
-  .about-panel {
+  /* ── TITANS LEADERBOARD ── */
+  .titans-board {
+    padding: 20px 16px !important;
+    border-radius: 24px !important;
+  }
+
+  .titans-board-head {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 6px !important;
+    margin-bottom: 16px !important;
+  }
+
+  .titans-board-head h2 {
+    font-size: clamp(1.3rem, 5vw, 1.8rem) !important;
+  }
+
+  /* Featured titan: horizontal row card */
+  .titans-featured {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    grid-template-columns: unset !important;
+  }
+
+  .titan-featured-card {
+    display: grid !important;
+    grid-template-columns: 80px minmax(0, 1fr) !important;
+    grid-template-areas:
+      "image copy"
+      "image score" !important;
+    gap: 10px 14px !important;
+    padding: 14px !important;
+    border-radius: 20px !important;
+    align-items: center !important;
+  }
+
+  .titan-featured-image {
+    grid-area: image !important;
+    width: 80px !important;
+    height: 80px !important;
+    border-radius: 16px !important;
+  }
+
+  .titan-featured-copy {
+    grid-area: copy !important;
+  }
+
+  .titan-score-box {
+    grid-area: score !important;
+    padding-top: 6px !important;
+    border-top: 1px solid var(--line) !important;
+  }
+
+  .titan-rank-badge {
+    position: absolute !important;
+    top: 10px !important;
+    left: 10px !important;
+  }
+
+  /* Titans list: full-width rows */
+  .titans-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    grid-template-columns: unset !important;
+  }
+
+  .titan-list-card {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 12px !important;
+    padding: 12px 14px !important;
+    border-radius: 16px !important;
+    width: 100% !important;
+  }
+
+  /* ── QUICK LINKS ── */
+  .home-quick-links {
+    padding: 20px 16px !important;
+    border-radius: 24px !important;
+  }
+
+  .home-quick-links-head {
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 14px !important;
+  }
+
+  /* Already grid 1fr, just ensure cards are rows */
+  .home-quick-links-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+  }
+
+  .home-quick-link-card {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 14px !important;
+    padding: 14px 0 !important;
+    border-radius: 0 !important;
+  }
+
+  .home-quick-link-card .material-symbols-outlined {
+    font-size: 1.6rem !important;
+    flex-shrink: 0 !important;
+  }
+
+  .home-quick-link-card strong {
+    font-size: 0.95rem !important;
+    margin-bottom: 2px !important;
+  }
+
+  .home-quick-link-card p {
+    font-size: 0.82rem !important;
+    line-height: 1.45 !important;
+  }
+}
+
+/* ─── 4. HOME ACTION CARDS (features section) ──────────────── */
+@media (max-width: 767px) {
+  .home-actions {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    grid-template-columns: unset !important;
+  }
+
+  .home-action-card {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 16px !important;
     padding: 16px !important;
     border-radius: 20px !important;
-    min-height: 140px !important;
   }
 
-  .about-panel h3 {
+  .home-action-icon-wrap {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 48px !important;
+    height: 48px !important;
+    flex-shrink: 0 !important;
+    border-radius: 14px !important;
+  }
+
+  .home-action-icon {
+    font-size: 1.5rem !important;
+  }
+
+  .home-action-copy {
+    flex: 1 !important;
+    min-width: 0 !important;
+  }
+
+  .home-action-copy strong {
+    font-size: 0.95rem !important;
+    display: block !important;
+    margin-bottom: 2px !important;
+  }
+
+  .home-action-copy p {
+    font-size: 0.82rem !important;
+    line-height: 1.45 !important;
+  }
+
+  .home-action-arrow {
     font-size: 1.1rem !important;
-    padding: 4px 12px !important;
-    margin-bottom: 8px !important;
+    flex-shrink: 0 !important;
+    opacity: 0.5 !important;
   }
-
-  .about-panel p {
-    font-size: 0.85rem !important;
-  }
-
-  .about-scene .about-panel:nth-child(1) { grid-column: span 2 !important; }
 }
 
+/* ─── 5. GENERAL LAYOUT ─────────────────────────────────────── */
+@media (max-width: 767px) {
+  /* Page padding */
+  #page {
+    padding: 8px 0 80px !important;
+  }
+
+  /* Section containers: tighten horizontal edge padding */
+  .home-command,
+  .home-spotlight {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* Section headings */
+  .section-head h2,
+  .titans-board-head h2 {
+    font-size: clamp(1.4rem, 5.5vw, 2rem) !important;
+  }
+
+  /* Cards inside the home sections */
+  .home-hero,
+  .home-actions,
+  .home-quick-links,
+  .titans-board {
+    border-radius: 24px !important;
+  }
+}
+
+/* ─── 6. 320px FLOOR (safety net) ──────────────────────────── */
+@media (max-width: 360px) {
+  .nav-inner {
+    padding: 8px 12px !important;
+  }
+
+  .hero-command-content {
+    padding: 16px 12px 24px !important;
+  }
+
+  .hero-premium h1 {
+    font-size: 1.5rem !important;
+  }
+
+  .hero-primary-actions .btn {
+    font-size: 0.82rem !important;
+    min-height: 44px !important;
+  }
+
+  .titan-featured-card {
+    grid-template-columns: 64px minmax(0, 1fr) !important;
+    padding: 10px !important;
+  }
+
+  .titan-featured-image {
+    width: 64px !important;
+    height: 64px !important;
+  }
+
+  .home-action-card {
+    padding: 12px !important;
+    gap: 12px !important;
+  }
+
+  .home-action-icon-wrap {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
