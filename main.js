@@ -981,10 +981,7 @@ function renderFooter() {
     <footer class="site-footer">
       <div class="footer-brand">
         <img src="/assets/logos/cne-icon.png" alt="CNE logo" />
-        <div>
-          <strong> CNE Family </strong>
-          <p>منصة أكاديمية مخصصة لطلبة هندسة الحاسوب والشبكات في جامعة البلقاء التطبيقية.</p>
-        </div>
+        <strong> CNE Family </strong>
       </div>
       <div class="footer-nav">
         <a href="/" data-link>الرئيسية</a>

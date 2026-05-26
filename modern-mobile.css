@@ -956,20 +956,13 @@
   }
 
   .footer-brand img {
-    width: 52px !important;
-    height: 52px !important;
-    border-radius: 14px !important;
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 12px !important;
   }
 
   .footer-brand strong {
-    font-size: 1.1rem !important;
-  }
-
-  .footer-brand p {
-    font-size: 0.82rem !important;
-    line-height: 1.4 !important;
-    max-width: 280px !important;
-    margin: 2px 0 0 0 !important;
+    font-size: 1.25rem !important;
   }
 
   /* Navigation links: horizontal inline row */
