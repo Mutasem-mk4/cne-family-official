@@ -35,12 +35,11 @@ const SUBJECT_NAME_MAP = {
   "الآلات كهربائية": "آلات كهربائية",
   "أنظمة معالجات متوازية": "مختبر أنظمة المعالجات المتوازية",
   "البرمجة المتقدمة": "برمجة متقدمة",
-  "مختبر الذكاء الاصطناعي وتعلم الآلة": "الذكاء الاصطناعي وتعلم الآلة",
 };
 
 function resolveSubject(name) {
   const mappedName = SUBJECT_NAME_MAP[name] || name;
-  return subjectsByName.get(mappedName);
+  return { subject: subjectsByName.get(mappedName), mappedName };
 }
 
 // Parse hotspot arrays from main.js
@@ -60,44 +59,30 @@ function extractHotspots(arrayName) {
   return result;
 }
 
-const compHotspots = extractHotspots('COMPUTER_PLAN_HOTSPOTS');
-const netHotspots = extractHotspots('NETWORK_PLAN_HOTSPOTS');
-
-console.log('=== COMPUTER PLAN AUDIT ===');
-let compOk = 0, compFail = 0;
-for (const hs of compHotspots) {
-  const subject = resolveSubject(hs.name);
-  if (!subject) {
-    console.log(`❌ NOT FOUND: "${hs.name}"`);
-    compFail++;
-  } else if (!subject.link || subject.link === '#') {
-    console.log(`⚠️  NO LINK: "${hs.name}" -> "${subject.name}" (link="${subject.link}")`);
-    compFail++;
-  } else {
-    compOk++;
+function audit(arrayName) {
+  const hotspots = extractHotspots(arrayName);
+  console.log(`\n=== ${arrayName} (${hotspots.length} hotspots) ===`);
+  
+  // Check for duplicate names in hotspot array
+  const names = hotspots.map(h => h.name);
+  const dupes = names.filter((n, i) => names.indexOf(n) !== i);
+  if (dupes.length) console.log(`⚠️  DUPLICATE HOTSPOT NAMES: ${dupes.join(', ')}`);
+  
+  let ok = 0, missingLink = 0, notFound = 0;
+  for (const hs of hotspots) {
+    const { subject, mappedName } = resolveSubject(hs.name);
+    if (!subject) {
+      console.log(`❌ NOT IN subjects.json: "${hs.name}" (looking for "${mappedName}")`);
+      notFound++;
+    } else if (!subject.link || subject.link === '#') {
+      console.log(`🔴 NO LINK (red hotspot): "${subject.name}"`);
+      missingLink++;
+    } else {
+      ok++;
+    }
   }
+  console.log(`\nSummary: ✅ ${ok} with links  |  🔴 ${missingLink} red (no link)  |  ❌ ${notFound} not found`);
 }
-console.log(`Result: ${compOk} OK, ${compFail} ISSUES\n`);
 
-console.log('=== NETWORK PLAN AUDIT ===');
-let netOk = 0, netFail = 0;
-for (const hs of netHotspots) {
-  const subject = resolveSubject(hs.name);
-  if (!subject) {
-    console.log(`❌ NOT FOUND: "${hs.name}"`);
-    netFail++;
-  } else if (!subject.link || subject.link === '#') {
-    console.log(`⚠️  NO LINK: "${hs.name}" -> "${subject.name}" (link="${subject.link}")`);
-    netFail++;
-  } else {
-    netOk++;
-  }
-}
-console.log(`Result: ${netOk} OK, ${netFail} ISSUES\n`);
-
-console.log('=== SUBJECTS WITH BAD LINKS IN subjects.json ===');
-for (const s of subjects) {
-  if (!s.link || s.link === '#' || s.link.includes('X_X_X')) {
-    console.log(`  ⚠️  "${s.name}": "${s.link}"`);
-  }
-}
+audit('COMPUTER_PLAN_HOTSPOTS');
+audit('NETWORK_PLAN_HOTSPOTS');

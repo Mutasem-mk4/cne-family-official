@@ -610,9 +610,10 @@ function renderClickablePlanImage(majorKey, major) {
   const hotspots = (PLAN_HOTSPOTS[majorKey] || [])
     .map(([name, x, y, width, height]) => {
       const mappedName = SUBJECT_NAME_MAP[name] || name;
-      return { subject: subjectsByName.get(mappedName), x, y, width, height };
-    })
-    .filter(({ subject }) => subject?.link && subject.link !== "#");
+      const subject = subjectsByName.get(mappedName);
+      const hasLink = subject?.link && subject.link !== "#";
+      return { name: subject?.name || name, link: hasLink ? subject.link : null, x, y, width, height };
+    });
   return `
     <div class="plan-image-map" aria-label="خطة ${major.label} - اضغط على اسم المادة لفتح ملفاتها">
       <div class="plan-viewport">
@@ -623,23 +624,35 @@ function renderClickablePlanImage(majorKey, major) {
   `;
 }
 
-function renderPlanHotspot({ subject, x, y, width, height }) {
+function renderPlanHotspot({ name, link, x, y, width, height }) {
   const left = (x / PLAN_IMAGE_SIZE.width) * 100;
   const top = (y / PLAN_IMAGE_SIZE.height) * 100;
   const boxWidth = (width / PLAN_IMAGE_SIZE.width) * 100;
   const boxHeight = (height / PLAN_IMAGE_SIZE.height) * 100;
+  const style = `left:${left.toFixed(3)}%;top:${top.toFixed(3)}%;width:${boxWidth.toFixed(3)}%;height:${boxHeight.toFixed(3)}%;`;
 
-  return `
-    <a
-      href="${subject.link}"
-      target="_blank"
-      rel="noopener"
-      class="plan-hotspot"
-      style="left:${left.toFixed(3)}%;top:${top.toFixed(3)}%;width:${boxWidth.toFixed(3)}%;height:${boxHeight.toFixed(3)}%;"
-      aria-label="افتح ملفات ${subject.name}"
-      title="${subject.name}"
-    ></a>
-  `;
+  if (link) {
+    return `
+      <a
+        href="${link}"
+        target="_blank"
+        rel="noopener"
+        class="plan-hotspot"
+        style="${style}"
+        aria-label="افتح ملفات ${name}"
+        title="${name}"
+      ></a>
+    `;
+  } else {
+    return `
+      <div
+        class="plan-hotspot plan-hotspot-missing"
+        style="${style}"
+        title="${name} — لا يوجد محتوى بعد"
+        aria-label="${name} — لا يوجد محتوى بعد"
+      ></div>
+    `;
+  }
 }
 
 async function renderActivities() {
