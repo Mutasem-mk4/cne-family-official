@@ -51,6 +51,7 @@
   { "name": "الاقتصاد الهندسي", "major": "common", "year": 3, "link": "https://drive.google.com/drive/folders/1baLAKoIttu3YrYT_yqV4Ujy6hk5xr3eQ" },
   { "name": "أنظمة التحكم", "major": "computer", "year": 3, "link": "https://drive.google.com/drive/folders/1qptP4y8hczv6cuCo10ppFS62qH6ZQOrG" },
   { "name": "آلات كهربائية", "major": "computer", "year": 3, "link": "https://drive.google.com/drive/folders/1b4L_fFkWOjM-HQ-rFKc_CCY1JpZZwmUl" },
+  { "name": "آلات كهربائية 1", "major": "network", "year": 3, "link": "#" },
 
   { "name": "الذكاء الاصطناعي وتعلم الآلة", "major": "common", "year": 4, "link": "https://drive.google.com/drive/folders/1U4YlJdFF0juUbgV4Rc_IXXy9J0mY-Nbe" },
   { "name": "مختبر الذكاء الاصطناعي وتعلم الآلة", "major": "computer", "year": 4, "link": "https://drive.google.com/drive/folders/1U4YlJdFF0juUbgV4Rc_IXXy9J0mY-Nbe" },
@@ -78,7 +79,7 @@
 
   { "name": "الأنظمة المضمنة", "major": "common", "year": 4, "link": "#" },
   { "name": "مختبر الأنظمة المضمنة", "major": "common", "year": 4, "link": "#" },
-  { "name": "مختبر أنظمة التحكم", "major": "common", "year": 4, "link": "https://drive.google.com/drive/folders/1qptP4y8hczv6cuCo10ppFS62qH6ZQOrG" },
+  { "name": "مختبر أنظمة التحكم", "major": "common", "year": 4, "link": "#" },
 
   { "name": "أنظمة المعالجات المتوازية", "major": "computer", "year": 4, "link": "#" },
   { "name": "مقدمة إلى لينكس", "major": "network", "year": 4, "link": "#" },
