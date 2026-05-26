@@ -80,6 +80,12 @@
   { "name": "مختبر الأنظمة المضمنة", "major": "common", "year": 4, "link": "#" },
   { "name": "مختبر أنظمة التحكم", "major": "common", "year": 4, "link": "https://drive.google.com/drive/folders/1qptP4y8hczv6cuCo10ppFS62qH6ZQOrG" },
 
+  { "name": "أنظمة المعالجات المتوازية", "major": "computer", "year": 4, "link": "#" },
+  { "name": "مقدمة إلى لينكس", "major": "network", "year": 4, "link": "#" },
+  { "name": "القرصنة الأخلاقية", "major": "network", "year": 4, "link": "#" },
+  { "name": "أمن الشبكات اللاسلكية", "major": "network", "year": 4, "link": "#" },
+  { "name": "شبكات الاستشعار اللاسلكية", "major": "network", "year": 4, "link": "#" },
+
   { "name": "مشروع تخرج 1", "major": "common", "year": 5, "link": "#" },
   { "name": "مشروع تخرج 2", "major": "common", "year": 5, "link": "#" },
   { "name": "تدريب ميداني", "major": "common", "year": 5, "link": "#" }
