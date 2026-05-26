@@ -425,7 +425,7 @@
 @media (max-width: 767px) {
   /* Page padding */
   #page {
-    padding: 8px 0 80px !important;
+    padding: 8px 0 0 !important;
   }
 
   /* Section containers: tighten horizontal edge padding */
