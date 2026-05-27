@@ -494,204 +494,25 @@
    ABOUT PAGE — Force Desktop View 1:1 but scaled to fit mobile screen
    ============================================================ */
 @media (max-width: 767px) {
-  /* Fits the screen width exactly */
+  /* Fits the screen width and allows horizontal scrolling for 1:1 desktop layout */
   .about-desktop-wrapper {
     width: 100% !important;
-    overflow-x: hidden !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
     display: flex !important;
     flex-direction: column !important;
-    gap: 20px !important;
-    padding: 0 8px !important;
+    gap: 32px !important;
+    padding-bottom: 24px !important;
   }
-
-  /* Force sections to take full page width */
+ 
+  /* Force sections to take desktop width on mobile to maintain 1:1 layout */
   .about-desktop-wrapper .team-structure,
   .about-desktop-wrapper .about-scene {
-    min-width: unset !important;
-    width: 100% !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+    min-width: 1080px !important;
+    width: 1080px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
     box-sizing: border-box !important;
-  }
-
-  /* Compact Team Structure */
-  .about-desktop-wrapper .team-structure {
-    padding: 24px 8px !important;
-    margin-top: 24px !important;
-    border-radius: 18px !important;
-  }
-
-  .about-desktop-wrapper .org-chart {
-    gap: 36px !important;
-  }
-
-  .about-desktop-wrapper .org-group {
-    gap: 10px !important;
-    width: 100% !important;
-  }
- 
-  .about-desktop-wrapper .org-role-title {
-    padding: 6px 18px !important;
-    font-size: 0.75rem !important;
-    border-radius: 999px !important;
-    letter-spacing: 0.05em !important;
-    background: var(--ink) !important;
-    color: var(--bg) !important;
-    font-weight: 800 !important;
-    align-self: center !important;
-  }
- 
-  .about-desktop-wrapper .org-role-title::after {
-    display: none !important;
-  }
- 
-  /* Members Grid: 4 columns side-by-side but tiny gap */
-  .about-desktop-wrapper .org-members-grid-v3 {
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
-    gap: 6px !important;
-    padding: 0 0 10px 0 !important;
-    width: 100% !important;
-  }
-
-  /* Centered first group (President & VP) */
-  .about-desktop-wrapper .org-group:first-child .org-members-grid-v3 {
-    display: flex !important;
-    justify-content: center !important;
-    flex-wrap: wrap !important;
-    gap: 6px !important;
-    width: 100% !important;
-  }
-
-  .about-desktop-wrapper .org-members-grid-v3 > * {
-    transform: none !important;
-  }
-
-  /* Compact Member Card */
-  .about-desktop-wrapper .org-member-card-v3 {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    padding: 10px 4px !important;
-    border-radius: 14px !important;
-    gap: 6px !important;
-    background: var(--surface-3) !important;
-    border: 1px solid var(--line) !important;
-    box-shadow: var(--shadow-soft) !important;
-  }
-
-  .about-desktop-wrapper .org-group:first-child .org-member-card-v3 {
-    flex: 0 1 45% !important;
-    width: 45% !important;
-  }
-
-  .about-desktop-wrapper .org-member-card-v3::before {
-    content: "" !important;
-    display: block !important;
-    position: absolute !important;
-    top: 50% !important;
-    right: -24px !important;
-    width: 24px !important;
-    height: 2px !important;
-    background: var(--line) !important;
-    opacity: 0 !important;
-  }
-
-  /* Compact Avatar */
-  .about-desktop-wrapper .member-avatar {
-    width: 44px !important;
-    height: 44px !important;
-    border-radius: 10px !important;
-    border: 2px solid var(--bg) !important;
-    flex-shrink: unset !important;
-  }
-
-  /* Compact Text info */
-  .about-desktop-wrapper .member-info {
-    display: grid !important;
-    gap: 1px !important;
-    text-align: center !important;
-  }
-
-  .about-desktop-wrapper .member-info strong {
-    font-size: 0.7rem !important;
-    white-space: normal !important;
-    overflow: visible !important;
-    text-overflow: unset !important;
-  }
-
-  .about-desktop-wrapper .member-info span {
-    font-size: 0.55rem !important;
-    opacity: 0.8 !important;
-    white-space: normal !important;
-    overflow: visible !important;
-    text-overflow: unset !important;
-  }
-
-  /* Compact About Scene (3 columns side-by-side) */
-  .about-desktop-wrapper .about-scene {
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 8px !important;
-    padding: 24px 8px !important;
-    margin-top: 24px !important;
-    border-radius: 18px !important;
-  }
-
-  .about-desktop-wrapper .about-scene::after {
-    content: "" !important;
-    display: block !important;
-    position: absolute !important;
-    top: 50% !important;
-    left: 0 !important;
-    right: 0 !important;
-    height: 1px !important;
-    background: linear-gradient(to right, transparent, var(--line), transparent) !important;
-    z-index: 0 !important;
-  }
-
-  /* Translation offsets scaled down */
-  .about-desktop-wrapper .about-scene .about-panel:nth-child(1) {
-    transform: translateY(-8px) !important;
-  }
-  
-  .about-desktop-wrapper .about-scene .about-panel:nth-child(2) {
-    transform: translateY(8px) !important;
-  }
-  
-  .about-desktop-wrapper .about-scene .about-panel:nth-child(3) {
-    transform: translateY(-8px) !important;
-  }
-
-  /* Compact Panels */
-  .about-desktop-wrapper .about-panel {
-    padding: 16px 6px !important;
-    border-radius: 14px !important;
-    min-height: unset !important;
-    height: 180px !important;
-    gap: 4px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-    text-align: center !important;
-  }
-
-  .about-desktop-wrapper .about-panel .icon-large {
-    font-size: 1.8rem !important;
-    margin-bottom: 4px !important;
-  }
-
-  .about-desktop-wrapper .about-panel h3 {
-    font-size: 0.85rem !important;
-    margin-bottom: 4px !important;
-    padding: 4px 10px !important;
-  }
-
-  .about-desktop-wrapper .about-panel p {
-    font-size: 0.65rem !important;
-    line-height: 1.4 !important;
-    text-align: center !important;
   }
 }
 
