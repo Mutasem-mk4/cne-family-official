@@ -201,6 +201,7 @@ function bindPageEvents() {
   initJoinForm();
   initLeaderboardScale();
   initHeroScale();
+  initAboutScale();
 }
 
 function initLeaderboardScale() {
@@ -239,6 +240,28 @@ function initHeroScale() {
       hero.style.zoom = scale;
     } else {
       hero.style.zoom = "";
+    }
+  };
+
+  updateScale();
+  window.removeEventListener("resize", updateScale);
+  window.addEventListener("resize", updateScale);
+}
+
+function initAboutScale() {
+  const wrapper = document.querySelector(".about-desktop-wrapper");
+  if (!wrapper) return;
+
+  const updateScale = () => {
+    const wrapper = document.querySelector(".about-desktop-wrapper");
+    if (!wrapper) return;
+    const parent = wrapper.parentElement;
+    if (parent && window.innerWidth < 768) {
+      const viewportWidth = document.documentElement.clientWidth;
+      const scale = Math.min(1, (viewportWidth - 64) / 1080);
+      wrapper.style.zoom = scale;
+    } else {
+      wrapper.style.zoom = "";
     }
   };
 

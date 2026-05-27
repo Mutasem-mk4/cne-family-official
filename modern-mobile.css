@@ -569,18 +569,19 @@
 }
 
 /* ============================================================
-   ABOUT PAGE — Force Desktop View 1:1 but scaled to fit mobile screen
+   ABOUT PAGE — Force Desktop View 1:1 scaled to fit mobile screen
    ============================================================ */
 @media (max-width: 767px) {
-  /* Fits the screen width and allows horizontal scrolling for 1:1 desktop layout */
   .about-desktop-wrapper {
-    width: 100% !important;
-    overflow-x: auto !important;
-    -webkit-overflow-scrolling: touch !important;
+    width: 1080px !important;
+    min-width: 1080px !important;
+    overflow: hidden !important;
     display: flex !important;
     flex-direction: column !important;
     gap: 32px !important;
     padding-bottom: 24px !important;
+    box-sizing: border-box !important;
+    margin-inline: auto !important;
   }
  
   /* Force sections to take desktop width on mobile to maintain 1:1 layout */
