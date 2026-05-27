@@ -251,9 +251,105 @@
     padding: 30px !important;
   }
  
-  .titans-board-head,
+  .titans-board-head {
+    min-width: 760px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+  }
+
   .titans-featured {
     min-width: 760px !important;
+    display: grid !important;
+    grid-template-columns: minmax(220px, 0.95fr) minmax(0, 1.05fr) !important;
+    gap: 14px !important;
+    align-items: stretch !important;
+  }
+
+  .titan-featured-card {
+    position: relative !important;
+    display: grid !important;
+    grid-template-rows: auto auto 1fr auto !important;
+    grid-template-columns: unset !important;
+    grid-template-areas: unset !important;
+    gap: 12px !important;
+    align-content: stretch !important;
+    height: 100% !important;
+    padding: 18px !important;
+    border-radius: 24px !important;
+    background: var(--surface-3) !important;
+    border: 1px solid var(--line) !important;
+    box-shadow: var(--shadow-soft) !important;
+  }
+
+  .titan-featured-image {
+    width: 100% !important;
+    height: 140px !important;
+    border-radius: 16px !important;
+    object-fit: cover !important;
+    aspect-ratio: 16 / 9 !important;
+  }
+
+  .titan-score-box {
+    display: flex !important;
+    flex-direction: column !important;
+    border-top: none !important;
+    padding-top: 0 !important;
+  }
+
+  .titan-featured-copy {
+    display: block !important;
+  }
+
+  .titan-rank-badge {
+    position: absolute !important;
+    top: 20px !important;
+    right: 20px !important;
+    z-index: 10 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 6px 16px !important;
+    border-radius: 999px !important;
+    font-size: 1.1rem !important;
+    font-weight: 800 !important;
+    background: var(--surface-2) !important;
+    border: 1px solid var(--line) !important;
+  }
+
+  .titans-list {
+    display: grid !important;
+    gap: 12px !important;
+  }
+
+  .titan-list-card {
+    display: grid !important;
+    grid-template-columns: 96px minmax(0, 1fr) 78px !important;
+    gap: 14px !important;
+    align-items: center !important;
+    min-height: 112px !important;
+    padding: 12px !important;
+    border-radius: 20px !important;
+    background: var(--surface-3) !important;
+    border: 1px solid var(--line) !important;
+  }
+
+  .titan-list-image {
+    width: 96px !important;
+    height: 96px !important;
+    border-radius: 16px !important;
+  }
+
+  .titan-list-rank {
+    display: grid !important;
+    place-items: center !important;
+    gap: 2px !important;
+    min-width: 58px !important;
+    padding: 8px !important;
+    border-radius: 16px !important;
+    background: var(--surface-2) !important;
+    border: 1px solid var(--line) !important;
   }
 
   /* ── QUICK LINKS ── */
