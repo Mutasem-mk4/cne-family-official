@@ -200,6 +200,7 @@ function bindPageEvents() {
   initCalculator();
   initJoinForm();
   initLeaderboardScale();
+  initHeroScale();
 }
 
 function initLeaderboardScale() {
@@ -216,6 +217,28 @@ function initLeaderboardScale() {
       board.style.zoom = scale;
     } else {
       board.style.zoom = "";
+    }
+  };
+
+  updateScale();
+  window.removeEventListener("resize", updateScale);
+  window.addEventListener("resize", updateScale);
+}
+
+function initHeroScale() {
+  const hero = document.querySelector(".hero-command-board.hero-premium");
+  if (!hero) return;
+
+  const updateScale = () => {
+    const hero = document.querySelector(".hero-command-board.hero-premium");
+    if (!hero) return;
+    const parent = hero.parentElement;
+    if (parent && window.innerWidth < 768) {
+      const viewportWidth = document.documentElement.clientWidth;
+      const scale = Math.min(1, (viewportWidth - 64) / 1160);
+      hero.style.zoom = scale;
+    } else {
+      hero.style.zoom = "";
     }
   };
 

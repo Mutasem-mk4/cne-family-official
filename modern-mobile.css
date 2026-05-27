@@ -102,134 +102,21 @@
 
 /* ─── 2. HERO SECTION ─────────────────────────────────────── */
 @media (max-width: 767px) {
-  /* Full-height card stacked vertically */
+  /* ── HERO SECTION — Desktop Layout scaled to fit Mobile ── */
   .hero-command-board.hero-premium {
-    min-height: 560px !important;
-    height: auto !important;
-    aspect-ratio: auto !important;
-    border-radius: 28px !important;
+    width: 1160px !important;
+    min-width: 1160px !important;
+    height: 540px !important;
+    min-height: 540px !important;
     display: flex !important;
-    flex-direction: column !important;
-    align-items: stretch !important;
-    justify-content: flex-end !important;
-    padding: 0 !important;
-    margin-bottom: 20px !important;
-  }
-
-  /* Image fills the card, gradient from bottom */
-  .hero-image-full {
-    object-position: center top !important;
-  }
-
-  .hero-image-mask {
-    background: linear-gradient(
-      to top,
-      rgba(2, 6, 23, 1) 0%,
-      rgba(2, 6, 23, 0.92) 45%,
-      rgba(2, 6, 23, 0.4) 80%,
-      transparent 100%
-    ) !important;
-  }
-
-  /* Content panel at the bottom */
-  .hero-command-content {
-    padding: 28px 20px 32px !important;
-    max-width: none !important;
-    gap: 20px !important;
-    text-align: right !important;
-    justify-items: start !important;
-  }
-
-  /* Badge */
-  .hero-badge {
-    font-size: 0.7rem !important;
-    padding: 6px 12px !important;
-  }
-
-  /* Heading: clamp for all mobile widths */
-  .hero-premium h1 {
-    font-size: clamp(1.75rem, 7.5vw, 2.8rem) !important;
-    line-height: 1.15 !important;
-    max-width: none !important;
-    text-shadow: 0 3px 14px rgba(0, 0, 0, 0.6) !important;
-  }
-
-  /* Sub-copy */
-  .hero-premium p {
-    font-size: clamp(0.9rem, 3.5vw, 1.05rem) !important;
-    color: rgba(255, 255, 255, 0.88) !important;
-    line-height: 1.6 !important;
-    max-width: none !important;
-  }
-
-  /* CTA buttons: full width column stack */
-  .hero-primary-actions {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 12px !important;
-    width: 100% !important;
-  }
-
-  .hero-primary-actions .btn {
-    width: 100% !important;
-    min-height: 52px !important;
-    font-size: clamp(0.88rem, 3.5vw, 1rem) !important;
-    justify-content: center !important;
-    border-radius: 16px !important;
-  }
-
-  /* Metrics strip */
-  .hero-metrics {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    justify-content: flex-start !important;
-    gap: 16px 32px !important;
-    padding-top: 20px !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
-    width: 100% !important;
-  }
-
-  .metric-item {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-  }
-
-  .metric-item strong {
-    font-size: 1.6rem !important;
-    line-height: 1 !important;
-    color: var(--orange) !important;
-  }
-
-  .metric-item span {
-    font-size: 0.8rem !important;
-    opacity: 0.85 !important;
-  }
-
-  .metric-divider {
-    display: none !important;
-  }
-}
-
-/* Extra small: 320px–479px */
-@media (max-width: 479px) {
-  .hero-command-board.hero-premium {
-    min-height: 480px !important;
-    border-radius: 22px !important;
-  }
-
-  .hero-command-content {
-    padding: 20px 16px 28px !important;
-    gap: 16px !important;
-  }
-
-  .hero-premium h1 {
-    font-size: clamp(1.55rem, 8vw, 2rem) !important;
-  }
-
-  .hero-primary-actions .btn {
-    min-height: 48px !important;
-    font-size: 0.9rem !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    position: relative !important;
+    overflow: hidden !important;
+    border-radius: 36px !important;
+    margin-bottom: 32px !important;
+    box-sizing: border-box !important;
+    margin-inline: auto !important;
   }
 }
 
