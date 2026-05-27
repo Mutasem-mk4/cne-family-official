@@ -243,82 +243,17 @@
     grid-template-columns: unset !important;
   }
 
-  /* ── TITANS LEADERBOARD ── */
+  /* ── TITANS LEADERBOARD — Restore 1:1 Desktop Layout with Horizontal Scroll ── */
   .titans-board {
-    padding: 20px 16px !important;
-    border-radius: 24px !important;
-  }
-
-  .titans-board-head {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 6px !important;
-    margin-bottom: 16px !important;
-  }
-
-  .titans-board-head h2 {
-    font-size: clamp(1.3rem, 5vw, 1.8rem) !important;
-  }
-
-  /* Featured titan: horizontal row card */
-  .titans-featured {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 12px !important;
-    grid-template-columns: unset !important;
-  }
-
-  .titan-featured-card {
-    display: grid !important;
-    grid-template-columns: 80px minmax(0, 1fr) !important;
-    grid-template-areas:
-      "image copy"
-      "image score" !important;
-    gap: 10px 14px !important;
-    padding: 14px !important;
-    border-radius: 20px !important;
-    align-items: center !important;
-  }
-
-  .titan-featured-image {
-    grid-area: image !important;
-    width: 80px !important;
-    height: 80px !important;
-    border-radius: 16px !important;
-  }
-
-  .titan-featured-copy {
-    grid-area: copy !important;
-  }
-
-  .titan-score-box {
-    grid-area: score !important;
-    padding-top: 6px !important;
-    border-top: 1px solid var(--line) !important;
-  }
-
-  .titan-rank-badge {
-    position: absolute !important;
-    top: 10px !important;
-    left: 10px !important;
-  }
-
-  /* Titans list: full-width rows */
-  .titans-list {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 8px !important;
-    grid-template-columns: unset !important;
-  }
-
-  .titan-list-card {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    gap: 12px !important;
-    padding: 12px 14px !important;
-    border-radius: 16px !important;
     width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding: 30px !important;
+  }
+ 
+  .titans-board-head,
+  .titans-featured {
+    min-width: 760px !important;
   }
 
   /* ── QUICK LINKS ── */
