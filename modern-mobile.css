@@ -272,8 +272,8 @@
     position: relative !important;
     display: grid !important;
     grid-template-rows: auto auto 1fr auto !important;
-    grid-template-columns: unset !important;
-    grid-template-areas: unset !important;
+    grid-template-columns: none !important;
+    grid-template-areas: none !important;
     gap: 8px !important;
     align-content: stretch !important;
     height: 100% !important;
@@ -282,16 +282,18 @@
     background: var(--surface-3) !important;
     border: 1px solid var(--line) !important;
   }
-
+ 
   .titan-featured-image {
+    grid-area: unset !important;
     width: 100% !important;
     height: 90px !important;
     border-radius: 10px !important;
     object-fit: cover !important;
     aspect-ratio: 16 / 9 !important;
   }
-
+ 
   .titan-score-box {
+    grid-area: unset !important;
     display: flex !important;
     flex-direction: column !important;
     border-top: none !important;
@@ -301,16 +303,22 @@
   .titan-score-box span {
     font-size: 1.2rem !important;
   }
+ 
+  .titan-featured-copy {
+    grid-area: unset !important;
+    display: block !important;
+  }
 
   .titan-featured-copy strong {
     font-size: 0.9rem !important;
   }
-
+ 
   .titan-featured-copy p {
     font-size: 0.7rem !important;
   }
-
+ 
   .titan-rank-badge {
+    grid-area: unset !important;
     position: absolute !important;
     top: 14px !important;
     right: 14px !important;
