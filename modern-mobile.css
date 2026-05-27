@@ -243,16 +243,18 @@
     grid-template-columns: unset !important;
   }
 
-  /* ── TITANS LEADERBOARD — Restore 1:1 Desktop Layout with Horizontal Scroll ── */
+  /* ── TITANS LEADERBOARD — Desktop Layout scaled to fit Mobile ── */
   .titans-board {
-    width: 100% !important;
-    overflow-x: auto !important;
-    -webkit-overflow-scrolling: touch !important;
+    width: 760px !important;
+    min-width: 760px !important;
+    overflow: hidden !important;
     padding: 30px !important;
+    box-sizing: border-box !important;
+    margin-inline: auto !important;
   }
  
   .titans-board-head {
-    min-width: 760px !important;
+    width: 100% !important;
     display: flex !important;
     flex-direction: row !important;
     justify-content: space-between !important;
@@ -261,7 +263,7 @@
   }
 
   .titans-featured {
-    min-width: 760px !important;
+    width: 100% !important;
     display: grid !important;
     grid-template-columns: minmax(220px, 0.95fr) minmax(0, 1.05fr) !important;
     gap: 14px !important;

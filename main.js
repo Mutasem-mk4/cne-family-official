@@ -199,6 +199,29 @@ function bindPageEvents() {
   initTrackerControls();
   initCalculator();
   initJoinForm();
+  initLeaderboardScale();
+}
+
+function initLeaderboardScale() {
+  const board = document.querySelector(".titans-board");
+  if (!board) return;
+
+  const updateScale = () => {
+    const board = document.querySelector(".titans-board");
+    if (!board) return;
+    const parent = board.parentElement;
+    if (parent && window.innerWidth < 768) {
+      const containerWidth = parent.clientWidth;
+      const scale = Math.min(1, containerWidth / 760);
+      board.style.zoom = scale;
+    } else {
+      board.style.zoom = "";
+    }
+  };
+
+  updateScale();
+  window.removeEventListener("resize", updateScale);
+  window.addEventListener("resize", updateScale);
 }
 
 function initTheme() {
