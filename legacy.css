@@ -2127,13 +2127,13 @@ p {
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
   position: relative;
-  padding: 80px 40px;
+  padding: 20px 0 60px 0;
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
   backdrop-filter: none !important;
   overflow: hidden;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
 /* Topology Dot Grid */
@@ -4207,8 +4207,8 @@ p {
 
 /* Leadership Section: Net Layout */
 .team-structure {
-  margin-top: 64px;
-  padding: 80px 48px;
+  margin-top: 24px;
+  padding: 0 0 40px 0;
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
