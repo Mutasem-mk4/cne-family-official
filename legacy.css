@@ -2128,9 +2128,10 @@ p {
   gap: 40px;
   position: relative;
   padding: 80px 40px;
-  background: var(--surface-2);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-xl);
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
   overflow: hidden;
   margin-top: 40px;
 }
@@ -2142,7 +2143,7 @@ p {
   inset: 0;
   background-image: radial-gradient(var(--line) 1px, transparent 1px);
   background-size: 30px 30px;
-  opacity: 0.5;
+  opacity: 0 !important;
   z-index: 0;
 }
 
@@ -4208,11 +4209,10 @@ p {
 .team-structure {
   margin-top: 64px;
   padding: 80px 48px;
-  background: var(--surface-2);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(24px);
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
   position: relative;
   overflow: hidden;
 }
@@ -4224,7 +4224,7 @@ p {
   inset: 0;
   background-image: radial-gradient(var(--line) 1px, transparent 1px);
   background-size: 40px 40px;
-  opacity: 0.4;
+  opacity: 0 !important;
   z-index: 0;
 }
 
