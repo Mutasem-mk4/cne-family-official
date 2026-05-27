@@ -570,8 +570,8 @@
     width: 100% !important;
   }
 
-  .about-desktop-wrapper .org-members-grid-v3 > :nth-child(even) {
-    transform: translateY(12px) !important;
+  .about-desktop-wrapper .org-members-grid-v3 > * {
+    transform: none !important;
   }
 
   /* Compact Member Card */

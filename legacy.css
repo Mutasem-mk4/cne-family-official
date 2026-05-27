@@ -4228,7 +4228,22 @@ p {
   z-index: 0;
 }
 
-.team-head, .org-chart {
+.team-head {
+  position: relative;
+  z-index: 1;
+  text-align: center !important;
+  margin-bottom: 48px !important;
+}
+
+.team-head p {
+  max-width: 600px !important;
+  margin: 12px auto 0 !important;
+  color: var(--text-muted) !important;
+  font-size: 1.05rem !important;
+  line-height: 1.6 !important;
+}
+
+.org-chart {
   position: relative;
   z-index: 1;
 }
@@ -4260,15 +4275,9 @@ p {
   position: relative;
 }
 
-/* Connecting line for group title */
+/* Connecting line for group title removed for cleaner design */
 .org-role-title::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  width: 2px;
-  height: 48px;
-  background: linear-gradient(to bottom, var(--line), transparent);
+  display: none !important;
 }
 
 .org-members-grid-v3 {
@@ -4287,8 +4296,9 @@ p {
   flex-wrap: wrap !important;
 }
 
-.org-members-grid-v3 > :nth-child(even) {
-  transform: translateY(32px) !important;
+/* Vertical stagger removed for clean horizontal alignment */
+.org-members-grid-v3 > * {
+  transform: none !important;
 }
 
 .org-member-card-v3 {
