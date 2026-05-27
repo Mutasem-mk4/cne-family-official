@@ -461,12 +461,6 @@ async function renderAbout() {
     `
       <div class="about-desktop-wrapper">
         <section class="team-structure reveal">
-          <div class="team-head">
-            <span class="eyebrow">الهيكل التنظيمي</span>
-            <h2>الإدارة والقيادة</h2>
-            <p>نخبة من الطلبة المتطوعين لخدمة زملائهم وتطوير المنصة.</p>
-          </div>
-          
           <div class="org-chart">
             ${team.map(group => `
               <div class="org-group">
