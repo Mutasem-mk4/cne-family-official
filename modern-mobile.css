@@ -241,6 +241,8 @@
     flex-direction: column !important;
     gap: 16px !important;
     grid-template-columns: unset !important;
+    width: 100% !important;
+    overflow: hidden !important;
   }
 
   /* ── TITANS LEADERBOARD — Desktop Layout scaled to fit Mobile ── */
@@ -502,9 +504,14 @@
 
 /* ─── 5. GENERAL LAYOUT ─────────────────────────────────────── */
 @media (max-width: 767px) {
+  html, body {
+    overflow-x: hidden !important;
+  }
+
   /* Page padding */
   #page {
     padding: 8px 0 0 !important;
+    overflow-x: hidden !important;
   }
 
   /* Section containers: tighten horizontal edge padding */
