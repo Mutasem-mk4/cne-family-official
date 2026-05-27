@@ -546,16 +546,6 @@
     min-height: 44px !important;
   }
 
-  .titan-featured-card {
-    grid-template-columns: 64px minmax(0, 1fr) !important;
-    padding: 10px !important;
-  }
-
-  .titan-featured-image {
-    width: 64px !important;
-    height: 64px !important;
-  }
-
   .home-action-card {
     padding: 12px !important;
     gap: 12px !important;
