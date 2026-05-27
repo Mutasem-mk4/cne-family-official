@@ -212,7 +212,7 @@ function initLeaderboardScale() {
     const parent = board.parentElement;
     if (parent && window.innerWidth < 768) {
       const viewportWidth = document.documentElement.clientWidth;
-      const scale = Math.min(1, (viewportWidth - 52) / 760);
+      const scale = Math.min(1, (viewportWidth - 72) / 760);
       board.style.zoom = scale;
     } else {
       board.style.zoom = "";
