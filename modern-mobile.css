@@ -569,29 +569,94 @@
 }
 
 /* ============================================================
-   ABOUT PAGE — Force Desktop View 1:1 scaled to fit mobile screen
+   ABOUT PAGE — Reorganized to be comfortable and readable on mobile
    ============================================================ */
 @media (max-width: 767px) {
   .about-desktop-wrapper {
-    width: 1080px !important;
-    min-width: 1080px !important;
-    overflow: hidden !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    overflow: visible !important;
     display: flex !important;
     flex-direction: column !important;
-    gap: 32px !important;
-    padding-bottom: 24px !important;
-    box-sizing: border-box !important;
-    margin-inline: auto !important;
+    gap: 40px !important;
+    padding: 16px 12px 32px !important;
   }
  
-  /* Force sections to take desktop width on mobile to maintain 1:1 layout */
   .about-desktop-wrapper .team-structure,
   .about-desktop-wrapper .about-scene {
-    min-width: 1080px !important;
-    width: 1080px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
+    min-width: 0 !important;
+    width: 100% !important;
     box-sizing: border-box !important;
+  }
+
+  .org-members-grid-v3 {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+    width: 100% !important;
+    padding: 0 0 10px 0 !important;
+  }
+
+  .org-group:first-child .org-members-grid-v3 {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+    justify-content: unset !important;
+  }
+
+  .org-group:first-child .org-member-card-v3 {
+    flex: none !important;
+  }
+
+  .org-member-card-v3 {
+    padding: 16px 10px !important;
+    border-radius: 20px !important;
+  }
+
+  .member-avatar {
+    width: 72px !important;
+    height: 72px !important;
+  }
+
+  .member-avatar img {
+    width: 72px !important;
+    height: 72px !important;
+  }
+
+  .member-info strong {
+    font-size: 0.95rem !important;
+  }
+
+  .member-info span {
+    font-size: 0.78rem !important;
+  }
+
+  /* About panels stacked */
+  .about-scene {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    padding: 20px 0 !important;
+  }
+
+  .about-scene .about-panel:nth-child(n) {
+    transform: none !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .about-panel {
+    padding: 24px 18px !important;
+    border-radius: 22px !important;
+  }
+
+  .about-panel h3 {
+    font-size: 1.25rem !important;
+    padding: 6px 16px !important;
+  }
+
+  .about-panel p {
+    font-size: 0.95rem !important;
   }
 }
 
