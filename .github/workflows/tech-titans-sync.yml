@@ -27,7 +27,21 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Check sync secrets
+        id: sync-secrets
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_SOURCE_CHAT_ID: ${{ secrets.TELEGRAM_SOURCE_CHAT_ID }}
+        run: |
+          if [ -z "$TELEGRAM_BOT_TOKEN" ] || [ -z "$TELEGRAM_SOURCE_CHAT_ID" ]; then
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Skipping Tech Titans sync because TELEGRAM_BOT_TOKEN or TELEGRAM_SOURCE_CHAT_ID is not configured."
+            exit 0
+          fi
+          echo "configured=true" >> "$GITHUB_OUTPUT"
+
       - name: Sync Tech Titans from Telegram
+        if: steps.sync-secrets.outputs.configured == 'true'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_SOURCE_CHAT_ID: ${{ secrets.TELEGRAM_SOURCE_CHAT_ID }}
@@ -38,6 +52,7 @@ jobs:
         run: npm run build
 
       - name: Commit and push changes
+        if: steps.sync-secrets.outputs.configured == 'true'
         run: |
           if git diff --quiet; then
             echo "No changes to commit."
