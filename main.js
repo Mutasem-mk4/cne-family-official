@@ -5,6 +5,8 @@ const state = {
   activities: [],
   curriculum: [],
   techTitans: [],
+  team: [],
+  siteConfig: null,
   major: localStorage.getItem("study_major") || "computer",
 };
 
@@ -21,29 +23,12 @@ const ROUTES = {
   "/map": renderMap,
 };
 
-const QUICK_LINKS = [
-  {
-    title: "البوابة الطلابية",
-    desc: "الدخول إلى التسجيل والعلامات والساعات المعتمدة.",
-    href: "http://appserver.fet.edu.jo:7778/reg_new/index.jsp",
-    icon: "school",
-    tone: "blue",
-  },
-  {
-    title: "التعلم الإلكتروني",
-    desc: "الوصول إلى Moodle والواجبات والامتحانات.",
-    href: "https://s3.ebalqa.courses/fet/login/index.php",
-    icon: "laptop_chromebook",
-    tone: "green",
-  },
-  {
-    title: "جريدة المواد",
-    desc: "عرض الشعب المطروحة وأوقات المحاضرات.",
-    href: "http://appserver.fet.edu.jo:7778/courses/index.jsp",
-    icon: "library_books",
-    tone: "orange",
-  },
-];
+const DEFAULT_SITE_CONFIG = {
+  quickLinks: [],
+  socialLinks: [],
+  mapEmbedUrl: "",
+  joinEndpoint: "",
+};
 
 const DEFAULT_TECH_TITANS = [
   {
@@ -128,17 +113,21 @@ async function bootstrap() {
 }
 
 async function loadData() {
-  const [subjectsPayload, activitiesPayload, curriculumPayload, techTitansPayload] = await Promise.all([
+  const [subjectsPayload, activitiesPayload, curriculumPayload, techTitansPayload, teamPayload, siteConfigPayload] = await Promise.all([
     fetchJSON("/data/subjects.json"),
     fetchJSON("/data/activities.json"),
     fetchJSON("/data/curriculum.json"),
     fetchJSON("/data/tech-titans.json").catch(() => ({ titans: DEFAULT_TECH_TITANS })),
+    fetchJSON("/data/team.json").catch(() => ({ groups: [] })),
+    fetchJSON("/data/site-config.json").catch(() => DEFAULT_SITE_CONFIG),
   ]);
 
   state.subjects = subjectsPayload.subjects || [];
   state.activities = activitiesPayload || [];
   state.curriculum = curriculumPayload.curriculum || [];
   state.techTitans = techTitansPayload.titans?.length ? techTitansPayload.titans : DEFAULT_TECH_TITANS;
+  state.team = teamPayload.groups || [];
+  state.siteConfig = { ...DEFAULT_SITE_CONFIG, ...siteConfigPayload };
 }
 
 async function fetchJSON(path) {
@@ -307,6 +296,7 @@ async function renderHome() {
   const techTitans = [...(state.techTitans?.length ? state.techTitans : DEFAULT_TECH_TITANS)].sort(
     (left, right) => Number(right.score || 0) - Number(left.score || 0),
   );
+  const quickLinks = state.siteConfig.quickLinks;
 
   return layout(`
     <section class="home-command reveal">
@@ -349,7 +339,7 @@ async function renderHome() {
             </div>
             <div class="metric-divider"></div>
             <div class="metric-item">
-              <strong>${QUICK_LINKS.length}</strong>
+              <strong>${quickLinks.length}</strong>
               <span>خدمات طلابية</span>
             </div>
           </div>
@@ -379,7 +369,7 @@ async function renderHome() {
           <a href="/links" data-link class="text-cta">كل الروابط</a>
         </div>
         <div class="home-quick-links-grid">
-          ${QUICK_LINKS.map(
+          ${quickLinks.map(
             (link) => `
               <a href="${link.href}" target="_blank" rel="noopener" class="home-quick-link-card">
                 <span class="material-symbols-outlined">${link.icon}</span>
@@ -482,28 +472,7 @@ function renderSubjectCard(subject) {
 }
 
 async function renderAbout() {
-  const team = [
-    {
-      role: "رئاسة",
-      members: [
-        { name: "فتحي", title: "ريس", image: "/assets/tech-titans/fathe.jpg" },
-        { name: "رند", title: "ريسة", image: "/assets/tech-titans/rand.jpg" },
-      ]
-    },
-    {
-      role: "الإدارة",
-      members: [
-        { name: "أوس", title: "مسؤول الموارد البشرية", image: "/assets/tech-titans/aws_hr.jpg" },
-        { name: "جود", title: "مسؤولة الموارد البشرية", image: "/assets/tech-titans/jood_hr.jpg" },
-        { name: "بتول", title: "قائدة أكاديمية", image: "/assets/tech-titans/batool_academic.jpg" },
-        { name: "معتصم", title: "قائد تقني", image: "/assets/tech-titans/mutasem_tech.jpg" },
-        { name: "علي", title: "قائد الأنشطة", image: "/assets/tech-titans/ali_activities.jpg" },
-        { name: "دانية", title: "قائدة الإعلام", image: "/assets/tech-titans/dania_media.jpg" },
-        { name: "علا", title: "قائدة فريق الـ Core", image: "/assets/tech-titans/ola_core.jpg" },
-        { name: "ميسم", title: "قائدة منصة إنستغرام", image: "/assets/tech-titans/maisam_instagram.png" },
-      ]
-    }
-  ];
+  const team = state.team;
 
   return layout(
     `
@@ -919,6 +888,8 @@ function findSubjectForCourse(course) {
 }
 
 function renderLinks() {
+  const quickLinks = state.siteConfig.quickLinks;
+
   return layout(
     `
       <section class="links-page reveal">
@@ -929,7 +900,7 @@ function renderLinks() {
         </section>
 
         <section class="links-board">
-        ${QUICK_LINKS.map(
+        ${quickLinks.map(
           (link) => `
             <a href="${link.href}" target="_blank" rel="noopener" class="resource-card tone-${link.tone}">
               <span class="material-symbols-outlined">${link.icon}</span>
@@ -989,6 +960,8 @@ function renderJoin() {
 }
 
 async function renderMap() {
+  const mapEmbedUrl = state.siteConfig.mapEmbedUrl;
+
   return layout(
     `
       <section class="campus-location reveal">
@@ -999,7 +972,7 @@ async function renderMap() {
         </div>
         <div class="map-container">
           <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3384.644444444444!2d35.98888888888889!3d31.96666666666666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151b600000000001%3A0x0!2zMzHCsDU4JzAwLjAiTiAzNcKwNTknMjAuMCJF!5e0!3m2!1sar!2sjo!4v1716390000000!5m2!1sar!2sjo" 
+            src="${mapEmbedUrl}" 
             width="100%" 
             height="550" 
             style="border:0;" 
@@ -1021,6 +994,8 @@ async function renderMap() {
 }
 
 function renderFooter() {
+  const socialLinks = state.siteConfig.socialLinks;
+
   return `
     <footer class="site-footer">
       <div class="footer-brand">
@@ -1035,36 +1010,49 @@ function renderFooter() {
         <a href="/tracker" data-link>المتتبع</a>
       </div>
       <div class="footer-social">
-        <a href="https://www.instagram.com/direct/t/17845518497752784/?__pwa=1" target="_blank" rel="noopener" class="social-link social-chat">
-          <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M21 3 3.8 10.1c-.9.4-.9 1.7.1 2l6.2 1.9 1.9 6.2c.3 1 1.6 1 2 .1L21 3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
-            <path d="m10.2 13.8 4.4-4.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-          </svg>
-          <span>Contact us</span>
-        </a>
-        <a href="https://www.instagram.com/cne.fet" target="_blank" rel="noopener" class="social-link social-instagram">
-          <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
-            <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2" />
-            <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2" />
-            <circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" />
-          </svg>
-          <span>CNE.FET</span>
-        </a>
-        <a href="https://www.facebook.com/cne.fet" target="_blank" rel="noopener" class="social-link social-facebook">
-          <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path fill="currentColor" d="M14.2 8.2V6.7c0-.7.2-1.1 1.2-1.1h1.7V2.7c-.8-.1-1.7-.2-2.5-.2-2.6 0-4.4 1.6-4.4 4.5v1.2H7.3v3.3h2.9v10h3.6v-10h2.9l.5-3.3h-3Z" />
-          </svg>
-          <span>CNE.FET</span>
-        </a>
-        <a href="https://www.youtube.com/@CNEteamCNE_FAMILY" target="_blank" rel="noopener" class="social-link social-youtube">
-          <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path fill="currentColor" d="M21.6 7.1a3 3 0 0 0-2.1-2.1C17.7 4.5 12 4.5 12 4.5s-5.7 0-7.5.5a3 3 0 0 0-2.1 2.1C2 8.9 2 12 2 12s0 3.1.4 4.9A3 3 0 0 0 4.5 19c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1c.4-1.8.4-4.9.4-4.9s0-3.1-.4-4.9ZM10 15.4V8.6l5.8 3.4L10 15.4Z" />
-          </svg>
-          <span>CNE Family</span>
-        </a>
+        ${socialLinks.map(renderSocialLink).join("")}
       </div>
     </footer>
   `;
+}
+
+function renderSocialLink(link) {
+  return `
+    <a href="${link.href}" target="_blank" rel="noopener" class="social-link social-${link.type}">
+      ${renderSocialIcon(link.type)}
+      <span>${link.label}</span>
+    </a>
+  `;
+}
+
+function renderSocialIcon(type) {
+  const icons = {
+    chat: `
+      <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M21 3 3.8 10.1c-.9.4-.9 1.7.1 2l6.2 1.9 1.9 6.2c.3 1 1.6 1 2 .1L21 3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+        <path d="m10.2 13.8 4.4-4.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+      </svg>
+    `,
+    instagram: `
+      <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2" />
+        <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2" />
+        <circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" />
+      </svg>
+    `,
+    facebook: `
+      <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="currentColor" d="M14.2 8.2V6.7c0-.7.2-1.1 1.2-1.1h1.7V2.7c-.8-.1-1.7-.2-2.5-.2-2.6 0-4.4 1.6-4.4 4.5v1.2H7.3v3.3h2.9v10h3.6v-10h2.9l.5-3.3h-3Z" />
+      </svg>
+    `,
+    youtube: `
+      <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="currentColor" d="M21.6 7.1a3 3 0 0 0-2.1-2.1C17.7 4.5 12 4.5 12 4.5s-5.7 0-7.5.5a3 3 0 0 0-2.1 2.1C2 8.9 2 12 2 12s0 3.1.4 4.9A3 3 0 0 0 4.5 19c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1c.4-1.8.4-4.9.4-4.9s0-3.1-.4-4.9ZM10 15.4V8.6l5.8 3.4L10 15.4Z" />
+      </svg>
+    `,
+  };
+
+  return icons[type] || icons.chat;
 }
 
 function initLightbox() {
@@ -1357,6 +1345,7 @@ function calculateGpa() {
 function initJoinForm() {
   const form = document.getElementById("join-form");
   if (!form) return;
+  const joinEndpoint = state.siteConfig.joinEndpoint;
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -1366,7 +1355,8 @@ function initJoinForm() {
     button.textContent = "جارٍ الإرسال...";
 
     try {
-      const response = await fetch("https://formspree.io/f/xoqgkyyv", {
+      if (!joinEndpoint) throw new Error("missing join endpoint");
+      const response = await fetch(joinEndpoint, {
         method: "POST",
         body: new FormData(form),
         headers: { Accept: "application/json" },

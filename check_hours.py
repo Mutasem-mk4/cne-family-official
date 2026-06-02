@@ -1,7 +1,10 @@
 
 import json
+from pathlib import Path
 
-with open('C:/Users/User/.gemini/antigravity/scratch/cne-family-redesign/public/data/curriculum.json', 'r', encoding='utf-8') as f:
+curriculum_path = Path(__file__).resolve().parent / 'public' / 'data' / 'curriculum.json'
+
+with curriculum_path.open('r', encoding='utf-8') as f:
     data = json.load(f)
 
 subjects = data['curriculum']

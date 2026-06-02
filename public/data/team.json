@@ -1,0 +1,64 @@
+{
+  "groups": [
+    {
+      "role": "رئاسة",
+      "members": [
+        {
+          "name": "فتحي",
+          "title": "ريس",
+          "image": "/assets/tech-titans/fathe.jpg"
+        },
+        {
+          "name": "رند",
+          "title": "ريسة",
+          "image": "/assets/tech-titans/rand.jpg"
+        }
+      ]
+    },
+    {
+      "role": "الإدارة",
+      "members": [
+        {
+          "name": "أوس",
+          "title": "مسؤول الموارد البشرية",
+          "image": "/assets/tech-titans/aws_hr.jpg"
+        },
+        {
+          "name": "جود",
+          "title": "مسؤولة الموارد البشرية",
+          "image": "/assets/tech-titans/jood_hr.jpg"
+        },
+        {
+          "name": "بتول",
+          "title": "قائدة أكاديمية",
+          "image": "/assets/tech-titans/batool_academic.jpg"
+        },
+        {
+          "name": "معتصم",
+          "title": "قائد تقني",
+          "image": "/assets/tech-titans/mutasem_tech.jpg"
+        },
+        {
+          "name": "علي",
+          "title": "قائد الأنشطة",
+          "image": "/assets/tech-titans/ali_activities.jpg"
+        },
+        {
+          "name": "دانية",
+          "title": "قائدة الإعلام",
+          "image": "/assets/tech-titans/dania_media.jpg"
+        },
+        {
+          "name": "علا",
+          "title": "قائدة فريق الـ Core",
+          "image": "/assets/tech-titans/ola_core.jpg"
+        },
+        {
+          "name": "ميسم",
+          "title": "قائدة منصة إنستغرام",
+          "image": "/assets/tech-titans/maisam_instagram.png"
+        }
+      ]
+    }
+  ]
+}
