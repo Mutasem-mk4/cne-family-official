@@ -20,6 +20,13 @@
       "href": "http://appserver.fet.edu.jo:7778/courses/index.jsp",
       "icon": "library_books",
       "tone": "orange"
+    },
+    {
+      "title": "حساب المعدل",
+      "desc": "حاسبة خارجية لحساب المعدل التراكمي والفصلي.",
+      "href": "https://cne-calculator2.netlify.app/",
+      "icon": "calculate",
+      "tone": "blue"
     }
   ],
   "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3384.644444444444!2d35.98888888888889!3d31.96666666666666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151b600000000001%3A0x0!2zMzHCsDU4JzAwLjAiTiAzNcKwNTknMjAuMCJF!5e0!3m2!1sar!2sjo!4v1716390000000!5m2!1sar!2sjo",

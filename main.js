@@ -1006,6 +1006,7 @@ function renderFooter() {
         <a href="/" data-link>الرئيسية</a>
         <a href="/about" data-link>عن المنصة</a>
         <a href="/subjects" data-link>المواد</a>
+        <a href="https://cne-calculator2.netlify.app/" target="_blank" rel="noopener">حساب المعدل</a>
         <a href="/map" data-link>الخريطة</a>
         <a href="/tracker" data-link>المتتبع</a>
       </div>
