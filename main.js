@@ -1210,21 +1210,7 @@ function initTrackerControls() {
     });
   });
 
-  document.querySelectorAll("[data-course-toggle]").forEach((checkbox) => {
-    checkbox.addEventListener("change", () => {
-      const completed = new Set(getCompletedCourses());
-      const id = checkbox.dataset.courseToggle;
-      if (checkbox.checked) completed.add(id);
-      else completed.delete(id);
-      localStorage.setItem("completed_courses", JSON.stringify([...completed]));
-
-      // Update card class in-place — no scroll jump
-      const article = checkbox.closest(".tracker-course");
-      if (article) article.classList.toggle("is-done", checkbox.checked);
-
-      updateTrackerStats(completed);
-    });
-  });
+  bindNewCheckboxes();
 }
 
 function bindNewCheckboxes() {
@@ -1384,14 +1370,7 @@ function revealPage() {
   });
 }
 
-function groupBy(items, key) {
-  return items.reduce((acc, item) => {
-    const value = item[key];
-    acc[value] ??= [];
-    acc[value].push(item);
-    return acc;
-  }, {});
-}
+import { groupBy } from "./utils.js";
 
 bootstrap().catch((error) => {
   console.error(error);
