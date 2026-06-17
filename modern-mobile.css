@@ -455,7 +455,7 @@
   }
 
   .titan-list-card {
-    flex: 0 0 260px !important;
+    flex: 0 0 210px !important;
     scroll-snap-align: start !important;
     display: flex !important;
     flex-direction: row !important;
