@@ -118,21 +118,33 @@ p {
 }
 
 #navbar {
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 40;
-  backdrop-filter: blur(18px);
-  background: rgba(243, 237, 226, 0.7);
-  transition: 200ms ease;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 100;
+  background: transparent;
+  backdrop-filter: none;
+  border-bottom: none;
+  box-shadow: none;
+  transition: background 300ms ease, backdrop-filter 300ms ease, border-bottom 300ms ease, box-shadow 300ms ease;
 }
 
 [data-theme="dark"] #navbar {
-  background: rgba(8, 17, 28, 0.78);
+  background: transparent;
 }
 
 #navbar.is-scrolled {
-  border-bottom: 1px solid var(--line);
-  box-shadow: var(--shadow-soft);
+  background: rgba(243, 237, 226, 0.8) !important;
+  backdrop-filter: blur(18px) !important;
+  -webkit-backdrop-filter: blur(18px) !important;
+  border-bottom: 1px solid var(--line) !important;
+  box-shadow: var(--shadow-soft) !important;
+}
+
+[data-theme="dark"] #navbar.is-scrolled {
+  background: rgba(8, 17, 28, 0.85) !important;
 }
 
 .nav-inner,
@@ -293,7 +305,7 @@ p {
 }
 
 #page {
-  padding: 0 0 88px;
+  padding: 84px 0 88px;
   background-color: transparent;
 }
 
@@ -475,19 +487,28 @@ p {
   display: block;
   margin: 0;
   padding: 0;
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  margin-top: -84px;
 }
 
 .hero-command-board.hero-premium {
   min-height: 52vh;
   margin-bottom: 32px;
-  border-radius: 36px;
+  border-radius: 0 0 48px 48px;
   background-color: #020617;
-  border: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  border-top: none;
+  border-left: none;
+  border-right: none;
   box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.45);
   display: flex;
   align-items: center;
   position: relative;
   overflow: hidden;
+  width: 100%;
 }
 
 .hero-command-background {
@@ -530,7 +551,7 @@ p {
 .hero-command-content {
   position: relative;
   z-index: 10;
-  padding: 40px 64px;
+  padding: 124px 64px 40px;
   width: 100%;
   max-width: 860px; /* Limits text width to prevent overlapping the photo center */
   display: grid;
