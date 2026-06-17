@@ -371,6 +371,7 @@
     background: color-mix(in srgb, var(--surface-3) 90%, transparent) !important;
     border: 1px solid var(--line) !important;
     box-shadow: var(--shadow-soft) !important;
+    overflow: visible !important; /* Prevent clipping of rank badge */
   }
 
   .titan-featured-image {
@@ -436,6 +437,7 @@
     justify-content: center !important;
     box-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
     border: 1px solid #ffffff !important;
+    z-index: 5 !important;
   }
 
   .titans-list {
