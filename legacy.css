@@ -2267,12 +2267,6 @@ p {
   gap: 18px;
 }
 
-.home-command {
-  display: block;
-  margin: 0;
-  padding: 0;
-}
-
 .plan-showcase {
   display: grid;
   grid-template-columns: 320px 1fr; /* Text on right, Image on left */
