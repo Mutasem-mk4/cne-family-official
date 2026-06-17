@@ -7,6 +7,11 @@
 /* ─── 1. NAVBAR ────────────────────────────────────────────── */
 @media (max-width: 767px) {
   #navbar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
     z-index: 1000 !important;
     background: transparent !important;
     border-bottom: none !important;
@@ -22,6 +27,9 @@
 
   /* Outer shell: logo LEFT, actions RIGHT (RTL doc → flip with ltr) */
   .nav-inner {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
     display: flex !important;
     flex-direction: row !important;
     justify-content: space-between !important;
@@ -147,9 +155,9 @@
 /* ─── 2. HERO SECTION ─────────────────────────────────────── */
 @media (max-width: 767px) {
   .home-command {
-    width: 100vw !important;
-    margin-inline: calc(-50vw + 50%) !important;
-    margin-top: -80px !important; /* Pull up behind the transparent header */
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
     margin-bottom: 24px !important;
   }
 
@@ -170,11 +178,14 @@
     border-bottom: 1px solid var(--line) !important;
     box-shadow: none !important;
     padding: 0 !important;
+    background: #020617 !important;
   }
 
   .hero-command-background {
-    position: absolute !important;
-    inset: 0 !important;
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 4 / 3 !important;
     z-index: 1 !important;
   }
 
@@ -189,10 +200,11 @@
     position: absolute !important;
     inset: 0 !important;
     background: linear-gradient(
-      to top,
-      rgba(2, 6, 23, 0.95) 0%,
-      rgba(2, 6, 23, 0.8) 50%,
-      rgba(2, 6, 23, 0.5) 100%
+      to bottom,
+      rgba(2, 6, 23, 0.75) 0%,
+      rgba(2, 6, 23, 0) 25%,
+      rgba(2, 6, 23, 0) 75%,
+      rgba(2, 6, 23, 0.95) 100%
     ) !important;
     z-index: 2 !important;
   }
@@ -200,7 +212,7 @@
   .hero-command-content {
     position: relative !important;
     z-index: 3 !important;
-    padding: 96px 16px 24px !important; /* Extra top padding under sticky header */
+    padding: 24px 16px 24px !important;
     display: flex !important;
     flex-direction: column !important;
     gap: 16px !important;
@@ -209,6 +221,7 @@
     justify-content: center !important;
     width: 100% !important;
     box-sizing: border-box !important;
+    background: #020617 !important;
   }
 
   .hero-command-copy {
@@ -641,15 +654,35 @@
 
   /* Page padding */
   #page {
-    padding: 8px 0 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
     overflow-x: hidden !important;
   }
 
-  /* Section containers: tighten horizontal edge padding */
-  .home-command,
-  .home-spotlight {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+  /* All main page sections on mobile get padded to avoid touching screen edges */
+  #page > section {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Hero command section is full bleed */
+  #page > section.home-command {
+    padding: 0 !important;
+  }
+
+  /* Top banner is full bleed but text has side padding */
+  #page > section.top-banner {
+    padding: 96px 16px 24px !important;
+    border-radius: 0 !important;
+  }
+
+  /* Push down pages that start without a top banner to clear the fixed header */
+  #page > section:first-child:not(.home-command):not(.top-banner) {
+    padding-top: 96px !important;
   }
 
   /* Section headings */
@@ -1096,7 +1129,7 @@
   }
 }
 
-@media (min-width: 600px) and (max-width: 839px) {
+@media (min-width: 768px) and (max-width: 839px) {
   .nav-inner,
   #page,
   .site-footer {
@@ -1155,7 +1188,7 @@
 @media (max-width: 599px) {
   .nav-inner,
   #page {
-    width: min(calc(100% - 32px), var(--container)) !important;
+    width: 100% !important;
   }
 
   .nav-inner {
@@ -1374,7 +1407,7 @@
 @media (max-width: 360px) {
   .nav-inner,
   #page {
-    width: min(calc(100% - 24px), var(--container)) !important;
+    width: 100% !important;
   }
 
   .hero-premium h1 {
