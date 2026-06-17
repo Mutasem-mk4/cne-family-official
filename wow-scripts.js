@@ -1,6 +1,9 @@
 export function initWowEffects() {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
+  // Skip registering layout-thrashing pointer listeners on mobile screens
+  if (window.matchMedia("(max-width: 767px)").matches) return;
+
   document.querySelectorAll(".ribbon-card, .resource-card, .subject-card, .tracker-course").forEach((card) => {
     if (card.dataset.wowBound === "true") return;
     card.dataset.wowBound = "true";
