@@ -654,7 +654,7 @@ function getMemberBio(title) {
   return "عضو فخور في عائلة CNE Family، يساهم في دعم طلبة هندسة الحاسوب والشبكات وتطوير المجتمع الأكاديمي.";
 }
 
-let carouselInterval = null;
+let carouselAnimationFrameId = null;
 let isCarouselPlaying = true;
 
 function initAboutCarousel() {
@@ -664,50 +664,119 @@ function initAboutCarousel() {
 
   if (!track) return;
 
-  const scrollAmount = 260; // Card width + gap
+  // Clean up any existing duplicates to prevent infinite cloning when navigating pages in the SPA
+  track.querySelectorAll(".about-carousel-card.is-clone").forEach((el) => el.remove());
 
-  function startAutoplay() {
-    stopAutoplay();
-    carouselInterval = setInterval(() => {
-      const maxScroll = track.scrollWidth - track.clientWidth;
-      if (track.scrollLeft <= -maxScroll + 10) {
-        track.scrollTo({ left: 0, behavior: "smooth" });
-      } else {
-        track.scrollBy({ left: -scrollAmount, behavior: "smooth" });
-      }
-    }, 3000);
+  // Duplicate the children of the track for seamless wrapping
+  const originalCards = Array.from(track.children);
+  if (originalCards.length === 0) return;
+
+  originalCards.forEach((card) => {
+    const clone = card.cloneNode(true);
+    clone.classList.add("is-clone");
+    track.appendChild(clone);
+  });
+
+  // Cancel any existing animation frame loop to prevent duplicate speed/loops running
+  if (carouselAnimationFrameId) {
+    cancelAnimationFrame(carouselAnimationFrameId);
+    carouselAnimationFrameId = null;
   }
 
-  function stopAutoplay() {
-    if (carouselInterval) {
-      clearInterval(carouselInterval);
-      carouselInterval = null;
+  // Disable scroll snapping so it scrolls pixel-by-pixel smoothly
+  track.style.scrollSnapType = "none";
+
+  let speed = 0.8; // pixels per frame (about 48px/sec at 60fps)
+  let isHovered = false;
+  let lastTime = performance.now();
+
+  function animate(timestamp) {
+    if (!track.isConnected) {
+      // If the track element is removed from the DOM (user navigated away in SPA), stop the loop
+      return;
     }
+
+    const elapsed = timestamp - lastTime;
+    lastTime = timestamp;
+
+    if (isCarouselPlaying && !isHovered) {
+      // Delta time scaling to support high refresh rate monitors smoothly
+      const delta = (speed * (elapsed || 16.666)) / 16.666;
+      track.scrollLeft -= delta; // RTL scroll left (forward) is negative
+
+      const halfWidth = track.scrollWidth / 2;
+      if (track.scrollLeft <= -halfWidth) {
+        track.scrollLeft += halfWidth;
+      }
+    }
+
+    carouselAnimationFrameId = requestAnimationFrame(animate);
   }
+
+  // Handle manual scroll wrapping (like if they drag/scroll container manually)
+  track.addEventListener("scroll", () => {
+    const halfWidth = track.scrollWidth / 2;
+    if (track.scrollLeft <= -halfWidth) {
+      track.scrollLeft += halfWidth;
+    } else if (track.scrollLeft > 0) {
+      track.scrollLeft -= halfWidth;
+    }
+  }, { passive: true });
+
+  // Mouse/Touch pausing
+  track.addEventListener("mouseenter", () => {
+    isHovered = true;
+  });
+
+  track.addEventListener("mouseleave", () => {
+    isHovered = false;
+    lastTime = performance.now();
+  });
+
+  track.addEventListener("touchstart", () => {
+    isHovered = true;
+  }, { passive: true });
+
+  track.addEventListener("touchend", () => {
+    isHovered = false;
+    lastTime = performance.now();
+  }, { passive: true });
+
+  // Navigation buttons
+  const scrollAmount = 260; // Card width + gap
 
   if (prevBtn) {
     prevBtn.addEventListener("click", () => {
-      stopAutoplay();
-      isCarouselPlaying = false;
+      isCarouselPlaying = false; // permanently stop autoplay as requested
+      const halfWidth = track.scrollWidth / 2;
+      
+      // If we are close to the right edge (0), wrap to the cloned side first
+      if (track.scrollLeft >= -10) {
+        track.scrollLeft -= halfWidth;
+      }
       track.scrollBy({ left: scrollAmount, behavior: "smooth" });
     });
   }
 
   if (nextBtn) {
     nextBtn.addEventListener("click", () => {
-      stopAutoplay();
-      isCarouselPlaying = false;
+      isCarouselPlaying = false; // permanently stop autoplay as requested
+      const halfWidth = track.scrollWidth / 2;
+      
+      // If we are close to the left edge (-halfWidth), wrap to the original side first
+      if (track.scrollLeft <= -halfWidth + 10) {
+        track.scrollLeft += halfWidth;
+      }
       track.scrollBy({ left: -scrollAmount, behavior: "smooth" });
     });
   }
 
-  track.addEventListener("mouseenter", stopAutoplay);
-  track.addEventListener("mouseleave", () => {
-    if (isCarouselPlaying) startAutoplay();
-  });
-
-  if (isCarouselPlaying) startAutoplay();
+  // Reset isCarouselPlaying to true when loading the About page afresh
+  isCarouselPlaying = true;
+  lastTime = performance.now();
+  carouselAnimationFrameId = requestAnimationFrame(animate);
 }
+
 
 function renderPlans() {
   return layout(

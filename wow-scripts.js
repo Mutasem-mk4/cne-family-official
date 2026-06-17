@@ -8,12 +8,25 @@ export function initWowEffects() {
     if (card.dataset.wowBound === "true") return;
     card.dataset.wowBound = "true";
 
+    let rect = null;
+
+    card.addEventListener("pointerenter", () => {
+      rect = card.getBoundingClientRect();
+    });
+
     card.addEventListener("pointermove", (event) => {
-      const rect = card.getBoundingClientRect();
+      if (!rect) {
+        rect = card.getBoundingClientRect();
+      }
       const x = ((event.clientX - rect.left) / rect.width) * 100;
       const y = ((event.clientY - rect.top) / rect.height) * 100;
       card.style.setProperty("--mx", `${x}%`);
       card.style.setProperty("--my", `${y}%`);
     });
+
+    card.addEventListener("pointerleave", () => {
+      rect = null;
+    });
   });
 }
+
