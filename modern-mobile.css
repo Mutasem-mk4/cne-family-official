@@ -67,7 +67,7 @@
     top: 72px !important;
     right: 12px !important;
     left: 12px !important;
-    display: none !important;
+    display: flex !important;
     flex-direction: column !important;
     align-items: stretch !important;
     gap: 4px !important;
@@ -78,10 +78,35 @@
     box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.35) !important;
     z-index: 999 !important;
     direction: rtl !important;
+    
+    /* Animation properties */
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transform: translateY(-10px) !important;
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease !important;
   }
 
   .nav-links.is-open {
-    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+  }
+
+  /* Dynamic backdrop menu overlay */
+  .menu-backdrop {
+    position: fixed !important;
+    inset: 0 !important;
+    background: rgba(2, 6, 23, 0.6) !important;
+    backdrop-filter: blur(4px) !important;
+    z-index: 998 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: opacity 0.25s ease, visibility 0.25s ease !important;
+  }
+
+  .menu-backdrop.is-active {
+    opacity: 1 !important;
+    visibility: visible !important;
   }
 
   .nav-link {
@@ -98,142 +123,14 @@
   .nav-link.is-active {
     background: var(--surface-2) !important;
   }
-}
 
-/* ─── 2. HERO SECTION ─────────────────────────────────────── */
-@media (max-width: 767px) {
-  /* ── HERO SECTION — Desktop Layout scaled to fit Mobile ── */
-  .hero-command-board.hero-premium {
-    width: 1160px !important;
-    min-width: 1160px !important;
-    height: 520px !important;
-    min-height: 520px !important;
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    position: relative !important;
-    overflow: hidden !important;
-    border-radius: 36px !important;
-    margin-bottom: 32px !important;
-    box-sizing: border-box !important;
-    margin-inline: auto !important;
-  }
-
-  .hero-image-full {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    object-position: 30% center !important;
-    display: block !important;
-  }
-
-  .hero-image-mask {
-    position: absolute !important;
-    inset: 0 !important;
-    background: linear-gradient(
-      to left,
-      rgba(2, 6, 23, 1) 0%,
-      rgba(2, 6, 23, 0.9) 35%,
-      rgba(2, 6, 23, 0.6) 55%,
-      transparent 100%
-    ) !important;
-    z-index: 2 !important;
-  }
-
-  .hero-command-content {
-    position: relative !important;
-    z-index: 10 !important;
-    padding: 40px 64px !important;
-    width: 100% !important;
-    max-width: 860px !important;
-    display: grid !important;
-    gap: 28px !important;
-    text-align: right !important;
-    justify-items: start !important;
-  }
-
-  .hero-badge {
-    display: inline-flex !important;
-    padding: 8px 16px !important;
-    border-radius: 999px !important;
-    background: rgba(239, 134, 48, 0.15) !important;
-    border: 1px solid rgba(239, 134, 48, 0.3) !important;
-    color: var(--orange) !important;
-    font-weight: 800 !important;
-    font-size: 0.8rem !important;
-    letter-spacing: 0.05em !important;
-    text-transform: uppercase !important;
-    width: fit-content !important;
-  }
-
-  .hero-premium h1,
-  .hero-command-copy h1 {
-    font-size: clamp(2.8rem, 5vw, 4.4rem) !important;
-    color: #ffffff !important;
-    line-height: 1.1 !important;
-    max-width: 14ch !important;
-    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
-  }
-
-  .hero-premium p,
-  .hero-command-copy p {
-    font-size: clamp(1.1rem, 1.3vw, 1.25rem) !important;
-    color: rgba(255, 255, 255, 0.75) !important;
-    line-height: 1.6 !important;
-    max-width: 48ch !important;
-  }
-
-  .hero-primary-actions {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    gap: 16px !important;
-    flex-direction: row !important;
-    width: auto !important;
-  }
-
-  .hero-primary-actions .btn {
-    width: auto !important;
-    min-height: unset !important;
-    font-size: 1rem !important;
-    justify-content: center !important;
-    border-radius: 12px !important;
-  }
-
-  .hero-metrics {
-    display: flex !important;
-    align-items: center !important;
-    gap: 40px !important;
-    padding-top: 32px !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
-    width: fit-content !important;
-    margin-inline: unset !important;
-  }
-
-  .metric-item {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-  }
-
-  .metric-item strong {
-    font-size: 2.2rem !important;
-    line-height: 1 !important;
-    color: var(--orange) !important;
-  }
-
-  .metric-item span {
-    font-size: 0.9rem !important;
-    opacity: 0.8 !important;
-    color: rgba(255, 255, 255, 0.75) !important;
-  }
-
-  .metric-divider {
-    display: block !important;
-    width: 1px !important;
-    height: 24px !important;
-    background: rgba(255, 255, 255, 0.15) !important;
+  /* P0-5: Prevent iOS auto-zoom on inputs */
+  input, select, textarea {
+    font-size: 16px !important;
   }
 }
+
+/* ─── 2. HERO SECTION (Responsiveness handled natively by legacy.css) ─── */
 
 /* ─── 3. HOME SPOTLIGHT (titans + quick-links) ─────────────── */
 @media (max-width: 767px) {
@@ -247,162 +144,7 @@
     overflow: hidden !important;
   }
 
-  /* ── TITANS LEADERBOARD — Desktop Layout scaled to fit Mobile ── */
-  .titans-board {
-    width: 760px !important;
-    min-width: 760px !important;
-    overflow: hidden !important;
-    padding: 30px !important;
-    box-sizing: border-box !important;
-    margin-inline: auto !important;
-  }
- 
-  .titans-board-head {
-    width: 100% !important;
-    display: flex !important;
-    flex-direction: row !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    margin-bottom: 20px !important;
-  }
-
-  .titans-featured {
-    width: 100% !important;
-    display: grid !important;
-    grid-template-columns: minmax(220px, 0.95fr) minmax(0, 1.05fr) !important;
-    gap: 14px !important;
-    align-items: stretch !important;
-  }
-
-  .titan-featured-card {
-    position: relative !important;
-    display: grid !important;
-    grid-template-rows: auto auto 1fr auto !important;
-    grid-template-columns: none !important;
-    grid-template-areas: none !important;
-    gap: 12px !important;
-    align-content: stretch !important;
-    height: 100% !important;
-    padding: 18px !important;
-    border-radius: 24px !important;
-    background: var(--surface-3) !important;
-    border: 1px solid var(--line) !important;
-    box-shadow: var(--shadow-soft) !important;
-  }
-
-  .titan-featured-image {
-    grid-area: unset !important;
-    width: 100% !important;
-    height: 140px !important;
-    border-radius: 16px !important;
-    object-fit: cover !important;
-    aspect-ratio: 16 / 9 !important;
-  }
-
-  .titan-score-box {
-    grid-area: unset !important;
-    display: flex !important;
-    flex-direction: column !important;
-    border-top: none !important;
-    padding-top: 0 !important;
-  }
-  
-  .titan-score-box span {
-    font-size: 1.8rem !important;
-  }
-
-  .titan-score-box small {
-    font-size: 0.9rem !important;
-  }
-
-  .titan-featured-copy {
-    grid-area: unset !important;
-    display: block !important;
-  }
-
-  .titan-featured-copy strong {
-    font-size: 1.15rem !important;
-  }
-
-  .titan-featured-copy p {
-    font-size: 0.85rem !important;
-  }
-
-  .titan-rank-badge {
-    grid-area: unset !important;
-    position: absolute !important;
-    top: 20px !important;
-    right: 20px !important;
-    z-index: 10 !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding: 6px 16px !important;
-    border-radius: 999px !important;
-    font-size: 1.1rem !important;
-    font-weight: 800 !important;
-    background: var(--surface-2) !important;
-    border: 1px solid var(--line) !important;
-  }
-
-  .titans-list {
-    display: grid !important;
-    gap: 12px !important;
-  }
-
-  .titan-list-card {
-    display: grid !important;
-    grid-template-columns: 96px minmax(0, 1fr) 78px !important;
-    gap: 14px !important;
-    align-items: center !important;
-    min-height: 112px !important;
-    padding: 12px !important;
-    border-radius: 20px !important;
-    background: var(--surface-3) !important;
-    border: 1px solid var(--line) !important;
-  }
-
-  .titan-list-image {
-    width: 96px !important;
-    height: 96px !important;
-    border-radius: 16px !important;
-  }
-
-  .titan-list-copy strong {
-    font-size: 1.05rem !important;
-  }
-
-  .titan-list-copy p {
-    font-size: 0.8rem !important;
-  }
-
-  .titan-list-streak {
-    display: inline-block !important;
-    font-size: 0.72rem !important;
-  }
-
-  .titan-list-rank {
-    display: grid !important;
-    place-items: center !important;
-    gap: 2px !important;
-    min-width: 58px !important;
-    padding: 8px !important;
-    border-radius: 16px !important;
-    background: var(--surface-2) !important;
-    border: 1px solid var(--line) !important;
-  }
-
-  .titan-list-rank span {
-    font-size: 0.95rem !important;
-  }
-
-  .titan-list-rank small {
-    font-size: 0.72rem !important;
-  }
-
-  .titan-list-score-num {
-    font-size: 1.25rem !important;
-  }
+  /* ── TITANS LEADERBOARD (Responsiveness handled natively by legacy.css) ── */
 
   /* ── QUICK LINKS ── */
   .home-quick-links {
@@ -544,18 +286,7 @@
     padding: 8px 12px !important;
   }
 
-  .hero-command-content {
-    padding: 16px 12px 24px !important;
-  }
-
-  .hero-premium h1 {
-    font-size: 1.5rem !important;
-  }
-
-  .hero-primary-actions .btn {
-    font-size: 0.82rem !important;
-    min-height: 44px !important;
-  }
+  /* 360px hero styles handled by legacy.css */
 
   .home-action-card {
     padding: 12px !important;
@@ -796,6 +527,25 @@
     min-width: unset !important;
     position: relative !important;
     line-height: 0 !important;
+  }
+
+  .plan-showcase .plan-mobile-cta {
+    position: absolute !important;
+    inset: 0 !important;
+    background: rgba(2, 6, 23, 0.75) !important;
+    backdrop-filter: blur(2px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #ffffff !important;
+    gap: 8px !important;
+    pointer-events: none !important;
+    opacity: 1 !important;
+    transition: opacity 0.3s ease !important;
+    text-align: center !important;
+    padding: 20px !important;
+    border-radius: 16px !important;
   }
 
   /* Image itself stays full width of the viewport container */
@@ -1075,26 +825,7 @@
     border-radius: 20px !important;
   }
 
-  .titan-featured-card {
-    grid-template-columns: 72px minmax(0, 1fr) !important;
-    gap: 10px 12px !important;
-  }
-
-  .titan-featured-image {
-    width: 72px !important;
-    height: 72px !important;
-  }
-
-  .titan-rank-badge {
-    top: 8px !important;
-    left: 8px !important;
-    right: auto !important;
-    min-height: 32px !important;
-    padding: 4px 10px !important;
-  }
-
-  .home-quick-link-card,
-  .titan-list-card {
+  .home-quick-link-card {
     min-height: 64px !important;
   }
 
@@ -1195,22 +926,76 @@
   }
 
   .lightbox-content {
-    align-items: flex-start !important;
-    justify-content: flex-start !important;
+    align-items: center !important;
+    justify-content: center !important;
     overflow: auto !important;
     padding: 80px 16px 24px !important;
   }
 
   .lightbox-content .plan-image-map {
-    width: max(720px, calc(100vw - 32px)) !important;
-    max-width: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
     margin: 0 !important;
+    touch-action: pinch-zoom !important;
   }
 
   .lightbox-close {
     top: 16px !important;
     inset-inline-end: 16px !important;
     inset-inline-start: auto !important;
+  }
+
+  /* P2-9 & P2-10: Tracker Mobile Layout */
+  .tracker-course-list {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+
+  .tracker-course {
+    min-height: unset !important;
+    padding: 12px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+
+  .tracker-course-main {
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    min-height: 48px !important;
+    cursor: pointer !important;
+  }
+
+  .tracker-course input[type="checkbox"] {
+    width: 24px !important;
+    height: 24px !important;
+    flex-shrink: 0 !important;
+    cursor: pointer !important;
+  }
+
+  .tracker-course strong {
+    font-size: 0.95rem !important;
+    line-height: 1.4 !important;
+  }
+
+  .tracker-course small {
+    font-size: 0.78rem !important;
+  }
+
+  .tracker-course-link {
+    width: 100% !important;
+    min-height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .tracker-overview-stats {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
   }
 
   .site-footer {
@@ -1235,6 +1020,34 @@
   .titan-featured-image {
     width: 60px !important;
     height: 60px !important;
+  }
+}
+
+/* ─── 12. PERFORMANCE & ACCESSIBILITY ──────────────────────── */
+@media (max-width: 767px) {
+  .reveal {
+    contain: layout style !important;
+  }
+
+  /* Disable hover translations on mobile touch devices */
+  .subject-card:hover,
+  .resource-card:hover,
+  .activity-card:hover,
+  .org-member-card-v3:hover,
+  .home-quick-link-card:hover {
+    transform: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .menu-backdrop,
+  .nav-links {
+    transition: none !important;
   }
 }
 

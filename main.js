@@ -141,14 +141,34 @@ function bindGlobalEvents() {
 
   document.addEventListener("click", (event) => {
     const link = event.target.closest("[data-link]");
-    if (!link) return;
-    event.preventDefault();
-    closeMobileMenu();
-    navigate(link.getAttribute("href"));
+    if (link) {
+      event.preventDefault();
+      closeMobileMenu();
+      navigate(link.getAttribute("href"));
+      return;
+    }
+
+    // Close mobile menu if clicked outside
+    const navLinks = document.getElementById("nav-links");
+    const menuBtn = document.getElementById("mobile-menu-btn");
+    if (navLinks && navLinks.classList.contains("is-open")) {
+      if (!navLinks.contains(event.target) && !menuBtn?.contains(event.target)) {
+        closeMobileMenu();
+      }
+    }
   });
 
   document.getElementById("theme-toggle")?.addEventListener("click", toggleTheme);
   document.getElementById("mobile-menu-btn")?.addEventListener("click", toggleMobileMenu);
+
+  // Create mobile menu backdrop dynamically
+  if (!document.getElementById("menu-backdrop")) {
+    const backdrop = document.createElement("div");
+    backdrop.id = "menu-backdrop";
+    backdrop.className = "menu-backdrop";
+    document.body.appendChild(backdrop);
+    backdrop.addEventListener("click", closeMobileMenu);
+  }
 
   window.addEventListener(
     "scroll",
@@ -188,53 +208,9 @@ function bindPageEvents() {
   initTrackerControls();
   initCalculator();
   initJoinForm();
-  initLeaderboardScale();
-  initHeroScale();
 }
 
-function initLeaderboardScale() {
-  const board = document.querySelector(".titans-board");
-  if (!board) return;
-
-  const updateScale = () => {
-    const board = document.querySelector(".titans-board");
-    if (!board) return;
-    const parent = board.parentElement;
-    if (parent && window.innerWidth < 768) {
-      const viewportWidth = document.documentElement.clientWidth;
-      const scale = Math.min(1, (viewportWidth - 72) / 760);
-      board.style.zoom = scale;
-    } else {
-      board.style.zoom = "";
-    }
-  };
-
-  updateScale();
-  window.removeEventListener("resize", updateScale);
-  window.addEventListener("resize", updateScale);
-}
-
-function initHeroScale() {
-  const hero = document.querySelector(".hero-command-board.hero-premium");
-  if (!hero) return;
-
-  const updateScale = () => {
-    const hero = document.querySelector(".hero-command-board.hero-premium");
-    if (!hero) return;
-    const parent = hero.parentElement;
-    if (parent && window.innerWidth < 768) {
-      const viewportWidth = document.documentElement.clientWidth;
-      const scale = Math.min(1, (viewportWidth - 64) / 1160);
-      hero.style.zoom = scale;
-    } else {
-      hero.style.zoom = "";
-    }
-  };
-
-  updateScale();
-  window.removeEventListener("resize", updateScale);
-  window.addEventListener("resize", updateScale);
-}
+// Scale functions removed - responsiveness handled natively in CSS now.
 
 
 
@@ -252,11 +228,15 @@ function toggleTheme() {
 }
 
 function toggleMobileMenu() {
-  document.getElementById("nav-links")?.classList.toggle("is-open");
+  const navLinks = document.getElementById("nav-links");
+  if (!navLinks) return;
+  const isOpen = navLinks.classList.toggle("is-open");
+  document.getElementById("menu-backdrop")?.classList.toggle("is-active", isOpen);
 }
 
 function closeMobileMenu() {
   document.getElementById("nav-links")?.classList.remove("is-open");
+  document.getElementById("menu-backdrop")?.classList.remove("is-active");
 }
 
 function unregisterLegacyServiceWorkers() {
@@ -302,7 +282,14 @@ async function renderHome() {
     <section class="home-command reveal">
       <div class="hero-command-board hero-premium">
         <div class="hero-command-background">
-          <img src="/assets/images/hero-cne.webp" alt="CNE Family Group" class="hero-image-full">
+          <img 
+            srcset="/assets/images/hero-cne-750.webp 750w, /assets/images/hero-cne.webp 1920w" 
+            sizes="(max-width: 768px) 100vw, 1160px" 
+            src="/assets/images/hero-cne.webp" 
+            alt="CNE Family Group" 
+            class="hero-image-full" 
+            fetchpriority="high"
+          >
           <div class="hero-image-mask"></div>
         </div>
         
@@ -615,8 +602,12 @@ function renderClickablePlanImage(majorKey, major) {
   return `
     <div class="plan-image-map" aria-label="خطة ${major.label} - اضغط على اسم المادة لفتح ملفاتها">
       <div class="plan-viewport">
-        <img src="${major.image}" alt="${major.label}" class="plan-showcase-image" />
+        <img src="${major.image}" alt="${major.label}" class="plan-showcase-image" loading="lazy" decoding="async" />
         ${hotspots.map(renderPlanHotspot).join("")}
+        <div class="plan-mobile-cta mobile-only">
+          <span class="material-symbols-outlined" style="font-size: 2.2rem; color: var(--color-primary, #1f5eff);">zoom_in</span>
+          <span style="font-size: 0.95rem; font-weight: 600;">اضغط لتكبير وتصفح الخطة تفاعلياً</span>
+        </div>
       </div>
     </div>
   `;
@@ -935,15 +926,15 @@ function renderJoin() {
         <form id="join-form" class="join-form">
           <label>
             <span>الاسم الكامل</span>
-            <input name="name" required placeholder="اكتب اسمك الكامل" />
+            <input name="name" required placeholder="اكتب اسمك الكامل" autocomplete="name" />
           </label>
           <label>
             <span>الرقم الجامعي</span>
-            <input name="student_id" required placeholder="مثال: 32019..." />
+            <input name="student_id" required inputmode="numeric" pattern="[0-9]*" placeholder="مثال: 32019..." />
           </label>
           <label>
             <span>وسيلة التواصل</span>
-            <input name="contact" required placeholder="بريد إلكتروني أو رقم هاتف" />
+            <input name="contact" required inputmode="email" placeholder="بريد إلكتروني أو رقم هاتف" />
           </label>
           <button class="btn btn-primary" type="submit">إرسال الطلب</button>
         </form>
@@ -1358,7 +1349,15 @@ function initJoinForm() {
     } catch {
       button.disabled = false;
       button.textContent = originalText;
-      alert("تعذر إرسال الطلب حالياً. حاول لاحقاً.");
+      form.querySelector(".form-error")?.remove();
+      const errorDiv = document.createElement("div");
+      errorDiv.className = "form-error";
+      errorDiv.style.color = "var(--color-danger, #ff4d4f)";
+      errorDiv.style.marginTop = "12px";
+      errorDiv.style.fontSize = "0.9rem";
+      errorDiv.style.textAlign = "center";
+      errorDiv.textContent = "تعذر إرسال الطلب حالياً. حاول لاحقاً.";
+      form.appendChild(errorDiv);
     }
   });
 }
