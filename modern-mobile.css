@@ -180,7 +180,7 @@
     width: 100% !important;
     min-width: unset !important;
     height: auto !important;
-    min-height: 65vh !important;
+    min-height: 78vh !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: stretch !important;
@@ -191,9 +191,13 @@
     border-right: none !important;
     border-top: none !important;
     border-bottom: 1px solid var(--line) !important;
-    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45) !important;
     padding: 0 !important;
     background: #020617 !important;
+    box-shadow: 0 16px 36px rgba(28, 37, 58, 0.12) !important; /* Light theme soft shadow */
+  }
+
+  [data-theme="dark"] .hero-command-board.hero-premium {
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.6) !important; /* Dark theme deep shadow */
   }
 
   .hero-command-background {
