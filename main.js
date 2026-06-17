@@ -686,13 +686,20 @@ function initAboutCarousel() {
   // Disable scroll snapping so it scrolls pixel-by-pixel smoothly
   track.style.scrollSnapType = "none";
 
+  let halfWidth = track.scrollWidth / 2;
   let speed = 0.8; // pixels per frame (about 48px/sec at 60fps)
   let isHovered = false;
   let lastTime = performance.now();
 
+  const handleResize = () => {
+    halfWidth = track.scrollWidth / 2;
+  };
+  window.addEventListener("resize", handleResize);
+
   function animate(timestamp) {
     if (!track.isConnected) {
       // If the track element is removed from the DOM (user navigated away in SPA), stop the loop
+      window.removeEventListener("resize", handleResize);
       return;
     }
 
@@ -704,7 +711,6 @@ function initAboutCarousel() {
       const delta = (speed * (elapsed || 16.666)) / 16.666;
       track.scrollLeft -= delta; // RTL scroll left (forward) is negative
 
-      const halfWidth = track.scrollWidth / 2;
       if (track.scrollLeft <= -halfWidth) {
         track.scrollLeft += halfWidth;
       }
@@ -715,7 +721,6 @@ function initAboutCarousel() {
 
   // Handle manual scroll wrapping (like if they drag/scroll container manually)
   track.addEventListener("scroll", () => {
-    const halfWidth = track.scrollWidth / 2;
     if (track.scrollLeft <= -halfWidth) {
       track.scrollLeft += halfWidth;
     } else if (track.scrollLeft > 0) {
@@ -748,8 +753,6 @@ function initAboutCarousel() {
   if (prevBtn) {
     prevBtn.addEventListener("click", () => {
       isCarouselPlaying = false; // permanently stop autoplay as requested
-      const halfWidth = track.scrollWidth / 2;
-      
       // If we are close to the right edge (0), wrap to the cloned side first
       if (track.scrollLeft >= -10) {
         track.scrollLeft -= halfWidth;
@@ -761,8 +764,6 @@ function initAboutCarousel() {
   if (nextBtn) {
     nextBtn.addEventListener("click", () => {
       isCarouselPlaying = false; // permanently stop autoplay as requested
-      const halfWidth = track.scrollWidth / 2;
-      
       // If we are close to the left edge (-halfWidth), wrap to the original side first
       if (track.scrollLeft <= -halfWidth + 10) {
         track.scrollLeft += halfWidth;
