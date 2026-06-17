@@ -190,10 +190,10 @@
     border-left: none !important;
     border-right: none !important;
     border-top: none !important;
-    border-bottom: 1px solid rgba(214, 184, 138, 0.15) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
     padding: 0 !important;
     background: #020617 !important;
-    box-shadow: 0 16px 40px rgba(184, 164, 137, 0.12) !important; /* Soft warm sand shadow to blend into the beige background */
+    box-shadow: 0 16px 40px rgba(255, 255, 255, 0.35) !important; /* Soft white shadow/glow to blend into the light background */
   }
 
   [data-theme="dark"] .hero-command-board.hero-premium {
