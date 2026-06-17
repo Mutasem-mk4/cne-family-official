@@ -1465,4 +1465,117 @@
   }
 }
 
+/* ─── ABOUT US NEW SECTIONS OVERRIDES ──────────────────────── */
+@media (max-width: 767px) {
+  .about-union-intro,
+  .about-activities,
+  .about-team-carousel-section {
+    padding: 20px 16px !important;
+    border-radius: 20px !important;
+    gap: 20px !important;
+  }
+
+  .about-union-content {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  .about-union-text h2 {
+    font-size: 1.45rem !important;
+  }
+
+  .about-union-description {
+    font-size: 0.92rem !important;
+    line-height: 1.55 !important;
+  }
+
+  .about-achievements-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .about-achievement-card {
+    padding: 12px !important;
+    border-radius: 16px !important;
+  }
+
+  .achievement-icon {
+    font-size: 1.85rem !important;
+  }
+
+  .achievement-text strong {
+    font-size: 1.25rem !important;
+  }
+
+  .about-activities-head h2,
+  .carousel-section-head h2 {
+    font-size: 1.35rem !important;
+  }
+
+  .about-activities-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .about-activity-card {
+    padding: 16px !important;
+    border-radius: 16px !important;
+    gap: 12px !important;
+  }
+
+  .about-activity-icon {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 10px !important;
+  }
+
+  .about-activity-icon span {
+    font-size: 1.35rem !important;
+  }
+
+  .about-activity-info h4 {
+    font-size: 0.95rem !important;
+  }
+
+  .about-activity-info p {
+    font-size: 0.82rem !important;
+  }
+
+  .about-carousel-btn {
+    display: none !important;
+  }
+
+  .about-carousel-card {
+    flex: 0 0 230px !important;
+    padding: 16px 14px !important;
+    border-radius: 18px !important;
+    gap: 12px !important;
+  }
+
+  .carousel-card-avatar {
+    width: 68px !important;
+    height: 68px !important;
+    border-radius: 16px !important;
+  }
+
+  .carousel-card-info strong {
+    font-size: 0.95rem !important;
+  }
+
+  .member-role {
+    font-size: 0.78rem !important;
+  }
+
+  .member-dept {
+    font-size: 0.7rem !important;
+    padding: 1px 6px !important;
+  }
+
+  .member-bio {
+    font-size: 0.76rem !important;
+    margin-top: 8px !important;
+    padding-top: 8px !important;
+  }
+}
+
 

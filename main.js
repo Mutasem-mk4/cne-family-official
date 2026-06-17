@@ -208,6 +208,7 @@ function bindPageEvents() {
   initTrackerControls();
   initCalculator();
   initJoinForm();
+  initAboutCarousel();
 }
 
 // Scale functions removed - responsiveness handled natively in CSS now.
@@ -460,53 +461,290 @@ function renderSubjectCard(subject) {
 
 async function renderAbout() {
   const team = state.team;
+  const allMembers = [];
+  team.forEach(group => {
+    group.members.forEach(member => {
+      allMembers.push({
+        ...member,
+        groupRole: group.role
+      });
+    });
+  });
 
   return layout(
     `
-      <div class="about-desktop-wrapper">
-        <section class="team-structure reveal">
-          <div class="org-chart">
-            ${team.map(group => `
-              <div class="org-group">
-                <h3 class="org-role-title">${group.role}</h3>
-                <div class="org-members-grid-v3">
-                  ${group.members.map(member => `
-                    <div class="org-member-card-v3">
-                      <div class="member-avatar">
-                        <img src="${member.image}" alt="${member.name}" onerror="this.src='/assets/logos/cne-icon.png'">
-                      </div>
-                      <div class="member-info">
-                        <strong>${member.name}</strong>
-                        <span>${member.title}</span>
-                      </div>
-                    </div>
-                  `).join('')}
+      <div class="about-page-wrapper">
+        <!-- 1. Intro and Achievements Section -->
+        <section class="about-union-intro reveal">
+          <div class="about-union-content">
+            <div class="about-union-text">
+              <span class="eyebrow eyebrow-solid">من نحن</span>
+              <h2>اتحاد هندسة الحاسوب والشبكات (CNE Union)</h2>
+              <p class="about-union-description">
+                نحن الممثل الرسمي والداعم الأكاديمي لطلبة قسم هندسة الحاسوب والشبكات في كلية الهندسة التكنولوجية (البوليتكنك). نسعى جاهدين لبناء بيئة تعليمية محفزة تجمع بين التميز الأكاديمي والتطوير العملي والأنشطة الإبداعية، لتمكين الطلبة وتأهيلهم لمستقبل هندسي واعد ومواكبة متطلبات قطاع التكنولوجيا الحديث.
+              </p>
+            </div>
+
+            <div class="about-achievements-container">
+              <h3>أبرز إنجازات الاتحاد</h3>
+              <div class="about-achievements-grid">
+                <div class="about-achievement-card">
+                  <span class="material-symbols-outlined achievement-icon">school</span>
+                  <div class="achievement-text">
+                    <strong>+50</strong>
+                    <span>ورشة عمل ودورة تدريبية</span>
+                  </div>
+                </div>
+                <div class="about-achievement-card">
+                  <span class="material-symbols-outlined achievement-icon">groups</span>
+                  <div class="achievement-text">
+                    <strong>+1500</strong>
+                    <span>طالب تم خدمتهم ودعمهم</span>
+                  </div>
+                </div>
+                <div class="about-achievement-card">
+                  <span class="material-symbols-outlined achievement-icon">folder_shared</span>
+                  <div class="achievement-text">
+                    <strong>+300</strong>
+                    <span>ملف ومستند أكاديمي مؤرشف</span>
+                  </div>
+                </div>
+                <div class="about-achievement-card">
+                  <span class="material-symbols-outlined achievement-icon">military_tech</span>
+                  <div class="achievement-text">
+                    <strong>+10</strong>
+                    <span>مسابقات وفعاليات تقنية ناجحة</span>
+                  </div>
                 </div>
               </div>
-            `).join('')}
+            </div>
           </div>
         </section>
 
-        <section class="about-scene reveal">
-          <article class="about-panel">
-            <span class="material-symbols-outlined icon-large">rocket_launch</span>
-            <h3>الرسالة</h3>
-            <p>تقديم محتوى أكاديمي واضح وسهل الوصول لكل طالب.</p>
-          </article>
-          <article class="about-panel">
-            <span class="material-symbols-outlined icon-large">visibility</span>
-            <h3>الرؤية</h3>
-            <p>منصة طلابية موثوقة وسريعة وسهلة الاستخدام عالمياً.</p>
-          </article>
-          <article class="about-panel">
-            <span class="material-symbols-outlined icon-large">verified_user</span>
-            <h3>القيمة</h3>
-            <p>تنظيم أفضل ووقت أقل ضائع لضمان تميز الطالب.</p>
-          </article>
+        <!-- 2. Activities Section -->
+        <section class="about-activities reveal">
+          <div class="about-activities-head">
+            <span class="eyebrow">أعمالنا</span>
+            <h2>نشاطات وفعاليات الاتحاد</h2>
+            <p>جانب من الأنشطة التفاعلية والبرمجية التي نقوم بتنظيمها بشكل دوري لخدمة الطلبة وتنمية مهاراتهم.</p>
+          </div>
+
+          <div class="about-activities-grid">
+            <div class="about-activity-card">
+              <div class="about-activity-icon">
+                <span class="material-symbols-outlined">terminal</span>
+              </div>
+              <div class="about-activity-info">
+                <span class="about-activity-date">15 مايو 2026</span>
+                <h4>ورشة عمل Linux والشبكات الأساسية</h4>
+                <p>دورة تدريبية مكثفة لتمكين الطلبة من إدارة أنظمة التشغيل المفتوحة وفهم بروتوكولات تراسل البيانات.</p>
+              </div>
+            </div>
+
+            <div class="about-activity-card">
+              <div class="about-activity-icon">
+                <span class="material-symbols-outlined">code</span>
+              </div>
+              <div class="about-activity-info">
+                <span class="about-activity-date">28 أبريل 2026</span>
+                <h4>مسابقة البرمجة السنوية (CNE Coder)</h4>
+                <p>تحدي برميجي يهدف لتطوير القدرات الذهنية وحل المشكلات التنافسية لجميع المستويات الأكاديمية.</p>
+              </div>
+            </div>
+
+            <div class="about-activity-card">
+              <div class="about-activity-icon">
+                <span class="material-symbols-outlined">support_agent</span>
+              </div>
+              <div class="about-activity-info">
+                <span class="about-activity-date">10 مارس 2026</span>
+                <h4>أسبوع الإرشاد للطلبة الجدد</h4>
+                <p>جلسات توجيهية ولقاءات مفتوحة لمساعدة الطلبة المستجدين في اختيار مساراتهم وفهم الخطة الدراسية.</p>
+              </div>
+            </div>
+
+            <div class="about-activity-card">
+              <div class="about-activity-icon">
+                <span class="material-symbols-outlined">diversity_3</span>
+              </div>
+              <div class="about-activity-info">
+                <span class="about-activity-date">5 فبراير 2026</span>
+                <h4>معرض المشاريع والابتكارات الهندسية</h4>
+                <p>ملتقى لعرض مشاريع تخرج الطلبة المتميزة وأفكارهم الابتكارية أمام نخبة من المهندسين والشركات.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. Team Autoplay Carousel Section -->
+        <section class="about-team-carousel-section reveal">
+          <div class="carousel-section-head">
+            <span class="eyebrow">فريقنا</span>
+            <h2>الهيئة الإدارية للاتحاد</h2>
+            <p>نخبة من طلبة القسم يعملون بشغف لتقديم أفضل الخدمات والأنشطة الأكاديمية والتقنية.</p>
+          </div>
+
+          <div class="about-carousel-container">
+            <button class="about-carousel-btn prev-btn" id="carousel-prev-btn" aria-label="السابق">
+              <span class="material-symbols-outlined">arrow_forward</span>
+            </button>
+            
+            <div class="about-carousel-viewport">
+              <div class="about-carousel-track" id="team-carousel-track">
+                ${allMembers.map(member => {
+                  const bio = getMemberBio(member.title);
+                  return `
+                    <div class="about-carousel-card">
+                      <div class="carousel-card-avatar">
+                        <img src="${member.image}" alt="${member.name}" onerror="this.src='/assets/logos/cne-icon.png'">
+                      </div>
+                      <div class="carousel-card-info">
+                        <strong>${member.name}</strong>
+                        <span class="member-role">${member.title}</span>
+                        <span class="member-dept">${member.groupRole}</span>
+                        <p class="member-bio">${bio}</p>
+                      </div>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+            </div>
+
+            <button class="about-carousel-btn next-btn" id="carousel-next-btn" aria-label="التالي">
+              <span class="material-symbols-outlined">arrow_back</span>
+            </button>
+          </div>
+
+          <div class="carousel-controls">
+            <button class="btn btn-primary btn-play-pause" id="carousel-play-pause-btn">
+              <span class="material-symbols-outlined">pause</span>
+              <span id="play-pause-text">إيقاف مؤقت</span>
+            </button>
+          </div>
         </section>
       </div>
-    `
+    `,
+    {
+      heroBanner: {
+        label: "عن الاتحاد",
+        title: "من نحن وإنجازاتنا",
+        copy: "تعرف على اتحاد هندسة الحاسوب والشبكات ورؤيتنا وأنشطتنا وفريق العمل."
+      }
+    }
   );
+}
+
+function getMemberBio(title) {
+  if (title.includes("ريس") || title.includes("رئيس")) {
+    return "يقود الاتحاد لتنظيم الفعاليات، وتنسيق الجهود لخدمة وتمثيل الطلبة لدى عمادة الكلية.";
+  }
+  if (title.includes("تقني")) {
+    return "يشرف على تطوير وإدارة المواقع والمنصات التقنية الخاصة بالاتحاد ودعم البنية البرمجية.";
+  }
+  if (title.includes("أكاديمي") || title.includes("أكاديمية")) {
+    return "يشرف على توفير وتدقيق وتنسيق الملفات والملخصات والخطط الدراسية الأكاديمية للطلبة.";
+  }
+  if (title.includes("الموارد البشرية")) {
+    return "يعمل على تنظيم عمل لجان الاتحاد وتنسيق المهام بين الأعضاء وتوثيق إنجازات الفريق.";
+  }
+  if (title.includes("أنشطة") || title.includes("الأنشطة")) {
+    return "يخطط وينظم الفعاليات اللامنهجية، والمنافسات الرياضية والترفيهية لطلبة القسم.";
+  }
+  if (title.includes("إعلام") || title.includes("الإعلام") || title.includes("إنستغرام")) {
+    return "يدير الحسابات الرسمية للاتحاد، ويشرف على التصاميم المرئية والتغطيات الإعلامية للأنشطة.";
+  }
+  if (title.includes("Core")) {
+    return "يساهم في الإدارة التنفيذية ومتابعة المبادرات والمشاريع الداخلية الهامة للاتحاد.";
+  }
+  return "عضو فخور في عائلة CNE Family، يساهم في دعم طلبة هندسة الحاسوب والشبكات وتطوير المجتمع الأكاديمي.";
+}
+
+let carouselInterval = null;
+let isCarouselPlaying = true;
+
+function initAboutCarousel() {
+  const track = document.getElementById("team-carousel-track");
+  const playPauseBtn = document.getElementById("carousel-play-pause-btn");
+  const playPauseText = document.getElementById("play-pause-text");
+  const prevBtn = document.getElementById("carousel-prev-btn");
+  const nextBtn = document.getElementById("carousel-next-btn");
+
+  if (!track) return;
+
+  const scrollAmount = 260; // Card width + gap
+
+  function startAutoplay() {
+    stopAutoplay();
+    carouselInterval = setInterval(() => {
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      if (track.scrollLeft <= -maxScroll + 10) {
+        track.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        track.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+      }
+    }, 3000);
+  }
+
+  function stopAutoplay() {
+    if (carouselInterval) {
+      clearInterval(carouselInterval);
+      carouselInterval = null;
+    }
+  }
+
+  if (playPauseBtn) {
+    playPauseBtn.addEventListener("click", () => {
+      isCarouselPlaying = !isCarouselPlaying;
+      if (isCarouselPlaying) {
+        startAutoplay();
+        playPauseBtn.innerHTML = `
+          <span class="material-symbols-outlined">pause</span>
+          <span id="play-pause-text">إيقاف مؤقت</span>
+        `;
+      } else {
+        stopAutoplay();
+        playPauseBtn.innerHTML = `
+          <span class="material-symbols-outlined">play_arrow</span>
+          <span id="play-pause-text">تشغيل تلقائي</span>
+        `;
+      }
+    });
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener("click", () => {
+      stopAutoplay();
+      isCarouselPlaying = false;
+      if (playPauseBtn) {
+        playPauseBtn.innerHTML = `
+          <span class="material-symbols-outlined">play_arrow</span>
+          <span id="play-pause-text">تشغيل تلقائي</span>
+        `;
+      }
+      track.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+      stopAutoplay();
+      isCarouselPlaying = false;
+      if (playPauseBtn) {
+        playPauseBtn.innerHTML = `
+          <span class="material-symbols-outlined">play_arrow</span>
+          <span id="play-pause-text">تشغيل تلقائي</span>
+        `;
+      }
+      track.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+    });
+  }
+
+  track.addEventListener("mouseenter", stopAutoplay);
+  track.addEventListener("mouseleave", () => {
+    if (isCarouselPlaying) startAutoplay();
+  });
+
+  if (isCarouselPlaying) startAutoplay();
 }
 
 function renderPlans() {

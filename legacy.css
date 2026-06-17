@@ -4545,3 +4545,365 @@ p {
     margin-top: 48px;
   }
 }
+
+/* ============================================================
+   ABOUT US PAGE STYLING (NEW LAYOUT)
+   ============================================================ */
+.about-page-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  margin-top: 24px;
+}
+
+/* 1. Union Intro & Achievements */
+.about-union-intro {
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: 32px;
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(18px);
+}
+
+.about-union-content {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.about-union-text {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.about-union-text h2 {
+  font-size: 2rem;
+  color: var(--text);
+  line-height: 1.35;
+}
+
+.about-union-description {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.about-achievements-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.about-achievements-container h3 {
+  font-size: 1.25rem;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.about-achievements-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.about-achievement-card {
+  background: var(--surface-3);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.achievement-icon {
+  font-size: 2.2rem;
+  color: var(--orange);
+}
+
+.achievement-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.achievement-text strong {
+  font-size: 1.5rem;
+  color: var(--text);
+  font-weight: 800;
+}
+
+.achievement-text span {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.3;
+}
+
+/* 2. Activities Grid */
+.about-activities {
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(18px);
+}
+
+.about-activities-head {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 800px;
+}
+
+.about-activities-head h2 {
+  font-size: 1.75rem;
+  color: var(--text);
+}
+
+.about-activities-head p {
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.about-activities-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.about-activity-card {
+  background: var(--surface-3);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.about-activity-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--orange);
+}
+
+.about-activity-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--orange) 12%, transparent);
+  color: var(--orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.about-activity-icon span {
+  font-size: 1.65rem;
+}
+
+.about-activity-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.about-activity-date {
+  font-size: 0.78rem;
+  color: var(--orange);
+  font-weight: 600;
+}
+
+.about-activity-info h4 {
+  font-size: 1.05rem;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.about-activity-info p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* 3. Team Autoplay Carousel */
+.about-team-carousel-section {
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(18px);
+}
+
+.carousel-section-head {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.carousel-section-head h2 {
+  font-size: 1.75rem;
+  color: var(--text);
+}
+
+.carousel-section-head p {
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.about-carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.about-carousel-viewport {
+  overflow: hidden;
+  width: 100%;
+  border-radius: 24px;
+}
+
+.about-carousel-track {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 20px;
+  padding: 8px 4px;
+  width: 100%;
+  box-sizing: border-box;
+  scrollbar-width: none;
+}
+
+.about-carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.about-carousel-card {
+  flex: 0 0 280px;
+  scroll-snap-align: start;
+  background: var(--surface-3);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  box-sizing: border-box;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.about-carousel-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--orange);
+}
+
+.carousel-card-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 24px;
+  border: 2px solid var(--line);
+  overflow: hidden;
+  background: var(--surface-2);
+}
+
+.carousel-card-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel-card-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+}
+
+.carousel-card-info strong {
+  font-size: 1.1rem;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.member-role {
+  font-size: 0.85rem;
+  color: var(--orange);
+  font-weight: 600;
+}
+
+.member-dept {
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+  background: color-mix(in srgb, var(--orange) 8%, transparent);
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-top: 2px;
+}
+
+.member-bio {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-top: 10px;
+  border-top: 1px dashed var(--line);
+  padding-top: 10px;
+  width: 100%;
+}
+
+.about-carousel-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--surface-3);
+  border: 1px solid var(--line);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  transition: all 0.2s;
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.about-carousel-btn:hover {
+  background: var(--orange);
+  color: #000000;
+  border-color: var(--orange);
+}
+
+.carousel-controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.btn-play-pause {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  min-height: 40px !important;
+  padding: 8px 16px !important;
+  font-size: 0.9rem !important;
+  border-radius: 12px !important;
+}
