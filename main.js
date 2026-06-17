@@ -604,10 +604,6 @@ function renderClickablePlanImage(majorKey, major) {
       <div class="plan-viewport">
         <img src="${major.image}" alt="${major.label}" class="plan-showcase-image" loading="lazy" decoding="async" />
         ${hotspots.map(renderPlanHotspot).join("")}
-        <div class="plan-mobile-cta mobile-only">
-          <span class="material-symbols-outlined" style="font-size: 2.2rem; color: var(--color-primary, #1f5eff);">zoom_in</span>
-          <span style="font-size: 0.95rem; font-weight: 600;">اضغط لتكبير وتصفح الخطة تفاعلياً</span>
-        </div>
       </div>
     </div>
   `;

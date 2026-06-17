@@ -896,24 +896,7 @@
     line-height: 0 !important;
   }
 
-  .plan-showcase .plan-mobile-cta {
-    position: absolute !important;
-    inset: 0 !important;
-    background: rgba(2, 6, 23, 0.75) !important;
-    backdrop-filter: blur(2px) !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    color: #ffffff !important;
-    gap: 8px !important;
-    pointer-events: none !important;
-    opacity: 1 !important;
-    transition: opacity 0.3s ease !important;
-    text-align: center !important;
-    padding: 20px !important;
-    border-radius: 16px !important;
-  }
+  /* Mobile plan CTA removed */
 
   /* Image itself stays full width of the viewport container */
   .plan-showcase .plan-showcase-image {
@@ -1293,18 +1276,16 @@
   }
 
   .lightbox-content {
-    align-items: center !important;
-    justify-content: center !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
     overflow: auto !important;
     padding: 80px 16px 24px !important;
   }
 
   .lightbox-content .plan-image-map {
-    width: 100% !important;
-    max-width: 100% !important;
-    height: auto !important;
+    width: max(720px, calc(100vw - 32px)) !important;
+    max-width: none !important;
     margin: 0 !important;
-    touch-action: pinch-zoom !important;
   }
 
   .lightbox-close {
