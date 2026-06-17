@@ -4802,6 +4802,8 @@ p {
   width: 100%;
   box-sizing: border-box;
   scrollbar-width: none;
+  will-change: scroll-position;
+  backface-visibility: hidden;
 }
 
 .about-carousel-track::-webkit-scrollbar {
@@ -4822,6 +4824,8 @@ p {
   gap: 16px;
   box-sizing: border-box;
   transition: transform 0.25s ease, border-color 0.25s ease;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 
 .about-carousel-card:hover {

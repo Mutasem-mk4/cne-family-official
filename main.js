@@ -687,9 +687,10 @@ function initAboutCarousel() {
   track.style.scrollSnapType = "none";
 
   let halfWidth = track.scrollWidth / 2;
-  let speed = 0.8; // pixels per frame (about 48px/sec at 60fps)
+  let speed = 0.9; // Slightly faster for visual flow (about 54px/sec at 60fps)
   let isHovered = false;
   let lastTime = performance.now();
+  let currentScroll = track.scrollLeft; // High precision float value
 
   const handleResize = () => {
     halfWidth = track.scrollWidth / 2;
@@ -709,11 +710,12 @@ function initAboutCarousel() {
     if (isCarouselPlaying && !isHovered) {
       // Delta time scaling to support high refresh rate monitors smoothly
       const delta = (speed * (elapsed || 16.666)) / 16.666;
-      track.scrollLeft -= delta; // RTL scroll left (forward) is negative
+      currentScroll -= delta; // Maintain sub-pixel precision in JS float variable
 
-      if (track.scrollLeft <= -halfWidth) {
-        track.scrollLeft += halfWidth;
+      if (currentScroll <= -halfWidth) {
+        currentScroll += halfWidth;
       }
+      track.scrollLeft = Math.round(currentScroll); // Assign rounded integer to DOM to prevent rounding jitter
     }
 
     carouselAnimationFrameId = requestAnimationFrame(animate);
@@ -726,6 +728,8 @@ function initAboutCarousel() {
     } else if (track.scrollLeft > 0) {
       track.scrollLeft -= halfWidth;
     }
+    // Sync high-precision float with DOM scrollLeft on manual swipes/scrolls
+    currentScroll = track.scrollLeft;
   }, { passive: true });
 
   // Mouse/Touch pausing
