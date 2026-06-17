@@ -495,15 +495,12 @@ p {
 }
 
 .hero-command-board.hero-premium {
-  min-height: 52vh;
-  margin-bottom: 32px;
-  border-radius: 0 0 48px 48px;
+  min-height: 100vh;
+  margin-bottom: 48px;
+  border-radius: 0 !important;
   background-color: #020617;
-  border-bottom: 1px solid var(--line);
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.45);
+  border: none !important;
+  box-shadow: none !important;
   display: flex;
   align-items: center;
   position: relative;
