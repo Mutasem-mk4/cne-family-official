@@ -615,12 +615,7 @@ async function renderAbout() {
             </button>
           </div>
 
-          <div class="carousel-controls">
-            <button class="btn btn-primary btn-play-pause" id="carousel-play-pause-btn">
-              <span class="material-symbols-outlined">pause</span>
-              <span id="play-pause-text">إيقاف مؤقت</span>
-            </button>
-          </div>
+          <!-- Carousel controls removed as requested -->
         </section>
       </div>
     `,
@@ -664,8 +659,6 @@ let isCarouselPlaying = true;
 
 function initAboutCarousel() {
   const track = document.getElementById("team-carousel-track");
-  const playPauseBtn = document.getElementById("carousel-play-pause-btn");
-  const playPauseText = document.getElementById("play-pause-text");
   const prevBtn = document.getElementById("carousel-prev-btn");
   const nextBtn = document.getElementById("carousel-next-btn");
 
@@ -692,35 +685,10 @@ function initAboutCarousel() {
     }
   }
 
-  if (playPauseBtn) {
-    playPauseBtn.addEventListener("click", () => {
-      isCarouselPlaying = !isCarouselPlaying;
-      if (isCarouselPlaying) {
-        startAutoplay();
-        playPauseBtn.innerHTML = `
-          <span class="material-symbols-outlined">pause</span>
-          <span id="play-pause-text">إيقاف مؤقت</span>
-        `;
-      } else {
-        stopAutoplay();
-        playPauseBtn.innerHTML = `
-          <span class="material-symbols-outlined">play_arrow</span>
-          <span id="play-pause-text">تشغيل تلقائي</span>
-        `;
-      }
-    });
-  }
-
   if (prevBtn) {
     prevBtn.addEventListener("click", () => {
       stopAutoplay();
       isCarouselPlaying = false;
-      if (playPauseBtn) {
-        playPauseBtn.innerHTML = `
-          <span class="material-symbols-outlined">play_arrow</span>
-          <span id="play-pause-text">تشغيل تلقائي</span>
-        `;
-      }
       track.scrollBy({ left: scrollAmount, behavior: "smooth" });
     });
   }
@@ -729,12 +697,6 @@ function initAboutCarousel() {
     nextBtn.addEventListener("click", () => {
       stopAutoplay();
       isCarouselPlaying = false;
-      if (playPauseBtn) {
-        playPauseBtn.innerHTML = `
-          <span class="material-symbols-outlined">play_arrow</span>
-          <span id="play-pause-text">تشغيل تلقائي</span>
-        `;
-      }
       track.scrollBy({ left: -scrollAmount, behavior: "smooth" });
     });
   }
