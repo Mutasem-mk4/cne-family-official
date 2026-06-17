@@ -8,6 +8,16 @@
 @media (max-width: 767px) {
   #navbar {
     z-index: 1000 !important;
+    background: transparent !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+    transition: background 0.3s ease, border-bottom 0.3s ease, box-shadow 0.3s ease !important;
+  }
+
+  #navbar.is-scrolled {
+    background: color-mix(in srgb, var(--surface) 85%, transparent) !important;
+    border-bottom: 1px solid var(--line) !important;
+    backdrop-filter: blur(12px) !important;
   }
 
   /* Outer shell: logo LEFT, actions RIGHT (RTL doc → flip with ltr) */
@@ -139,7 +149,7 @@
   .home-command {
     width: 100vw !important;
     margin-inline: calc(-50vw + 50%) !important;
-    margin-top: -8px !important; /* Pull up to touch the header */
+    margin-top: -80px !important; /* Pull up behind the transparent header */
     margin-bottom: 24px !important;
   }
 
@@ -190,7 +200,7 @@
   .hero-command-content {
     position: relative !important;
     z-index: 3 !important;
-    padding: 32px 16px 24px !important; /* Extra top padding under sticky header */
+    padding: 96px 16px 24px !important; /* Extra top padding under sticky header */
     display: flex !important;
     flex-direction: column !important;
     gap: 16px !important;
