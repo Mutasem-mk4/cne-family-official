@@ -20,9 +20,8 @@
   }
 
   #navbar.is-scrolled {
-    background: color-mix(in srgb, var(--surface) 85%, transparent) !important;
+    background: var(--surface) !important;
     border-bottom: 1px solid var(--line) !important;
-    backdrop-filter: blur(12px) !important;
   }
 
   /* Outer shell: logo LEFT, actions RIGHT (RTL doc → flip with ltr) */
@@ -47,8 +46,8 @@
     gap: 8px !important;
     padding: 6px 10px !important;
     border-radius: 16px !important;
-    background: color-mix(in srgb, var(--surface-3) 70%, transparent) !important;
-    border: 1px solid color-mix(in srgb, var(--line) 70%, transparent) !important;
+    background: var(--surface-3) !important;
+    border: 1px solid var(--line) !important;
   }
 
   .logo-img {
@@ -65,9 +64,8 @@
     gap: 8px !important;
     padding: 6px !important;
     border-radius: 999px !important;
-    background: color-mix(in srgb, var(--surface-3) 62%, transparent) !important;
-    border: 1px solid color-mix(in srgb, var(--line) 70%, transparent) !important;
-    backdrop-filter: blur(14px) !important;
+    background: var(--surface-3) !important;
+    border: 1px solid var(--line) !important;
   }
 
   /* Hamburger icon: always visible on mobile */
@@ -182,10 +180,8 @@
   }
 
   .hero-command-background {
-    position: relative !important;
-    width: 100% !important;
-    height: auto !important;
-    aspect-ratio: 4 / 3 !important;
+    position: absolute !important;
+    inset: 0 !important;
     z-index: 1 !important;
   }
 
@@ -201,9 +197,8 @@
     inset: 0 !important;
     background: linear-gradient(
       to bottom,
-      rgba(2, 6, 23, 0.75) 0%,
-      rgba(2, 6, 23, 0) 25%,
-      rgba(2, 6, 23, 0) 75%,
+      rgba(2, 6, 23, 0.5) 0%,
+      rgba(2, 6, 23, 0.75) 60%,
       rgba(2, 6, 23, 0.95) 100%
     ) !important;
     z-index: 2 !important;
@@ -212,7 +207,7 @@
   .hero-command-content {
     position: relative !important;
     z-index: 3 !important;
-    padding: 24px 16px 24px !important;
+    padding: 100px 16px 32px !important;
     display: flex !important;
     flex-direction: column !important;
     gap: 16px !important;
@@ -221,7 +216,7 @@
     justify-content: center !important;
     width: 100% !important;
     box-sizing: border-box !important;
-    background: #020617 !important;
+    background: transparent !important;
   }
 
   .hero-command-copy {
