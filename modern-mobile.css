@@ -48,10 +48,10 @@
     display: flex !important;
     align-items: center !important;
     gap: 8px !important;
-    padding: 6px 10px !important;
-    border-radius: 16px !important;
-    background: var(--surface-3) !important;
-    border: 1px solid var(--line) !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
   }
 
   .logo-img {
@@ -66,11 +66,21 @@
     flex-direction: row !important;
     align-items: center !important;
     gap: 8px !important;
-    padding: 6px !important;
-    border-radius: 999px !important;
-    background: var(--surface-3) !important;
-    border: 1px solid var(--line) !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
   }
+
+  /* Make header action buttons transparent on mobile to integrate with hero */
+  .nav-actions .btn-icon {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #ffffff !important;
+  }
+
 
   /* Hamburger icon: always visible on mobile */
   .mobile-only {
@@ -157,10 +167,13 @@
 /* ─── 2. HERO SECTION ─────────────────────────────────────── */
 @media (max-width: 767px) {
   .home-command {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin-left: calc(-50vw + 50%) !important;
+    margin-right: calc(-50vw + 50%) !important;
+    margin-top: 0 !important;
     margin-bottom: 24px !important;
+    padding: 0 !important;
   }
 
   .hero-command-board.hero-premium {
