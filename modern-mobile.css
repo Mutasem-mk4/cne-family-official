@@ -1018,15 +1018,15 @@
   .site-footer {
     width: 100% !important;
     max-width: none !important;
-    margin: 32px 0 0 0 !important;
+    margin: 24px 0 0 0 !important;
     border-radius: 28px 28px 0 0 !important; /* Premium rounded top, flat bottom */
     border-left: none !important;
     border-right: none !important;
     border-bottom: none !important;
-    padding: 24px 16px 20px !important;
+    padding: 16px !important;
     display: flex !important;
     flex-direction: column !important;
-    gap: 16px !important;
+    gap: 12px !important;
   }
 
   .footer-brand {
@@ -1049,23 +1049,9 @@
     font-size: 1.25rem !important;
   }
 
-  /* Navigation links: horizontal inline row */
+  /* Hide footer navigation links on mobile to save vertical space */
   .footer-nav {
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: 8px 18px !important;
-    padding: 10px 0 !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-    width: 100% !important;
-  }
-
-  .footer-nav a {
-    font-size: 0.88rem !important;
-    padding: 4px 6px !important;
+    display: none !important;
   }
 
   /* Social links: 2x2 grid for compact height */
@@ -1074,7 +1060,7 @@
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 8px 12px !important;
     width: 100% !important;
-    margin-top: 4px !important;
+    margin-top: 0 !important;
   }
 
   .footer-social .social-link {
