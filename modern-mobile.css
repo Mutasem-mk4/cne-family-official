@@ -179,10 +179,8 @@
   .hero-command-board.hero-premium {
     width: 100% !important;
     min-width: unset !important;
-    height: 100vh !important;
-    height: 100dvh !important;
-    min-height: 100vh !important;
-    min-height: 100dvh !important;
+    height: auto !important;
+    min-height: unset !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: stretch !important;
@@ -232,8 +230,7 @@
     gap: 16px !important;
     text-align: center !important;
     align-items: center !important;
-    justify-content: center !important; /* Vertically center in viewport */
-    flex-grow: 1 !important; /* Stretch to fill parent height */
+    justify-content: center !important;
     width: 100% !important;
     box-sizing: border-box !important;
     background: transparent !important;
@@ -265,10 +262,14 @@
     max-width: none !important;
   }
 
-  /* Hide the detailed academic description on mobile to reduce text clutter */
   .hero-premium p,
   .hero-command-copy p {
-    display: none !important;
+    font-size: 0.88rem !important;
+    line-height: 1.45 !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    margin: 0 !important;
+    text-align: center !important;
+    max-width: none !important;
   }
 
   .hero-primary-actions {
