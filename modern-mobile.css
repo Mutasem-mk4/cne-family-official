@@ -6,6 +6,10 @@
 
 /* ─── 1. NAVBAR ────────────────────────────────────────────── */
 @media (max-width: 767px) {
+  #navbar {
+    z-index: 1000 !important;
+  }
+
   /* Outer shell: logo LEFT, actions RIGHT (RTL doc → flip with ltr) */
   .nav-inner {
     display: flex !important;
