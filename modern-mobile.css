@@ -968,6 +968,7 @@
     width: 100% !important;
     min-width: unset !important;
     position: relative !important;
+    aspect-ratio: 3508 / 2480 !important;
     line-height: 0 !important;
   }
 
@@ -977,6 +978,7 @@
   .plan-showcase .plan-showcase-image {
     width: 100% !important;
     height: auto !important;
+    aspect-ratio: 3508 / 2480 !important;
     display: block !important;
     pointer-events: none !important;     /* prevent image drag stealing touch */
   }

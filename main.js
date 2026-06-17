@@ -871,7 +871,7 @@ function renderClickablePlanImage(majorKey, major) {
   return `
     <div class="plan-image-map" aria-label="خطة ${major.label} - اضغط على اسم المادة لفتح ملفاتها">
       <div class="plan-viewport">
-        <img src="${major.image}" alt="${major.label}" class="plan-showcase-image" loading="lazy" decoding="async" />
+        <img src="${major.image}" alt="${major.label}" class="plan-showcase-image" width="3508" height="2480" loading="lazy" decoding="async" />
         ${hotspots.map(renderPlanHotspot).join("")}
       </div>
     </div>
