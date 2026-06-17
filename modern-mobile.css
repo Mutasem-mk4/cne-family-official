@@ -136,6 +136,13 @@
 
 /* ─── 2. HERO SECTION ─────────────────────────────────────── */
 @media (max-width: 767px) {
+  .home-command {
+    width: 100vw !important;
+    margin-inline: calc(-50vw + 50%) !important;
+    margin-top: -8px !important; /* Pull up to touch the header */
+    margin-bottom: 24px !important;
+  }
+
   .hero-command-board.hero-premium {
     width: 100% !important;
     min-width: unset !important;
@@ -146,9 +153,12 @@
     align-items: stretch !important;
     position: relative !important;
     overflow: hidden !important;
-    border-radius: 24px !important;
-    margin-bottom: 20px !important;
-    box-sizing: border-box !important;
+    border-radius: 0 !important; /* Merge seamlessly under header */
+    border-left: none !important;
+    border-right: none !important;
+    border-top: none !important;
+    border-bottom: 1px solid var(--line) !important;
+    box-shadow: none !important;
     padding: 0 !important;
   }
 
@@ -180,7 +190,7 @@
   .hero-command-content {
     position: relative !important;
     z-index: 3 !important;
-    padding: 24px 16px !important;
+    padding: 32px 16px 24px !important; /* Extra top padding under sticky header */
     display: flex !important;
     flex-direction: column !important;
     gap: 16px !important;
