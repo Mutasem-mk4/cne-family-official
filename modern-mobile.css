@@ -262,14 +262,10 @@
     max-width: none !important;
   }
 
+  /* Hide the detailed academic description on mobile to reduce text clutter */
   .hero-premium p,
   .hero-command-copy p {
-    font-size: 0.88rem !important;
-    line-height: 1.45 !important;
-    color: rgba(255, 255, 255, 0.8) !important;
-    margin: 0 !important;
-    text-align: center !important;
-    max-width: none !important;
+    display: none !important;
   }
 
   .hero-primary-actions {
