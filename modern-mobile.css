@@ -190,13 +190,14 @@
     border-left: none !important;
     border-right: none !important;
     border-top: none !important;
-    border-bottom: 1px solid var(--line) !important;
+    border-bottom: 1px solid rgba(214, 184, 138, 0.15) !important;
     padding: 0 !important;
     background: #020617 !important;
-    box-shadow: 0 16px 36px rgba(28, 37, 58, 0.12) !important; /* Light theme soft shadow */
+    box-shadow: 0 16px 40px rgba(184, 164, 137, 0.12) !important; /* Soft warm sand shadow to blend into the beige background */
   }
 
   [data-theme="dark"] .hero-command-board.hero-premium {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
     box-shadow: 0 20px 48px rgba(0, 0, 0, 0.6) !important; /* Dark theme deep shadow */
   }
 
