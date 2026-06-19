@@ -1,5 +1,8 @@
 import { initWowEffects } from "./wow-scripts.js";
 
+// مسار GitHub لجلب البيانات الحية مباشرة (يتحدث فور كتابة البوت بدون redeploy)
+const GITHUB_RAW = "https://raw.githubusercontent.com/Mutasem-mk4/cne-family-official/main/public";
+
 const DEFAULT_NEWS_ITEMS = [
   "⚡ إطلاق التحديث الجديد لمنصة CNE Family مع دعم كامل للهواتف الذكية!",
   "🎓 بدء فترة تسجيل المواد الأكاديمية للفصل الدراسي الأول 2026/2027 قريباً.",
@@ -124,10 +127,10 @@ async function loadData() {
     fetchJSON("/data/subjects.json"),
     fetchJSON("/data/activities.json"),
     fetchJSON("/data/curriculum.json"),
-    fetchJSON("/data/tech-titans.json").catch(() => ({ titans: DEFAULT_TECH_TITANS })),
+    fetchLive(`${GITHUB_RAW}/data/tech-titans.json`).catch(() => ({ titans: DEFAULT_TECH_TITANS })),
     fetchJSON("/data/team.json").catch(() => ({ groups: [] })),
     fetchJSON("/data/site-config.json").catch(() => DEFAULT_SITE_CONFIG),
-    fetchJSON("/data/news-ticker.json").catch(() => ({ items: DEFAULT_NEWS_ITEMS })),
+    fetchLive(`${GITHUB_RAW}/data/news-ticker.json`).catch(() => ({ items: DEFAULT_NEWS_ITEMS })),
   ]);
 
   state.subjects = subjectsPayload.subjects || [];
@@ -142,6 +145,14 @@ async function loadData() {
 async function fetchJSON(path) {
   const response = await fetch(path, { cache: "no-store" });
   if (!response.ok) throw new Error(`Failed to load ${path}`);
+  return response.json();
+}
+
+// جلب البيانات الحية من GitHub مباشرة مع cache-busting لضمان أحدث نسخة
+async function fetchLive(url) {
+  const freshUrl = `${url}?t=${Date.now()}`;
+  const response = await fetch(freshUrl, { cache: "no-store" });
+  if (!response.ok) throw new Error(`Failed to load live data from ${url}`);
   return response.json();
 }
 

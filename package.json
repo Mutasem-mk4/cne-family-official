@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run",
-    "sync:tech-titans": "node scripts/sync-tech-titans-from-telegram.mjs"
+    "sync:tech-titans": "node scripts/sync-tech-titans-from-telegram.mjs",
+    "sync": "node auto-sync.mjs"
   },
   "devDependencies": {
     "jsdom": "^29.1.1",
