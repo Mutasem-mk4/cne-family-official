@@ -5028,8 +5028,10 @@ p {
   position: relative;
   display: flex;
   align-items: center;
-  /* نجبر LTR عشان items تنتظم من اليسار لليمين — النص العربي يبقى RTL داخل كل item */
   direction: ltr;
+  /* fade ناعم عند الطرفين بدل القطع المفاجئ */
+  mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
 }
 
 .ticker-track {
