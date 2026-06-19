@@ -335,6 +335,27 @@ async function renderHome() {
       </div>
     </section>
 
+    <!-- Breaking News Ticker -->
+    <div class="news-ticker-container reveal">
+      <div class="news-ticker">
+        <div class="ticker-badge">
+          <span class="ticker-badge-dot"></span>
+          عاجل
+        </div>
+        <div class="ticker-content">
+          <div class="ticker-track">
+            <div class="ticker-item">⚡ إطلاق التحديث الجديد لمنصة CNE Family مع دعم كامل للهواتف الذكية!</div>
+            <div class="ticker-item">🎓 بدء فترة تسجيل المواد الأكاديمية للفصل الدراسي الأول 2026/2027 قريباً.</div>
+            <div class="ticker-item">🏆 مبارك للزميل Titan Nova صدارة لوحة متصدري التكنولوجيا لهذا الأسبوع!</div>
+            <!-- Duplicated for seamless loop -->
+            <div class="ticker-item">⚡ إطلاق التحديث الجديد لمنصة CNE Family مع دعم كامل للهواتف الذكية!</div>
+            <div class="ticker-item">🎓 بدء فترة تسجيل المواد الأكاديمية للفصل الدراسي الأول 2026/2027 قريباً.</div>
+            <div class="ticker-item">🏆 مبارك للزميل Titan Nova صدارة لوحة متصدري التكنولوجيا لهذا الأسبوع!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <section class="home-spotlight reveal">
       <section class="titans-board">
         <div class="titans-board-head">
@@ -370,6 +391,24 @@ async function renderHome() {
           ).join("")}
         </div>
       </section>
+    </section>
+
+    <!-- Activities Timeline Section -->
+    <section class="home-activities reveal">
+      <div class="home-activities-head">
+        <div class="activities-title-wrap">
+          <span class="live-dot"></span>
+          <span class="eyebrow">مواكبة للحدث</span>
+          <h2>آخر الأنشطة والفعاليات</h2>
+        </div>
+        <a href="/activities" data-link class="text-cta">عرض كل الأنشطة</a>
+      </div>
+      <div class="timeline-container">
+        <div class="timeline-line"></div>
+        <div class="timeline-track">
+          ${state.activities.slice(0, 4).map((act, idx) => renderTimelineCard(act, idx)).join("")}
+        </div>
+      </div>
     </section>
   `);
 }
@@ -946,6 +985,27 @@ function renderActivityCard(activity) {
         <p>${activity.description || activity.desc || ""}</p>
       </div>
     </article>
+  `;
+}
+
+function renderTimelineCard(activity, index) {
+  return `
+    <div class="timeline-item">
+      <div class="timeline-node-wrap">
+        <span class="timeline-node"></span>
+        <span class="timeline-date">${activity.date || ""}</span>
+      </div>
+      <article class="timeline-card" style="--delay: ${index * 100}ms">
+        <div class="timeline-card-cover" style="background:${activity.bg_gradient || "linear-gradient(135deg,#1f5eff,#10203c)"}">
+          <span>${activity.emoji || "✨"}</span>
+        </div>
+        <div class="timeline-card-body">
+          <span class="timeline-card-tag ${activity.tag_class || "tag-blue"}">${activity.tag || "فعالية"}</span>
+          <h3>${activity.title}</h3>
+          <p>${activity.description || activity.desc || ""}</p>
+        </div>
+      </article>
+    </div>
   `;
 }
 
