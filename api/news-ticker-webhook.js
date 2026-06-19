@@ -39,7 +39,7 @@ export default async function handler(req, res) {
         text: `⚠️ لم يتم العثور على أي أخبار صالحة. يرجى كتابة قائمة الأخبار بوضع كل خبر في سطر جديد ومسبوقاً بنقطة (مثل - أو *).`,
         reply_to_message_id: message.message_id
       }).catch(() => {});
-      return res.status(400).json({ ok: false, error: "Could not parse news items" });
+      return res.status(200).json({ ok: false, error: "Could not parse news items" });
     }
 
     await writeRepoFile(

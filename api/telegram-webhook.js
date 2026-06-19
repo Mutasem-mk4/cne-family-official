@@ -48,7 +48,7 @@ export default async function handler(req, res) {
         text: "⚠️ لم أتمكن من قراءة البيانات. تأكد من كتابة المفاتيح (name, title) باللغة الإنجليزية وبشكل صحيح.",
         reply_to_message_id: message.message_id
       }).catch(() => {});
-      return res.status(400).json({ ok: false, error: "Could not parse titan metadata" });
+      return res.status(200).json({ ok: false, error: "Could not parse titan metadata" });
     }
 
     const current = await readRepoJson(repository, githubToken, "public/data/tech-titans.json", {
