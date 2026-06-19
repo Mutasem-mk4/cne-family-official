@@ -5032,10 +5032,13 @@ p {
 
 .ticker-track {
   display: flex;
-  gap: 60px;
+  align-items: center;
+  gap: 0;
   white-space: nowrap;
-  animation: ticker-marquee 25s linear infinite;
+  /* السرعة: 18 ثانية — أسرع وأريح */
+  animation: ticker-marquee 18s linear infinite;
   width: max-content;
+  will-change: transform;
 }
 
 /* Pause scroll when cursor is over the ticker */
@@ -5047,20 +5050,24 @@ p {
   font-size: 0.92rem;
   font-weight: 500;
   color: var(--ink);
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
   flex-shrink: 0;
+  padding: 0 24px;
 }
 
-/* Marquee scroll animation (moves to left in RTL) */
+.ticker-sep {
+  color: var(--red);
+  opacity: 0.6;
+  font-size: 1rem;
+  flex-shrink: 0;
+  padding: 0 4px;
+}
+
+/* Marquee: يتحرك لليسار بمقدار نصف المسار بالضبط (نسخة واحدة = seamless loop) */
 @keyframes ticker-marquee {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(50%, 0, 0);
-  }
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 /* --- Activities Timeline Section --- */

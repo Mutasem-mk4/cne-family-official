@@ -364,9 +364,10 @@ async function renderHome() {
         </div>
         <div class="ticker-content">
           <div class="ticker-track">
-            ${state.newsItems.map(item => `<div class="ticker-item">${item}</div>`).join("")}
-            <!-- Duplicated for seamless loop -->
-            ${state.newsItems.map(item => `<div class="ticker-item">${item}</div>`).join("")}
+            ${state.newsItems.map(item => `<div class="ticker-item">${item}</div>`).join('<span class="ticker-sep">•</span>')}
+            <span class="ticker-sep">•</span>
+            ${state.newsItems.map(item => `<div class="ticker-item">${item}</div>`).join('<span class="ticker-sep">•</span>')}
+            <span class="ticker-sep">•</span>
           </div>
         </div>
       </div>
