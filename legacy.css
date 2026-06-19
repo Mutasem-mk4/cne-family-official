@@ -5028,6 +5028,8 @@ p {
   position: relative;
   display: flex;
   align-items: center;
+  /* نجبر LTR عشان items تنتظم من اليسار لليمين — النص العربي يبقى RTL داخل كل item */
+  direction: ltr;
 }
 
 .ticker-track {
@@ -5035,7 +5037,7 @@ p {
   align-items: center;
   gap: 0;
   white-space: nowrap;
-  /* السرعة: 18 ثانية — أسرع وأريح */
+  direction: ltr;
   animation: ticker-marquee 18s linear infinite;
   width: max-content;
   will-change: transform;
@@ -5054,6 +5056,8 @@ p {
   align-items: center;
   flex-shrink: 0;
   padding: 0 24px;
+  /* نبقي النص العربي RTL داخل الـ item */
+  direction: rtl;
 }
 
 .ticker-sep {
