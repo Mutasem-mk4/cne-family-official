@@ -1,7 +1,7 @@
 import { initWowEffects } from "./wow-scripts.js";
 
-// مسار GitHub لجلب البيانات الحية مباشرة (يتحدث فور كتابة البوت بدون redeploy)
-const GITHUB_RAW = "https://raw.githubusercontent.com/Mutasem-mk4/cne-family-official/main/public";
+// مسار jsDelivr لجلب البيانات الحية — يدعم purge فوري للـ cache بعد كل تحديث من البوت
+const LIVE_CDN = "https://cdn.jsdelivr.net/gh/Mutasem-mk4/cne-family-official@main/public";
 
 const DEFAULT_NEWS_ITEMS = [
   "⚡ إطلاق التحديث الجديد لمنصة CNE Family مع دعم كامل للهواتف الذكية!",
@@ -127,10 +127,10 @@ async function loadData() {
     fetchJSON("/data/subjects.json"),
     fetchJSON("/data/activities.json"),
     fetchJSON("/data/curriculum.json"),
-    fetchLive(`${GITHUB_RAW}/data/tech-titans.json`).catch(() => ({ titans: DEFAULT_TECH_TITANS })),
+    fetchLive(`${LIVE_CDN}/data/tech-titans.json`).catch(() => ({ titans: DEFAULT_TECH_TITANS })),
     fetchJSON("/data/team.json").catch(() => ({ groups: [] })),
     fetchJSON("/data/site-config.json").catch(() => DEFAULT_SITE_CONFIG),
-    fetchLive(`${GITHUB_RAW}/data/news-ticker.json`).catch(() => ({ items: DEFAULT_NEWS_ITEMS })),
+    fetchLive(`${LIVE_CDN}/data/news-ticker.json`).catch(() => ({ items: DEFAULT_NEWS_ITEMS })),
   ]);
 
   state.subjects = subjectsPayload.subjects || [];

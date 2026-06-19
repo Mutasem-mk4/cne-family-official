@@ -58,6 +58,9 @@ export default async function handler(req, res) {
       "Sync News Ticker from Telegram webhook",
     );
 
+    // مسح cache جهاز jsDelivr عشان الموقع يجيب النسخة الجديدة فوراً
+    await purgeJsDelivr(repository, "public/data/news-ticker.json").catch(() => {});
+
     await telegram(botToken, "sendMessage", {
       chat_id: sourceChatId,
       text: `✅ تم تحديث شريط الأخبار بنجاح بـ ${newsItems.length} خبر/أخبار.\n\nالتحديثات الآن في طريقها للموقع! 🚀`,
@@ -155,4 +158,8 @@ function encodeContent(content) {
     return Buffer.from(content, "utf8").toString("base64");
   }
   return Buffer.from(content).toString("base64");
+}
+async function purgeJsDelivr(repository, filePath) {
+  const purgeUrl = `https://purge.jsdelivr.net/gh/${repository}@main/${filePath}`;
+  await fetch(purgeUrl);
 }
