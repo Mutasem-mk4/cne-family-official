@@ -2732,6 +2732,15 @@ p {
   gap: 10px;
 }
 
+@media (min-width: 768px) {
+  .footer-nav {
+    justify-items: center;
+  }
+  .footer-social {
+    justify-items: end; /* Aligns socials to the left (end) in RTL */
+  }
+}
+
 .social-link {
   display: inline-flex;
   align-items: center;
