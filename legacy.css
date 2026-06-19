@@ -2737,7 +2737,8 @@ p {
     justify-items: center;
   }
   .footer-social {
-    justify-items: end; /* Aligns socials to the left (end) in RTL */
+    justify-self: end; /* Position container on the left (end in RTL) */
+    justify-items: start; /* Align items to the right (start in RTL) to align their right edges */
   }
 }
 
@@ -2748,6 +2749,8 @@ p {
   width: fit-content;
   color: #eef3ff;
   transition: transform 180ms ease, color 180ms ease;
+  padding: 0 12px;
+  box-sizing: border-box;
 }
 
 .social-icon {
