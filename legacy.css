@@ -314,7 +314,7 @@ p {
 }
 
 #page {
-  padding: 84px 0 88px;
+  padding: 84px 0 0;
   background-color: transparent;
 }
 
@@ -3055,7 +3055,7 @@ p {
   }
 
   #page {
-    padding: 10px 0 72px;
+    padding: 10px 0 0;
   }
 
   .hero h1,
@@ -3623,7 +3623,7 @@ p {
   }
 
   #page {
-    padding: 4px 0 56px;
+    padding: 4px 0 0;
   }
 
   .hero,
