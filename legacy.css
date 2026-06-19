@@ -1262,6 +1262,17 @@ p {
   gap: 18px;
 }
 
+@media (min-width: 768px) {
+  .home-spotlight {
+    position: relative !important;
+    right: calc(-50vw + 50% + 48px) !important; /* Shift to the right to align with the 48px header margin */
+    width: min(calc(100% - 64px), var(--container)) !important;
+    max-width: min(calc(100% - 64px), var(--container)) !important;
+    margin: 22px auto 0 auto !important;
+    padding: 0 !important;
+  }
+}
+
 .titans-board {
   padding: 30px;
   border-radius: 34px;
