@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { groupBy } from "./utils.js";
+import { extractNewsItems } from "./api/news-ticker-webhook.js";
 
 describe("groupBy", () => {
   it.each([
@@ -43,5 +44,60 @@ describe("groupBy", () => {
     },
   ])("$description", ({ items, key, expected }) => {
     expect(groupBy(items, key)).toEqual(expected);
+  });
+});
+
+describe("extractNewsItems", () => {
+  it.each([
+    {
+      body: "#news\n- معتصم خرما هو افضل مهندس بالكوكب",
+      tag: "#news",
+      expected: ["معتصم خرما هو افضل مهندس بالكوكب"],
+      description: "hyphen bullet",
+    },
+    {
+      body: "#news\n– معتصم خرما هو افضل مهندس بالكوكب",
+      tag: "#news",
+      expected: ["معتصم خرما هو افضل مهندس بالكوكب"],
+      description: "en-dash bullet",
+    },
+    {
+      body: "#news\n— معتصم خرما هو افضل مهندس بالكوكب",
+      tag: "#news",
+      expected: ["معتصم خرما هو افضل مهندس بالكوكب"],
+      description: "em-dash bullet",
+    },
+    {
+      body: "#news\n• معتصم خرما هو افضل مهندس بالكوكب",
+      tag: "#news",
+      expected: ["معتصم خرما هو افضل مهندس بالكوكب"],
+      description: "bullet point",
+    },
+    {
+      body: "#news\n1. معتصم خرما هو افضل مهندس بالكوكب",
+      tag: "#news",
+      expected: ["معتصم خرما هو افضل مهندس بالكوكب"],
+      description: "numbered list item",
+    },
+    {
+      body: "#news\nمعتصم خرما هو افضل مهندس بالكوكب",
+      tag: "#news",
+      expected: ["معتصم خرما هو افضل مهندس بالكوكب"],
+      description: "plain text line (no bullet)",
+    },
+    {
+      body: "#NEWS\n* خبر أول\n* خبر ثاني",
+      tag: "#news",
+      expected: ["خبر أول", "خبر ثاني"],
+      description: "multiple items case insensitive tag",
+    },
+    {
+      body: "#news",
+      tag: "#news",
+      expected: null,
+      description: "empty body returns null",
+    },
+  ])("$description", ({ body, tag, expected }) => {
+    expect(extractNewsItems(body, tag)).toEqual(expected);
   });
 });

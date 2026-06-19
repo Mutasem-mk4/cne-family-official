@@ -294,7 +294,7 @@ function extractNewsItems(body, tag) {
 
   const items = [];
   for (const line of lines) {
-    const match = line.match(/^[-*•\d+.\)]\s*(.+)$/);
+    const match = line.match(/^(?:[-–—_*•▪▫○●✓✔]|\d+[\.\)]?)\s*(.+)$/);
     if (match) {
       items.push(match[1].trim());
     } else {

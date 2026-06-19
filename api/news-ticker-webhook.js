@@ -77,7 +77,7 @@ export default async function handler(req, res) {
   }
 }
 
-function extractNewsItems(body, tag) {
+export function extractNewsItems(body, tag) {
   const cleanBody = body.replace(new RegExp(tag, "gi"), "").trim();
   if (!cleanBody) return null;
 
@@ -88,7 +88,7 @@ function extractNewsItems(body, tag) {
 
   const items = [];
   for (const line of lines) {
-    const match = line.match(/^[-*•\d+.\)]\s*(.+)$/);
+    const match = line.match(/^(?:[-–—_*•▪▫○●✓✔]|\d+[\.\)]?)\s*(.+)$/);
     if (match) {
       items.push(match[1].trim());
     } else {
