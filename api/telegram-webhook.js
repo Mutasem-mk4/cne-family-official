@@ -36,57 +36,9 @@ export default async function handler(req, res) {
 
     const body = `${message.text || ""}\n${message.caption || ""}`.trim();
     const bodyLower = body.toLowerCase();
-    const newsTag = (process.env.NEWS_TICKER_TAG || "#news").trim().toLowerCase();
 
-    const isTitan = bodyLower.includes(tag);
-    const isNews = bodyLower.includes(newsTag);
-
-    if (!isTitan && !isNews) {
-      await telegram(botToken, "sendMessage", {
-        chat_id: message.chat.id,
-        text: `⚠️ البوت قرأ رسالتك، ولكنه لم يجد الهاشتاج المطلوب لليدربورد (${tag}) أو للأخبار (${newsTag}).\n\nنص الرسالة الذي قرأه البوت هو:\n${body}`
-      }).catch(() => {});
+    if (!bodyLower.includes(tag)) {
       return res.status(200).json({ ok: true, ignored: "Missing required tag" });
-    }
-
-    if (isNews) {
-      const newsItems = extractNewsItems(body, newsTag);
-      if (!newsItems) {
-        await telegram(botToken, "sendMessage", {
-          chat_id: sourceChatId,
-          text: `⚠️ لم يتم العثور على أي أخبار صالحة. يرجى كتابة قائمة الأخبار بوضع كل خبر في سطر جديد ومسبوقاً بنقطة (مثل - أو *).`,
-          reply_to_message_id: message.message_id
-        }).catch(() => {});
-        return res.status(400).json({ ok: false, error: "Could not parse news items" });
-      }
-
-      await writeRepoFile(
-        repository,
-        githubToken,
-        "public/data/news-ticker.json",
-        JSON.stringify(
-          {
-            generatedAt: new Date().toISOString(),
-            source: "telegram-webhook",
-            items: newsItems,
-          },
-          null,
-          2,
-        ) + "\n",
-        "Sync News Ticker from Telegram webhook",
-      );
-
-      await telegram(botToken, "sendMessage", {
-        chat_id: sourceChatId,
-        text: `✅ تم تحديث شريط الأخبار بنجاح بـ ${newsItems.length} خبر/أخبار.\n\nالتحديثات الآن في طريقها للموقع! 🚀`,
-        reply_to_message_id: message.message_id
-      }).catch(() => {});
-
-      return res.status(200).json({
-        ok: true,
-        updated: "news-ticker",
-        count: newsItems.length,
-      });
     }
 
     const metadata = extractTitanMetadata(body);
@@ -321,24 +273,3 @@ function slugify(value) {
     .replace(/^-+|-+$/g, "") || "titan";
 }
 
-function extractNewsItems(body, tag) {
-  const cleanBody = body.replace(new RegExp(tag, "gi"), "").trim();
-  if (!cleanBody) return null;
-
-  const lines = cleanBody
-    .split(/\r?\n/)
-    .map((line) => line.trim())
-    .filter(Boolean);
-
-  const items = [];
-  for (const line of lines) {
-    const match = line.match(/^[-*•\d+.\)]\s*(.+)$/);
-    if (match) {
-      items.push(match[1].trim());
-    } else {
-      items.push(line);
-    }
-  }
-
-  return items.length ? items : null;
-}

@@ -6,15 +6,13 @@ const STATE_PATH = path.join(ROOT, ".github", "tech-titans-sync-state.json");
 const OUTPUT_JSON_PATH = path.join(ROOT, "public", "data", "tech-titans.json");
 const OUTPUT_ASSETS_DIR = path.join(ROOT, "public", "assets", "tech-titans");
 const OUTPUT_WEB_DIR = "/assets/tech-titans";
-const ALLOWED_TONES = new Set(["blue", "green", "orange", "red", "sand"]);
+const ALLOWED_TONES = new Set(["blue", "green", "orange", "red", "sand", "pink", "purple", "teal", "yellow", "indigo"]);
 
-const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+const NEWS_BOT_TOKEN = process.env.NEWS_BOT_TOKEN;
 const SOURCE_CHAT_ID = process.env.TELEGRAM_SOURCE_CHAT_ID;
-const REQUIRED_TAG = (process.env.TECH_TITANS_TAG || "#techtitans").trim().toLowerCase();
-
-if (!BOT_TOKEN) {
-  throw new Error("Missing TELEGRAM_BOT_TOKEN");
-}
+const TITANS_TAG = (process.env.TECH_TITANS_TAG || "#techtitans").trim().toLowerCase();
+const NEWS_TAG = (process.env.NEWS_TICKER_TAG || "#news").trim().toLowerCase();
 
 if (!SOURCE_CHAT_ID) {
   throw new Error("Missing TELEGRAM_SOURCE_CHAT_ID");
@@ -24,102 +22,153 @@ await fs.mkdir(path.dirname(STATE_PATH), { recursive: true });
 await fs.mkdir(path.dirname(OUTPUT_JSON_PATH), { recursive: true });
 await fs.mkdir(OUTPUT_ASSETS_DIR, { recursive: true });
 
-const webhookInfo = await telegram("getWebhookInfo", {});
-if (webhookInfo.url) {
-  throw new Error(
-    `Telegram webhook is active for this bot (${webhookInfo.url}). getUpdates will not work until the webhook is removed.`,
-  );
-}
+// Read the unified state tracking offsets for both bots
+const state = await readJson(STATE_PATH, { lastUpdateIdTitans: 0, lastUpdateIdNews: 0 });
 
-const state = await readJson(STATE_PATH, { lastUpdateId: 0 });
-const updates = await telegram("getUpdates", {
-  offset: Number(state.lastUpdateId || 0) + 1,
-  limit: 100,
-  allowed_updates: ["message", "channel_post"],
-});
+// Helper to make API calls to Telegram with a specific token
+async function telegram(token, method, payload) {
+  const response = await fetch(`https://api.telegram.org/bot${token}/${method}`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(payload),
+  });
 
-if (!updates.length) {
-  console.log("No new Telegram updates. Confirm the bot can see messages in the source chat.");
-  process.exit(0);
-}
-
-const titanMessages = [];
-const newsMessages = [];
-const NEWS_TAG = (process.env.NEWS_TICKER_TAG || "#news").trim().toLowerCase();
-
-for (const update of updates) {
-  const payload = update.message || update.channel_post;
-  if (!payload || String(payload.chat?.id) !== String(SOURCE_CHAT_ID)) {
-    continue;
-  }
-  const text = `${payload.text || ""}\n${payload.caption || ""}`.toLowerCase();
-  if (text.includes(REQUIRED_TAG)) {
-    titanMessages.push(payload);
-  }
-  if (text.includes(NEWS_TAG)) {
-    newsMessages.push(payload);
-  }
-}
-
-const nextState = {
-  lastUpdateId: Math.max(...updates.map((update) => update.update_id)),
-};
-
-if (!titanMessages.length && !newsMessages.length) {
-  await writeJson(STATE_PATH, nextState);
-  console.log("No matching updates found.");
-  process.exit(0);
-}
-
-// 1. Process Tech Titans
-if (titanMessages.length > 0) {
-  const titans = [];
-  for (const message of titanMessages) {
-    const titan = await parseTitanMessage(message);
-    if (titan) titans.push(titan);
+  if (!response.ok) {
+    throw new Error(`Telegram API ${method} failed with status ${response.status}`);
   }
 
-  if (titans.length > 0) {
-    await clearDirectory(OUTPUT_ASSETS_DIR);
-    const sortedTitans = titans
-      .sort((left, right) => Number(right.score || 0) - Number(left.score || 0))
-      .slice(0, 5)
-      .map((titan, index) => ({
-        ...titan,
-        badge: String(index + 1).padStart(2, "0"),
-      }));
-
-    await writeJson(OUTPUT_JSON_PATH, {
-      generatedAt: new Date().toISOString(),
-      source: "telegram-bot",
-      titans: sortedTitans,
-    });
-    console.log(`Synced ${sortedTitans.length} Tech Titans from Telegram.`);
+  const json = await response.json();
+  if (!json.ok) {
+    throw new Error(`Telegram API ${method} failed: ${json.description}`);
   }
+
+  return json.result;
 }
 
-// 2. Process News Ticker
-if (newsMessages.length > 0) {
-  const latestNewsMsg = newsMessages[newsMessages.length - 1];
-  const body = `${latestNewsMsg.text || ""}\n${latestNewsMsg.caption || ""}`.trim();
-  const newsItems = extractNewsItems(body, NEWS_TAG);
-  if (newsItems) {
-    const tickerPath = path.join(ROOT, "public", "data", "news-ticker.json");
-    await writeJson(tickerPath, {
-      generatedAt: new Date().toISOString(),
-      source: "telegram-bot",
-      items: newsItems,
-    });
-    console.log(`Synced ${newsItems.length} news items from Telegram.`);
-  }
-}
-await writeJson(STATE_PATH, nextState);
+// 1. Process Tech Titans Leaderboard (using TELEGRAM_BOT_TOKEN)
+if (TELEGRAM_BOT_TOKEN) {
+  console.log("Checking Tech Titans updates...");
+  try {
+    const webhookInfo = await telegram(TELEGRAM_BOT_TOKEN, "getWebhookInfo", {});
+    if (webhookInfo.url) {
+      console.warn(`[Titans] Webhook is active (${webhookInfo.url}). Skipping getUpdates for Titans.`);
+    } else {
+      const updates = await telegram(TELEGRAM_BOT_TOKEN, "getUpdates", {
+        offset: Number(state.lastUpdateIdTitans || 0) + 1,
+        limit: 100,
+        allowed_updates: ["message", "channel_post"],
+      });
 
-async function parseTitanMessage(message) {
+      if (updates.length > 0) {
+        const titanMessages = [];
+        for (const update of updates) {
+          const payload = update.message || update.channel_post;
+          if (payload && String(payload.chat?.id) === String(SOURCE_CHAT_ID)) {
+            const text = `${payload.text || ""}\n${payload.caption || ""}`.toLowerCase();
+            if (text.includes(TITANS_TAG)) {
+              titanMessages.push(payload);
+            }
+          }
+        }
+
+        if (titanMessages.length > 0) {
+          const titans = [];
+          for (const message of titanMessages) {
+            const titan = await parseTitanMessage(message, TELEGRAM_BOT_TOKEN);
+            if (titan) titans.push(titan);
+          }
+
+          if (titans.length > 0) {
+            await clearDirectory(OUTPUT_ASSETS_DIR);
+            const sortedTitans = titans
+              .sort((left, right) => Number(right.score || 0) - Number(left.score || 0))
+              .slice(0, 5)
+              .map((titan, index) => ({
+                ...titan,
+                badge: String(index + 1).padStart(2, "0"),
+              }));
+
+            await writeJson(OUTPUT_JSON_PATH, {
+              generatedAt: new Date().toISOString(),
+              source: "telegram-bot-titans",
+              titans: sortedTitans,
+            });
+            console.log(`[Titans] Synced ${sortedTitans.length} Tech Titans.`);
+          }
+        }
+
+        state.lastUpdateIdTitans = Math.max(...updates.map((u) => u.update_id));
+        await writeJson(STATE_PATH, state);
+      } else {
+        console.log("[Titans] No new updates.");
+      }
+    }
+  } catch (error) {
+    console.error("[Titans] Error syncing:", error.message);
+  }
+} else {
+  console.log("TELEGRAM_BOT_TOKEN not set, skipping Titans sync.");
+}
+
+// 2. Process News Ticker (using NEWS_BOT_TOKEN)
+if (NEWS_BOT_TOKEN) {
+  console.log("Checking News Ticker updates...");
+  try {
+    const webhookInfo = await telegram(NEWS_BOT_TOKEN, "getWebhookInfo", {});
+    if (webhookInfo.url) {
+      console.warn(`[News] Webhook is active (${webhookInfo.url}). Skipping getUpdates for News.`);
+    } else {
+      const updates = await telegram(NEWS_BOT_TOKEN, "getUpdates", {
+        offset: Number(state.lastUpdateIdNews || 0) + 1,
+        limit: 100,
+        allowed_updates: ["message", "channel_post"],
+      });
+
+      if (updates.length > 0) {
+        const newsMessages = [];
+        for (const update of updates) {
+          const payload = update.message || update.channel_post;
+          if (payload && String(payload.chat?.id) === String(SOURCE_CHAT_ID)) {
+            const text = `${payload.text || ""}\n${payload.caption || ""}`.toLowerCase();
+            if (text.includes(NEWS_TAG)) {
+              newsMessages.push(payload);
+            }
+          }
+        }
+
+        if (newsMessages.length > 0) {
+          const latestNewsMsg = newsMessages[newsMessages.length - 1];
+          const body = `${latestNewsMsg.text || ""}\n${latestNewsMsg.caption || ""}`.trim();
+          const newsItems = extractNewsItems(body, NEWS_TAG);
+          if (newsItems) {
+            const tickerPath = path.join(ROOT, "public", "data", "news-ticker.json");
+            await writeJson(tickerPath, {
+              generatedAt: new Date().toISOString(),
+              source: "telegram-bot-news",
+              items: newsItems,
+            });
+            console.log(`[News] Synced ${newsItems.length} news items.`);
+          }
+        }
+
+        state.lastUpdateIdNews = Math.max(...updates.map((u) => u.update_id));
+        await writeJson(STATE_PATH, state);
+      } else {
+        console.log("[News] No new updates.");
+      }
+    }
+  } catch (error) {
+    console.error("[News] Error syncing:", error.message);
+  }
+} else {
+  console.log("NEWS_BOT_TOKEN not set, skipping News sync.");
+}
+
+async function parseTitanMessage(message, token) {
   const metadata = extractTitanMetadata(message);
   if (!metadata) return null;
 
-  const image = await downloadMessagePhoto(message, metadata.name);
+  const image = await downloadMessagePhoto(message, metadata.name, token);
 
   return {
     name: metadata.name,
@@ -136,12 +185,12 @@ function extractTitanMetadata(message) {
   return parseJsonMetadata(body) || parseLineMetadata(body);
 }
 
-async function downloadMessagePhoto(message, name) {
+async function downloadMessagePhoto(message, name, token) {
   const photos = [...(message.photo || [])];
   if (!photos.length) return "";
 
   const bestPhoto = photos.sort((left, right) => (right.file_size || 0) - (left.file_size || 0))[0];
-  const fileInfo = await telegram("getFile", { file_id: bestPhoto.file_id });
+  const fileInfo = await telegram(token, "getFile", { file_id: bestPhoto.file_id });
   if (!fileInfo.file_path) return "";
 
   const ext = path.extname(fileInfo.file_path) || ".jpg";
@@ -150,7 +199,7 @@ async function downloadMessagePhoto(message, name) {
   const outputPath = path.join(OUTPUT_ASSETS_DIR, fileName);
   const outputWebPath = `${OUTPUT_WEB_DIR}/${fileName}`;
 
-  const response = await fetch(`https://api.telegram.org/file/bot${BOT_TOKEN}/${fileInfo.file_path}`);
+  const response = await fetch(`https://api.telegram.org/file/bot${token}/${fileInfo.file_path}`);
   if (!response.ok) {
     throw new Error(`Failed to download Telegram file: ${fileInfo.file_path}`);
   }
@@ -158,25 +207,6 @@ async function downloadMessagePhoto(message, name) {
   const arrayBuffer = await response.arrayBuffer();
   await fs.writeFile(outputPath, Buffer.from(arrayBuffer));
   return outputWebPath;
-}
-
-async function telegram(method, payload) {
-  const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/${method}`, {
-    method: "POST",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify(payload),
-  });
-
-  if (!response.ok) {
-    throw new Error(`Telegram API ${method} failed with status ${response.status}`);
-  }
-
-  const json = await response.json();
-  if (!json.ok) {
-    throw new Error(`Telegram API ${method} failed: ${json.description}`);
-  }
-
-  return json.result;
 }
 
 async function readJson(filePath, fallback) {
