@@ -149,10 +149,10 @@ p {
 
 @media (min-width: 768px) {
   #navbar .nav-inner {
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 16px 48px !important;
-    margin: 0 !important;
+    width: min(calc(100% - 64px), var(--container)) !important;
+    max-width: min(calc(100% - 64px), var(--container)) !important;
+    padding: 16px 0 !important;
+    margin: 0 auto !important;
     box-sizing: border-box !important;
   }
 }
@@ -1262,16 +1262,7 @@ p {
   gap: 18px;
 }
 
-@media (min-width: 768px) {
-  .home-spotlight {
-    position: relative !important;
-    right: calc(-50vw + 50% + 48px) !important; /* Shift to the right to align with the 48px header margin */
-    width: min(calc(100% - 64px), var(--container)) !important;
-    max-width: min(calc(100% - 64px), var(--container)) !important;
-    margin: 22px auto 0 auto !important;
-    padding: 0 !important;
-  }
-}
+
 
 .titans-board {
   padding: 30px;
