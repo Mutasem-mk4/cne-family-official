@@ -1259,19 +1259,21 @@ function renderFooter() {
 
   return `
     <footer class="site-footer">
-      <div class="footer-brand">
-        <img src="/assets/logos/cne-icon.png" alt="CNE logo" />
-        <strong> CNE Family </strong>
-      </div>
-      <div class="footer-nav">
-        <a href="/" data-link>الرئيسية</a>
-        <a href="/about" data-link>عن المنصة</a>
-        <a href="/subjects" data-link>المواد</a>
-        <a href="/map" data-link>الخريطة</a>
-        <a href="/tracker" data-link>المتتبع</a>
-      </div>
-      <div class="footer-social">
-        ${socialLinks.map(renderSocialLink).join("")}
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <img src="/assets/logos/cne-icon.png" alt="CNE logo" />
+          <strong> CNE Family </strong>
+        </div>
+        <div class="footer-nav">
+          <a href="/" data-link>الرئيسية</a>
+          <a href="/about" data-link>عن المنصة</a>
+          <a href="/subjects" data-link>المواد</a>
+          <a href="/map" data-link>الخريطة</a>
+          <a href="/tracker" data-link>المتتبع</a>
+        </div>
+        <div class="footer-social">
+          ${socialLinks.map(renderSocialLink).join("")}
+        </div>
       </div>
     </footer>
   `;

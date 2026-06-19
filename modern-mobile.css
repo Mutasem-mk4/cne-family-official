@@ -1024,17 +1024,26 @@
    ============================================================ */
 @media (max-width: 767px) {
   .site-footer {
-    width: 100% !important;
-    max-width: none !important;
-    margin: 24px 0 0 0 !important;
-    border-radius: 28px 28px 0 0 !important; /* Premium rounded top, flat bottom */
-    border-left: none !important;
-    border-right: none !important;
-    border-bottom: none !important;
-    padding: 16px !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin-left: calc(-50vw + 50%) !important;
+    margin-right: calc(-50vw + 50%) !important;
+    margin-bottom: 0 !important;
+    margin-top: 36px !important;
+    border-radius: 0 !important; /* Completely flat and full-bleed */
+    border: none !important;
+    padding: 32px 0 !important;
+    display: block !important;
+    box-sizing: border-box !important;
+  }
+
+  .footer-inner {
+    width: min(calc(100% - 32px), var(--container)) !important;
+    margin: 0 auto !important;
     display: flex !important;
     flex-direction: column !important;
-    gap: 12px !important;
+    gap: 24px !important;
+    box-sizing: border-box !important;
   }
 
   .footer-brand {
@@ -1120,7 +1129,7 @@
 @media (min-width: 840px) and (max-width: 1199px) {
   .nav-inner,
   #page,
-  .site-footer {
+  .footer-inner {
     width: min(calc(100% - 48px), var(--container)) !important;
   }
 
@@ -1148,7 +1157,7 @@
 @media (min-width: 768px) and (max-width: 839px) {
   .nav-inner,
   #page,
-  .site-footer {
+  .footer-inner {
     width: min(calc(100% - 48px), var(--container)) !important;
   }
 
@@ -1415,7 +1424,7 @@
     gap: 12px !important;
   }
 
-  .site-footer {
+  .footer-inner {
     width: 100% !important;
   }
 }
