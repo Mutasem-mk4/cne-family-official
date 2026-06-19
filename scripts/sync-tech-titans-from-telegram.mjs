@@ -43,75 +43,77 @@ if (!updates.length) {
   process.exit(0);
 }
 
-const titanMessages = updates
-  .map((update) => ({
-    updateId: update.update_id,
-    payload: update.message || update.channel_post,
-  }))
-  .filter(({ payload }) => payload && String(payload.chat?.id) === String(SOURCE_CHAT_ID))
-  .filter(({ payload }) => {
-    const text = `${payload.text || ""}\n${payload.caption || ""}`.toLowerCase();
-    return text.includes(REQUIRED_TAG);
-  });
+const titanMessages = [];
+const newsMessages = [];
+const NEWS_TAG = (process.env.NEWS_TICKER_TAG || "#news").trim().toLowerCase();
+
+for (const update of updates) {
+  const payload = update.message || update.channel_post;
+  if (!payload || String(payload.chat?.id) !== String(SOURCE_CHAT_ID)) {
+    continue;
+  }
+  const text = `${payload.text || ""}\n${payload.caption || ""}`.toLowerCase();
+  if (text.includes(REQUIRED_TAG)) {
+    titanMessages.push(payload);
+  }
+  if (text.includes(NEWS_TAG)) {
+    newsMessages.push(payload);
+  }
+}
 
 const nextState = {
   lastUpdateId: Math.max(...updates.map((update) => update.update_id)),
 };
 
-if (!titanMessages.length) {
+if (!titanMessages.length && !newsMessages.length) {
   await writeJson(STATE_PATH, nextState);
-  console.log("No matching Tech Titans updates found.");
-  console.log(
-    JSON.stringify(
-      updates.map((update) => {
-        const payload = update.message || update.channel_post;
-        return {
-          updateId: update.update_id,
-          chatId: payload?.chat?.id ?? null,
-          chatType: payload?.chat?.type ?? null,
-          hasPhoto: Boolean(payload?.photo?.length),
-          hasTag: `${payload?.text || ""}\n${payload?.caption || ""}`.toLowerCase().includes(REQUIRED_TAG),
-        };
-      }),
-      null,
-      2,
-    ),
-  );
+  console.log("No matching updates found.");
   process.exit(0);
 }
 
-await clearDirectory(OUTPUT_ASSETS_DIR);
+// 1. Process Tech Titans
+if (titanMessages.length > 0) {
+  const titans = [];
+  for (const message of titanMessages) {
+    const titan = await parseTitanMessage(message);
+    if (titan) titans.push(titan);
+  }
 
-const titans = [];
+  if (titans.length > 0) {
+    await clearDirectory(OUTPUT_ASSETS_DIR);
+    const sortedTitans = titans
+      .sort((left, right) => Number(right.score || 0) - Number(left.score || 0))
+      .slice(0, 5)
+      .map((titan, index) => ({
+        ...titan,
+        badge: String(index + 1).padStart(2, "0"),
+      }));
 
-for (const item of titanMessages) {
-  const titan = await parseTitanMessage(item.payload);
-  if (titan) titans.push(titan);
+    await writeJson(OUTPUT_JSON_PATH, {
+      generatedAt: new Date().toISOString(),
+      source: "telegram-bot",
+      titans: sortedTitans,
+    });
+    console.log(`Synced ${sortedTitans.length} Tech Titans from Telegram.`);
+  }
 }
 
-if (!titans.length) {
-  await writeJson(STATE_PATH, nextState);
-  console.log("Matching updates found, but none could be parsed.");
-  process.exit(0);
+// 2. Process News Ticker
+if (newsMessages.length > 0) {
+  const latestNewsMsg = newsMessages[newsMessages.length - 1];
+  const body = `${latestNewsMsg.text || ""}\n${latestNewsMsg.caption || ""}`.trim();
+  const newsItems = extractNewsItems(body, NEWS_TAG);
+  if (newsItems) {
+    const tickerPath = path.join(ROOT, "public", "data", "news-ticker.json");
+    await writeJson(tickerPath, {
+      generatedAt: new Date().toISOString(),
+      source: "telegram-bot",
+      items: newsItems,
+    });
+    console.log(`Synced ${newsItems.length} news items from Telegram.`);
+  }
 }
-
-const sortedTitans = titans
-  .sort((left, right) => Number(right.score || 0) - Number(left.score || 0))
-  .slice(0, 5)
-  .map((titan, index) => ({
-    ...titan,
-    badge: String(index + 1).padStart(2, "0"),
-  }));
-
-await writeJson(OUTPUT_JSON_PATH, {
-  generatedAt: new Date().toISOString(),
-  source: "telegram-bot",
-  titans: sortedTitans,
-});
-
 await writeJson(STATE_PATH, nextState);
-
-console.log(`Synced ${sortedTitans.length} Tech Titans from Telegram.`);
 
 async function parseTitanMessage(message) {
   const metadata = extractTitanMetadata(message);
@@ -249,4 +251,26 @@ function parseLineMetadata(body) {
     streak: data.streak || "",
     tone: data.tone || "blue",
   };
+}
+
+function extractNewsItems(body, tag) {
+  const cleanBody = body.replace(new RegExp(tag, "gi"), "").trim();
+  if (!cleanBody) return null;
+
+  const lines = cleanBody
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean);
+
+  const items = [];
+  for (const line of lines) {
+    const match = line.match(/^[-*•\d+.\)]\s*(.+)$/);
+    if (match) {
+      items.push(match[1].trim());
+    } else {
+      items.push(line);
+    }
+  }
+
+  return items.length ? items : null;
 }

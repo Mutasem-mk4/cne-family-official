@@ -1,5 +1,11 @@
 import { initWowEffects } from "./wow-scripts.js";
 
+const DEFAULT_NEWS_ITEMS = [
+  "⚡ إطلاق التحديث الجديد لمنصة CNE Family مع دعم كامل للهواتف الذكية!",
+  "🎓 بدء فترة تسجيل المواد الأكاديمية للفصل الدراسي الأول 2026/2027 قريباً.",
+  "🏆 مبارك للزميل Titan Nova صدارة لوحة متصدري التكنولوجيا لهذا الأسبوع!"
+];
+
 const state = {
   subjects: [],
   activities: [],
@@ -7,6 +13,7 @@ const state = {
   techTitans: [],
   team: [],
   siteConfig: null,
+  newsItems: [],
   major: localStorage.getItem("study_major") || "computer",
 };
 
@@ -113,13 +120,14 @@ async function bootstrap() {
 }
 
 async function loadData() {
-  const [subjectsPayload, activitiesPayload, curriculumPayload, techTitansPayload, teamPayload, siteConfigPayload] = await Promise.all([
+  const [subjectsPayload, activitiesPayload, curriculumPayload, techTitansPayload, teamPayload, siteConfigPayload, newsTickerPayload] = await Promise.all([
     fetchJSON("/data/subjects.json"),
     fetchJSON("/data/activities.json"),
     fetchJSON("/data/curriculum.json"),
     fetchJSON("/data/tech-titans.json").catch(() => ({ titans: DEFAULT_TECH_TITANS })),
     fetchJSON("/data/team.json").catch(() => ({ groups: [] })),
     fetchJSON("/data/site-config.json").catch(() => DEFAULT_SITE_CONFIG),
+    fetchJSON("/data/news-ticker.json").catch(() => ({ items: DEFAULT_NEWS_ITEMS })),
   ]);
 
   state.subjects = subjectsPayload.subjects || [];
@@ -128,6 +136,7 @@ async function loadData() {
   state.techTitans = techTitansPayload.titans?.length ? techTitansPayload.titans : DEFAULT_TECH_TITANS;
   state.team = teamPayload.groups || [];
   state.siteConfig = { ...DEFAULT_SITE_CONFIG, ...siteConfigPayload };
+  state.newsItems = newsTickerPayload.items || DEFAULT_NEWS_ITEMS;
 }
 
 async function fetchJSON(path) {
@@ -344,13 +353,9 @@ async function renderHome() {
         </div>
         <div class="ticker-content">
           <div class="ticker-track">
-            <div class="ticker-item">⚡ إطلاق التحديث الجديد لمنصة CNE Family مع دعم كامل للهواتف الذكية!</div>
-            <div class="ticker-item">🎓 بدء فترة تسجيل المواد الأكاديمية للفصل الدراسي الأول 2026/2027 قريباً.</div>
-            <div class="ticker-item">🏆 مبارك للزميل Titan Nova صدارة لوحة متصدري التكنولوجيا لهذا الأسبوع!</div>
+            ${state.newsItems.map(item => `<div class="ticker-item">${item}</div>`).join("")}
             <!-- Duplicated for seamless loop -->
-            <div class="ticker-item">⚡ إطلاق التحديث الجديد لمنصة CNE Family مع دعم كامل للهواتف الذكية!</div>
-            <div class="ticker-item">🎓 بدء فترة تسجيل المواد الأكاديمية للفصل الدراسي الأول 2026/2027 قريباً.</div>
-            <div class="ticker-item">🏆 مبارك للزميل Titan Nova صدارة لوحة متصدري التكنولوجيا لهذا الأسبوع!</div>
+            ${state.newsItems.map(item => `<div class="ticker-item">${item}</div>`).join("")}
           </div>
         </div>
       </div>
