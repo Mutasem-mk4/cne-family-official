@@ -271,49 +271,55 @@ function bindPageEvents() {
 // Scale functions removed - responsiveness handled natively in CSS now.
 
 /**
- * تحريك شريط الأخبار باستخدام requestAnimationFrame
- * → pixel-perfect, بدون فراغ, بدون قفزة مفاجئة
+ * تحريك شريط الأخبار — JS pixel-perfect infinite loop
+ * يكرّر الأخبار آلياً حتى لو كانت 2 أخبار فقط
  */
 let _tickerRaf = null;
 function initTickerAnimation() {
-  // إلغاء أي جلسة سابقة
-  if (_tickerRaf) {
-    cancelAnimationFrame(_tickerRaf);
-    _tickerRaf = null;
-  }
+  if (_tickerRaf) { cancelAnimationFrame(_tickerRaf); _tickerRaf = null; }
 
   const track = document.querySelector(".ticker-track");
   if (!track) return;
 
-  // أوقف CSS animation واترك الـ JS يتحكم
   track.style.animation = "none";
   track.style.transform = "translateX(0px)";
 
-  let x = 0;
-  let paused = false;
-  const speed = 0.8; // px per frame — 60fps = ~48px/s
+  // ننتظر frame عشان المتصفح يحسب العروض الحقيقية
+  requestAnimationFrame(() => {
+    const containerWidth = (track.parentElement || document.body).offsetWidth;
 
-  // إيقاف عند مرور الموش
-  const ticker = track.closest(".news-ticker");
-  if (ticker) {
-    ticker.addEventListener("mouseenter", () => { paused = true; });
-    ticker.addEventListener("mouseleave", () => { paused = false; });
-  }
+    // نحفظ عرض نسخة واحدة قبل أي تكرار
+    const oneCopyWidth = track.scrollWidth;
 
-  function tick() {
-    if (!paused) {
-      x -= speed;
-      // الحساب بالـ pixel الفعلي — نصف عرض المسار = نسخة واحدة بالضبط
-      const halfWidth = track.scrollWidth / 2;
-      if (-x >= halfWidth) x = 0;
-      track.style.transform = `translateX(${x}px)`;
+    // نكرر حتى يصير المسار أكبر من 3× عرض الحاوية — ضمان ألا يظهر فراغ
+    const originalHTML = track.innerHTML;
+    while (track.scrollWidth < containerWidth * 3.5) {
+      track.insertAdjacentHTML("beforeend", originalHTML);
     }
+
+    let x = 0;
+    let paused = false;
+    const speed = 0.45; // px/frame — هادئ ومريح
+
+    const ticker = track.closest(".news-ticker");
+    if (ticker) {
+      ticker.addEventListener("mouseenter", () => { paused = true; });
+      ticker.addEventListener("mouseleave", () => { paused = false; });
+    }
+
+    function tick() {
+      if (!paused) {
+        x -= speed;
+        // بدل x=0 نضيف عرض نسخة واحدة — المنظر متطابق تماماً = لوب حقيقي
+        if (-x >= oneCopyWidth) x += oneCopyWidth;
+        track.style.transform = `translateX(${x}px)`;
+      }
+      _tickerRaf = requestAnimationFrame(tick);
+    }
+
     _tickerRaf = requestAnimationFrame(tick);
-  }
-
-  _tickerRaf = requestAnimationFrame(tick);
+  });
 }
-
 
 
 
@@ -446,8 +452,6 @@ async function renderHome() {
         </div>
         <div class="ticker-content">
           <div class="ticker-track">
-            ${state.newsItems.map(item => `<div class="ticker-item">${item}</div>`).join('<span class="ticker-sep">•</span>')}
-            <span class="ticker-sep">•</span>
             ${state.newsItems.map(item => `<div class="ticker-item">${item}</div>`).join('<span class="ticker-sep">•</span>')}
             <span class="ticker-sep">•</span>
           </div>
