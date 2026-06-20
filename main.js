@@ -271,8 +271,7 @@ function bindPageEvents() {
 // Scale functions removed - responsiveness handled natively in CSS now.
 
 /**
- * تحريك شريط الأخبار — time-based animation (px/ثانية)
- * بدل px/frame عشان lag spikes ما تسبب قفزة
+ * تحريك شريط الأخبار — time-based, no layout thrashing
  */
 let _tickerRaf = null;
 function initTickerAnimation() {
@@ -284,20 +283,34 @@ function initTickerAnimation() {
   track.style.animation = "none";
   track.style.transform = "translateX(0px)";
 
+  // نضيف frame واحد عشان المتصفح يحسب الأحجام قبل نبدأ
   requestAnimationFrame(() => {
-    const containerWidth = (track.parentElement || document.body).offsetWidth;
-    const oneCopyWidth = track.scrollWidth;
+    const container = track.parentElement;
+    const containerWidth = container ? container.offsetWidth : window.innerWidth;
 
-    // نكرر حتى يمتلئ المسار بـ 3.5× عرض الشاشة — ضمان لا فراغ
-    const originalHTML = track.innerHTML;
-    while (track.scrollWidth < containerWidth * 3.5) {
-      track.insertAdjacentHTML("beforeend", originalHTML);
+    // قياس float-precision لعرض نسخة واحدة (أدق من scrollWidth)
+    let oneCopyWidth;
+    try {
+      const range = document.createRange();
+      range.selectNodeContents(track);
+      oneCopyWidth = range.getBoundingClientRect().width;
+    } catch {
+      oneCopyWidth = track.scrollWidth;
     }
+    if (!oneCopyWidth || oneCopyWidth < 1) return;
+
+    // نحسب عدد النسخ اللازمة رياضياً — insert واحد بدل loop
+    const copiesNeeded = Math.ceil((containerWidth * 4) / oneCopyWidth) + 1;
+    const originalHTML = track.innerHTML;
+    track.insertAdjacentHTML(
+      "beforeend",
+      Array(copiesNeeded).fill(originalHTML).join("")
+    );
 
     let x = 0;
     let paused = false;
     let lastTs = null;
-    const PX_PER_SEC = 40; // 40 pixel/ثانية — هادئ ومريح
+    const PX_PER_SEC = 38; // pixel/ثانية
 
     const ticker = track.closest(".news-ticker");
     if (ticker) {
@@ -306,13 +319,17 @@ function initTickerAnimation() {
     }
 
     function tick(timestamp) {
-      if (lastTs === null) lastTs = timestamp;
+      if (lastTs === null) { lastTs = timestamp; _tickerRaf = requestAnimationFrame(tick); return; }
 
       if (!paused) {
-        // delta بالميلي ثانية — نحدّه بـ 100ms عشان ما ننقفز بعد تغيير التاب
-        const delta = Math.min(timestamp - lastTs, 100);
+        const delta = Math.min(timestamp - lastTs, 80);
         x -= (PX_PER_SEC / 1000) * delta;
-        if (-x >= oneCopyWidth) x += oneCopyWidth;
+
+        // modulo reset — لا تراكم، لا قفزة
+        if (-x >= oneCopyWidth) {
+          x = -((-x) % oneCopyWidth);
+        }
+
         track.style.transform = `translateX(${x}px)`;
       }
 
