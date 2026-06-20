@@ -271,8 +271,8 @@ function bindPageEvents() {
 // Scale functions removed - responsiveness handled natively in CSS now.
 
 /**
- * تحريك شريط الأخبار — JS pixel-perfect infinite loop
- * يكرّر الأخبار آلياً حتى لو كانت 2 أخبار فقط
+ * تحريك شريط الأخبار — time-based animation (px/ثانية)
+ * بدل px/frame عشان lag spikes ما تسبب قفزة
  */
 let _tickerRaf = null;
 function initTickerAnimation() {
@@ -284,14 +284,11 @@ function initTickerAnimation() {
   track.style.animation = "none";
   track.style.transform = "translateX(0px)";
 
-  // ننتظر frame عشان المتصفح يحسب العروض الحقيقية
   requestAnimationFrame(() => {
     const containerWidth = (track.parentElement || document.body).offsetWidth;
-
-    // نحفظ عرض نسخة واحدة قبل أي تكرار
     const oneCopyWidth = track.scrollWidth;
 
-    // نكرر حتى يصير المسار أكبر من 3× عرض الحاوية — ضمان ألا يظهر فراغ
+    // نكرر حتى يمتلئ المسار بـ 3.5× عرض الشاشة — ضمان لا فراغ
     const originalHTML = track.innerHTML;
     while (track.scrollWidth < containerWidth * 3.5) {
       track.insertAdjacentHTML("beforeend", originalHTML);
@@ -299,7 +296,8 @@ function initTickerAnimation() {
 
     let x = 0;
     let paused = false;
-    const speed = 0.45; // px/frame — هادئ ومريح
+    let lastTs = null;
+    const PX_PER_SEC = 40; // 40 pixel/ثانية — هادئ ومريح
 
     const ticker = track.closest(".news-ticker");
     if (ticker) {
@@ -307,13 +305,18 @@ function initTickerAnimation() {
       ticker.addEventListener("mouseleave", () => { paused = false; });
     }
 
-    function tick() {
+    function tick(timestamp) {
+      if (lastTs === null) lastTs = timestamp;
+
       if (!paused) {
-        x -= speed;
-        // بدل x=0 نضيف عرض نسخة واحدة — المنظر متطابق تماماً = لوب حقيقي
+        // delta بالميلي ثانية — نحدّه بـ 100ms عشان ما ننقفز بعد تغيير التاب
+        const delta = Math.min(timestamp - lastTs, 100);
+        x -= (PX_PER_SEC / 1000) * delta;
         if (-x >= oneCopyWidth) x += oneCopyWidth;
         track.style.transform = `translateX(${x}px)`;
       }
+
+      lastTs = timestamp;
       _tickerRaf = requestAnimationFrame(tick);
     }
 
