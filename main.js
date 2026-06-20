@@ -272,12 +272,10 @@ function bindPageEvents() {
 
 /**
  * شريط الأخبار — CSS animation على GPU thread
- * JS يقيس العرض مرة واحدة فقط، ثم CSS compositor يتولى الحركة
- * نتيجة: سلاسة تامة بغض النظر عن JS load
+ * JS يقيس العرض للسرعة فقط، والحركة تعتمد على النسبة المئوية (-50%) لضمان تماسك ولوب لا نهائي بدون ريفريش
  */
 let _tickerRaf = null;
 function initTickerAnimation() {
-  // إلغاء أي RAF قديم (fallback)
   if (_tickerRaf) { cancelAnimationFrame(_tickerRaf); _tickerRaf = null; }
 
   const track = document.querySelector(".ticker-track");
@@ -297,40 +295,62 @@ function initTickerAnimation() {
   // نسخة واحدة فقط للـ loop
   track.insertAdjacentHTML("beforeend", track.dataset.orig);
 
-  // نضيف frame عشان المتصفح يحسب العروض
-  requestAnimationFrame(() => {
-    // قياس float-precision لعرض نسخة واحدة عبر مواضع العناصر الفعلية
-    const children = Array.from(track.children);
-    const halfCount = children.length / 2;
-    let oneCopyWidth = 0;
+  // نستخدم -50% بدقة لضمان تطابق تام بغض النظر عن تحميل الخطوط أو أبعاد الحجم الفرعي للمتصفح
+  track.style.setProperty("--t-dist", "-50%");
 
-    if (halfCount >= 1) {
-      const first = children[0].getBoundingClientRect();
-      const last  = children[Math.ceil(halfCount) - 1].getBoundingClientRect();
-      oneCopyWidth = Math.abs(last.right - first.left);
-    }
-    if (oneCopyWidth < 1) oneCopyWidth = track.scrollWidth / 2;
-
-    // مدة الـ animation = عرض ÷ سرعة
-    const PX_PER_SEC = 40;
+  const updateDuration = () => {
+    if (!track.isConnected) return;
+    const oneCopyWidth = track.scrollWidth / 2;
+    if (oneCopyWidth < 1) return;
+    const PX_PER_SEC = 35; // سرعة مناسبة وسلسة
     const duration = (oneCopyWidth / PX_PER_SEC).toFixed(3);
+    track.style.animationDuration = `${duration}s`;
+  };
 
-    // نعطي الـ CSS custom property القيمة الدقيقة بالـ pixel
-    track.style.setProperty("--t-dist", `-${oneCopyWidth}px`);
-    track.style.animation = `ticker-smooth ${duration}s linear infinite`;
+  // ننتظر رسم العناصر ثم نبدأ الـ animation بالـ percentage-based translation
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      if (!track.isConnected) return;
 
-    // إيقاف عند مرور الماوس
-    const ticker = track.closest(".news-ticker");
-    if (ticker && !ticker._hoverBound) {
-      ticker._hoverBound = true;
-      ticker.addEventListener("mouseenter", () => {
-        track.style.animationPlayState = "paused";
-      });
-      ticker.addEventListener("mouseleave", () => {
-        track.style.animationPlayState = "running";
-      });
-    }
+      const oneCopyWidth = track.scrollWidth / 2;
+      const PX_PER_SEC = 35;
+      const duration = (oneCopyWidth > 0 ? oneCopyWidth : 1000) / PX_PER_SEC;
+
+      track.style.animation = `ticker-smooth ${duration.toFixed(3)}s linear infinite`;
+
+      // تحديث مدة الأنيميشن فوراً بناءً على العرض الحقيقي
+      updateDuration();
+
+      // إعادة القياس عند اكتمال تحميل الخطوط المخصصة (لتجنب تأثير القفز عند تغير عرض الخط)
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => {
+          updateDuration();
+        });
+      }
+    });
   });
+
+  // تحديث مدة الأنيميشن عند تغيير حجم الشاشة
+  const handleResize = () => {
+    if (!track.isConnected) {
+      window.removeEventListener("resize", handleResize);
+      return;
+    }
+    updateDuration();
+  };
+  window.addEventListener("resize", handleResize);
+
+  // إيقاف عند مرور الماوس
+  const ticker = track.closest(".news-ticker");
+  if (ticker && !ticker._hoverBound) {
+    ticker._hoverBound = true;
+    ticker.addEventListener("mouseenter", () => {
+      track.style.animationPlayState = "paused";
+    });
+    ticker.addEventListener("mouseleave", () => {
+      track.style.animationPlayState = "running";
+    });
+  }
 }
 
 
