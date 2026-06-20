@@ -149,8 +149,9 @@ p {
 
 @media (min-width: 768px) {
   #navbar .nav-inner {
-    width: min(calc(100% - 64px), var(--container)) !important;
-    max-width: min(calc(100% - 64px), var(--container)) !important;
+    /* نخلي الـ navbar يمتد كامل عرض الشاشة عشان الـ logo يصل للحافة اليمين والأزرار للحافة اليسار */
+    width: calc(100% - 64px) !important;
+    max-width: calc(100% - 64px) !important;
     padding: 16px 0 !important;
     margin: 0 auto !important;
     box-sizing: border-box !important;
