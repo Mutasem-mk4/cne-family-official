@@ -148,32 +148,49 @@ async function fetchJSON(path) {
   return response.json();
 }
 
-// جلب البيانات الحية — يجرب Vercel API أولاً (فوري، بدون CDN)
-// وإذا ما نجح (مثلاً localhost مع vite) يرجع لـ jsDelivr
+// جلب البيانات الحية مع استراتيجية مختلفة حسب البيئة
 async function fetchLive(cdnUrl) {
-  // استخرج اسم الملف من الـ URL مثلاً "news-ticker.json"
-  const fileMatch = cdnUrl.match(/([^/]+\.json)/);
-  const fileName = fileMatch ? fileMatch[1] : null;
+  const isLocalhost =
+    location.hostname === "localhost" || location.hostname === "127.0.0.1";
 
-  if (fileName) {
-    try {
-      // الأولوية: Vercel API endpoint — مباشر من GitHub بدون أي CDN cache
-      const proxy = await fetch(`/api/live-data?file=${fileName}`, {
-        cache: "no-store",
-      });
-      if (proxy.ok) return proxy.json();
-    } catch {
-      // لو ما نجح (localhost/vite) نكمل للـ fallback
+  if (!isLocalhost) {
+    // على Vercel: نستخدم API proxy — مباشر من GitHub بدون أي CDN cache
+    const fileMatch = cdnUrl.match(/([^/?]+\.json)/);
+    const fileName = fileMatch ? fileMatch[1] : null;
+    if (fileName) {
+      try {
+        const proxy = await fetch(`/api/live-data?file=${fileName}`, {
+          cache: "no-store",
+        });
+        if (proxy.ok) return proxy.json();
+      } catch {
+        // fall through
+      }
     }
   }
 
-  // fallback: jsDelivr CDN (للتطوير المحلي أو لو الـ API ما اشتغل)
+  if (isLocalhost) {
+    // على localhost: الملف المحلي دايماً محدث عن طريق auto-sync (git pull)
+    const fileMatch = cdnUrl.match(/([^/?]+\.json)/);
+    const localPath = fileMatch ? `/data/${fileMatch[1]}` : null;
+    if (localPath) {
+      try {
+        const local = await fetch(`${localPath}?t=${Date.now()}`, {
+          cache: "no-store",
+        });
+        if (local.ok) return local.json();
+      } catch {
+        // fall through
+      }
+    }
+  }
+
+  // fallback: jsDelivr CDN
   const freshUrl = `${cdnUrl}?t=${Date.now()}`;
   const response = await fetch(freshUrl, { cache: "no-store" });
-  if (!response.ok) throw new Error(`Failed to load live data from ${cdnUrl}`);
+  if (!response.ok) throw new Error(`Failed to load ${cdnUrl}`);
   return response.json();
 }
-
 
 function bindGlobalEvents() {
   window.addEventListener("popstate", () => render(window.location.pathname));
