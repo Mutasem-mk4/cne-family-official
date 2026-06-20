@@ -5071,6 +5071,11 @@ p {
   padding: 0 4px;
 }
 
+/* حركة شريط الأخبار — GPU compositor thread، سلسة تماماً */
+@keyframes ticker-smooth {
+  from { transform: translateX(0); }
+  to   { transform: translateX(var(--t-dist, -50%)); }
+}
 
 /* --- Activities Timeline Section --- */
 .home-activities {

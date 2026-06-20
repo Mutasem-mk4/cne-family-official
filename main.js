@@ -271,73 +271,65 @@ function bindPageEvents() {
 // Scale functions removed - responsiveness handled natively in CSS now.
 
 /**
- * تحريك شريط الأخبار — time-based, no layout thrashing
+ * شريط الأخبار — CSS animation على GPU thread
+ * JS يقيس العرض مرة واحدة فقط، ثم CSS compositor يتولى الحركة
+ * نتيجة: سلاسة تامة بغض النظر عن JS load
  */
 let _tickerRaf = null;
 function initTickerAnimation() {
+  // إلغاء أي RAF قديم (fallback)
   if (_tickerRaf) { cancelAnimationFrame(_tickerRaf); _tickerRaf = null; }
 
   const track = document.querySelector(".ticker-track");
   if (!track) return;
 
+  // استعادة المحتوى الأصلي لو تم الاستدعاء أكثر من مرة
+  if (track.dataset.orig) {
+    track.innerHTML = track.dataset.orig;
+  } else {
+    track.dataset.orig = track.innerHTML;
+  }
+
+  // إيقاف أي animation سابق وإعادة الضبط
   track.style.animation = "none";
-  track.style.transform = "translateX(0px)";
+  track.style.transform = "translateX(0)";
 
-  // نضيف frame واحد عشان المتصفح يحسب الأحجام قبل نبدأ
+  // نسخة واحدة فقط للـ loop
+  track.insertAdjacentHTML("beforeend", track.dataset.orig);
+
+  // نضيف frame عشان المتصفح يحسب العروض
   requestAnimationFrame(() => {
-    const container = track.parentElement;
-    const containerWidth = container ? container.offsetWidth : window.innerWidth;
+    // قياس float-precision لعرض نسخة واحدة عبر مواضع العناصر الفعلية
+    const children = Array.from(track.children);
+    const halfCount = children.length / 2;
+    let oneCopyWidth = 0;
 
-    // قياس float-precision لعرض نسخة واحدة (أدق من scrollWidth)
-    let oneCopyWidth;
-    try {
-      const range = document.createRange();
-      range.selectNodeContents(track);
-      oneCopyWidth = range.getBoundingClientRect().width;
-    } catch {
-      oneCopyWidth = track.scrollWidth;
+    if (halfCount >= 1) {
+      const first = children[0].getBoundingClientRect();
+      const last  = children[Math.ceil(halfCount) - 1].getBoundingClientRect();
+      oneCopyWidth = Math.abs(last.right - first.left);
     }
-    if (!oneCopyWidth || oneCopyWidth < 1) return;
+    if (oneCopyWidth < 1) oneCopyWidth = track.scrollWidth / 2;
 
-    // نحسب عدد النسخ اللازمة رياضياً — insert واحد بدل loop
-    const copiesNeeded = Math.ceil((containerWidth * 4) / oneCopyWidth) + 1;
-    const originalHTML = track.innerHTML;
-    track.insertAdjacentHTML(
-      "beforeend",
-      Array(copiesNeeded).fill(originalHTML).join("")
-    );
+    // مدة الـ animation = عرض ÷ سرعة
+    const PX_PER_SEC = 40;
+    const duration = (oneCopyWidth / PX_PER_SEC).toFixed(3);
 
-    let x = 0;
-    let paused = false;
-    let lastTs = null;
-    const PX_PER_SEC = 38; // pixel/ثانية
+    // نعطي الـ CSS custom property القيمة الدقيقة بالـ pixel
+    track.style.setProperty("--t-dist", `-${oneCopyWidth}px`);
+    track.style.animation = `ticker-smooth ${duration}s linear infinite`;
 
+    // إيقاف عند مرور الماوس
     const ticker = track.closest(".news-ticker");
-    if (ticker) {
-      ticker.addEventListener("mouseenter", () => { paused = true; });
-      ticker.addEventListener("mouseleave", () => { paused = false; });
+    if (ticker && !ticker._hoverBound) {
+      ticker._hoverBound = true;
+      ticker.addEventListener("mouseenter", () => {
+        track.style.animationPlayState = "paused";
+      });
+      ticker.addEventListener("mouseleave", () => {
+        track.style.animationPlayState = "running";
+      });
     }
-
-    function tick(timestamp) {
-      if (lastTs === null) { lastTs = timestamp; _tickerRaf = requestAnimationFrame(tick); return; }
-
-      if (!paused) {
-        const delta = Math.min(timestamp - lastTs, 80);
-        x -= (PX_PER_SEC / 1000) * delta;
-
-        // modulo reset — لا تراكم، لا قفزة
-        if (-x >= oneCopyWidth) {
-          x = -((-x) % oneCopyWidth);
-        }
-
-        track.style.transform = `translateX(${x}px)`;
-      }
-
-      lastTs = timestamp;
-      _tickerRaf = requestAnimationFrame(tick);
-    }
-
-    _tickerRaf = requestAnimationFrame(tick);
   });
 }
 
