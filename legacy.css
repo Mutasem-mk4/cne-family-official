@@ -5041,7 +5041,7 @@ p {
   gap: 0;
   white-space: nowrap;
   direction: ltr;
-  animation: ticker-marquee 18s linear infinite;
+  /* الحركة تتحكم فيها JavaScript — pixel-perfect بدون قفزة */
   width: max-content;
   will-change: transform;
 }
@@ -5071,11 +5071,6 @@ p {
   padding: 0 4px;
 }
 
-/* Marquee: يتحرك لليسار بمقدار نصف المسار بالضبط (نسخة واحدة = seamless loop) */
-@keyframes ticker-marquee {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
 
 /* --- Activities Timeline Section --- */
 .home-activities {
