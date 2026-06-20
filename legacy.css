@@ -175,6 +175,7 @@ p {
   display: inline-flex;
   align-items: center;
   gap: 14px;
+  grid-column: 3; /* اليسار في RTL (العمود الأخير) */
 }
 
 .logo-img {
@@ -202,6 +203,7 @@ p {
   justify-content: center;
   gap: 6px;
   flex-wrap: wrap;
+  grid-column: 2; /* المنتصف */
 }
 
 .nav-link {
@@ -221,6 +223,7 @@ p {
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  grid-column: 1; /* اليمين في RTL (العمود الأول) */
 }
 
 .btn-icon,
