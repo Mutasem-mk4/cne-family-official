@@ -1319,7 +1319,7 @@ async function renderActivityDetail(id) {
       <section class="error-page reveal">
         <h2>النشاط غير موجود</h2>
         <p>عذراً، لم نتمكن من العثور على هذا النشاط.</p>
-        <a href="/about" data-link class="btn btn-primary">العودة لصفحة عن المنصة</a>
+        <a href="/about" data-link class="btn btn-primary">العودة لصفحة من نحن</a>
       </section>
     `);
   }
@@ -1408,7 +1408,7 @@ function renderFooter() {
         </div>
         <div class="footer-nav">
           <a href="/" data-link>الرئيسية</a>
-          <a href="/about" data-link>عن المنصة</a>
+          <a href="/about" data-link>من نحن</a>
           <a href="/subjects" data-link>المواد</a>
           <a href="/tracker" data-link>المتتبع</a>
         </div>
