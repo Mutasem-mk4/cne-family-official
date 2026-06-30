@@ -5480,6 +5480,10 @@ p {
   .about-activity-card.premium-card {
     padding: 0 !important;
     border-radius: 20px !important;
+    max-width: 480px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 100% !important;
   }
   .premium-card .activity-card-cover {
     height: 160px;
