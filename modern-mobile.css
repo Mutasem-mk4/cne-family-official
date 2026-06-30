@@ -228,7 +228,7 @@
   .hero-command-content {
     position: relative !important;
     z-index: 3 !important;
-    padding: 110px 16px 40px !important;
+    padding: 150px 16px 40px !important;
     display: flex !important;
     flex-direction: column !important;
     gap: 16px !important;
