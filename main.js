@@ -25,12 +25,11 @@ const ROUTES = {
   "/about": renderAbout,
   "/subjects": renderSubjects,
   "/plans": renderSubjects,
-  "/activities": renderActivities,
+  "/activities": renderAbout,
   "/calculator": renderCalculator,
   "/tracker": renderTracker,
   "/links": renderLinks,
   "/join": renderJoin,
-  "/map": renderMap,
 };
 
 const DEFAULT_SITE_CONFIG = {
@@ -265,7 +264,6 @@ function bindPageEvents() {
   initCalculator();
   initJoinForm();
   initAboutCarousel();
-  initTickerAnimation();
 }
 
 // Scale functions removed - responsiveness handled natively in CSS now.
@@ -475,21 +473,6 @@ async function renderHome() {
       </div>
     </section>
 
-    <!-- Breaking News Ticker -->
-    <div class="news-ticker-container reveal">
-      <div class="news-ticker">
-        <div class="ticker-badge">
-          <span class="ticker-badge-dot"></span>
-          عاجل
-        </div>
-        <div class="ticker-content">
-          <div class="ticker-track">
-            ${state.newsItems.map(item => `<div class="ticker-item">${item}</div>`).join('<span class="ticker-sep">•</span>')}
-            <span class="ticker-sep">•</span>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <section class="home-spotlight reveal">
       <section class="titans-board">
@@ -526,24 +509,6 @@ async function renderHome() {
           ).join("")}
         </div>
       </section>
-    </section>
-
-    <!-- Activities Timeline Section -->
-    <section class="home-activities reveal">
-      <div class="home-activities-head">
-        <div class="activities-title-wrap">
-          <span class="live-dot"></span>
-          <span class="eyebrow">مواكبة للحدث</span>
-          <h2>آخر الأنشطة والفعاليات</h2>
-        </div>
-        <a href="/activities" data-link class="text-cta">عرض كل الأنشطة</a>
-      </div>
-      <div class="timeline-container">
-        <div class="timeline-line"></div>
-        <div class="timeline-track">
-          ${state.activities.slice(0, 4).map((act, idx) => renderTimelineCard(act, idx)).join("")}
-        </div>
-      </div>
     </section>
   `);
 }
@@ -696,7 +661,7 @@ async function renderAbout() {
         </section>
 
         <!-- 2. Activities Section -->
-        <section class="about-activities reveal">
+        <section class="about-activities reveal" id="activities">
           <div class="about-activities-head">
             <span class="eyebrow">أعمالنا</span>
             <h2>نشاطات وفعاليات الاتحاد</h2>
@@ -704,49 +669,26 @@ async function renderAbout() {
           </div>
 
           <div class="about-activities-grid">
-            <div class="about-activity-card">
-              <div class="about-activity-icon">
-                <span class="material-symbols-outlined">terminal</span>
+            ${state.activities.map(act => `
+              <div class="about-activity-card premium-card">
+                <div class="activity-card-cover">
+                  ${act.image ? `
+                    <img src="${act.image}" alt="${act.title}" class="activity-card-img">
+                  ` : `
+                    <div class="activity-card-gradient" style="background: ${act.bg_gradient || 'linear-gradient(135deg, var(--blue), var(--purple))'}">
+                      <span class="activity-card-emoji">${act.emoji || '✨'}</span>
+                    </div>
+                  `}
+                  <span class="activity-card-tag ${act.tag_class || 'tag-blue'}">${act.tag}</span>
+                  ${act.image ? `<span class="activity-card-floating-emoji">${act.emoji || '✨'}</span>` : ''}
+                </div>
+                <div class="activity-card-info">
+                  <span class="activity-card-date">${act.date || ''}</span>
+                  <h4 class="activity-card-title">${act.title}</h4>
+                  <p class="activity-card-desc">${act.description || act.desc || ''}</p>
+                </div>
               </div>
-              <div class="about-activity-info">
-                <span class="about-activity-date">15 مايو 2026</span>
-                <h4>ورشة عمل Linux والشبكات الأساسية</h4>
-                <p>دورة تدريبية مكثفة لتمكين الطلبة من إدارة أنظمة التشغيل المفتوحة وفهم بروتوكولات تراسل البيانات.</p>
-              </div>
-            </div>
-
-            <div class="about-activity-card">
-              <div class="about-activity-icon">
-                <span class="material-symbols-outlined">code</span>
-              </div>
-              <div class="about-activity-info">
-                <span class="about-activity-date">28 أبريل 2026</span>
-                <h4>مسابقة البرمجة السنوية (CNE Coder)</h4>
-                <p>تحدي برميجي يهدف لتطوير القدرات الذهنية وحل المشكلات التنافسية لجميع المستويات الأكاديمية.</p>
-              </div>
-            </div>
-
-            <div class="about-activity-card">
-              <div class="about-activity-icon">
-                <span class="material-symbols-outlined">support_agent</span>
-              </div>
-              <div class="about-activity-info">
-                <span class="about-activity-date">10 مارس 2026</span>
-                <h4>أسبوع الإرشاد للطلبة الجدد</h4>
-                <p>جلسات توجيهية ولقاءات مفتوحة لمساعدة الطلبة المستجدين في اختيار مساراتهم وفهم الخطة الدراسية.</p>
-              </div>
-            </div>
-
-            <div class="about-activity-card">
-              <div class="about-activity-icon">
-                <span class="material-symbols-outlined">diversity_3</span>
-              </div>
-              <div class="about-activity-info">
-                <span class="about-activity-date">5 فبراير 2026</span>
-                <h4>معرض المشاريع والابتكارات الهندسية</h4>
-                <p>ملتقى لعرض مشاريع تخرج الطلبة المتميزة وأفكارهم الابتكارية أمام نخبة من المهندسين والشركات.</p>
-              </div>
-            </div>
+            `).join('')}
           </div>
         </section>
 
@@ -1088,61 +1030,6 @@ function renderPlanHotspot({ name, link, x, y, width, height }) {
   }
 }
 
-async function renderActivities() {
-  return layout(
-    `
-      <section class="activity-wall reveal">
-        ${state.activities.map(renderActivityCard).join("")}
-      </section>
-    `,
-    {
-      heroBanner: {
-        label: "الأنشطة",
-        title: "أنشطة وفعاليات المجتمع الطلابي",
-        copy: "عرض أبسط للفعاليات مع تركيز على العنوان والمحتوى.",
-      },
-    },
-  );
-}
-
-function renderActivityCard(activity) {
-  return `
-    <article class="activity-card">
-      <div class="activity-cover" style="background:${activity.bg_gradient || "linear-gradient(135deg,#1f5eff,#10203c)"}">
-        <span>${activity.emoji || "✨"}</span>
-      </div>
-      <div class="activity-body">
-        <div class="activity-meta">
-          <span>${activity.date || ""}</span>
-          <span>${activity.tag || activity.type || "فعالية"}</span>
-        </div>
-        <h3>${activity.title}</h3>
-        <p>${activity.description || activity.desc || ""}</p>
-      </div>
-    </article>
-  `;
-}
-
-function renderTimelineCard(activity, index) {
-  return `
-    <div class="timeline-item">
-      <div class="timeline-node-wrap">
-        <span class="timeline-node"></span>
-        <span class="timeline-date">${activity.date || ""}</span>
-      </div>
-      <article class="timeline-card" style="--delay: ${index * 100}ms">
-        <div class="timeline-card-cover" style="background:${activity.bg_gradient || "linear-gradient(135deg,#1f5eff,#10203c)"}">
-          <span>${activity.emoji || "✨"}</span>
-        </div>
-        <div class="timeline-card-body">
-          <span class="timeline-card-tag ${activity.tag_class || "tag-blue"}">${activity.tag || "فعالية"}</span>
-          <h3>${activity.title}</h3>
-          <p>${activity.description || activity.desc || ""}</p>
-        </div>
-      </article>
-    </div>
-  `;
-}
 
 function renderCalculator() {
   return layout(
@@ -1415,39 +1302,7 @@ function renderJoin() {
   );
 }
 
-async function renderMap() {
-  const mapEmbedUrl = state.siteConfig.mapEmbedUrl;
 
-  return layout(
-    `
-      <section class="campus-location reveal">
-        <div class="campus-head">
-          <span class="eyebrow">المقر الرئيسي</span>
-          <h2>كلية الهندسة التكنولوجية</h2>
-          <p>جامعة البلقاء التطبيقية - عمان، الأردن.</p>
-        </div>
-        <div class="map-container">
-          <iframe 
-            src="${mapEmbedUrl}" 
-            width="100%" 
-            height="550" 
-            style="border:0;" 
-            allowfullscreen="" 
-            loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
-        </div>
-      </section>
-    `,
-    {
-      heroBanner: {
-        label: "خريطة الكلية",
-        title: "موقع كلية الهندسة التكنولوجية",
-        copy: "تصفح الخريطة التفاعلية للوصول إلى الكلية بسهولة.",
-      },
-    },
-  );
-}
 
 function renderFooter() {
   const socialLinks = state.siteConfig.socialLinks;
@@ -1463,7 +1318,6 @@ function renderFooter() {
           <a href="/" data-link>الرئيسية</a>
           <a href="/about" data-link>عن المنصة</a>
           <a href="/subjects" data-link>المواد</a>
-          <a href="/map" data-link>الخريطة</a>
           <a href="/tracker" data-link>المتتبع</a>
         </div>
         <div class="footer-social">

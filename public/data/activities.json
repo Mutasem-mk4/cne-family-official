@@ -1,38 +1,62 @@
 [
   {
+    "title": "فعالية الرسم على الكانفاس",
+    "date": "ديسمبر 2024",
+    "tag": "ترفيهي",
+    "emoji": "🎨",
+    "bg_gradient": "linear-gradient(135deg,#FEE2E2,#FECACA)",
+    "tag_class": "tag-red",
+    "description": "فعالية فنية للرسم على الكانفاس باستخدام الألوان المائية نُظِّمت ضمن CNE Girls Team ، وهدفت إلى تعزيز الإبداع والتعبير الفني لدى المشاركات من خلال تجربة تطبيقية جماعية.",
+    "image": "/assets/images/canvas-painting.jpg"
+  },
+  {
+    "title": "يوم الإرشاد الأكاديمي",
+    "date": "نوفمبر 2024",
+    "tag": "إرشادي",
+    "emoji": "🎈",
+    "bg_gradient": "linear-gradient(135deg,#FEF3C7,#FDE68A)",
+    "tag_class": "tag-yellow",
+    "description": "يوم الإرشاد هو فعالية تُقام بداية العام الدراسي للطلبة الجدد لتعريفهم بالخطة الدراسية لتخصصي هندسة الحاسوب والشبكات وتقديم نصائح أكاديمية تساعدهم على بدء مسيرتهم الجامعية.",
+    "image": "/assets/images/orientation-day.jpg"
+  },
+  {
+    "title": "فعالية مستشفى الحاسوب",
+    "date": "أكتوبر 2024",
+    "tag": "تقني",
+    "emoji": "💻",
+    "bg_gradient": "linear-gradient(135deg,#DBEAFE,#BFDBFE)",
+    "tag_class": "tag-blue",
+    "description": "مستشفى الحاسوب هو نشاط تقني بإدارة CNE يهدف إلى مساعدة الطلاب في حل مشاكل أجهزتهم الحاسوبية وتثبيت البرامج والمواقع الدراسية الخاصة بتخصصاتهم بما يسهم بتعزيز المهارات التقنية.",
+    "image": "/assets/images/computer-hospital.jpg"
+  },
+  {
+    "title": "حملة الكتب الدراسية",
+    "date": "سبتمبر 2024",
+    "tag": "أكاديمي",
+    "emoji": "📚",
+    "bg_gradient": "linear-gradient(135deg,#D1FAE5,#A7F3D0)",
+    "tag_class": "tag-green",
+    "description": "حملة الكتب نشاط فصلي يهدف إلى تبادل الكتب والملاحظات بين الطلاب لتعزيز الاستفادة وتبادل المعرفة، ويضم بعض الفعاليات الخفيفة التفاعلية.",
+    "image": "/assets/images/book-campaign.jpg"
+  },
+  {
+    "title": "مبادرة وقف ثريد",
+    "date": "أبريل 2024",
+    "tag": "تطوعي",
+    "emoji": "🍲",
+    "bg_gradient": "linear-gradient(135deg,#F3E8FF,#E9D5FF)",
+    "tag_class": "tag-purple",
+    "description": "مبادرة إنسانية في وسط البلد تُعنى بإعداد وتعبئة وجبات يومية وتوزيعها مجانًا على المحتاجين في ساحة المسجد الحسيني دعمًا للعمل الخيري وتعزيزًا للمسؤولية المجتمعية.",
+    "image": "/assets/images/waqf-thareed.jpg"
+  },
+  {
     "title": "فعالية أَحْيِ قَلْبَك",
     "date": "مارس 2024",
     "tag": "اجتماعي",
     "emoji": "❤️",
     "bg_gradient": "linear-gradient(135deg,#FEE2E2,#FECACA)",
     "tag_class": "tag-red",
-    "description": "يوم روحي اجتماعي يهدف لتعزيز الترابط بين أفراد عائلة CNE والتجديد الروحي."
-  },
-  {
-    "title": "ورشة الشبكات العملية",
-    "date": "فبراير 2024",
-    "tag": "تقني",
-    "emoji": "🛠️",
-    "bg_gradient": "linear-gradient(135deg,#DBEAFE,#BFDBFE)",
-    "tag_class": "tag-blue",
-    "description": "ورشة تطبيقية في مختبر الشبكات تغطي إعداد أجهزة التوجيه (Routers) والمبدلات (Switches)."
-  },
-  {
-    "title": "يوم التوجيه للطلبة الجدد",
-    "date": "يناير 2024",
-    "tag": "أكاديمي",
-    "emoji": "🎓",
-    "bg_gradient": "linear-gradient(135deg,#D1FAE5,#A7F3D0)",
-    "tag_class": "tag-green",
-    "description": "استقبال الدفعات الجديدة وتعريفهم بالخدمات الأكاديمية التي يقدمها الفريق."
-  },
-  {
-    "title": "محاضرة الريادة التقنية",
-    "date": "ديسمبر 2023",
-    "tag": "ريادة",
-    "emoji": "💡",
-    "bg_gradient": "linear-gradient(135deg,#FEF3C7,#FDE68A)",
-    "tag_class": "tag-yellow",
-    "description": "محاضرة ملهمة حول كيفية بدء مسيرتك التقنية الاحترافية من مقاعد الدراسة."
+    "description": "“أحيِ قلبك” هو أحد أبرز الأنشطة الخيرية الرمضانية، ويُعني بتنظيم إفطار جماعي للأيتام، يتضمن النشاط مجموعة من الفعاليات الترفيهية والتفاعلية التي تهدف إلى إدخال البهجة إلى قلوب الأطفال.",
+    "image": "/assets/images/ahyee-qalbak.jpg"
   }
 ]

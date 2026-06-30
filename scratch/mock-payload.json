@@ -1,0 +1,19 @@
+{
+  "update_id": 123456789,
+  "message": {
+    "message_id": 99999,
+    "from": {
+      "id": 12345,
+      "is_bot": false,
+      "first_name": "Test",
+      "username": "test"
+    },
+    "chat": {
+      "id": 1616533142,
+      "title": "Test Group",
+      "type": "group"
+    },
+    "date": 1620000000,
+    "text": "#news\n- معتصم خرما هو افضل مهندس بالكوكب"
+  }
+}

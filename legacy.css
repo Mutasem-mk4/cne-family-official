@@ -5323,3 +5323,176 @@ p {
   }
 }
 
+/* --- Premium Activity Cards --- */
+.about-activity-card.premium-card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 24px;
+  background: var(--surface-3);
+  border: 1px solid var(--line);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.about-activity-card.premium-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--blue);
+  box-shadow: 0 20px 40px rgba(31, 94, 255, 0.12);
+}
+
+.premium-card .activity-card-cover {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.premium-card .activity-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.about-activity-card.premium-card:hover .activity-card-img {
+  transform: scale(1.06);
+}
+
+.premium-card .activity-card-gradient {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.premium-card .activity-card-emoji {
+  font-size: 3.5rem;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15));
+  animation: floatEmoji 3s ease-in-out infinite;
+}
+
+@keyframes floatEmoji {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.premium-card .activity-card-tag {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  z-index: 2;
+}
+
+.premium-card .activity-card-floating-emoji {
+  position: absolute;
+  bottom: -16px;
+  left: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--surface-2);
+  border: 3px solid var(--surface-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  z-index: 3;
+}
+
+.premium-card .activity-card-info {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.premium-card .activity-card-date {
+  font-size: 0.78rem;
+  color: var(--blue);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.premium-card .activity-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.premium-card .activity-card-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Custom tag style overrides */
+.premium-card .tag-purple {
+  background: rgba(168, 85, 247, 0.15) !important;
+  color: #a855f7 !important;
+  border: 1px solid rgba(168, 85, 247, 0.25) !important;
+}
+.premium-card .tag-red {
+  background: rgba(239, 68, 68, 0.15) !important;
+  color: #ef4444 !important;
+  border: 1px solid rgba(239, 68, 68, 0.25) !important;
+}
+.premium-card .tag-blue {
+  background: rgba(59, 130, 246, 0.15) !important;
+  color: #3b82f6 !important;
+  border: 1px solid rgba(59, 130, 246, 0.25) !important;
+}
+.premium-card .tag-green {
+  background: rgba(34, 197, 94, 0.15) !important;
+  color: #22c55e !important;
+  border: 1px solid rgba(34, 197, 94, 0.25) !important;
+}
+.premium-card .tag-yellow {
+  background: rgba(234, 179, 8, 0.15) !important;
+  color: #eab308 !important;
+  border: 1px solid rgba(234, 179, 8, 0.25) !important;
+}
+
+@media (max-width: 767px) {
+  .about-activities-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+  .about-activity-card.premium-card {
+    padding: 0 !important;
+    border-radius: 20px !important;
+  }
+  .premium-card .activity-card-cover {
+    height: 160px;
+  }
+  .premium-card .activity-card-info {
+    padding: 16px !important;
+  }
+  .premium-card .activity-card-title {
+    font-size: 1rem !important;
+  }
+  .premium-card .activity-card-desc {
+    font-size: 0.82rem !important;
+    -webkit-line-clamp: 4;
+  }
+}
+

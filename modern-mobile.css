@@ -179,8 +179,7 @@
   .hero-command-board.hero-premium {
     width: 100% !important;
     min-width: unset !important;
-    height: auto !important;
-    min-height: 78vh !important;
+    height: 100dvh !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: stretch !important;
