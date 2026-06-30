@@ -235,14 +235,24 @@ function bindGlobalEvents() {
 }
 
 function navigate(path) {
-  const target = ROUTES[path] ? path : "/";
+  const target = ROUTES[path] || path.startsWith("/activity/") ? path : "/";
   window.history.pushState({}, "", target);
   render(target);
 }
 
 async function render(pathname) {
   const page = document.getElementById("page");
-  const renderer = ROUTES[pathname] || renderHome;
+  let renderer = ROUTES[pathname];
+  
+  if (!renderer && pathname.startsWith("/activity/")) {
+    const actId = pathname.split("/").pop();
+    renderer = () => renderActivityDetail(actId);
+  }
+  
+  if (!renderer) {
+    renderer = renderHome;
+  }
+  
   page.innerHTML = await renderer();
   updateActiveLinks(pathname);
   bindPageEvents();
@@ -670,7 +680,7 @@ async function renderAbout() {
 
           <div class="about-activities-grid">
             ${state.activities.map(act => `
-              <div class="about-activity-card premium-card">
+              <a href="/activity/${act.id}" data-link class="about-activity-card premium-card">
                 <div class="activity-card-cover">
                   ${act.image ? `
                     <img src="${act.image}" alt="${act.title}" class="activity-card-img">
@@ -687,7 +697,7 @@ async function renderAbout() {
                   <h4 class="activity-card-title">${act.title}</h4>
                   <p class="activity-card-desc">${act.description || act.desc || ''}</p>
                 </div>
-              </div>
+              </a>
             `).join('')}
           </div>
         </section>
@@ -1301,6 +1311,88 @@ function renderJoin() {
     },
   );
 }
+
+async function renderActivityDetail(id) {
+  const act = state.activities.find(a => a.id === id);
+  if (!act) {
+    return layout(`
+      <section class="error-page reveal">
+        <h2>النشاط غير موجود</h2>
+        <p>عذراً، لم نتمكن من العثور على هذا النشاط.</p>
+        <a href="/about" data-link class="btn btn-primary">العودة لصفحة عن المنصة</a>
+      </section>
+    `);
+  }
+
+  return layout(
+    `
+      <section class="activity-detail-section reveal">
+        <div class="activity-detail-card">
+          <div class="detail-header">
+            <a href="/about" data-link class="detail-back-btn">
+              <span class="material-symbols-outlined">arrow_forward</span>
+              العودة للأنشطة
+            </a>
+          </div>
+          
+          <div class="detail-cover-wrapper">
+            ${act.image ? `
+              <img src="${act.image}" alt="${act.title}" class="detail-cover-img">
+            ` : `
+              <div class="detail-cover-gradient" style="background: ${act.bg_gradient || 'linear-gradient(135deg, var(--blue), var(--purple))'}">
+                <span class="detail-cover-emoji">${act.emoji || '✨'}</span>
+              </div>
+            `}
+          </div>
+
+          <div class="detail-content">
+            <div class="detail-meta">
+              <span class="detail-tag ${act.tag_class || 'tag-blue'}">${act.tag}</span>
+              <span class="detail-date">
+                <span class="material-symbols-outlined">calendar_month</span>
+                ${act.date}
+              </span>
+            </div>
+            
+            <h2 class="detail-title">${act.title}</h2>
+            
+            <div class="detail-divider"></div>
+            
+            <div class="detail-body">
+              <p>${act.description || act.desc || ''}</p>
+              
+              <div class="detail-features-grid">
+                <div class="feature-item">
+                  <span class="material-symbols-outlined feature-icon">verified_user</span>
+                  <div>
+                    <strong>نوع النشاط</strong>
+                    <span>نشاط ${act.tag} رسمي بإشراف اللجنة</span>
+                  </div>
+                </div>
+                <div class="feature-item">
+                  <span class="material-symbols-outlined feature-icon">diversity_3</span>
+                  <div>
+                    <strong>الفئة المستهدفة</strong>
+                    <span>طلبة قسم هندسة الحاسوب والشبكات</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    `,
+    {
+      heroBanner: {
+        label: "تفاصيل النشاط",
+        title: act.title,
+        copy: "مزيد من المعلومات واللقطات حول الأنشطة الطلابية.",
+      },
+    }
+  );
+}
+
+
 
 
 

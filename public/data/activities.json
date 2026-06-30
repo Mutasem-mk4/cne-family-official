@@ -1,5 +1,6 @@
 [
   {
+    "id": "canvas-painting",
     "title": "فعالية الرسم على الكانفاس",
     "date": "ديسمبر 2024",
     "tag": "ترفيهي",
@@ -10,6 +11,7 @@
     "image": "/assets/images/canvas-painting.jpg"
   },
   {
+    "id": "orientation-day",
     "title": "يوم الإرشاد الأكاديمي",
     "date": "نوفمبر 2024",
     "tag": "إرشادي",
@@ -20,6 +22,7 @@
     "image": "/assets/images/orientation-day.jpg"
   },
   {
+    "id": "computer-hospital",
     "title": "فعالية مستشفى الحاسوب",
     "date": "أكتوبر 2024",
     "tag": "تقني",
@@ -30,6 +33,7 @@
     "image": "/assets/images/computer-hospital.jpg"
   },
   {
+    "id": "book-campaign",
     "title": "حملة الكتب الدراسية",
     "date": "سبتمبر 2024",
     "tag": "أكاديمي",
@@ -40,6 +44,7 @@
     "image": "/assets/images/book-campaign.jpg"
   },
   {
+    "id": "waqf-thareed",
     "title": "مبادرة وقف ثريد",
     "date": "أبريل 2024",
     "tag": "تطوعي",
@@ -50,13 +55,14 @@
     "image": "/assets/images/waqf-thareed.jpg"
   },
   {
+    "id": "ahyee-qalbak",
     "title": "فعالية أَحْيِ قَلْبَك",
     "date": "مارس 2024",
     "tag": "اجتماعي",
     "emoji": "❤️",
     "bg_gradient": "linear-gradient(135deg,#FEE2E2,#FECACA)",
     "tag_class": "tag-red",
-    "description": "“أحيِ قلبك” هو أحد أبرز الأنشطة الخيرية الرمضانية، ويُعني بتنظيم إفطار جماعي للأيتام، يتضمن النشاط مجموعة من الفعاليات الترفيهية والتفاعلية التي تهدف إلى إدخال البهجة إلى قلوب الأطفال.",
+    "description": "“أحيِ قلبك” هو أحد أبرز الأنشطة الخيرية الرمضانية، ويُعني بتنظيم إفطار جماعي للأيتام، يتضمن النشاط مجموعة من الفعاليات الترفيهية والتفاعلية التي تهدف إلى إدخل البهجة إلى قلوب الأطفال.",
     "image": "/assets/images/ahyee-qalbak.jpg"
   }
 ]
