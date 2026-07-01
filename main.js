@@ -744,14 +744,7 @@ async function renderAbout() {
           <!-- Carousel controls removed as requested -->
         </section>
       </div>
-    `,
-    {
-      heroBanner: {
-        label: "عن الاتحاد",
-        title: "من نحن وإنجازاتنا",
-        copy: "تعرف على اتحاد هندسة الحاسوب والشبكات ورؤيتنا وأنشطتنا وفريق العمل."
-      }
-    }
+    `
   );
 }
 

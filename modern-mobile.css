@@ -1470,12 +1470,7 @@
 /* ─── ABOUT US NEW SECTIONS OVERRIDES ──────────────────────── */
 @media (max-width: 767px) {
   .about-page-wrapper {
-    padding: 0 16px !important;
-    box-sizing: border-box !important;
-  }
-
-  .about-page-wrapper {
-    padding: 0 16px !important;
+    padding: 80px 16px 0 !important;
     box-sizing: border-box !important;
     gap: 20px !important;
   }

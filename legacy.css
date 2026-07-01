@@ -4605,6 +4605,8 @@ p {
   gap: 32px;
   width: 100%;
   margin-top: 24px;
+  padding-top: 100px;
+  box-sizing: border-box;
 }
 
 /* 1. Union Intro & Achievements */
