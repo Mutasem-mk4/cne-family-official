@@ -1474,6 +1474,12 @@
     box-sizing: border-box !important;
   }
 
+  .about-page-wrapper {
+    padding: 0 16px !important;
+    box-sizing: border-box !important;
+    gap: 20px !important;
+  }
+
   .about-union-intro,
   .about-activities,
   .about-team-carousel-section {
@@ -1487,13 +1493,19 @@
     gap: 20px !important;
   }
 
-  .about-union-text h2 {
-    font-size: 1.45rem !important;
+  .about-union-text h2,
+  .about-activities-head h2,
+  .carousel-section-head h2 {
+    font-size: 1.35rem !important;
+    line-height: 1.35 !important;
   }
 
-  .about-union-description {
-    font-size: 0.92rem !important;
+  .about-union-description,
+  .about-activities-head p,
+  .carousel-section-head p {
+    font-size: 0.88rem !important;
     line-height: 1.55 !important;
+    color: var(--text-secondary) !important;
   }
 
   .about-achievements-grid {
@@ -1514,9 +1526,20 @@
     font-size: 1.25rem !important;
   }
 
-  .about-activities-head h2,
-  .carousel-section-head h2 {
-    font-size: 1.35rem !important;
+  .achievement-text span {
+    font-size: 0.74rem !important;
+    line-height: 1.3 !important;
+  }
+
+  .top-banner h1 {
+    font-size: clamp(1.6rem, 7.5vw, 2.2rem) !important;
+    line-height: 1.3 !important;
+  }
+
+  .top-banner p {
+    font-size: 0.92rem !important;
+    line-height: 1.55 !important;
+    color: var(--text-secondary) !important;
   }
 
   .about-activities-grid {
