@@ -476,7 +476,7 @@
   }
 
   .titan-list-card {
-    flex: 0 0 165px !important;
+    flex: 0 0 115px !important;
     scroll-snap-align: start !important;
     display: flex !important;
     flex-direction: row !important;
@@ -490,8 +490,8 @@
   }
 
   .titan-list-image {
-    width: 36px !important;
-    height: 36px !important;
+    width: 32px !important;
+    height: 32px !important;
     border-radius: 8px !important;
     object-fit: cover !important;
     flex-shrink: 0 !important;
@@ -506,11 +506,11 @@
   }
 
   .titan-list-copy strong {
-    font-size: 0.82rem !important;
+    font-size: 0.8rem !important;
   }
 
   .titan-list-copy p {
-    font-size: 0.68rem !important;
+    font-size: 0.65rem !important;
     color: var(--text-secondary) !important;
   }
 
@@ -519,30 +519,7 @@
   }
 
   .titan-list-meta {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    gap: 4px !important;
-  }
-
-  .titan-list-score-num {
-    font-size: 0.85rem !important;
-    font-weight: 700 !important;
-    color: var(--text) !important;
-  }
-
-  .titan-list-rank {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    background: var(--surface-2) !important;
-    border: 1px solid var(--line) !important;
-    border-radius: 50% !important;
-    width: 20px !important;
-    height: 20px !important;
-    padding: 0 !important;
-    min-width: unset !important;
-    font-size: 0.7rem !important;
+    display: none !important;
   }
 
   .titan-list-rank span {
