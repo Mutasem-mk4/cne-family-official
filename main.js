@@ -659,10 +659,10 @@ async function renderAbout() {
                   </div>
                 </div>
                 <div class="about-achievement-card">
-                  <span class="material-symbols-outlined achievement-icon">military_tech</span>
+                  <span class="material-symbols-outlined achievement-icon">volunteer_activism</span>
                   <div class="achievement-text">
-                    <strong>+10</strong>
-                    <span>مسابقات وفعاليات تقنية ناجحة</span>
+                    <strong>+50</strong>
+                    <span>عمل ونشاط تطوعي خيري</span>
                   </div>
                 </div>
               </div>
