@@ -711,7 +711,7 @@ async function renderAbout() {
                 ${allMembers.map(member => `
                     <div class="about-carousel-card">
                       <div class="carousel-card-avatar">
-                        <img src="${member.image}?v=6.0.8" alt="${member.name}" onerror="this.src='/assets/logos/cne-icon.png'">
+                        <img src="${member.image}?v=6.0.9" alt="${member.name}" onerror="this.src='/assets/logos/cne-icon.png'">
                       </div>
                       <div class="carousel-card-info">
                         <strong>${member.name}</strong>
