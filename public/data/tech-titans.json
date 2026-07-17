@@ -1,7 +1,16 @@
 {
-  "generatedAt": "2026-07-17T11:03:59.615Z",
+  "generatedAt": "2026-07-17T11:08:15.704Z",
   "source": "telegram-webhook",
   "titans": [
+    {
+      "name": "ِAbd Alrahman",
+      "title": "TECH",
+      "score": 1105,
+      "streak": "1 wins",
+      "tone": "blue",
+      "image": "/assets/tech-titans/abd-alrahman.jpg",
+      "badge": "01"
+    },
     {
       "name": "Mutasem",
       "title": "Security Engineer",
@@ -9,7 +18,7 @@
       "streak": "1 wins",
       "tone": "orange",
       "image": "/assets/tech-titans/mutasem.jpg",
-      "badge": "01"
+      "badge": "02"
     },
     {
       "name": "tytan",
@@ -18,7 +27,7 @@
       "streak": "1 wins",
       "tone": "blue",
       "image": "/assets/logos/cne-icon.png",
-      "badge": "02"
+      "badge": "03"
     },
     {
       "name": "him",
@@ -27,7 +36,7 @@
       "streak": "3 wins",
       "tone": "blue",
       "image": "/assets/logos/cne-icon.png",
-      "badge": "03"
+      "badge": "04"
     },
     {
       "name": "Hashem",
@@ -36,15 +45,6 @@
       "streak": "1 wins",
       "tone": "blue",
       "image": "/assets/tech-titans/hashem.jpg",
-      "badge": "04"
-    },
-    {
-      "name": "Sali",
-      "title": "Media",
-      "score": 400,
-      "streak": "1 wins",
-      "tone": "pink",
-      "image": "/assets/tech-titans/sali.jpg",
       "badge": "05"
     }
   ]
