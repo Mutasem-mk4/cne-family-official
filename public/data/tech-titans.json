@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-17T01:58:17.093Z",
+  "generatedAt": "2026-07-17T01:59:52.930Z",
   "source": "telegram-webhook",
   "titans": [
     {
@@ -43,7 +43,7 @@
       "title": "bro",
       "score": 199,
       "streak": "1 wins",
-      "tone": "blue",
+      "tone": "orange",
       "image": "/assets/tech-titans/mutaz.jpg",
       "badge": "05"
     }
