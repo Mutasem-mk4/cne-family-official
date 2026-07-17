@@ -5410,12 +5410,24 @@ body.is-home #navbar:not(.is-scrolled) .nav-link.is-active {
   width: 100%;
   height: 200px;
   overflow: hidden;
+  background: var(--surface-1);
+}
+
+.activity-card-blur-overlay {
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  filter: blur(20px) brightness(0.65);
+  transform: scale(1.15); /* prevents white edges from blur */
+  z-index: 1;
 }
 
 .premium-card .activity-card-img {
+  position: relative;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  z-index: 2;
   transition: transform 0.5s ease;
 }
 
@@ -5600,6 +5612,7 @@ body.is-home #navbar:not(.is-scrolled) .nav-link.is-active {
 }
 
 .detail-cover-wrapper {
+  position: relative;
   width: 100%;
   height: 400px;
   border-radius: 20px;
@@ -5607,12 +5620,15 @@ body.is-home #navbar:not(.is-scrolled) .nav-link.is-active {
   margin-bottom: 32px;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
   border: 1px solid var(--line);
+  background: var(--surface-1);
 }
 
 .detail-cover-img {
+  position: relative;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  z-index: 2;
 }
 
 .detail-cover-gradient {

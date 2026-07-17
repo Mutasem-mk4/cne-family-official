@@ -681,8 +681,9 @@ async function renderAbout() {
           <div class="about-activities-grid">
             ${state.activities.map(act => `
               <a href="/activity/${act.id}" data-link class="about-activity-card premium-card">
-                <div class="activity-card-cover">
+                <div class="activity-card-cover" style="${act.image ? `background-image: url('${act.image}'); background-size: cover; background-position: center;` : ''}">
                   ${act.image ? `
+                    <div class="activity-card-blur-overlay"></div>
                     <img src="${act.image}" alt="${act.title}" class="activity-card-img">
                   ` : `
                     <div class="activity-card-gradient" style="background: ${act.bg_gradient || 'linear-gradient(135deg, var(--blue), var(--purple))'}">
@@ -1343,8 +1344,9 @@ async function renderActivityDetail(id) {
             </a>
           </div>
           
-          <div class="detail-cover-wrapper">
+          <div class="detail-cover-wrapper" style="${act.image ? `background-image: url('${act.image}'); background-size: cover; background-position: center;` : ''}">
             ${act.image ? `
+              <div class="activity-card-blur-overlay"></div>
               <img src="${act.image}" alt="${act.title}" class="detail-cover-img">
             ` : `
               <div class="detail-cover-gradient" style="background: ${act.bg_gradient || 'linear-gradient(135deg, var(--blue), var(--purple))'}">
