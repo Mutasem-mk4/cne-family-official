@@ -4865,6 +4865,7 @@ body.is-home #navbar:not(.is-scrolled) .nav-link.is-active {
 }
 
 .about-carousel-card {
+  position: relative;
   flex: 0 0 280px;
   scroll-snap-align: start;
   background: var(--surface-3);
@@ -4923,16 +4924,18 @@ body.is-home #navbar:not(.is-scrolled) .nav-link.is-active {
 }
 
 .member-dept {
-  font-size: 0.76rem;
-  color: var(--text-secondary);
-  background: color-mix(in srgb, var(--orange) 8%, transparent);
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-size: 0.72rem;
   padding: 3px 10px;
   border-radius: 999px;
-  margin-top: 4px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border: 1px solid transparent;
+  z-index: 2;
+  font-weight: 700;
 }
 
 .member-dept.dept-purple {
