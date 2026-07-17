@@ -699,7 +699,6 @@ async function renderAbout() {
           <div class="carousel-section-head">
             <span class="eyebrow">فريقنا</span>
             <h2>الهيئة الإدارية للاتحاد</h2>
-            <p>نخبة من طلبة القسم يعملون بشغف لتقديم أفضل الخدمات والأنشطة الأكاديمية والتقنية.</p>
           </div>
 
           <div class="about-carousel-container">
