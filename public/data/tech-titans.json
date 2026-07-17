@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-17T11:14:58.533Z",
+  "generatedAt": "2026-07-17T11:17:57.076Z",
   "source": "telegram-webhook",
   "titans": [
     {
@@ -30,21 +30,21 @@
       "badge": "03"
     },
     {
+      "name": "Noura",
+      "title": "Academic",
+      "score": 1102,
+      "streak": "1 wins",
+      "tone": "pink",
+      "image": "/assets/tech-titans/noura.jpg",
+      "badge": "04"
+    },
+    {
       "name": "Mutasem",
       "title": "Security Engineer",
       "score": 999,
       "streak": "1 wins",
       "tone": "orange",
       "image": "/assets/tech-titans/mutasem.jpg",
-      "badge": "04"
-    },
-    {
-      "name": "tytan",
-      "title": "bro",
-      "score": 982,
-      "streak": "1 wins",
-      "tone": "blue",
-      "image": "/assets/logos/cne-icon.png",
       "badge": "05"
     }
   ]
