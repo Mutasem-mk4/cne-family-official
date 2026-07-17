@@ -5815,6 +5815,13 @@ body.is-home #navbar:not(.is-scrolled) .nav-link.is-active {
 .top-member-card.tone-green::before { background: var(--green); }
 .top-member-card.tone-purple::before { background: #8b5cf6; }
 .top-member-card.tone-red::before { background: #ef4444; }
+.top-member-card.tone-black::before { background: #0f172a; }
+.top-member-card.tone-yellow::before,
+.top-member-card.tone-sand::before { background: var(--yellow); }
+.top-member-card.tone-pink::before { background: #ec4899; }
+.top-member-card.tone-cyan::before { background: #06b6d4; }
+
+[data-theme="dark"] .top-member-card.tone-black::before { background: #f8fafc; }
 
 .top-member-card:hover {
   transform: translateY(-6px);
@@ -5824,6 +5831,15 @@ body.is-home #navbar:not(.is-scrolled) .nav-link.is-active {
 
 .top-member-card.tone-orange:hover { border-color: var(--orange); box-shadow: 0 16px 32px rgba(249, 115, 22, 0.08); }
 .top-member-card.tone-green:hover { border-color: var(--green); box-shadow: 0 16px 32px rgba(34, 197, 94, 0.08); }
+.top-member-card.tone-purple:hover { border-color: #8b5cf6; box-shadow: 0 16px 32px rgba(139, 92, 246, 0.08); }
+.top-member-card.tone-red:hover { border-color: #ef4444; box-shadow: 0 16px 32px rgba(239, 68, 68, 0.08); }
+.top-member-card.tone-black:hover { border-color: #0f172a; box-shadow: 0 16px 32px rgba(15, 23, 42, 0.12); }
+.top-member-card.tone-yellow:hover,
+.top-member-card.tone-sand:hover { border-color: var(--yellow); box-shadow: 0 16px 32px rgba(212, 160, 23, 0.08); }
+.top-member-card.tone-pink:hover { border-color: #ec4899; box-shadow: 0 16px 32px rgba(236, 72, 153, 0.08); }
+.top-member-card.tone-cyan:hover { border-color: #06b6d4; box-shadow: 0 16px 32px rgba(6, 182, 212, 0.08); }
+
+[data-theme="dark"] .top-member-card.tone-black:hover { border-color: #f8fafc; box-shadow: 0 16px 32px rgba(248, 250, 252, 0.12); }
 
 .lead-avatar-wrapper {
   width: 90px;
@@ -5874,14 +5890,17 @@ body.is-home #navbar:not(.is-scrolled) .nav-link.is-active {
   border-radius: 12px;
 }
 
-.top-member-card.tone-orange .lead-badge {
-  background: color-mix(in srgb, var(--orange) 8%, transparent);
-  color: var(--orange);
-}
-.top-member-card.tone-green .lead-badge {
-  background: color-mix(in srgb, var(--green) 8%, transparent);
-  color: var(--green);
-}
+.top-member-card.tone-orange .lead-badge { background: color-mix(in srgb, var(--orange) 8%, transparent); color: var(--orange); }
+.top-member-card.tone-green .lead-badge { background: color-mix(in srgb, var(--green) 8%, transparent); color: var(--green); }
+.top-member-card.tone-purple .lead-badge { background: color-mix(in srgb, #8b5cf6 8%, transparent); color: #8b5cf6; }
+.top-member-card.tone-red .lead-badge { background: color-mix(in srgb, #ef4444 8%, transparent); color: #ef4444; }
+.top-member-card.tone-black .lead-badge { background: color-mix(in srgb, #0f172a 12%, transparent); color: #475569; }
+.top-member-card.tone-yellow .lead-badge,
+.top-member-card.tone-sand .lead-badge { background: color-mix(in srgb, var(--yellow) 8%, transparent); color: var(--yellow); }
+.top-member-card.tone-pink .lead-badge { background: color-mix(in srgb, #ec4899 8%, transparent); color: #ec4899; }
+.top-member-card.tone-cyan .lead-badge { background: color-mix(in srgb, #06b6d4 8%, transparent); color: #06b6d4; }
+
+[data-theme="dark"] .top-member-card.tone-black .lead-badge { background: color-mix(in srgb, #f8fafc 12%, transparent); color: #cbd5e1; }
 
 /* ============================================================
    QUICK LINKS SECTION (FULL WIDTH GRID)
