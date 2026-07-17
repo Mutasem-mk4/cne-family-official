@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-17T11:00:07.455Z",
+  "generatedAt": "2026-07-17T11:02:28.670Z",
   "source": "telegram-webhook",
   "titans": [
     {
@@ -30,21 +30,21 @@
       "badge": "03"
     },
     {
+      "name": "Hashem",
+      "title": "Core",
+      "score": 405,
+      "streak": "1 wins",
+      "tone": "blue",
+      "image": "/assets/tech-titans/hashem.jpg",
+      "badge": "04"
+    },
+    {
       "name": "Sali",
       "title": "Media",
       "score": 400,
       "streak": "1 wins",
       "tone": "pink",
       "image": "/assets/tech-titans/sali.jpg",
-      "badge": "04"
-    },
-    {
-      "name": "Arak",
-      "title": "Design",
-      "score": 300,
-      "streak": "1 wins",
-      "tone": "black",
-      "image": "/assets/logos/cne-icon.png",
       "badge": "05"
     }
   ]
