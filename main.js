@@ -1391,14 +1391,7 @@ async function renderActivityDetail(id) {
           </div>
         </div>
       </section>
-    `,
-    {
-      heroBanner: {
-        label: "تفاصيل النشاط",
-        title: act.title,
-        copy: "مزيد من المعلومات واللقطات حول الأنشطة الطلابية.",
-      },
-    }
+    `
   );
 }
 

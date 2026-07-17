@@ -5578,7 +5578,7 @@ body.is-home #navbar:not(.is-scrolled) .nav-link.is-active {
 .activity-detail-section {
   max-width: 800px;
   margin: 0 auto 60px;
-  padding: 0 16px;
+  padding: 110px 16px 0;
   box-sizing: border-box;
 }
 
