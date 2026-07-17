@@ -4926,9 +4926,25 @@ body.is-home #navbar:not(.is-scrolled) .nav-link.is-active {
   font-size: 0.76rem;
   color: var(--text-secondary);
   background: color-mix(in srgb, var(--orange) 8%, transparent);
-  padding: 2px 8px;
+  padding: 3px 10px;
   border-radius: 999px;
-  margin-top: 2px;
+  margin-top: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+}
+
+.member-dept.dept-purple {
+  background: color-mix(in srgb, var(--purple) 12%, transparent) !important;
+  color: var(--purple) !important;
+  border-color: color-mix(in srgb, var(--purple) 25%, transparent) !important;
+}
+
+.member-dept.dept-gold {
+  background: color-mix(in srgb, var(--yellow) 12%, transparent) !important;
+  color: var(--yellow) !important;
+  border-color: color-mix(in srgb, var(--yellow) 25%, transparent) !important;
 }
 
 .member-bio {

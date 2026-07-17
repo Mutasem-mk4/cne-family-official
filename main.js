@@ -717,7 +717,7 @@ async function renderAbout() {
                       <div class="carousel-card-info">
                         <strong>${member.name}</strong>
                         <span class="member-role">${member.title}</span>
-                        <span class="member-dept">${member.groupRole}</span>
+                        <span class="member-dept ${member.groupRole === 'الرئاسة' ? 'dept-gold' : 'dept-purple'}">${member.groupRole}</span>
                       </div>
                     </div>
                   `).join('')}
