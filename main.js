@@ -1158,10 +1158,16 @@ function renderTrackerCourse(course, completed) {
 }
 
 function renderTopMemberCard(titan) {
+  let imageUrl = titan.image || '/assets/logos/cne-icon.png';
+  const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+  if (!isLocal && imageUrl.startsWith('/assets/tech-titans/')) {
+    imageUrl = `https://raw.githubusercontent.com/Mutasem-mk4/cne-family-official/main/public${imageUrl}`;
+  }
+
   return `
     <article class="top-member-card tone-${titan.tone || 'blue'}">
       <div class="lead-avatar-wrapper">
-        <img src="${titan.image || '/assets/logos/cne-icon.png'}" alt="${titan.name}" class="lead-avatar" loading="lazy" />
+        <img src="${imageUrl}" alt="${titan.name}" class="lead-avatar" loading="lazy" />
       </div>
       <div class="lead-info">
         <h3>${titan.name}</h3>
