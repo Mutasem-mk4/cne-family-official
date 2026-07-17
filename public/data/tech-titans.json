@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-17T10:36:31.547Z",
+  "generatedAt": "2026-07-17T11:00:07.455Z",
   "source": "telegram-webhook",
   "titans": [
     {
@@ -31,11 +31,11 @@
     },
     {
       "name": "Sali",
-      "title": "Design",
+      "title": "Media",
       "score": 400,
       "streak": "1 wins",
       "tone": "pink",
-      "image": "/assets/logos/cne-icon.png",
+      "image": "/assets/tech-titans/sali.jpg",
       "badge": "04"
     },
     {
