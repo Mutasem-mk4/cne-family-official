@@ -1704,3 +1704,21 @@
     scroll-snap-align: start !important;
   }
 }
+
+/* ============================================================
+   RESPONSIVE SPOTLIGHT V2 LAYOUT
+   ============================================================ */
+@media (max-width: 1024px) {
+  .home-spotlight-v2 {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+  
+  .spotlight-sidebar {
+    padding: 20px !important;
+  }
+  
+  .home-top-members-head {
+    text-align: center !important;
+  }
+}
