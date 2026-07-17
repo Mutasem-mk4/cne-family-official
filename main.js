@@ -422,9 +422,7 @@ function renderTopBanner({ label, title, copy, actionHref, actionLabel }) {
 }
 
 async function renderHome() {
-  const techTitans = [...(state.techTitans?.length ? state.techTitans : DEFAULT_TECH_TITANS)].sort(
-    (left, right) => Number(right.score || 0) - Number(left.score || 0),
-  );
+  const techTitans = state.techTitans?.length ? state.techTitans : DEFAULT_TECH_TITANS;
   const quickLinks = state.siteConfig.quickLinks;
 
   return layout(`
@@ -485,18 +483,14 @@ async function renderHome() {
 
 
     <section class="home-spotlight reveal">
-      <section class="titans-board">
-        <div class="titans-board-head">
-          <div>
-            <span class="eyebrow">Tech Titans</span>
-            <h2>Leaderboard</h2>
-          </div>
+      <section class="home-committee-leads">
+        <div class="home-committee-leads-head">
+          <span class="eyebrow">الهيئة الإدارية</span>
+          <h2>رؤساء اللجان الطلابية</h2>
+          <p>نخبة من طلاب القسم يقودون اللجان المختلفة لتقديم الدعم الأكاديمي، التقني، والترفيهي للطلبة.</p>
         </div>
-        <div class="titans-featured">
-          ${renderTitanFeaturedCard(techTitans[0], 1)}
-          <div class="titans-list">
-            ${techTitans.slice(1).map((titan, index) => renderTitanListCard(titan, index + 2)).join("")}
-          </div>
+        <div class="committee-leads-grid">
+          ${techTitans.map(titan => renderCommitteeLeadCard(titan)).join("")}
         </div>
       </section>
 
@@ -1195,46 +1189,19 @@ function renderTrackerCourse(course, completed) {
   `;
 }
 
-function renderTitanFeaturedCard(titan, rank) {
+function renderCommitteeLeadCard(titan) {
   return `
-    <article class="titan-featured-card tone-${titan.tone}">
-      <span class="titan-rank-badge">#${rank}</span>
-      ${renderTitanImage(titan, "titan-featured-image")}
-      <div class="titan-featured-copy">
-        <strong>${titan.name}</strong>
-        <p>${titan.title}</p>
+    <article class="committee-lead-card tone-${titan.tone || 'blue'}">
+      <div class="lead-avatar-wrapper">
+        <img src="${titan.image || '/assets/logos/cne-icon.png'}" alt="${titan.name}" class="lead-avatar" loading="lazy" />
       </div>
-      <div class="titan-score-box">
-        <span>${titan.score}</span>
-        <small>${titan.streak}</small>
+      <div class="lead-info">
+        <h3>${titan.name}</h3>
+        <p class="lead-title">${titan.title}</p>
+        ${titan.streak ? `<span class="lead-badge">${titan.streak}</span>` : ''}
       </div>
     </article>
   `;
-}
-
-function renderTitanListCard(titan, rank) {
-  return `
-    <article class="titan-list-card">
-      ${renderTitanImage(titan, "titan-list-image")}
-      <div class="titan-list-copy">
-        <strong>${titan.name}</strong>
-        <p>${titan.title}</p>
-        <span class="titan-list-streak">${titan.streak}</span>
-      </div>
-      <div class="titan-list-meta">
-        <div class="titan-list-rank tone-${titan.tone}">
-          <span>#${rank}</span>
-          <small>${titan.badge}</small>
-        </div>
-        <strong class="titan-list-score-num">${titan.score}</strong>
-      </div>
-    </article>
-  `;
-}
-
-function renderTitanImage(titan, className) {
-  const src = titan?.image || "/assets/logos/cne-icon.png";
-  return `<img src="${src}" alt="${titan?.name || "Tech Titan"}" class="${className}" loading="lazy" />`;
 }
 
 function getCoursePrerequisiteLabels(course) {

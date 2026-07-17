@@ -1668,3 +1668,39 @@
     border-top: 1px solid var(--line) !important;
   }
 }
+
+/* ============================================================
+   RESPONSIVE COMMITTEE LEADS CARDS
+   ============================================================ */
+@media (max-width: 1024px) {
+  .committee-leads-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .committee-leads-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+  }
+  
+  .home-committee-leads-head h2 {
+    font-size: 1.75rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .committee-leads-grid {
+    display: flex !important;
+    overflow-x: auto !important;
+    padding: 0 4px 16px !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    gap: 12px !important;
+  }
+  
+  .committee-lead-card {
+    flex: 0 0 190px !important;
+    scroll-snap-align: start !important;
+  }
+}

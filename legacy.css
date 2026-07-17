@@ -5778,4 +5778,140 @@ body.is-home #navbar:not(.is-scrolled) .nav-link.is-active {
   }
 }
 
+/* ============================================================
+   COMMITTEE LEADS LAYOUT (REPLACING TECH TITANS)
+   ============================================================ */
+.home-committee-leads {
+  margin-bottom: 60px;
+  width: 100%;
+}
+
+.home-committee-leads-head {
+  text-align: center;
+  margin-bottom: 36px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.home-committee-leads-head h2 {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-top: 8px;
+  margin-bottom: 12px;
+  color: var(--ink);
+}
+
+.home-committee-leads-head p {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.committee-leads-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+.committee-lead-card {
+  background: var(--surface-3);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 28px 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  overflow: hidden;
+}
+
+.committee-lead-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: var(--blue);
+}
+
+.committee-lead-card.tone-orange::before { background: var(--orange); }
+.committee-lead-card.tone-green::before { background: var(--green); }
+.committee-lead-card.tone-purple::before { background: #8b5cf6; }
+.committee-lead-card.tone-red::before { background: #ef4444; }
+
+.committee-lead-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--blue);
+  box-shadow: 0 16px 32px rgba(31, 94, 255, 0.08);
+}
+
+.committee-lead-card.tone-orange:hover { border-color: var(--orange); box-shadow: 0 16px 32px rgba(249, 115, 22, 0.08); }
+.committee-lead-card.tone-green:hover { border-color: var(--green); box-shadow: 0 16px 32px rgba(34, 197, 94, 0.08); }
+
+.lead-avatar-wrapper {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  padding: 4px;
+  border: 2px solid var(--line);
+  background: var(--surface-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.3s ease;
+}
+
+.committee-lead-card:hover .lead-avatar-wrapper {
+  border-color: inherit;
+}
+
+.lead-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.lead-info h3 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.lead-title {
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.lead-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  background: color-mix(in srgb, var(--blue) 8%, transparent);
+  color: var(--blue);
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 12px;
+}
+
+.committee-lead-card.tone-orange .lead-badge {
+  background: color-mix(in srgb, var(--orange) 8%, transparent);
+  color: var(--orange);
+}
+.committee-lead-card.tone-green .lead-badge {
+  background: color-mix(in srgb, var(--green) 8%, transparent);
+  color: var(--green);
+}
+
 
