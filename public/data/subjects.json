@@ -62,7 +62,7 @@
   { "name": "معمارية الحواسيب المتقدمة", "major": "computer", "year": 4, "link": "https://drive.google.com/drive/folders/1sLxSPMjOVtQmCt6i3JSIHFXj9YfcAJ2q" },
   { "name": "موضوعات خاصة", "major": "computer", "year": 4, "link": "https://drive.google.com/drive/folders/1ulOhjV6F8qdvx8yrd7gkw7TqF_BBeRAG" },
   { "name": "الحوسبة السحابية", "major": "computer", "year": 4, "link": "https://drive.google.com/drive/folders/11E3lvsrFuTGIrdZDsmHkEOjFJIX5atCr" },
-  { "name": "المنطق المشوش", "major": "computer", "year": 4, "link": "#" },
+  { "name": "المنطق المشوش", "major": "computer", "year": 4, "link": "https://drive.google.com/drive/folders/1l9Aj0n1xfr2UyrkALFNoy7EmzBxJwrvb" },
   { "name": "تصميم رقمي متقدم", "major": "computer", "year": 4, "link": "#" },
   { "name": "تقييم أداء الحاسوب", "major": "computer", "year": 4, "link": "#" },
   { "name": "معالجة الصور الرقمية", "major": "computer", "year": 4, "link": "#" },
@@ -79,10 +79,10 @@
 
   { "name": "الأنظمة المضمنة", "major": "common", "year": 4, "link": "#" },
   { "name": "مختبر الأنظمة المضمنة", "major": "common", "year": 4, "link": "#" },
-  { "name": "مختبر أنظمة التحكم", "major": "common", "year": 4, "link": "#" },
+  { "name": "مختبر أنظمة التحكم", "major": "common", "year": 4, "link": "https://drive.google.com/drive/folders/194m5Jsh2ofWpztr04VyzvhRZ_Zy0xKpe" },
 
   { "name": "أنظمة المعالجات المتوازية", "major": "computer", "year": 4, "link": "#" },
-  { "name": "مقدمة إلى لينكس", "major": "network", "year": 4, "link": "#" },
+  { "name": "مقدمة إلى لينكس", "major": "network", "year": 4, "link": "https://drive.google.com/drive/folders/1jGCg0iNRW3s6_9SHy3jvyvmGGIeX2MF3" },
   { "name": "القرصنة الأخلاقية", "major": "network", "year": 4, "link": "#" },
   { "name": "أمن الشبكات اللاسلكية", "major": "network", "year": 4, "link": "#" },
   { "name": "شبكات الاستشعار اللاسلكية", "major": "network", "year": 4, "link": "#" },
