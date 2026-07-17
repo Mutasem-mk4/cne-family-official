@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-17T02:03:48.876Z",
+  "generatedAt": "2026-07-17T02:04:37.285Z",
   "source": "telegram-webhook",
   "titans": [
     {
@@ -30,18 +30,18 @@
       "badge": "03"
     },
     {
-      "name": "Arak",
+      "name": "Sali",
       "title": "Design",
-      "score": 300,
+      "score": 400,
       "streak": "1 wins",
       "tone": "blue",
       "image": "/assets/logos/cne-icon.png",
       "badge": "04"
     },
     {
-      "name": "lion",
-      "title": "bro",
-      "score": 201,
+      "name": "Arak",
+      "title": "Design",
+      "score": 300,
       "streak": "1 wins",
       "tone": "blue",
       "image": "/assets/logos/cne-icon.png",
