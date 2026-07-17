@@ -483,14 +483,14 @@ async function renderHome() {
 
 
     <section class="home-spotlight reveal">
-      <section class="home-committee-leads">
-        <div class="home-committee-leads-head">
-          <span class="eyebrow">الهيئة الإدارية</span>
-          <h2>رؤساء اللجان الطلابية</h2>
-          <p>نخبة من طلاب القسم يقودون اللجان المختلفة لتقديم الدعم الأكاديمي، التقني، والترفيهي للطلبة.</p>
+      <section class="home-top-members">
+        <div class="home-top-members-head">
+          <span class="eyebrow">نجوم اللجان</span>
+          <h2>الأعضاء المتميزون</h2>
+          <p>تكريم وتكليل لجهود الأعضاء الأكثر نشاطاً وتميزاً في لجاننا الطلابية المختلفة.</p>
         </div>
-        <div class="committee-leads-grid">
-          ${techTitans.map(titan => renderCommitteeLeadCard(titan)).join("")}
+        <div class="top-members-grid">
+          ${techTitans.map(titan => renderTopMemberCard(titan)).join("")}
         </div>
       </section>
 
@@ -1189,9 +1189,9 @@ function renderTrackerCourse(course, completed) {
   `;
 }
 
-function renderCommitteeLeadCard(titan) {
+function renderTopMemberCard(titan) {
   return `
-    <article class="committee-lead-card tone-${titan.tone || 'blue'}">
+    <article class="top-member-card tone-${titan.tone || 'blue'}">
       <div class="lead-avatar-wrapper">
         <img src="${titan.image || '/assets/logos/cne-icon.png'}" alt="${titan.name}" class="lead-avatar" loading="lazy" />
       </div>

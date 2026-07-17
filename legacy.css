@@ -5779,14 +5779,14 @@ body.is-home #navbar:not(.is-scrolled) .nav-link.is-active {
 }
 
 /* ============================================================
-   COMMITTEE LEADS LAYOUT (REPLACING TECH TITANS)
+   TOP MEMBERS LAYOUT (REPLACING LEADERBOARD)
    ============================================================ */
-.home-committee-leads {
+.home-top-members {
   margin-bottom: 60px;
   width: 100%;
 }
 
-.home-committee-leads-head {
+.home-top-members-head {
   text-align: center;
   margin-bottom: 36px;
   max-width: 600px;
@@ -5794,7 +5794,7 @@ body.is-home #navbar:not(.is-scrolled) .nav-link.is-active {
   margin-right: auto;
 }
 
-.home-committee-leads-head h2 {
+.home-top-members-head h2 {
   font-family: var(--font-display);
   font-size: 2.2rem;
   font-weight: 800;
@@ -5803,20 +5803,20 @@ body.is-home #navbar:not(.is-scrolled) .nav-link.is-active {
   color: var(--ink);
 }
 
-.home-committee-leads-head p {
+.home-top-members-head p {
   color: var(--text-secondary);
   font-size: 1.05rem;
   line-height: 1.6;
 }
 
-.committee-leads-grid {
+.top-members-grid {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 16px;
   width: 100%;
 }
 
-.committee-lead-card {
+.top-member-card {
   background: var(--surface-3);
   border: 1px solid var(--line);
   border-radius: 24px;
@@ -5832,7 +5832,7 @@ body.is-home #navbar:not(.is-scrolled) .nav-link.is-active {
   overflow: hidden;
 }
 
-.committee-lead-card::before {
+.top-member-card::before {
   content: '';
   position: absolute;
   top: 0;
@@ -5842,19 +5842,19 @@ body.is-home #navbar:not(.is-scrolled) .nav-link.is-active {
   background: var(--blue);
 }
 
-.committee-lead-card.tone-orange::before { background: var(--orange); }
-.committee-lead-card.tone-green::before { background: var(--green); }
-.committee-lead-card.tone-purple::before { background: #8b5cf6; }
-.committee-lead-card.tone-red::before { background: #ef4444; }
+.top-member-card.tone-orange::before { background: var(--orange); }
+.top-member-card.tone-green::before { background: var(--green); }
+.top-member-card.tone-purple::before { background: #8b5cf6; }
+.top-member-card.tone-red::before { background: #ef4444; }
 
-.committee-lead-card:hover {
+.top-member-card:hover {
   transform: translateY(-6px);
   border-color: var(--blue);
   box-shadow: 0 16px 32px rgba(31, 94, 255, 0.08);
 }
 
-.committee-lead-card.tone-orange:hover { border-color: var(--orange); box-shadow: 0 16px 32px rgba(249, 115, 22, 0.08); }
-.committee-lead-card.tone-green:hover { border-color: var(--green); box-shadow: 0 16px 32px rgba(34, 197, 94, 0.08); }
+.top-member-card.tone-orange:hover { border-color: var(--orange); box-shadow: 0 16px 32px rgba(249, 115, 22, 0.08); }
+.top-member-card.tone-green:hover { border-color: var(--green); box-shadow: 0 16px 32px rgba(34, 197, 94, 0.08); }
 
 .lead-avatar-wrapper {
   width: 90px;
@@ -5869,7 +5869,7 @@ body.is-home #navbar:not(.is-scrolled) .nav-link.is-active {
   transition: border-color 0.3s ease;
 }
 
-.committee-lead-card:hover .lead-avatar-wrapper {
+.top-member-card:hover .lead-avatar-wrapper {
   border-color: inherit;
 }
 
@@ -5905,11 +5905,11 @@ body.is-home #navbar:not(.is-scrolled) .nav-link.is-active {
   border-radius: 12px;
 }
 
-.committee-lead-card.tone-orange .lead-badge {
+.top-member-card.tone-orange .lead-badge {
   background: color-mix(in srgb, var(--orange) 8%, transparent);
   color: var(--orange);
 }
-.committee-lead-card.tone-green .lead-badge {
+.top-member-card.tone-green .lead-badge {
   background: color-mix(in srgb, var(--green) 8%, transparent);
   color: var(--green);
 }
