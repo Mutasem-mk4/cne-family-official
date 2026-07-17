@@ -487,7 +487,6 @@ async function renderHome() {
         <div class="home-top-members-head">
           <span class="eyebrow">نجوم اللجان</span>
           <h2>الأعضاء المتميزون</h2>
-          <p>تكريم وتكليل لجهود الأعضاء الأكثر نشاطاً وتميزاً في لجاننا الطلابية المختلفة.</p>
         </div>
         <div class="top-members-grid">
           ${techTitans.map(titan => renderTopMemberCard(titan)).join("")}
