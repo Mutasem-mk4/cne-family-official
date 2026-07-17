@@ -139,7 +139,7 @@ p {
   background: rgba(243, 237, 226, 0.8) !important;
   backdrop-filter: blur(18px) !important;
   -webkit-backdrop-filter: blur(18px) !important;
-  border-bottom: 1px solid var(--line) !important;
+  border-bottom: none !important;
   box-shadow: var(--shadow-soft) !important;
 }
 
