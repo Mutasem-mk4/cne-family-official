@@ -30,7 +30,7 @@
         },
         {
           "name": "بتول",
-          "title": "قائدة اللجنة الأكاديمية",
+          "title": "مسؤولة الأكاديمية",
           "image": "/assets/tech-titans/batool_academic.jpg"
         },
         {
@@ -40,12 +40,12 @@
         },
         {
           "name": "علي",
-          "title": "قائد لجنة الأنشطة",
+          "title": "مسؤول الأنشطة",
           "image": "/assets/tech-titans/ali_activities.jpg"
         },
         {
           "name": "دانية",
-          "title": "قائدة لجنة الإعلام",
+          "title": "مسؤولة ال MEDIA",
           "image": "/assets/tech-titans/dania_media.jpg"
         },
         {
@@ -55,7 +55,7 @@
         },
         {
           "name": "ميسم",
-          "title": "قائدة منصة إنستغرام",
+          "title": "مسؤولة ال INSTA",
           "image": "/assets/tech-titans/maisam_instagram.jpg"
         }
       ]
