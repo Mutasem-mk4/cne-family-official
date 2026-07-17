@@ -5893,17 +5893,18 @@ body.is-home #navbar:not(.is-scrolled) .nav-link.is-active {
   align-items: flex-start;
   padding: 24px;
   border-radius: 24px;
-  background: var(--surface-3);
+  background: transparent;
   border: 1px solid var(--line);
-  box-shadow: var(--shadow-soft);
-  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: none;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
   text-decoration: none;
 }
 
 .home-quick-link-card:hover {
   transform: translateY(-6px);
   border-color: var(--blue);
-  box-shadow: 0 16px 32px rgba(31, 94, 255, 0.08);
+  background: color-mix(in srgb, var(--blue) 3%, transparent);
+  box-shadow: 0 12px 32px rgba(31, 94, 255, 0.05);
 }
 
 .home-quick-link-card .material-symbols-outlined {
