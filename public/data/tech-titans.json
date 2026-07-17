@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-17T11:14:02.323Z",
+  "generatedAt": "2026-07-17T11:14:58.533Z",
   "source": "telegram-webhook",
   "titans": [
     {
@@ -12,13 +12,22 @@
       "badge": "01"
     },
     {
+      "name": "Hashem",
+      "title": "Core",
+      "score": 1104,
+      "streak": "1 wins",
+      "tone": "blue",
+      "image": "/assets/tech-titans/hashem.jpg",
+      "badge": "02"
+    },
+    {
       "name": "ِSali",
       "title": "Design",
       "score": 1103,
       "streak": "1 wins",
       "tone": "pink",
       "image": "/assets/tech-titans/sali.jpg",
-      "badge": "02"
+      "badge": "03"
     },
     {
       "name": "Mutasem",
@@ -27,22 +36,13 @@
       "streak": "1 wins",
       "tone": "orange",
       "image": "/assets/tech-titans/mutasem.jpg",
-      "badge": "03"
+      "badge": "04"
     },
     {
       "name": "tytan",
       "title": "bro",
       "score": 982,
       "streak": "1 wins",
-      "tone": "blue",
-      "image": "/assets/logos/cne-icon.png",
-      "badge": "04"
-    },
-    {
-      "name": "him",
-      "title": "bro",
-      "score": 982,
-      "streak": "3 wins",
       "tone": "blue",
       "image": "/assets/logos/cne-icon.png",
       "badge": "05"
