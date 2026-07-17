@@ -1,16 +1,16 @@
 {
   "groups": [
     {
-      "role": "رئاسة",
+      "role": "الرئاسة",
       "members": [
         {
           "name": "فتحي",
-          "title": "ريس",
+          "title": "الرئيس",
           "image": "/assets/tech-titans/fathe.jpg"
         },
         {
           "name": "رند",
-          "title": "ريسة",
+          "title": "الرئيسة",
           "image": "/assets/tech-titans/rand.jpg"
         }
       ]
@@ -30,22 +30,22 @@
         },
         {
           "name": "بتول",
-          "title": "قائدة أكاديمية",
+          "title": "قائدة اللجنة الأكاديمية",
           "image": "/assets/tech-titans/batool_academic.jpg"
         },
         {
           "name": "معتصم",
-          "title": "قائد تقني",
+          "title": "قائد اللجنة التقنية",
           "image": "/assets/tech-titans/mutasem_tech.jpg"
         },
         {
           "name": "علي",
-          "title": "قائد الأنشطة",
+          "title": "قائد لجنة الأنشطة",
           "image": "/assets/tech-titans/ali_activities.jpg"
         },
         {
           "name": "دانية",
-          "title": "قائدة الإعلام",
+          "title": "قائدة لجنة الإعلام",
           "image": "/assets/tech-titans/dania_media.jpg"
         },
         {
