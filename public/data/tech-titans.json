@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-17T01:59:52.930Z",
+  "generatedAt": "2026-07-17T02:02:51.613Z",
   "source": "telegram-webhook",
   "titans": [
     {
@@ -30,21 +30,21 @@
       "badge": "03"
     },
     {
+      "name": "Arak",
+      "title": "Design",
+      "score": 300,
+      "streak": "1 wins",
+      "tone": "pink",
+      "image": "/assets/logos/cne-icon.png",
+      "badge": "04"
+    },
+    {
       "name": "lion",
       "title": "bro",
       "score": 201,
       "streak": "1 wins",
       "tone": "blue",
       "image": "/assets/logos/cne-icon.png",
-      "badge": "04"
-    },
-    {
-      "name": "mutaz",
-      "title": "bro",
-      "score": 199,
-      "streak": "1 wins",
-      "tone": "orange",
-      "image": "/assets/tech-titans/mutaz.jpg",
       "badge": "05"
     }
   ]
