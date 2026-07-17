@@ -709,9 +709,7 @@ async function renderAbout() {
             
             <div class="about-carousel-viewport">
               <div class="about-carousel-track" id="team-carousel-track">
-                ${allMembers.map(member => {
-      const bio = getMemberBio(member.title);
-      return `
+                ${allMembers.map(member => `
                     <div class="about-carousel-card">
                       <div class="carousel-card-avatar">
                         <img src="${member.image}" alt="${member.name}" onerror="this.src='/assets/logos/cne-icon.png'">
@@ -720,11 +718,9 @@ async function renderAbout() {
                         <strong>${member.name}</strong>
                         <span class="member-role">${member.title}</span>
                         <span class="member-dept">${member.groupRole}</span>
-                        <p class="member-bio">${bio}</p>
                       </div>
                     </div>
-                  `;
-    }).join('')}
+                  `).join('')}
               </div>
             </div>
 
@@ -738,31 +734,6 @@ async function renderAbout() {
       </div>
     `
   );
-}
-
-function getMemberBio(title) {
-  if (title.includes("ريس") || title.includes("رئيس")) {
-    return "يقود الاتحاد لتنظيم الفعاليات، وتنسيق الجهود لخدمة وتمثيل الطلبة لدى عمادة الكلية.";
-  }
-  if (title.includes("تقني")) {
-    return "يشرف على تطوير وإدارة المواقع والمنصات التقنية الخاصة بالاتحاد ودعم البنية البرمجية.";
-  }
-  if (title.includes("أكاديمي") || title.includes("أكاديمية")) {
-    return "يشرف على توفير وتدقيق وتنسيق الملفات والملخصات والخطط الدراسية الأكاديمية للطلبة.";
-  }
-  if (title.includes("الموارد البشرية")) {
-    return "يعمل على تنظيم عمل لجان الاتحاد وتنسيق المهام بين الأعضاء وتوثيق إنجازات الفريق.";
-  }
-  if (title.includes("أنشطة") || title.includes("الأنشطة")) {
-    return "يخطط وينظم الفعاليات اللامنهجية، والمنافسات الرياضية والترفيهية لطلبة القسم.";
-  }
-  if (title.includes("إعلام") || title.includes("الإعلام") || title.includes("إنستغرام")) {
-    return "يدير الحسابات الرسمية للاتحاد، ويشرف على التصاميم المرئية والتغطيات الإعلامية للأنشطة.";
-  }
-  if (title.includes("Core")) {
-    return "يساهم في الإدارة التنفيذية ومتابعة المبادرات والمشاريع الداخلية الهامة للاتحاد.";
-  }
-  return "عضو فخور في عائلة CNE Family، يساهم في دعم طلبة هندسة الحاسوب والشبكات وتطوير المجتمع الأكاديمي.";
 }
 
 let carouselAnimationFrameId = null;
