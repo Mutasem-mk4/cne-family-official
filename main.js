@@ -482,36 +482,34 @@ async function renderHome() {
     </section>
 
 
-    <section class="home-spotlight reveal">
-      <section class="home-top-members">
-        <div class="home-top-members-head">
-          <span class="eyebrow">نجوم اللجان</span>
-          <h2>الأعضاء المتميزون</h2>
-        </div>
-        <div class="top-members-grid">
-          ${techTitans.map(titan => renderTopMemberCard(titan)).join("")}
-        </div>
-      </section>
+    <section class="home-quick-links reveal">
+      <div class="home-quick-links-head">
+        <span class="eyebrow">روابط سريعة</span>
+        <a href="/links" data-link class="text-cta">كل الروابط</a>
+      </div>
+      <div class="home-quick-links-grid">
+        ${quickLinks.map(
+          (link) => `
+            <a href="${link.href}" target="_blank" rel="noopener" class="home-quick-link-card">
+              <span class="material-symbols-outlined">${link.icon}</span>
+              <div>
+                <strong>${link.title}</strong>
+                <p>${link.desc}</p>
+              </div>
+            </a>
+          `,
+        ).join("")}
+      </div>
+    </section>
 
-      <section class="home-quick-links">
-        <div class="home-quick-links-head">
-          <span class="eyebrow">روابط سريعة</span>
-          <a href="/links" data-link class="text-cta">كل الروابط</a>
-        </div>
-        <div class="home-quick-links-grid">
-          ${quickLinks.map(
-    (link) => `
-              <a href="${link.href}" target="_blank" rel="noopener" class="home-quick-link-card">
-                <span class="material-symbols-outlined">${link.icon}</span>
-                <div>
-                  <strong>${link.title}</strong>
-                  <p>${link.desc}</p>
-                </div>
-              </a>
-            `,
-  ).join("")}
-        </div>
-      </section>
+    <section class="home-top-members reveal">
+      <div class="home-top-members-head">
+        <span class="eyebrow">نجوم اللجان</span>
+        <h2>الأعضاء المتميزون</h2>
+      </div>
+      <div class="top-members-grid">
+        ${techTitans.map(titan => renderTopMemberCard(titan)).join("")}
+      </div>
     </section>
   `);
 }
