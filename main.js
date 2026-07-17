@@ -1223,34 +1223,25 @@ function renderLinks() {
 function renderJoin() {
   return layout(
     `
-      <section class="join-layout reveal">
-        <article class="join-copy">
-          <span class="eyebrow">الانضمام</span>
-          <h2>اترك بياناتك وسنتواصل معك.</h2>
-          <p>إذا كنت تريد المشاركة أو الاستفسار، أرسل بياناتك عبر هذا النموذج.</p>
+      <section class="join-layout reveal" style="display: flex; justify-content: center; align-items: center; min-height: 40vh; padding: 40px 20px;">
+        <article class="join-copy" style="text-align: center; width: 100%; max-width: 600px; margin: 0 auto;">
+          <span class="eyebrow eyebrow-solid" style="background: rgba(31, 94, 255, 0.08); color: var(--blue); padding: 6px 14px; border-radius: 12px; font-weight: 700; font-size: 0.88rem; display: inline-block; margin-bottom: 12px;">الانضمام للاتحاد</span>
+          <h2 style="font-family: var(--font-display); font-size: 2.2rem; font-weight: 800; margin-bottom: 16px; color: var(--ink);">نموذج الانضمام الرسمي</h2>
+          <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 32px; line-height: 1.6;">
+            يسعدنا جداً انضمامك لعائلة اتحاد هندسة الحاسوب والشبكات. يرجى ملء طلب الانضمام عبر نموذج Google Forms الرسمي المعتمد.
+          </p>
+          <a href="https://docs.google.com/forms/d/1NR8CbbCZYxmkJvebv5NCMgPRrfqXp5wwNmiOE5JQzD4/" target="_blank" rel="noopener" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-size: 1.05rem; font-weight: 700; border-radius: 999px; text-decoration: none; transition: transform 0.2s ease;">
+            <span class="material-symbols-outlined" style="font-size: 1.2rem;">open_in_new</span>
+            فتح نموذج الانضمام
+          </a>
         </article>
-        <form id="join-form" class="join-form">
-          <label>
-            <span>الاسم الكامل</span>
-            <input name="name" required placeholder="اكتب اسمك الكامل" autocomplete="name" />
-          </label>
-          <label>
-            <span>الرقم الجامعي</span>
-            <input name="student_id" required inputmode="numeric" pattern="[0-9]*" placeholder="مثال: 32019..." />
-          </label>
-          <label>
-            <span>وسيلة التواصل</span>
-            <input name="contact" required inputmode="email" placeholder="بريد إلكتروني أو رقم هاتف" />
-          </label>
-          <button class="btn btn-primary" type="submit">إرسال الطلب</button>
-        </form>
       </section>
     `,
     {
       heroBanner: {
         label: "التواصل والانضمام",
-        title: "نموذج بسيط للانضمام والتواصل",
-        copy: "التركيز هنا على الإجراء الأساسي فقط.",
+        title: "كن جزءاً من فريقنا",
+        copy: "نموذج الانضمام الرسمي لاتحاد هندسة الحاسوب والشبكات.",
       },
     },
   );
