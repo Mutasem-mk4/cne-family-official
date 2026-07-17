@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-17T09:29:25.136Z",
+  "generatedAt": "2026-07-17T10:36:31.547Z",
   "source": "telegram-webhook",
   "titans": [
     {
@@ -34,7 +34,7 @@
       "title": "Design",
       "score": 400,
       "streak": "1 wins",
-      "tone": "blue",
+      "tone": "pink",
       "image": "/assets/logos/cne-icon.png",
       "badge": "04"
     },
