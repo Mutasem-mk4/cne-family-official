@@ -1189,12 +1189,6 @@ function renderLinks() {
   return layout(
     `
       <section class="links-page reveal">
-        <section class="links-intro">
-          <span class="eyebrow">الروابط الأساسية</span>
-          <h2>اختر المنصة التي تريد فتحها</h2>
-          <p>روابط مباشرة إلى أهم المنصات الرسمية التي يحتاجها الطالب يومياً.</p>
-        </section>
-
         <section class="links-board">
         ${quickLinks.map(
       (link) => `
@@ -1208,14 +1202,7 @@ function renderLinks() {
     ).join("")}
         </section>
       </section>
-    `,
-    {
-      heroBanner: {
-        label: "الروابط الأساسية",
-        title: "وصول مباشر إلى أهم المنصات الرسمية",
-        copy: "البوابة الطلابية، جريدة المواد، والتعلم الإلكتروني في صفحة واحدة.",
-      },
-    },
+    `
   );
 }
 
