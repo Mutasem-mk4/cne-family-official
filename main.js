@@ -1124,14 +1124,7 @@ async function renderTracker() {
       .join("")}
         </div>
       </section>
-    `,
-    {
-      heroBanner: {
-        label: "متتبع الخطة",
-        title: "اعرف ما أنجزته وما تبقى عليك",
-        copy: "اختر التخصص ثم علّم المواد المنجزة لمتابعة تقدمك.",
-      },
-    },
+    `
   );
 }
 
