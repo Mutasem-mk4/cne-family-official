@@ -430,7 +430,7 @@ async function renderHome() {
       <div class="hero-command-board hero-premium">
         <div class="hero-command-background">
           <img 
-            srcset="/assets/images/hero-cne-750.webp 750w, /assets/images/hero-cne.webp 1920w" 
+            srcset="/assets/images/hero-cne-750.webp?v=1 750w, /assets/images/hero-cne.webp 1920w" 
             sizes="100vw" 
             src="/assets/images/hero-cne.webp" 
             alt="CNE Family Group" 
