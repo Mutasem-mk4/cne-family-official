@@ -442,10 +442,6 @@ async function renderHome() {
           <div class="hero-command-copy">
             <span class="hero-badge">CNE Family Official Platform</span>
             <h1>نقطة بداية واضحة لمستقبلك الهندسي.</h1>
-            <p>
-              المنصة الأكاديمية الشاملة لطلبة هندسة الحاسوب والشبكات: محتوى منظم،
-              أدوات ذكية، ومجتمع تقني متكامل.
-            </p>
           </div>
 
           <div class="hero-primary-actions">
