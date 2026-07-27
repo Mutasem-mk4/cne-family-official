@@ -585,44 +585,32 @@ body.is-home #navbar:not(.is-scrolled) .nav-link.is-active {
 .hero-image-mask {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to left,
-    rgba(243, 237, 226, 0.88) 0%,
-    rgba(243, 237, 226, 0.72) 45%,
-    rgba(243, 237, 226, 0.35) 75%,
-    rgba(243, 237, 226, 0.15) 100%
-  );
+  background: 
+    linear-gradient(to top, var(--bg) 0%, rgba(243, 237, 226, 0) 120px),
+    linear-gradient(to left, rgba(243, 237, 226, 0.88) 0%, rgba(243, 237, 226, 0.72) 45%, rgba(243, 237, 226, 0.35) 75%, rgba(243, 237, 226, 0.15) 100%);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
   z-index: 2;
 }
 
 [dir="ltr"] .hero-image-mask {
-  background: linear-gradient(
-    to right,
-    rgba(243, 237, 226, 0.88) 0%,
-    rgba(243, 237, 226, 0.72) 45%,
-    rgba(243, 237, 226, 0.35) 75%,
-    rgba(243, 237, 226, 0.15) 100%
-  );
+  background: 
+    linear-gradient(to top, var(--bg) 0%, rgba(243, 237, 226, 0) 120px),
+    linear-gradient(to right, rgba(243, 237, 226, 0.88) 0%, rgba(243, 237, 226, 0.72) 45%, rgba(243, 237, 226, 0.35) 75%, rgba(243, 237, 226, 0.15) 100%);
 }
 
 [data-theme="dark"] .hero-image-mask {
-  background: linear-gradient(
-    to left,
-    rgba(2, 6, 23, 0.95) 0%,
-    rgba(2, 6, 23, 0.8) 45%,
-    rgba(2, 6, 23, 0.4) 75%,
-    rgba(2, 6, 23, 0.15) 100%
-  );
+  background: 
+    linear-gradient(to top, #020617 0%, rgba(2, 6, 23, 0) 120px),
+    linear-gradient(to left, rgba(2, 6, 23, 0.95) 0%, rgba(2, 6, 23, 0.8) 45%, rgba(2, 6, 23, 0.4) 75%, rgba(2, 6, 23, 0.15) 100%);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
 }
 
 [data-theme="dark"][dir="ltr"] .hero-image-mask {
-  background: linear-gradient(
-    to right,
-    rgba(2, 6, 23, 0.95) 0%,
-    rgba(2, 6, 23, 0.8) 45%,
-    rgba(2, 6, 23, 0.4) 75%,
-    rgba(2, 6, 23, 0.15) 100%
-  );
+  background: 
+    linear-gradient(to top, #020617 0%, rgba(2, 6, 23, 0) 120px),
+    linear-gradient(to right, rgba(2, 6, 23, 0.95) 0%, rgba(2, 6, 23, 0.8) 45%, rgba(2, 6, 23, 0.4) 75%, rgba(2, 6, 23, 0.15) 100%);
 }
 
 .hero-command-content {
