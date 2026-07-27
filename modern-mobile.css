@@ -198,7 +198,7 @@
     border-top: none !important;
     border-bottom: 1px solid var(--line) !important;
     padding: 0 !important;
-    background: var(--bg-2) !important;
+    background: var(--bg) !important;
     box-shadow: 0 16px 40px rgba(243, 237, 226, 0.5) !important; /* Soft beige shadow/glow to blend into the light background */
   }
 
@@ -226,9 +226,9 @@
     inset: 0 !important;
     background: linear-gradient(
       to bottom,
-      rgba(255, 249, 241, 0.4) 0%,
-      rgba(255, 249, 241, 0.7) 60%,
-      rgba(255, 249, 241, 0.95) 100%
+      rgba(243, 237, 226, 0.3) 0%,
+      rgba(243, 237, 226, 0.6) 60%,
+      rgba(243, 237, 226, 0.92) 100%
     ) !important;
     z-index: 2 !important;
   }

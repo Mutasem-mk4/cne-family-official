@@ -552,7 +552,7 @@ body.is-home #navbar:not(.is-scrolled) .nav-link.is-active {
   min-height: 100vh;
   margin-bottom: 48px;
   border-radius: 0 !important;
-  background-color: var(--bg-2);
+  background-color: var(--bg);
   border-bottom: 2px solid var(--line) !important;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08) !important;
   display: flex;
@@ -587,10 +587,10 @@ body.is-home #navbar:not(.is-scrolled) .nav-link.is-active {
   inset: 0;
   background: linear-gradient(
     to left,
-    rgba(255, 249, 241, 0.88) 0%,
-    rgba(255, 249, 241, 0.72) 45%,
-    rgba(255, 249, 241, 0.35) 75%,
-    rgba(255, 249, 241, 0.15) 100%
+    rgba(243, 237, 226, 0.88) 0%,
+    rgba(243, 237, 226, 0.72) 45%,
+    rgba(243, 237, 226, 0.35) 75%,
+    rgba(243, 237, 226, 0.15) 100%
   );
   z-index: 2;
 }
@@ -598,10 +598,10 @@ body.is-home #navbar:not(.is-scrolled) .nav-link.is-active {
 [dir="ltr"] .hero-image-mask {
   background: linear-gradient(
     to right,
-    rgba(255, 249, 241, 0.88) 0%,
-    rgba(255, 249, 241, 0.72) 45%,
-    rgba(255, 249, 241, 0.35) 75%,
-    rgba(255, 249, 241, 0.15) 100%
+    rgba(243, 237, 226, 0.88) 0%,
+    rgba(243, 237, 226, 0.72) 45%,
+    rgba(243, 237, 226, 0.35) 75%,
+    rgba(243, 237, 226, 0.15) 100%
   );
 }
 
