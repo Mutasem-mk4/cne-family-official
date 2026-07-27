@@ -192,19 +192,10 @@ p {
   font-size: 1.25rem;
 }
 
-body.is-home #navbar:not(.is-scrolled) .logo-name {
-  color: #ffffff;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
-}
-
 .logo-name em {
   font-size: 0.95rem;
   font-style: normal;
   color: var(--muted);
-}
-
-body.is-home #navbar:not(.is-scrolled) .logo-name em {
-  color: rgba(255, 255, 255, 0.85);
 }
 
 .nav-links {
@@ -229,14 +220,43 @@ body.is-home #navbar:not(.is-scrolled) .logo-name em {
   background: var(--surface-2);
 }
 
+body.is-home #navbar:not(.is-scrolled) .logo-name {
+  color: var(--ink);
+  text-shadow: none;
+}
+
+body.is-home #navbar:not(.is-scrolled) .logo-name em {
+  color: var(--muted);
+}
+
 body.is-home #navbar:not(.is-scrolled) .nav-link {
-  color: #ffffff;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+  color: var(--muted);
+  text-shadow: none;
   font-weight: 500;
 }
 
 body.is-home #navbar:not(.is-scrolled) .nav-link:hover,
 body.is-home #navbar:not(.is-scrolled) .nav-link.is-active {
+  color: var(--ink);
+  background: var(--surface-2);
+}
+
+[data-theme="dark"] body.is-home #navbar:not(.is-scrolled) .logo-name {
+  color: #ffffff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] body.is-home #navbar:not(.is-scrolled) .logo-name em {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+[data-theme="dark"] body.is-home #navbar:not(.is-scrolled) .nav-link {
+  color: #ffffff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] body.is-home #navbar:not(.is-scrolled) .nav-link:hover,
+[data-theme="dark"] body.is-home #navbar:not(.is-scrolled) .nav-link.is-active {
   color: #ffffff;
   background: rgba(255, 255, 255, 0.2);
 }
@@ -568,8 +588,8 @@ body.is-home #navbar:not(.is-scrolled) .nav-link.is-active {
   background: linear-gradient(
     to left,
     var(--bg-2) 0%,
-    rgba(255, 249, 241, 0.92) 35%,
-    rgba(255, 249, 241, 0.6) 55%,
+    var(--bg-2) 55%,
+    rgba(255, 249, 241, 0.8) 70%,
     transparent 100%
   );
   z-index: 2;
@@ -579,8 +599,8 @@ body.is-home #navbar:not(.is-scrolled) .nav-link.is-active {
   background: linear-gradient(
     to right,
     var(--bg-2) 0%,
-    rgba(255, 249, 241, 0.92) 35%,
-    rgba(255, 249, 241, 0.6) 55%,
+    var(--bg-2) 55%,
+    rgba(255, 249, 241, 0.8) 70%,
     transparent 100%
   );
 }
@@ -589,8 +609,8 @@ body.is-home #navbar:not(.is-scrolled) .nav-link.is-active {
   background: linear-gradient(
     to left,
     rgba(2, 6, 23, 1) 0%,
-    rgba(2, 6, 23, 0.9) 35%,
-    rgba(2, 6, 23, 0.6) 55%,
+    rgba(2, 6, 23, 1) 55%,
+    rgba(2, 6, 23, 0.8) 70%,
     transparent 100%
   );
 }
@@ -599,8 +619,8 @@ body.is-home #navbar:not(.is-scrolled) .nav-link.is-active {
   background: linear-gradient(
     to right,
     rgba(2, 6, 23, 1) 0%,
-    rgba(2, 6, 23, 0.9) 35%,
-    rgba(2, 6, 23, 0.6) 55%,
+    rgba(2, 6, 23, 1) 55%,
+    rgba(2, 6, 23, 0.8) 70%,
     transparent 100%
   );
 }
