@@ -533,8 +533,8 @@ body.is-home #navbar:not(.is-scrolled) .nav-link.is-active {
   margin-bottom: 48px;
   border-radius: 0 !important;
   background-color: #020617;
-  border-bottom: 1px solid rgba(243, 237, 226, 0.15) !important;
-  box-shadow: 0 20px 40px rgba(243, 237, 226, 0.4), 0 10px 20px rgba(0, 0, 0, 0.18) !important;
+  border-bottom: 2px solid rgba(243, 237, 226, 0.25) !important;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.28) !important;
   display: flex;
   align-items: center;
   position: relative;
