@@ -587,10 +587,10 @@ body.is-home #navbar:not(.is-scrolled) .nav-link.is-active {
   inset: 0;
   background: linear-gradient(
     to left,
-    var(--bg-2) 0%,
-    var(--bg-2) 55%,
-    rgba(255, 249, 241, 0.8) 70%,
-    transparent 100%
+    rgba(255, 249, 241, 0.88) 0%,
+    rgba(255, 249, 241, 0.72) 45%,
+    rgba(255, 249, 241, 0.35) 75%,
+    rgba(255, 249, 241, 0.15) 100%
   );
   z-index: 2;
 }
@@ -598,30 +598,30 @@ body.is-home #navbar:not(.is-scrolled) .nav-link.is-active {
 [dir="ltr"] .hero-image-mask {
   background: linear-gradient(
     to right,
-    var(--bg-2) 0%,
-    var(--bg-2) 55%,
-    rgba(255, 249, 241, 0.8) 70%,
-    transparent 100%
+    rgba(255, 249, 241, 0.88) 0%,
+    rgba(255, 249, 241, 0.72) 45%,
+    rgba(255, 249, 241, 0.35) 75%,
+    rgba(255, 249, 241, 0.15) 100%
   );
 }
 
 [data-theme="dark"] .hero-image-mask {
   background: linear-gradient(
     to left,
-    rgba(2, 6, 23, 1) 0%,
-    rgba(2, 6, 23, 1) 55%,
-    rgba(2, 6, 23, 0.8) 70%,
-    transparent 100%
+    rgba(2, 6, 23, 0.95) 0%,
+    rgba(2, 6, 23, 0.8) 45%,
+    rgba(2, 6, 23, 0.4) 75%,
+    rgba(2, 6, 23, 0.15) 100%
   );
 }
 
 [data-theme="dark"][dir="ltr"] .hero-image-mask {
   background: linear-gradient(
     to right,
-    rgba(2, 6, 23, 1) 0%,
-    rgba(2, 6, 23, 1) 55%,
-    rgba(2, 6, 23, 0.8) 70%,
-    transparent 100%
+    rgba(2, 6, 23, 0.95) 0%,
+    rgba(2, 6, 23, 0.8) 45%,
+    rgba(2, 6, 23, 0.4) 75%,
+    rgba(2, 6, 23, 0.15) 100%
   );
 }
 
