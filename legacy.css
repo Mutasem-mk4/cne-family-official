@@ -5845,7 +5845,7 @@ body.is-home #navbar:not(.is-scrolled) .nav-link.is-active {
 }
 
 .top-member-card {
-  background: var(--surface-3);
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 24px;
   padding: 28px 16px;
