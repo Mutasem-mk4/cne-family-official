@@ -245,13 +245,13 @@
   .hero-command-content {
     position: relative !important;
     z-index: 3 !important;
-    padding: 80px 16px 32px !important;
+    padding: 72px 16px 24px !important;
     display: flex !important;
     flex-direction: column !important;
-    gap: 28px !important;
+    gap: 20px !important;
     text-align: center !important;
     align-items: center !important;
-    justify-content: center !important;
+    justify-content: flex-start !important;
     width: 100% !important;
     box-sizing: border-box !important;
     background: transparent !important;
@@ -325,10 +325,10 @@
     align-items: center !important;
     justify-content: center !important;
     gap: 24px !important;
-    padding-top: 20px !important;
+    padding-top: 16px !important;
     border-top: 1px solid var(--line) !important;
     width: 100% !important;
-    margin: 0 !important;
+    margin: auto 0 0 0 !important;
   }
 
   [data-theme="dark"] .hero-metrics {
