@@ -267,7 +267,7 @@
     text-align: center !important;
     width: 100% !important;
     max-width: 360px !important;
-    margin: auto auto 0 auto !important;
+    margin: 32px auto auto auto !important;
     padding: 24px 18px 20px !important;
     background: rgba(243, 237, 226, 0.76) !important;
     backdrop-filter: blur(20px) !important;
