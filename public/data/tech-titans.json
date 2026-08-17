@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-17T14:26:04.117Z",
+  "generatedAt": "2026-08-17T14:26:23.571Z",
   "source": "telegram-webhook",
   "titans": [
     {
@@ -25,7 +25,7 @@
       "title": "Tech",
       "score": 1109,
       "streak": "1 wins",
-      "tone": "pink",
+      "tone": "blue",
       "image": "/assets/tech-titans/ismaeel.jpg",
       "badge": "03"
     },
