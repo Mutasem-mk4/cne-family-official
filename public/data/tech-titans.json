@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-17T14:26:23.571Z",
+  "generatedAt": "2026-08-17T14:26:47.935Z",
   "source": "telegram-webhook",
   "titans": [
     {
@@ -34,7 +34,7 @@
       "title": "Members",
       "score": 1108,
       "streak": "1 wins",
-      "tone": "pink",
+      "tone": "blue",
       "image": "/assets/tech-titans/ahmad.jpg",
       "badge": "04"
     },
