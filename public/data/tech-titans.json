@@ -1,7 +1,16 @@
 {
-  "generatedAt": "2026-08-17T14:21:45.316Z",
+  "generatedAt": "2026-08-17T14:23:39.505Z",
   "source": "telegram-webhook",
   "titans": [
+    {
+      "name": "Ismaeel",
+      "title": "Tech",
+      "score": 1109,
+      "streak": "1 wins",
+      "tone": "pink",
+      "image": "/assets/logos/cne-icon.png",
+      "badge": "01"
+    },
     {
       "name": "Ahmad",
       "title": "Members",
@@ -9,7 +18,7 @@
       "streak": "1 wins",
       "tone": "pink",
       "image": "/assets/tech-titans/ahmad.jpg",
-      "badge": "01"
+      "badge": "02"
     },
     {
       "name": "Noura",
@@ -18,7 +27,7 @@
       "streak": "1 wins",
       "tone": "pink",
       "image": "/assets/tech-titans/noura.jpg",
-      "badge": "02"
+      "badge": "03"
     },
     {
       "name": "Hala",
@@ -27,7 +36,7 @@
       "streak": "1 wins",
       "tone": "pink",
       "image": "/assets/tech-titans/hala.jpg",
-      "badge": "03"
+      "badge": "04"
     },
     {
       "name": "Malak",
@@ -36,15 +45,6 @@
       "streak": "1 wins",
       "tone": "pink",
       "image": "/assets/tech-titans/malak.jpg",
-      "badge": "04"
-    },
-    {
-      "name": "ِAbd Alrahman",
-      "title": "TECH",
-      "score": 1105,
-      "streak": "1 wins",
-      "tone": "blue",
-      "image": "/assets/tech-titans/abd-alrahman.jpg",
       "badge": "05"
     }
   ]
