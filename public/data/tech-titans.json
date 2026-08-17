@@ -1,7 +1,16 @@
 {
-  "generatedAt": "2026-07-17T20:04:37.666Z",
+  "generatedAt": "2026-08-17T14:16:34.146Z",
   "source": "telegram-webhook",
   "titans": [
+    {
+      "name": "Noura",
+      "title": "Insta",
+      "score": 1107,
+      "streak": "1 wins",
+      "tone": "pink",
+      "image": "/assets/tech-titans/noura.jpg",
+      "badge": "01"
+    },
     {
       "name": "Malak",
       "title": "Members",
@@ -9,7 +18,7 @@
       "streak": "1 wins",
       "tone": "pink",
       "image": "/assets/tech-titans/malak.jpg",
-      "badge": "01"
+      "badge": "02"
     },
     {
       "name": "ِAbd Alrahman",
@@ -18,7 +27,7 @@
       "streak": "1 wins",
       "tone": "blue",
       "image": "/assets/tech-titans/abd-alrahman.jpg",
-      "badge": "02"
+      "badge": "03"
     },
     {
       "name": "Hashem",
@@ -27,7 +36,7 @@
       "streak": "1 wins",
       "tone": "blue",
       "image": "/assets/tech-titans/hashem.jpg",
-      "badge": "03"
+      "badge": "04"
     },
     {
       "name": "ِSali",
@@ -36,15 +45,6 @@
       "streak": "1 wins",
       "tone": "pink",
       "image": "/assets/tech-titans/sali.jpg",
-      "badge": "04"
-    },
-    {
-      "name": "Noura",
-      "title": "Academic",
-      "score": 1102,
-      "streak": "1 wins",
-      "tone": "pink",
-      "image": "/assets/tech-titans/noura.jpg",
       "badge": "05"
     }
   ]
