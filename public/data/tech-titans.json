@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-17T14:16:34.146Z",
+  "generatedAt": "2026-08-17T14:20:58.830Z",
   "source": "telegram-webhook",
   "titans": [
     {
@@ -12,13 +12,22 @@
       "badge": "01"
     },
     {
+      "name": "Hala",
+      "title": "Insta",
+      "score": 1107,
+      "streak": "1 wins",
+      "tone": "pink",
+      "image": "/assets/tech-titans/hala.jpg",
+      "badge": "02"
+    },
+    {
       "name": "Malak",
       "title": "Members",
       "score": 1106,
       "streak": "1 wins",
       "tone": "pink",
       "image": "/assets/tech-titans/malak.jpg",
-      "badge": "02"
+      "badge": "03"
     },
     {
       "name": "ِAbd Alrahman",
@@ -27,7 +36,7 @@
       "streak": "1 wins",
       "tone": "blue",
       "image": "/assets/tech-titans/abd-alrahman.jpg",
-      "badge": "03"
+      "badge": "04"
     },
     {
       "name": "Hashem",
@@ -36,15 +45,6 @@
       "streak": "1 wins",
       "tone": "blue",
       "image": "/assets/tech-titans/hashem.jpg",
-      "badge": "04"
-    },
-    {
-      "name": "ِSali",
-      "title": "Design",
-      "score": 1103,
-      "streak": "1 wins",
-      "tone": "pink",
-      "image": "/assets/tech-titans/sali.jpg",
       "badge": "05"
     }
   ]
