@@ -2876,12 +2876,13 @@ body.is-home #navbar:not(.is-scrolled) .nav-link.is-active {
 .lightbox-overlay {
   position: fixed;
   inset: 0;
-  z-index: 100;
+  z-index: 100000;
   display: grid;
   place-items: center;
   padding: 0;
   background: rgba(2, 6, 23, 0.98);
   backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 .lightbox-inner {
@@ -2934,33 +2935,39 @@ body.is-home #navbar:not(.is-scrolled) .nav-link.is-active {
 }
 
 .lightbox-close {
-  position: absolute;
-  top: 32px;
-  right: 32px; /* RTL start corner */
-  z-index: 120;
+  position: fixed;
+  top: max(20px, env(safe-area-inset-top, 20px));
+  inset-inline-end: max(20px, env(safe-area-inset-right, 20px));
+  inset-inline-start: auto;
+  z-index: 100001;
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(15, 23, 42, 0.88);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #fff;
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
   cursor: pointer;
-  transition: all 0.25s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 
-.lightbox-close:hover {
-  background: var(--red);
-  border-color: var(--red);
-  transform: scale(1.1) rotate(90deg);
+.lightbox-close .material-symbols-outlined {
+  font-size: 26px;
+  color: #ffffff;
+  line-height: 1;
+  display: block;
 }
 
-.lightbox-close:hover {
-  background: var(--red);
-  border-color: var(--red);
-  transform: scale(1.1);
+.lightbox-close:hover,
+.lightbox-close:active {
+  background: var(--red, #ef4444);
+  border-color: var(--red, #ef4444);
+  transform: scale(1.08);
 }
 
 @media (max-width: 640px) {
@@ -2975,8 +2982,8 @@ body.is-home #navbar:not(.is-scrolled) .nav-link.is-active {
   }
 
   .lightbox-close {
-    top: 16px;
-    left: 16px;
+    top: max(16px, env(safe-area-inset-top, 16px));
+    inset-inline-end: max(16px, env(safe-area-inset-right, 16px));
     width: 44px;
     height: 44px;
   }

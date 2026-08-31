@@ -1429,6 +1429,10 @@
     white-space: normal !important;
   }
 
+  .lightbox-overlay {
+    z-index: 100000 !important;
+  }
+
   .lightbox-content {
     align-items: flex-start !important;
     justify-content: flex-start !important;
@@ -1443,9 +1447,32 @@
   }
 
   .lightbox-close {
-    top: 16px !important;
-    inset-inline-end: 16px !important;
+    position: fixed !important;
+    top: max(16px, env(safe-area-inset-top, 16px)) !important;
+    inset-inline-end: max(16px, env(safe-area-inset-right, 16px)) !important;
     inset-inline-start: auto !important;
+    z-index: 100001 !important;
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    background: rgba(15, 23, 42, 0.9) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6) !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #ffffff !important;
+  }
+
+  .lightbox-close .material-symbols-outlined {
+    font-size: 24px !important;
+    color: #ffffff !important;
+    line-height: 1 !important;
+    display: block !important;
   }
 
   /* P2-9 & P2-10: Tracker Mobile Layout */

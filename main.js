@@ -1385,7 +1385,9 @@ function openInteractiveLightbox(majorKey) {
   overlay.className = "lightbox-overlay";
   overlay.innerHTML = `
     <div class="lightbox-inner reveal is-visible">
-      <button class="lightbox-close material-symbols-outlined" type="button" aria-label="إغلاق">close</button>
+      <button class="lightbox-close" type="button" aria-label="إغلاق">
+        <span class="material-symbols-outlined" aria-hidden="true">close</span>
+      </button>
       <div class="lightbox-content">
         ${renderClickablePlanImage(majorKey, major)}
       </div>
