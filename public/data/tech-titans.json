@@ -1,7 +1,16 @@
 {
-  "generatedAt": "2026-08-17T14:33:11.810Z",
+  "generatedAt": "2026-09-12T13:55:46.041Z",
   "source": "telegram-webhook",
   "titans": [
+    {
+      "name": "AYA",
+      "title": "Insta",
+      "score": 1113,
+      "streak": "1 wins",
+      "tone": "pink",
+      "image": "/assets/tech-titans/aya.jpg",
+      "badge": "01"
+    },
     {
       "name": "Hala",
       "title": "Insta",
@@ -9,7 +18,7 @@
       "streak": "1 wins",
       "tone": "pink",
       "image": "/assets/tech-titans/hala.jpg",
-      "badge": "01"
+      "badge": "02"
     },
     {
       "name": "Sali",
@@ -18,7 +27,7 @@
       "streak": "1 wins",
       "tone": "pink",
       "image": "/assets/tech-titans/sali.jpg",
-      "badge": "02"
+      "badge": "03"
     },
     {
       "name": "Salhout",
@@ -27,7 +36,7 @@
       "streak": "1 wins",
       "tone": "blue",
       "image": "/assets/tech-titans/salhout.jpg",
-      "badge": "03"
+      "badge": "04"
     },
     {
       "name": "Ismaeel",
@@ -36,15 +45,6 @@
       "streak": "1 wins",
       "tone": "blue",
       "image": "/assets/tech-titans/ismaeel.jpg",
-      "badge": "04"
-    },
-    {
-      "name": "Ahmad",
-      "title": "Members",
-      "score": 1108,
-      "streak": "1 wins",
-      "tone": "blue",
-      "image": "/assets/tech-titans/ahmad.jpg",
       "badge": "05"
     }
   ]
