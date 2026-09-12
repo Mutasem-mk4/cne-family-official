@@ -1,7 +1,16 @@
 {
-  "generatedAt": "2026-09-12T13:56:52.483Z",
+  "generatedAt": "2026-09-12T13:57:40.850Z",
   "source": "telegram-webhook",
   "titans": [
+    {
+      "name": "Bailasan",
+      "title": "TECH",
+      "score": 1115,
+      "streak": "1 wins",
+      "tone": "pink",
+      "image": "/assets/tech-titans/bailasan.jpg",
+      "badge": "01"
+    },
     {
       "name": "Ahmad",
       "title": "CORE",
@@ -9,7 +18,7 @@
       "streak": "1 wins",
       "tone": "blue",
       "image": "/assets/tech-titans/ahmad.jpg",
-      "badge": "01"
+      "badge": "02"
     },
     {
       "name": "AYA",
@@ -18,7 +27,7 @@
       "streak": "1 wins",
       "tone": "pink",
       "image": "/assets/tech-titans/aya.jpg",
-      "badge": "02"
+      "badge": "03"
     },
     {
       "name": "Hala",
@@ -27,7 +36,7 @@
       "streak": "1 wins",
       "tone": "pink",
       "image": "/assets/tech-titans/hala.jpg",
-      "badge": "03"
+      "badge": "04"
     },
     {
       "name": "Sali",
@@ -36,15 +45,6 @@
       "streak": "1 wins",
       "tone": "pink",
       "image": "/assets/tech-titans/sali.jpg",
-      "badge": "04"
-    },
-    {
-      "name": "Salhout",
-      "title": "Tech",
-      "score": 1110,
-      "streak": "1 wins",
-      "tone": "blue",
-      "image": "/assets/tech-titans/salhout.jpg",
       "badge": "05"
     }
   ]
