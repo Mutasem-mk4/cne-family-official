@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-14T16:23:04.043Z",
+  "generatedAt": "2026-10-14T16:23:52.342Z",
   "source": "telegram-webhook",
   "titans": [
     {
@@ -8,7 +8,7 @@
       "score": 1120,
       "streak": "1 wins",
       "tone": "blue",
-      "image": "/assets/logos/cne-icon.png",
+      "image": "/assets/tech-titans/malek.jpg",
       "badge": "01"
     },
     {
