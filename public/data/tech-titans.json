@@ -1,7 +1,16 @@
 {
-  "generatedAt": "2026-10-14T16:19:55.845Z",
+  "generatedAt": "2026-10-14T16:21:52.302Z",
   "source": "telegram-webhook",
   "titans": [
+    {
+      "name": "I'tidal",
+      "title": "Technical",
+      "score": 1119,
+      "streak": "1 wins",
+      "tone": "pink",
+      "image": "/assets/tech-titans/itidal.jpg",
+      "badge": "01"
+    },
     {
       "name": "Rahaf",
       "title": "Academic",
@@ -9,7 +18,7 @@
       "streak": "1 wins",
       "tone": "pink",
       "image": "/assets/tech-titans/rahaf.jpg",
-      "badge": "01"
+      "badge": "02"
     },
     {
       "name": "Sedal",
@@ -18,15 +27,6 @@
       "streak": "1 wins",
       "tone": "pink",
       "image": "/assets/tech-titans/sedal.jpg",
-      "badge": "02"
-    },
-    {
-      "name": "I'tidal",
-      "title": "MEDIA",
-      "score": 1116,
-      "streak": "1 wins",
-      "tone": "pink",
-      "image": "/assets/tech-titans/itidal.jpg",
       "badge": "03"
     },
     {
