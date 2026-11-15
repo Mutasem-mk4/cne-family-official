@@ -1,7 +1,16 @@
 {
-  "generatedAt": "2026-10-14T16:26:09.355Z",
+  "generatedAt": "2026-11-15T06:40:16.038Z",
   "source": "telegram-webhook",
   "titans": [
+    {
+      "name": "Yousif",
+      "title": "Media",
+      "score": 1123,
+      "streak": "1 wins",
+      "tone": "blue",
+      "image": "/assets/tech-titans/yousif.jpg",
+      "badge": "01"
+    },
     {
       "name": "Arak",
       "title": "Media",
@@ -9,7 +18,7 @@
       "streak": "1 wins",
       "tone": "pink",
       "image": "/assets/tech-titans/arak.jpg",
-      "badge": "01"
+      "badge": "02"
     },
     {
       "name": "Rawan",
@@ -18,7 +27,7 @@
       "streak": "1 wins",
       "tone": "pink",
       "image": "/assets/tech-titans/rawan.jpg",
-      "badge": "02"
+      "badge": "03"
     },
     {
       "name": "Malek",
@@ -27,7 +36,7 @@
       "streak": "1 wins",
       "tone": "blue",
       "image": "/assets/tech-titans/malek.jpg",
-      "badge": "03"
+      "badge": "04"
     },
     {
       "name": "I'tidal",
@@ -36,15 +45,6 @@
       "streak": "1 wins",
       "tone": "pink",
       "image": "/assets/tech-titans/itidal.jpg",
-      "badge": "04"
-    },
-    {
-      "name": "Rahaf",
-      "title": "Academic",
-      "score": 1118,
-      "streak": "1 wins",
-      "tone": "pink",
-      "image": "/assets/tech-titans/rahaf.jpg",
       "badge": "05"
     }
   ]
